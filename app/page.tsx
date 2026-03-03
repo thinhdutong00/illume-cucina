@@ -6,20 +6,17 @@ export default function Home() {
   const [navVisible, setNavVisible] = useState(true);
   const [navScrolled, setNavScrolled] = useState(false);
 
-  // Gestione Header Sticky Intelligente
   useEffect(() => {
     const handleScroll = () => {
       const container = document.getElementById('main-container');
       const currentScrollY = container?.scrollTop || 0;
       
-      // Mostra/Nascondi nav in base alla direzione dello scroll
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
         setNavVisible(false);
       } else {
         setNavVisible(true);
       }
 
-      // Cambia colore quando si scosta dall'inizio
       setNavScrolled(currentScrollY > 50);
       setLastScrollY(currentScrollY);
     };
@@ -42,8 +39,8 @@ export default function Home() {
         </nav>
       </header>
 
-      {/* 2. HERO SECTION */}
-      <section id="home" className="section hero">
+      {/* 2. HERO SECTION (Snap attivo) */}
+      <section id="home" className="section hero snap-section">
         <div className="hero-content">
           <h1>ILLUME</h1>
           <p className="subtitle">CUCINA EMILIANA GOURMET</p>
@@ -55,8 +52,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3. CHI SIAMO */}
-      <section id="storia" className="section glass-section">
+      {/* 3. CHI SIAMO (Snap attivo) */}
+      <section id="storia" className="section glass-section snap-section">
         <div className="glass-card">
           <span>LA NOSTRA ESSENZA</span>
           <h2>Passione e Lentezza</h2>
@@ -65,12 +62,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 4. GUARDA IL MENU */}
-      <section id="menu" className="section menu-section">
+      {/* 4. GUARDA IL MENU (Snap attivo) */}
+      <section id="menu" className="section menu-section snap-section">
         <h2>Le Nostre Specialità</h2>
         <p className="menu-intro">Una selezione curata dei nostri piatti più iconici.</p>
         <div className="menu-grid">
-          {/* Colonna 1 */}
           <div className="menu-col">
             {[1, 2, 3, 4, 5].map((i) => (
               <div key={i} className="pizza-item">
@@ -82,7 +78,6 @@ export default function Home() {
               </div>
             ))}
           </div>
-          {/* Colonna 2 */}
           <div className="menu-col">
             {[6, 7, 8, 9, 10].map((i) => (
               <div key={i} className="pizza-item">
@@ -97,7 +92,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5. PRENOTA UN TAVOLO (Ultima sezione con snap) */}
+      {/* 5. PRENOTA (Snap DISATTIVATO per permettere il footer) */}
       <section id="prenota" className="section prenota-section">
         <div className="cta-box">
           <h2>Riserva il tuo posto</h2>
@@ -106,7 +101,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 6. FOOTER (Fuori dalle sezioni snap per scorrimento libero) */}
+      {/* 6. FOOTER (Scorrimento libero) */}
       <footer className="footer">
         <div className="footer-logo">ILLUME</div>
         <p>Via delle Tradizioni, 1 - Bologna</p>
@@ -132,20 +127,14 @@ export default function Home() {
         }
         .nav-down { transform: translateY(0); }
         .nav-up { transform: translateY(-100%); }
-        .nav-bg { 
-          background: rgba(255, 251, 240, 0.95); 
-          box-shadow: 0 2px 20px rgba(0,0,0,0.05); 
-          padding: 15px 5%; 
-        }
+        .nav-bg { background: rgba(255, 251, 240, 0.95); box-shadow: 0 2px 20px rgba(0,0,0,0.05); padding: 15px 5%; }
         .logo { font-weight: bold; letter-spacing: 4px; font-size: 1.4rem; color: #B32D2E; }
         .nav-links { display: flex; gap: 30px; }
         .nav-links a { text-decoration: none; color: #4A2C10; font-size: 0.8rem; letter-spacing: 2px; }
 
         /* HERO */
         .hero { text-align: center; background: #FFFBF0; }
-        .hero-content { 
-          display: flex; flex-direction: column; align-items: center; 
-        }
+        .hero-content { display: flex; flex-direction: column; align-items: center; }
         .hero h1 { font-size: clamp(4rem, 12vw, 7rem); margin: 0; font-weight: 300; color: #B32D2E; }
         .subtitle { letter-spacing: 8px; font-size: 1.2rem; margin-top: -10px; opacity: 0.7; }
         .description { max-width: 600px; margin: 30px 0; line-height: 1.6; }
@@ -173,22 +162,15 @@ export default function Home() {
         .cta-box { text-align: center; }
         .btn-large { display: inline-block; padding: 25px 60px; background: #B32D2E; color: white; text-decoration: none; border-radius: 50px; font-size: 1.2rem; font-weight: bold; margin-top: 30px; }
 
-        /* FOOTER - Stile scuro e pulito */
-        .footer { 
-          padding: 80px 5%; 
-          text-align: center; 
-          background: #2D1B0A; 
-          color: white; 
-          width: 100%; 
-          box-sizing: border-box;
-        }
+        /* FOOTER */
+        .footer { padding: 80px 5%; text-align: center; background: #2D1B0A; color: white; width: 100%; box-sizing: border-box; }
         .footer-logo { font-size: 2rem; letter-spacing: 5px; margin-bottom: 20px; color: #FFFBF0; }
 
         /* DESKTOP ONLY SLIDE EFFECT */
         @media (min-width: 1024px) {
           .main-wrapper { scroll-snap-type: y mandatory; }
-          /* Applichiamo lo snap solo alle sezioni, il footer ne rimane fuori */
-          .section { scroll-snap-align: start; scroll-snap-stop: always; }
+          /* Applichiamo lo snap SOLO alle sezioni con classe snap-section */
+          .snap-section { scroll-snap-align: start; scroll-snap-stop: always; }
         }
 
         /* MOBILE */
