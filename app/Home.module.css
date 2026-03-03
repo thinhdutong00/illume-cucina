@@ -1,0 +1,100 @@
+.mainWrapper { 
+  height: 100vh; 
+  overflow-y: scroll; 
+  scroll-behavior: smooth; 
+  background-color: #FFFBF0; 
+  color: #2D1B0A; 
+  font-family: serif;
+  overflow-x: hidden;
+}
+
+.section { 
+  min-height: 100vh; 
+  width: 100%; 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: center; 
+  padding: 60px 5%; 
+  box-sizing: border-box; 
+}
+
+/* HERO ANIMATA */
+.hero { 
+  position: relative; 
+  overflow: hidden; 
+  background: #FFFBF0; 
+}
+
+.heroBgAnimated {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%; z-index: 0;
+  background: linear-gradient(120deg, #FFFBF0, #F7E1AE, #FFFBF0, #F3D2C1);
+  background-size: 300% 300%;
+  animation: gradientMove 10s ease infinite;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.heroContent { 
+  position: relative; 
+  z-index: 1; 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  text-align: center; 
+}
+
+.heroContent h1 { 
+  font-size: clamp(4rem, 12vw, 7rem); 
+  margin: 0; 
+  font-weight: 300; 
+  color: #B32D2E; 
+}
+
+/* NAVBAR */
+.navbar {
+  position: fixed; top: 0; left: 0; width: 100%; 
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 25px 5%; z-index: 1000; transition: all 0.4s ease;
+  box-sizing: border-box;
+}
+
+.navDown { transform: translateY(0); }
+.navUp { transform: translateY(-100%); }
+.navBg { background: rgba(255, 251, 240, 0.95); box-shadow: 0 2px 20px rgba(0,0,0,0.05); padding: 15px 5%; }
+
+.logo { font-weight: bold; letter-spacing: 4px; font-size: 1.4rem; color: #B32D2E; }
+.navLinks { display: flex; gap: 30px; }
+.navLinks a { text-decoration: none; color: #4A2C10; font-size: 0.8rem; letter-spacing: 2px; }
+
+/* ELEMENTI UI */
+.subtitle { letter-spacing: 8px; font-size: 1.2rem; margin-top: -10px; opacity: 0.7; }
+.description { max-width: 600px; margin: 30px 0; line-height: 1.6; }
+.btnGroup { display: flex; gap: 20px; justify-content: center; }
+.btnSolid { padding: 18px 35px; background: #B32D2E; color: white; text-decoration: none; border-radius: 50px; font-weight: bold; }
+.btnOutline { padding: 18px 35px; border: 1px solid #B32D2E; color: #B32D2E; text-decoration: none; border-radius: 50px; }
+
+/* CHI SIAMO & MENU */
+.glassCard { 
+  background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(10px); 
+  padding: 60px; border-radius: 40px; border: 1px solid white; max-width: 900px; text-align: center;
+}
+.menuSection { background: #F7E1AE; }
+.menuGrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; width: 100%; max-width: 1100px; margin-top: 30px; }
+.pizzaItem { border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 15px; }
+
+/* FOOTER & PRENOTA */
+.lastSection { justify-content: space-between; padding: 100px 0 0 0; }
+.footer { width: 100%; padding: 60px 5%; background: #2D1B0A; color: white; text-align: center; margin: 0; box-sizing: border-box; }
+.footerLogo { font-size: 1.8rem; letter-spacing: 5px; margin-bottom: 15px; color: #FFFBF0; }
+
+/* RESPONSIVE & SNAP */
+@media (min-width: 1024px) {
+  .mainWrapper { scroll-snap-type: y mandatory; }
+  .section { scroll-snap-align: start; scroll-snap-stop: always; }
+}
