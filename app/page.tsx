@@ -91,7 +91,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5. PRENOTA + FOOTER (Tutto in un'unica sezione finale) */}
+      {/* 5. PRENOTA + FOOTER (Senza bordi bianchi) */}
       <section id="prenota" className="section last-section">
         <div className="prenota-content">
           <h2>Riserva il tuo posto</h2>
@@ -110,6 +110,7 @@ export default function Home() {
         .main-wrapper { 
           height: 100vh; overflow-y: scroll; scroll-behavior: smooth; 
           background-color: #FFFBF0; color: #2D1B0A; font-family: 'serif';
+          overflow-x: hidden;
         }
         .section { 
           min-height: 100vh; width: 100%; display: flex; flex-direction: column; 
@@ -154,14 +155,30 @@ export default function Home() {
         .pizza-header { display: flex; justify-content: space-between; align-items: baseline; }
         .price { font-weight: bold; color: #B32D2E; }
 
-        /* LAST SECTION (PRENOTA + FOOTER) */
-        .last-section { justify-content: space-between; padding-bottom: 0; padding-top: 100px; }
-        .prenota-content { text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
+        /* LAST SECTION - Correzione bordo bianco */
+        .last-section { 
+          justify-content: space-between; 
+          padding: 100px 0 0 0; /* Rimosso padding laterale per il footer */
+        }
+        .prenota-content { 
+          text-align: center; 
+          flex-grow: 1; 
+          display: flex; 
+          flex-direction: column; 
+          justify-content: center;
+          padding: 0 5%;
+        }
         .btn-large { display: inline-block; padding: 22px 50px; background: #B32D2E; color: white; text-decoration: none; border-radius: 50px; font-size: 1.1rem; font-weight: bold; margin-top: 20px; }
         
-        /* FOOTER */
+        /* FOOTER - Correzione estensione totale */
         .footer { 
-          width: 100%; padding: 40px 5%; background: #2D1B0A; color: white; text-align: center; margin-top: 50px;
+          width: 100%; 
+          padding: 60px 5%; 
+          background: #2D1B0A; 
+          color: white; 
+          text-align: center; 
+          margin: 0;
+          box-sizing: border-box;
         }
         .footer-logo { font-size: 1.8rem; letter-spacing: 5px; margin-bottom: 15px; color: #FFFBF0; }
 
@@ -176,7 +193,7 @@ export default function Home() {
           .section { height: auto; min-height: 100vh; padding: 80px 20px; }
           .nav-links { display: none; }
           .glass-card { padding: 40px 20px; }
-          .last-section { display: block; }
+          .last-section { display: flex; flex-direction: column; }
         }
       `}</style>
     </div>
