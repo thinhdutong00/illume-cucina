@@ -9,7 +9,8 @@ export default function Home() {
   // Gestione Header Sticky Intelligente
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = document.getElementById('main-container')?.scrollTop || 0;
+      const container = document.getElementById('main-container');
+      const currentScrollY = container?.scrollTop || 0;
       
       // Mostra/Nascondi nav in base alla direzione dello scroll
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
@@ -105,12 +106,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 6. FOOTER */}
-      <footer className="footer">
-        <div className="footer-logo">ILLUME</div>
-        <p>Via delle Tradizioni, 1 - Bologna</p>
-        <p>© 2026 Illume Cucina Emiliana. Tutti i diritti riservati.</p>
-      </footer>
+      {/* 6. FOOTER (Inglobato in una section per l'effetto slide) */}
+      <section className="section footer-section">
+        <footer className="footer">
+          <div className="footer-logo">ILLUME</div>
+          <p>Via delle Tradizioni, 1 - Bologna</p>
+          <p>© 2026 Illume Cucina Emiliana. Tutti i diritti riservati.</p>
+        </footer>
+      </section>
 
       <style jsx>{`
         .main-wrapper { 
@@ -122,24 +125,33 @@ export default function Home() {
           align-items: center; justify-content: center; padding: 100px 5%; box-sizing: border-box; 
         }
 
-        /* HEADER */
+        /* HEADER - Corretto padding e contenimento */
         .navbar {
-          position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between;
-          padding: 25px 6%; z-index: 1000; transition: all 0.4s ease;
+          position: fixed; top: 0; left: 0; width: 100%; display: flex; 
+          justify-content: space-between; align-items: center;
+          padding: 25px 5%; z-index: 1000; transition: all 0.4s ease;
+          box-sizing: border-box;
         }
         .nav-down { transform: translateY(0); }
         .nav-up { transform: translateY(-100%); }
-        .nav-bg { background: rgba(255, 251, 240, 0.95); box-shadow: 0 2px 20px rgba(0,0,0,0.05); padding: 15px 6%; }
+        .nav-bg { 
+          background: rgba(255, 251, 240, 0.95); 
+          box-shadow: 0 2px 20px rgba(0,0,0,0.05); 
+          padding: 15px 5%; 
+        }
         .logo { font-weight: bold; letter-spacing: 4px; font-size: 1.4rem; color: #B32D2E; }
         .nav-links { display: flex; gap: 30px; }
         .nav-links a { text-decoration: none; color: #4A2C10; font-size: 0.8rem; letter-spacing: 2px; }
 
-        /* HERO */
+        /* HERO - Allineamento pulsanti corretto */
         .hero { text-align: center; background: #FFFBF0; }
+        .hero-content { 
+          display: flex; flex-direction: column; align-items: center; 
+        }
         .hero h1 { font-size: clamp(4rem, 12vw, 7rem); margin: 0; font-weight: 300; color: #B32D2E; }
         .subtitle { letter-spacing: 8px; font-size: 1.2rem; margin-top: -10px; opacity: 0.7; }
         .description { max-width: 600px; margin: 30px 0; line-height: 1.6; }
-        .btn-group { display: flex; gap: 20px; }
+        .btn-group { display: flex; gap: 20px; justify-content: center; width: 100%; }
         .btn-solid { padding: 18px 35px; background: #B32D2E; color: white; text-decoration: none; border-radius: 50px; font-weight: bold; }
         .btn-outline { padding: 18px 35px; border: 1px solid #B32D2E; color: #B32D2E; text-decoration: none; border-radius: 50px; }
 
@@ -163,14 +175,15 @@ export default function Home() {
         .cta-box { text-align: center; }
         .btn-large { display: inline-block; padding: 25px 60px; background: #B32D2E; color: white; text-decoration: none; border-radius: 50px; font-size: 1.2rem; font-weight: bold; margin-top: 30px; }
 
-        /* FOOTER */
-        .footer { padding: 60px 0; text-align: center; background: #2D1B0A; color: white; width: 100%; }
+        /* FOOTER SECTION - Agganciata allo scroll-snap */
+        .footer-section { background: #2D1B0A; }
+        .footer { text-align: center; color: white; width: 100%; }
         .footer-logo { font-size: 2rem; letter-spacing: 5px; margin-bottom: 20px; }
 
-        /* DESKTOP ONLY SLIDE EFFECT */
+        /* DESKTOP ONLY SLIDE EFFECT - Corretto snap per il footer */
         @media (min-width: 1024px) {
           .main-wrapper { scroll-snap-type: y mandatory; }
-          .section { scroll-snap-align: start; }
+          .section { scroll-snap-align: start; scroll-snap-stop: always; }
         }
 
         /* MOBILE */
