@@ -39,8 +39,8 @@ export default function Home() {
         </nav>
       </header>
 
-      {/* 2. HERO SECTION (Snap attivo) */}
-      <section id="home" className="section hero snap-section">
+      {/* 2. HERO SECTION */}
+      <section id="home" className="section">
         <div className="hero-content">
           <h1>ILLUME</h1>
           <p className="subtitle">CUCINA EMILIANA GOURMET</p>
@@ -52,8 +52,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3. CHI SIAMO (Snap attivo) */}
-      <section id="storia" className="section glass-section snap-section">
+      {/* 3. CHI SIAMO */}
+      <section id="storia" className="section">
         <div className="glass-card">
           <span>LA NOSTRA ESSENZA</span>
           <h2>Passione e Lentezza</h2>
@@ -62,10 +62,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 4. GUARDA IL MENU (Snap attivo) */}
-      <section id="menu" className="section menu-section snap-section">
+      {/* 4. GUARDA IL MENU */}
+      <section id="menu" className="section menu-section">
         <h2>Le Nostre Specialità</h2>
-        <p className="menu-intro">Una selezione curata dei nostri piatti più iconici.</p>
         <div className="menu-grid">
           <div className="menu-col">
             {[1, 2, 3, 4, 5].map((i) => (
@@ -92,21 +91,20 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5. PRENOTA (Snap DISATTIVATO per permettere il footer) */}
-      <section id="prenota" className="section prenota-section">
-        <div className="cta-box">
+      {/* 5. PRENOTA + FOOTER (Tutto in un'unica sezione finale) */}
+      <section id="prenota" className="section last-section">
+        <div className="prenota-content">
           <h2>Riserva il tuo posto</h2>
           <p>Assicurati un'esperienza indimenticabile tra i sapori della nostra terra.</p>
           <a href="tel:+39012345678" className="btn-large">PRENOTA ORA</a>
         </div>
-      </section>
 
-      {/* 6. FOOTER (Scorrimento libero) */}
-      <footer className="footer">
-        <div className="footer-logo">ILLUME</div>
-        <p>Via delle Tradizioni, 1 - Bologna</p>
-        <p>© 2026 Illume Cucina Emiliana. Tutti i diritti riservati.</p>
-      </footer>
+        <footer className="footer">
+          <div className="footer-logo">ILLUME</div>
+          <p>Via delle Tradizioni, 1 - Bologna</p>
+          <p>© 2026 Illume Cucina Emiliana. Tutti i diritti riservati.</p>
+        </footer>
+      </section>
 
       <style jsx>{`
         .main-wrapper { 
@@ -115,7 +113,7 @@ export default function Home() {
         }
         .section { 
           min-height: 100vh; width: 100%; display: flex; flex-direction: column; 
-          align-items: center; justify-content: center; padding: 100px 5%; box-sizing: border-box; 
+          align-items: center; justify-content: center; padding: 60px 5%; box-sizing: border-box; 
         }
 
         /* HEADER */
@@ -125,52 +123,52 @@ export default function Home() {
           padding: 25px 5%; z-index: 1000; transition: all 0.4s ease;
           box-sizing: border-box;
         }
+        .nav-bg { background: rgba(255, 251, 240, 0.95); box-shadow: 0 2px 20px rgba(0,0,0,0.05); padding: 15px 5%; }
         .nav-down { transform: translateY(0); }
         .nav-up { transform: translateY(-100%); }
-        .nav-bg { background: rgba(255, 251, 240, 0.95); box-shadow: 0 2px 20px rgba(0,0,0,0.05); padding: 15px 5%; }
         .logo { font-weight: bold; letter-spacing: 4px; font-size: 1.4rem; color: #B32D2E; }
         .nav-links { display: flex; gap: 30px; }
         .nav-links a { text-decoration: none; color: #4A2C10; font-size: 0.8rem; letter-spacing: 2px; }
 
         /* HERO */
-        .hero { text-align: center; background: #FFFBF0; }
-        .hero-content { display: flex; flex-direction: column; align-items: center; }
-        .hero h1 { font-size: clamp(4rem, 12vw, 7rem); margin: 0; font-weight: 300; color: #B32D2E; }
+        .hero-content { display: flex; flex-direction: column; align-items: center; text-align: center; }
+        .hero-content h1 { font-size: clamp(4rem, 12vw, 7rem); margin: 0; font-weight: 300; color: #B32D2E; }
         .subtitle { letter-spacing: 8px; font-size: 1.2rem; margin-top: -10px; opacity: 0.7; }
         .description { max-width: 600px; margin: 30px 0; line-height: 1.6; }
-        .btn-group { display: flex; gap: 20px; justify-content: center; width: 100%; }
+        .btn-group { display: flex; gap: 20px; justify-content: center; }
         .btn-solid { padding: 18px 35px; background: #B32D2E; color: white; text-decoration: none; border-radius: 50px; font-weight: bold; }
         .btn-outline { padding: 18px 35px; border: 1px solid #B32D2E; color: #B32D2E; text-decoration: none; border-radius: 50px; }
 
         /* CHI SIAMO */
         .glass-card { 
           background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(10px); 
-          padding: 80px; border-radius: 40px; border: 1px solid white; max-width: 900px; text-align: center;
+          padding: 60px; border-radius: 40px; border: 1px solid white; max-width: 900px; text-align: center;
         }
         .glass-card h2 { font-size: 3rem; color: #B32D2E; }
         .motto { font-style: italic; font-size: 1.4rem; margin: 20px 0; color: #D4A35D; }
 
         /* MENU */
         .menu-section { background: #F7E1AE; }
-        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 60px; width: 100%; max-width: 1100px; margin-top: 50px; }
-        .pizza-item { border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 20px; }
+        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; width: 100%; max-width: 1100px; margin-top: 30px; }
+        .pizza-item { border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 15px; }
         .pizza-header { display: flex; justify-content: space-between; align-items: baseline; }
-        .pizza-header h3 { margin: 0; font-size: 1.2rem; }
         .price { font-weight: bold; color: #B32D2E; }
 
-        /* PRENOTA */
-        .cta-box { text-align: center; }
-        .btn-large { display: inline-block; padding: 25px 60px; background: #B32D2E; color: white; text-decoration: none; border-radius: 50px; font-size: 1.2rem; font-weight: bold; margin-top: 30px; }
-
+        /* LAST SECTION (PRENOTA + FOOTER) */
+        .last-section { justify-content: space-between; padding-bottom: 0; padding-top: 100px; }
+        .prenota-content { text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
+        .btn-large { display: inline-block; padding: 22px 50px; background: #B32D2E; color: white; text-decoration: none; border-radius: 50px; font-size: 1.1rem; font-weight: bold; margin-top: 20px; }
+        
         /* FOOTER */
-        .footer { padding: 80px 5%; text-align: center; background: #2D1B0A; color: white; width: 100%; box-sizing: border-box; }
-        .footer-logo { font-size: 2rem; letter-spacing: 5px; margin-bottom: 20px; color: #FFFBF0; }
+        .footer { 
+          width: 100%; padding: 40px 5%; background: #2D1B0A; color: white; text-align: center; margin-top: 50px;
+        }
+        .footer-logo { font-size: 1.8rem; letter-spacing: 5px; margin-bottom: 15px; color: #FFFBF0; }
 
         /* DESKTOP ONLY SLIDE EFFECT */
         @media (min-width: 1024px) {
           .main-wrapper { scroll-snap-type: y mandatory; }
-          /* Applichiamo lo snap SOLO alle sezioni con classe snap-section */
-          .snap-section { scroll-snap-align: start; scroll-snap-stop: always; }
+          .section { scroll-snap-align: start; scroll-snap-stop: always; }
         }
 
         /* MOBILE */
@@ -178,6 +176,7 @@ export default function Home() {
           .section { height: auto; min-height: 100vh; padding: 80px 20px; }
           .nav-links { display: none; }
           .glass-card { padding: 40px 20px; }
+          .last-section { display: block; }
         }
       `}</style>
     </div>
