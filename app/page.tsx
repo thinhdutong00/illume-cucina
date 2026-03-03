@@ -97,7 +97,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5. PRENOTA UN TAVOLO */}
+      {/* 5. PRENOTA UN TAVOLO (Ultima sezione con snap) */}
       <section id="prenota" className="section prenota-section">
         <div className="cta-box">
           <h2>Riserva il tuo posto</h2>
@@ -106,14 +106,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 6. FOOTER (Inglobato in una section per l'effetto slide) */}
-      <section className="section footer-section">
-        <footer className="footer">
-          <div className="footer-logo">ILLUME</div>
-          <p>Via delle Tradizioni, 1 - Bologna</p>
-          <p>© 2026 Illume Cucina Emiliana. Tutti i diritti riservati.</p>
-        </footer>
-      </section>
+      {/* 6. FOOTER (Fuori dalle sezioni snap per scorrimento libero) */}
+      <footer className="footer">
+        <div className="footer-logo">ILLUME</div>
+        <p>Via delle Tradizioni, 1 - Bologna</p>
+        <p>© 2026 Illume Cucina Emiliana. Tutti i diritti riservati.</p>
+      </footer>
 
       <style jsx>{`
         .main-wrapper { 
@@ -125,7 +123,7 @@ export default function Home() {
           align-items: center; justify-content: center; padding: 100px 5%; box-sizing: border-box; 
         }
 
-        /* HEADER - Corretto padding e contenimento */
+        /* HEADER */
         .navbar {
           position: fixed; top: 0; left: 0; width: 100%; display: flex; 
           justify-content: space-between; align-items: center;
@@ -143,7 +141,7 @@ export default function Home() {
         .nav-links { display: flex; gap: 30px; }
         .nav-links a { text-decoration: none; color: #4A2C10; font-size: 0.8rem; letter-spacing: 2px; }
 
-        /* HERO - Allineamento pulsanti corretto */
+        /* HERO */
         .hero { text-align: center; background: #FFFBF0; }
         .hero-content { 
           display: flex; flex-direction: column; align-items: center; 
@@ -175,14 +173,21 @@ export default function Home() {
         .cta-box { text-align: center; }
         .btn-large { display: inline-block; padding: 25px 60px; background: #B32D2E; color: white; text-decoration: none; border-radius: 50px; font-size: 1.2rem; font-weight: bold; margin-top: 30px; }
 
-        /* FOOTER SECTION - Agganciata allo scroll-snap */
-        .footer-section { background: #2D1B0A; }
-        .footer { text-align: center; color: white; width: 100%; }
-        .footer-logo { font-size: 2rem; letter-spacing: 5px; margin-bottom: 20px; }
+        /* FOOTER - Stile scuro e pulito */
+        .footer { 
+          padding: 80px 5%; 
+          text-align: center; 
+          background: #2D1B0A; 
+          color: white; 
+          width: 100%; 
+          box-sizing: border-box;
+        }
+        .footer-logo { font-size: 2rem; letter-spacing: 5px; margin-bottom: 20px; color: #FFFBF0; }
 
-        /* DESKTOP ONLY SLIDE EFFECT - Corretto snap per il footer */
+        /* DESKTOP ONLY SLIDE EFFECT */
         @media (min-width: 1024px) {
           .main-wrapper { scroll-snap-type: y mandatory; }
+          /* Applichiamo lo snap solo alle sezioni, il footer ne rimane fuori */
           .section { scroll-snap-align: start; scroll-snap-stop: always; }
         }
 
