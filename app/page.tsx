@@ -50,28 +50,39 @@ export default function Home() {
           pointer-events: none;
         }
 
-        .nav-header {
-          position: fixed;
-          top: 0; width: 100%; height: 90px;
-          display: flex; justify-content: center; align-items: center;
-          padding: 0 2rem; z-index: 1000;
-          transition: transform 0.4s ease, background 0.4s ease;
-          box-sizing: border-box;
-        }
+.nav-header {
+  position: fixed;
+  top: 0; 
+  width: 100%; 
+  height: 110px; /* Aumentato per dare respiro al logo */
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+  padding: 0 2rem; 
+  z-index: 1000;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
 
-        .nav-hidden { transform: translateY(-100%); }
-        .nav-scrolled { 
-          background: rgba(253, 252, 248, 0.98); 
-          backdrop-filter: blur(10px); 
-          border-bottom: 1px solid rgba(0,0,0,0.05); 
-          height: 80px;
-        }
+.nav-scrolled { 
+  background: rgba(253, 252, 248, 0.98); 
+  backdrop-filter: blur(15px); 
+  border-bottom: 1px solid rgba(0,0,0,0.03); 
+  height: 85px; /* Si stringe elegantemente quando scendi */
+}
 
-        .logo-img {
-          height: 50px;
-          width: auto;
-          transition: height 0.3s ease;
-        }
+.logo-img {
+  height: 65px; /* Dimensione ideale per il font sottile di ILLUME */
+  width: auto;
+  object-fit: contain;
+  transition: height 0.3s ease;
+}
+
+/* Media query per mobile */
+@media (max-width: 850px) {
+  .nav-header { height: 90px; }
+  .logo-img { height: 45px; }
+}
 
         /* HAMBURGER */
         .hamburger {
@@ -137,19 +148,22 @@ export default function Home() {
       <div className="paper-texture" />
 
       {/* HEADER */}
-      <header className={`nav-header ${!navVisible ? 'nav-hidden' : ''} ${navScrolled ? 'nav-scrolled' : ''}`}>
-        <img src="/logo.png" alt="Illume" className="logo-img" />
-        
-        <button className={`hamburger ${isMenuOpen ? 'open' : ''}`} onClick={() => setIsMenuOpen(!isMenuOpen)}>
-          <span></span><span></span><span></span>
-        </button>
+<header className={`nav-header ${!navVisible ? 'nav-hidden' : ''} ${navScrolled ? 'nav-scrolled' : ''}`}>
+  {/* Logo cliccabile che riporta in cima */}
+  <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo(0,0); }} style={{ display: 'block' }}>
+    <img src="/logo.png" alt="Illume Cucina" className="logo-img" />
+  </a>
+  
+  <button className={`hamburger ${isMenuOpen ? 'open' : ''}`} onClick={() => setIsMenuOpen(!isMenuOpen)}>
+    <span></span><span></span><span></span>
+  </button>
 
-        <nav className={`mobile-menu ${isMenuOpen ? 'open' : ''}`}>
-          <a href="#storia" onClick={closeMenu}>Storia</a>
-          <a href="#menu" onClick={closeMenu}>Menu</a>
-          <a href="#prenota" onClick={closeMenu}>Prenota</a>
-        </nav>
-      </header>
+  <nav className={`mobile-menu ${isMenuOpen ? 'open' : ''}`}>
+    <a href="#storia" onClick={closeMenu}>Storia</a>
+    <a href="#menu" onClick={closeMenu}>Menu</a>
+    <a href="#prenota" onClick={closeMenu}>Prenota</a>
+  </nav>
+</header>
 
       {/* HERO SECTION */}
       <section className="section-split">
