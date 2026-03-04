@@ -1,5 +1,19 @@
-html, body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400&display=swap');
+
+:root {
+  --background: #fdfcf8; /* Un bianco avorio/carta */
+  --foreground: #1a1a1a;
+  --accent: #8b4513; /* Un marrone cuoio/bruciato per i dettagli */
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', sans-serif;
+  /* Effetto grana della carta leggerissimo */
+  background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+}
+
+h1, h2, h3, .font-serif {
+  font-family: 'Playfair Display', serif;
 }

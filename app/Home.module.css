@@ -1,100 +1,161 @@
-.mainWrapper { 
-  height: 100vh; 
-  overflow-y: scroll; 
-  scroll-behavior: smooth; 
-  background-color: #FFFBF0; 
-  color: #2D1B0A; 
-  font-family: serif;
-  overflow-x: hidden;
-}
-
-.section { 
-  min-height: 100vh; 
-  width: 100%; 
-  display: flex; 
-  flex-direction: column; 
-  align-items: center; 
-  justify-content: center; 
-  padding: 60px 5%; 
-  box-sizing: border-box; 
-}
-
-/* HERO ANIMATA */
-.hero { 
-  position: relative; 
-  overflow: hidden; 
-  background: #FFFBF0; 
-}
-
-.heroBgAnimated {
-  position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%; z-index: 0;
-  background: linear-gradient(120deg, #FFFBF0, #F7E1AE, #FFFBF0, #F3D2C1);
-  background-size: 300% 300%;
-  animation: gradientMove 10s ease infinite;
-}
-
-@keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-.heroContent { 
-  position: relative; 
-  z-index: 1; 
-  display: flex; 
-  flex-direction: column; 
-  align-items: center; 
-  text-align: center; 
-}
-
-.heroContent h1 { 
-  font-size: clamp(4rem, 12vw, 7rem); 
-  margin: 0; 
-  font-weight: 300; 
-  color: #B32D2E; 
+.mainWrapper {
+  height: 100vh;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  background-color: #fdfcf8;
+  color: #1a1a1a;
+  /* Texture carta leggera */
+  background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+  font-family: 'Inter', sans-serif;
 }
 
 /* NAVBAR */
 .navbar {
-  position: fixed; top: 0; left: 0; width: 100%; 
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 25px 5%; z-index: 1000; transition: all 0.4s ease;
-  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 4rem;
+  z-index: 1000;
+  transition: transform 0.4s ease, background 0.4s ease;
 }
 
-.navDown { transform: translateY(0); }
 .navUp { transform: translateY(-100%); }
-.navBg { background: rgba(255, 251, 240, 0.95); box-shadow: 0 2px 20px rgba(0,0,0,0.05); padding: 15px 5%; }
-
-.logo { font-weight: bold; letter-spacing: 4px; font-size: 1.4rem; color: #B32D2E; }
-.navLinks { display: flex; gap: 30px; }
-.navLinks a { text-decoration: none; color: #4A2C10; font-size: 0.8rem; letter-spacing: 2px; }
-
-/* ELEMENTI UI */
-.subtitle { letter-spacing: 8px; font-size: 1.2rem; margin-top: -10px; opacity: 0.7; }
-.description { max-width: 600px; margin: 30px 0; line-height: 1.6; }
-.btnGroup { display: flex; gap: 20px; justify-content: center; }
-.btnSolid { padding: 18px 35px; background: #B32D2E; color: white; text-decoration: none; border-radius: 50px; font-weight: bold; }
-.btnOutline { padding: 18px 35px; border: 1px solid #B32D2E; color: #B32D2E; text-decoration: none; border-radius: 50px; }
-
-/* CHI SIAMO & MENU */
-.glassCard { 
-  background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(10px); 
-  padding: 60px; border-radius: 40px; border: 1px solid white; max-width: 900px; text-align: center;
+.navDown { transform: translateY(0); }
+.navBg { 
+  background: rgba(253, 252, 248, 0.95); 
+  backdrop-filter: blur(5px);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
 }
-.menuSection { background: #F7E1AE; }
-.menuGrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; width: 100%; max-width: 1100px; margin-top: 30px; }
-.pizzaItem { border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 15px; }
 
-/* FOOTER & PRENOTA */
-.lastSection { justify-content: space-between; padding: 100px 0 0 0; }
-.footer { width: 100%; padding: 60px 5%; background: #2D1B0A; color: white; text-align: center; margin: 0; box-sizing: border-box; }
-.footerLogo { font-size: 1.8rem; letter-spacing: 5px; margin-bottom: 15px; color: #FFFBF0; }
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  letter-spacing: 4px;
+  font-weight: 700;
+}
 
-/* RESPONSIVE & SNAP */
-@media (min-width: 1024px) {
-  .mainWrapper { scroll-snap-type: y mandatory; }
-  .section { scroll-snap-align: start; scroll-snap-stop: always; }
+.navLinks a {
+  margin-left: 2.5rem;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-decoration: none;
+  color: inherit;
+  font-weight: 400;
+}
+
+/* SEZIONI DEPLIANT */
+.sectionSplit {
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 80vh;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.imageCol {
+  flex: 1 1 50%;
+  min-height: 400px;
+  position: relative;
+}
+
+.imageCol img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.contentCol {
+  flex: 1 1 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10% 8%;
+}
+
+.contentCol h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+}
+
+.contentCol p {
+  line-height: 1.8;
+  font-weight: 300;
+  color: #444;
+}
+
+/* MENU SECTION */
+.menuSection {
+  padding: 100px 10%;
+  text-align: center;
+}
+
+.menuTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 4rem;
+  margin-bottom: 4rem;
+}
+
+.menuGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 4rem;
+  text-align: left;
+}
+
+.menuItem {
+  border-bottom: 1px dotted #ccc;
+  padding-bottom: 1rem;
+}
+
+.menuHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.menuHeader h3 {
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.price {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  color: #8b4513;
+}
+
+.menuDesc {
+  font-size: 0.9rem;
+  color: #777;
+  font-style: italic;
+  margin-top: 5px;
+}
+
+/* BOTTONI */
+.btnCentered {
+  margin-top: 4rem;
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  border: 1px solid #1a1a1a;
+  text-decoration: none;
+  color: #1a1a1a;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  transition: all 0.3s;
+}
+
+.btnCentered:hover {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .imageCol, .contentCol { flex: 1 1 100%; }
+  .navbar { padding: 1rem 2rem; }
 }
