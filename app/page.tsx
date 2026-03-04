@@ -23,8 +23,16 @@ export default function Home() {
   return (
     <div id="main-container" className={styles.mainWrapper}>
       
+      {/* SFONDO ANIMATO */}
+      <div className={styles.bgContainer}>
+        <div className={styles.glow}></div>
+      </div>
+
+      {/* NAVBAR CON NUOVO LOGO */}
       <header className={`${styles.navbar} ${navVisible ? styles.navDown : styles.navUp} ${navScrolled ? styles.navBg : ''}`}>
-        <div className={styles.logo}>ILLUME</div>
+        <div className={styles.logoContainer}>
+          <img src="/logo.png" alt="Illume Logo" className={styles.logoImg} />
+        </div>
         <nav className={styles.navLinks}>
           <a href="#storia">STORIA</a>
           <a href="#menu">MENU</a>
@@ -32,91 +40,77 @@ export default function Home() {
         </nav>
       </header>
 
-      {/* HERO SECTION - Come copertina del dépliant */}
-      <section className={styles.sectionSplit} style={{minHeight: '100vh'}}>
+      {/* HERO SECTION */}
+      <section className={styles.sectionSplit}>
         <div className={styles.contentCol}>
-          <span style={{letterSpacing: '4px', fontSize: '0.7rem', color: '#8b4513'}}>EST. 2026</span>
-          <h1 className="text-7xl font-serif mt-4 leading-tight">Illume <br/>Cucina</h1>
-          <p className="mt-6 text-lg">L'arte della pizza e della tradizione emiliana, servita con un tocco di contemporaneità.</p>
-          <div className="mt-10">
-             <a href="#menu" className={styles.btnCentered} style={{marginTop: 0}}>SCOPRI IL GUSTO</a>
+          <h1 className="text-6xl font-serif mb-6 leading-tight">Illume Cucina <br/>Emiliana</h1>
+          <p className="text-lg text-gray-600 font-light">Un'esperienza sensoriale dove la tradizione incontra l'innovazione. La nostra passione servita in un ambiente raffinato.</p>
+          <div className="mt-8">
+            <a href="#menu" className={styles.btnFullMenu}>Esplora il Menu</a>
           </div>
         </div>
         <div className={styles.imageCol}>
-          <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=1000" alt="Chef all'opera" />
+          <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1000" alt="Pizza gourmet" />
         </div>
       </section>
 
-      {/* SEZIONE STORIA - Immagine a Sinistra */}
+      {/* SEZIONE STORIA (IMMAGINE A SINISTRA) */}
       <section id="storia" className={styles.sectionSplit}>
         <div className={styles.imageCol}>
-          <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&q=80&w=1000" alt="Interno Ristorante" />
+          <img src="https://images.unsplash.com/photo-1550966842-28c465609a6d?q=80&w=1000" alt="Ristorante interno" />
         </div>
         <div className={styles.contentCol}>
-          <h2>La nostra filosofia</h2>
-          <p>Dalla selezione dei grani antichi alla lievitazione di 48 ore, ogni dettaglio in Illume è pensato per onorare la terra emiliana. Non è solo cibo, è un racconto di passione e tempo.</p>
+          <h2 className="italic">La nostra storia</h2>
+          <p>Nati nel cuore dell'Emilia, portiamo in tavola il calore dei sapori autentici con materie prime d'eccellenza e una lievitazione lenta che rispetta la natura.</p>
         </div>
       </section>
 
-      {/* SEZIONE MENU - Griglia a 2 Colonne */}
+      {/* SEZIONE MENU DEPLIANT */}
       <section id="menu" className={styles.menuSection}>
-        <h2 className={styles.menuTitle}>Dal Nostro Forno</h2>
+        <h2 className="text-5xl font-serif mb-4">Selezione del Giorno</h2>
+        <p className="italic text-gray-500">I grandi classici della nostra cucina</p>
         
         <div className={styles.menuGrid}>
-          {/* Colonna 1 */}
-          <div className="flex flex-col gap-8">
+          {/* Colonna Sinistra */}
+          <div>
             <div className={styles.menuItem}>
-              <div className={styles.menuHeader}>
-                <h3>Margherita di Parma</h3>
-                <span className={styles.price}>€12</span>
-              </div>
-              <p className={styles.menuDesc}>Pomodoro San Marzano, bufala DOP, basilico fritto.</p>
+              <div className={styles.menuHeader}><span>Margherita DOP</span><span className={styles.price}>€12</span></div>
+              <p className="text-sm text-gray-500 italic mt-1">Pomodoro San Marzano, Bufala, Basilico fresco.</p>
             </div>
             <div className={styles.menuItem}>
-              <div className={styles.menuHeader}>
-                <h3>L'Emiliana Gourmet</h3>
-                <span className={styles.price}>€16</span>
-              </div>
-              <p className={styles.menuDesc}>Mortadella, granella di pistacchio, stracciatella.</p>
+              <div className={styles.menuHeader}><span>L'Emiliana</span><span className={styles.price}>€16</span></div>
+              <p className="text-sm text-gray-500 italic mt-1">Mortadella Bologna, granella di pistacchio, stracciatella.</p>
             </div>
           </div>
-
-          {/* Colonna 2 */}
-          <div className="flex flex-col gap-8">
+          {/* Colonna Destra */}
+          <div>
             <div className={styles.menuItem}>
-              <div className={styles.menuHeader}>
-                <h3>Tortellino Croccante</h3>
-                <span className={styles.price}>€18</span>
-              </div>
-              <p className={styles.menuDesc}>Pasta fresca, crema di parmigiano 36 mesi.</p>
+              <div className={styles.menuHeader}><span>Tortellino Tradizione</span><span className={styles.price}>€18</span></div>
+              <p className="text-sm text-gray-500 italic mt-1">Pasta fatta a mano, crema di Parmigiano 36 mesi.</p>
             </div>
             <div className={styles.menuItem}>
-              <div className={styles.menuHeader}>
-                <h3>Zucca e Amaretto</h3>
-                <span className={styles.price}>€14</span>
-              </div>
-              <p className={styles.menuDesc}>Vellutata di zucca mantovana, mostarda, polvere di amaretto.</p>
+              <div className={styles.menuHeader}><span>Tagliata di Fassona</span><span className={styles.price}>€24</span></div>
+              <p className="text-sm text-gray-500 italic mt-1">Cottura lenta, sale di Maldon, rosmarino.</p>
             </div>
           </div>
         </div>
 
-        {/* Pulsante Centrale */}
-        <a href="https://example.com/menu-completo.pdf" target="_blank" className={styles.btnCentered}>
-          VEDI IL MENU COMPLETO (PDF)
+        <a href="https://example.com/full-menu.pdf" target="_blank" className={styles.btnFullMenu}>
+          Visualizza Menu Completo
         </a>
       </section>
 
       {/* FOOTER & PRENOTA */}
-      <section id="prenota" className="py-20 bg-black text-white text-center">
-        <h2 className="font-serif text-5xl mb-8">Riserva un tavolo</h2>
-        <p className="mb-10 text-gray-400 italic">Vi aspettiamo per un'esperienza sensoriale unica.</p>
-        <a href="tel:+39012345678" className={styles.btnCentered} style={{borderColor: 'white', color: 'white'}}>
-          CHIAMA +39 0123 45678
+      <section id="prenota" className="py-24 bg-zinc-900 text-white text-center">
+        <h2 className="font-serif text-5xl mb-8">Riserva il tuo posto</h2>
+        <p className="mb-12 opacity-60">Siamo aperti tutti i giorni dalle 12:30 alle 23:00</p>
+        <a href="tel:+39012345678" className="px-10 py-4 border border-white hover:bg-white hover:text-black transition uppercase tracking-widest">
+          Chiama Ora
         </a>
         
-        <footer className="mt-32 pt-10 border-t border-white/10 opacity-50 text-xs tracking-widest">
-          <div className={styles.logo} style={{marginBottom: '1rem'}}>ILLUME</div>
-          <p>© 2026 ILLUME CUCINA EMILIANA. TUTTI I DIRITTI RISERVATI.</p>
+        <footer className="mt-32 pt-10 border-t border-white/10">
+          <img src="/logo.png" alt="Logo Footer" className="h-12 mx-auto mb-6 brightness-0 invert" />
+          <p className="text-xs opacity-40">© 2026 ILLUME CUCINA EMILIANA. TUTTI I DIRITTI RISERVATI.</p>
         </footer>
       </section>
 
