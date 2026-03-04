@@ -1,119 +1,224 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-import styles from './Home.module.css';
 
 export default function Home() {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [navVisible, setNavVisible] = useState(true);
   const [navScrolled, setNavScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      const container = document.getElementById('main-container');
-      const currentScrollY = container?.scrollTop || 0;
+      const currentScrollY = window.scrollY;
       setNavVisible(currentScrollY < lastScrollY || currentScrollY < 100);
       setNavScrolled(currentScrollY > 50);
       setLastScrollY(currentScrollY);
     };
-    const container = document.getElementById('main-container');
-    container?.addEventListener('scroll', handleScroll);
-    return () => container?.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
-  return (
-    <div id="main-container" className={styles.mainWrapper}>
-      
-      {/* SFONDO ANIMATO */}
-      <div className={styles.bgContainer}>
-        <div className={styles.glow}></div>
-      </div>
+  const closeMenu = () => setIsMenuOpen(false);
 
-      {/* NAVBAR CON NUOVO LOGO */}
-      <header className={`${styles.navbar} ${navVisible ? styles.navDown : styles.navUp} ${navScrolled ? styles.navBg : ''}`}>
-        <div className={styles.logoContainer}>
-          <img src="/logo.png" alt="Illume Logo" className={styles.logoImg} />
-        </div>
-        <nav className={styles.navLinks}>
-          <a href="#storia">STORIA</a>
-          <a href="#menu">MENU</a>
-          <a href="#prenota">PRENOTA</a>
+  return (
+    <div className="main-wrapper">
+      {/* --- STILI CSS INTEGRATI --- */}
+      <style jsx global>{`
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap');
+
+        :root {
+          --bg-paper: #fdfcf8;
+          --text-dark: #1a1a1a;
+          --accent-gold: #8b4513;
+        }
+
+        html, body {
+          margin: 0;
+          padding: 0;
+          background-color: var(--bg-paper);
+          color: var(--text-dark);
+          font-family: 'Inter', sans-serif;
+          overflow-x: hidden;
+        }
+
+        .paper-texture {
+          position: fixed;
+          top: 0; left: 0; width: 100%; height: 100%;
+          background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+          opacity: 0.5;
+          z-index: -1;
+          pointer-events: none;
+        }
+
+        .nav-header {
+          position: fixed;
+          top: 0; width: 100%; height: 90px;
+          display: flex; justify-content: center; align-items: center;
+          padding: 0 2rem; z-index: 1000;
+          transition: transform 0.4s ease, background 0.4s ease;
+          box-sizing: border-box;
+        }
+
+        .nav-hidden { transform: translateY(-100%); }
+        .nav-scrolled { 
+          background: rgba(253, 252, 248, 0.98); 
+          backdrop-filter: blur(10px); 
+          border-bottom: 1px solid rgba(0,0,0,0.05); 
+          height: 80px;
+        }
+
+        .logo-img {
+          height: 50px;
+          width: auto;
+          transition: height 0.3s ease;
+        }
+
+        /* HAMBURGER */
+        .hamburger {
+          position: absolute; right: 2rem;
+          background: none; border: none; cursor: pointer;
+          display: flex; flex-direction: column; gap: 6px; z-index: 1100;
+        }
+
+        .hamburger span {
+          display: block; width: 26px; height: 1.5px;
+          background: var(--text-dark); transition: 0.3s;
+        }
+
+        .hamburger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+        /* OVERLAY MENU */
+        .mobile-menu {
+          position: fixed; top: 0; right: -100%; width: 100%; height: 100vh;
+          background: var(--bg-paper); display: flex; flex-direction: column;
+          justify-content: center; align-items: center; gap: 2.5rem;
+          transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1); z-index: 1050;
+        }
+
+        .mobile-menu.open { right: 0; }
+        .mobile-menu a {
+          font-family: 'Playfair Display', serif; font-size: 2.2rem;
+          text-decoration: none; color: var(--text-dark); text-transform: uppercase;
+        }
+
+        /* SEZIONI */
+        .section-split {
+          display: flex; flex-wrap: wrap; min-height: 100vh; width: 100%;
+        }
+
+        .content-col {
+          flex: 1 1 50%; display: flex; flex-direction: column; 
+          justify-content: center; padding: 10% 8%; box-sizing: border-box;
+        }
+
+        .image-col { flex: 1 1 50%; min-height: 450px; }
+        .image-col img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+        h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 400; margin: 0; }
+        
+        .btn-illume {
+          display: inline-block; padding: 1rem 2.5rem; border: 1px solid var(--text-dark);
+          text-decoration: none; color: var(--text-dark); text-transform: uppercase;
+          font-size: 11px; letter-spacing: 3px; transition: 0.3s;
+        }
+
+        .btn-illume:hover { background: var(--text-dark); color: white; }
+
+        @media (max-width: 850px) {
+          .section-split { flexDirection: column; }
+          .content-col { padding: 4rem 2rem; order: 2; }
+          .image-col { order: 1; min-height: 350px; }
+          .nav-header { padding: 0 1rem; }
+        }
+      `}</style>
+
+      <div className="paper-texture" />
+
+      {/* HEADER */}
+      <header className={`nav-header ${!navVisible ? 'nav-hidden' : ''} ${navScrolled ? 'nav-scrolled' : ''}`}>
+        <img src="/logo.png" alt="Illume" className="logo-img" />
+        
+        <button className={`hamburger ${isMenuOpen ? 'open' : ''}`} onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <span></span><span></span><span></span>
+        </button>
+
+        <nav className={`mobile-menu ${isMenuOpen ? 'open' : ''}`}>
+          <a href="#storia" onClick={closeMenu}>Storia</a>
+          <a href="#menu" onClick={closeMenu}>Menu</a>
+          <a href="#prenota" onClick={closeMenu}>Prenota</a>
         </nav>
       </header>
 
       {/* HERO SECTION */}
-      <section className={styles.sectionSplit}>
-        <div className={styles.contentCol}>
-          <h1 className="text-6xl font-serif mb-6 leading-tight">Illume Cucina <br/>Emiliana</h1>
-          <p className="text-lg text-gray-600 font-light">Un'esperienza sensoriale dove la tradizione incontra l'innovazione. La nostra passione servita in un ambiente raffinato.</p>
-          <div className="mt-8">
-            <a href="#menu" className={styles.btnFullMenu}>Esplora il Menu</a>
-          </div>
-        </div>
-        <div className={styles.imageCol}>
-          <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1000" alt="Pizza gourmet" />
-        </div>
-      </section>
-
-      {/* SEZIONE STORIA (IMMAGINE A SINISTRA) */}
-      <section id="storia" className={styles.sectionSplit}>
-        <div className={styles.imageCol}>
-          <img src="https://images.unsplash.com/photo-1550966842-28c465609a6d?q=80&w=1000" alt="Ristorante interno" />
-        </div>
-        <div className={styles.contentCol}>
-          <h2 className="italic">La nostra storia</h2>
-          <p>Nati nel cuore dell'Emilia, portiamo in tavola il calore dei sapori autentici con materie prime d'eccellenza e una lievitazione lenta che rispetta la natura.</p>
-        </div>
-      </section>
-
-      {/* SEZIONE MENU DEPLIANT */}
-      <section id="menu" className={styles.menuSection}>
-        <h2 className="text-5xl font-serif mb-4">Selezione del Giorno</h2>
-        <p className="italic text-gray-500">I grandi classici della nostra cucina</p>
-        
-        <div className={styles.menuGrid}>
-          {/* Colonna Sinistra */}
+      <section className="section-split">
+        <div className="content-col">
+          <p style={{ letterSpacing: '4px', fontSize: '10px', color: '#8b4513', marginBottom: '1.5rem', fontWeight: 'bold' }}>BOLOGNA • EST 2026</p>
+          <h1 style={{ fontSize: 'clamp(3rem, 6vw, 5rem)', lineHeight: '1', marginBottom: '2rem' }}>Illume <br/><i>Cucina</i></h1>
+          <p style={{ fontSize: '1.1rem', lineHeight: '1.8', opacity: '0.8', marginBottom: '2.5rem', maxWidth: '450px' }}>
+            Un gioco di luci e sapori dove la tradizione emiliana si veste di contemporaneità. La nostra cucina è un omaggio alla terra, servita con eleganza.
+          </p>
           <div>
-            <div className={styles.menuItem}>
-              <div className={styles.menuHeader}><span>Margherita DOP</span><span className={styles.price}>€12</span></div>
-              <p className="text-sm text-gray-500 italic mt-1">Pomodoro San Marzano, Bufala, Basilico fresco.</p>
+            <a href="#menu" className="btn-illume">Scopri il Menu</a>
+          </div>
+        </div>
+        <div className="image-col">
+          <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1400" alt="Pizza Illume" />
+        </div>
+      </section>
+
+      {/* MENU SECTION */}
+      <section id="menu" style={{ padding: '8rem 10%', background: 'transparent' }}>
+        <h2 style={{ textAlign: 'center', fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', marginBottom: '5rem', fontStyle: 'italic' }}>La Selezione</h2>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4rem', maxWidth: '1200px', margin: '0 auto' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
+            <div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid #ddd', paddingBottom: '10px', marginBottom: '10px' }}>
+                <h3 style={{ fontSize: '1.1rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Margherita DOP</h3>
+                <span style={{ fontFamily: 'serif', fontStyle: 'italic' }}>€14</span>
+              </div>
+              <p style={{ fontSize: '0.9rem', opacity: '0.6', fontStyle: 'italic' }}>Pomodoro San Marzano, Bufala campana, Basilico fritto.</p>
             </div>
-            <div className={styles.menuItem}>
-              <div className={styles.menuHeader}><span>L'Emiliana</span><span className={styles.price}>€16</span></div>
-              <p className="text-sm text-gray-500 italic mt-1">Mortadella Bologna, granella di pistacchio, stracciatella.</p>
+            <div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid #ddd', paddingBottom: '10px', marginBottom: '10px' }}>
+                <h3 style={{ fontSize: '1.1rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Oro di Bologna</h3>
+                <span style={{ fontFamily: 'serif', fontStyle: 'italic' }}>€18</span>
+              </div>
+              <p style={{ fontSize: '0.9rem', opacity: '0.6', fontStyle: 'italic' }}>Mortadella, Burrata fresca, Granella di Pistacchio.</p>
             </div>
           </div>
-          {/* Colonna Destra */}
-          <div>
-            <div className={styles.menuItem}>
-              <div className={styles.menuHeader}><span>Tortellino Tradizione</span><span className={styles.price}>€18</span></div>
-              <p className="text-sm text-gray-500 italic mt-1">Pasta fatta a mano, crema di Parmigiano 36 mesi.</p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
+            <div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid #ddd', paddingBottom: '10px', marginBottom: '10px' }}>
+                <h3 style={{ fontSize: '1.1rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Tortellino 36 Mesi</h3>
+                <span style={{ fontFamily: 'serif', fontStyle: 'italic' }}>€22</span>
+              </div>
+              <p style={{ fontSize: '0.9rem', opacity: '0.6', fontStyle: 'italic' }}>Crema di Parmigiano Reggiano, Noce moscata.</p>
             </div>
-            <div className={styles.menuItem}>
-              <div className={styles.menuHeader}><span>Tagliata di Fassona</span><span className={styles.price}>€24</span></div>
-              <p className="text-sm text-gray-500 italic mt-1">Cottura lenta, sale di Maldon, rosmarino.</p>
+            <div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid #ddd', paddingBottom: '10px', marginBottom: '10px' }}>
+                <h3 style={{ fontSize: '1.1rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Polpo in Luce</h3>
+                <span style={{ fontFamily: 'serif', fontStyle: 'italic' }}>€20</span>
+              </div>
+              <p style={{ fontSize: '0.9rem', opacity: '0.6', fontStyle: 'italic' }}>Patata viola, polpo croccante, olio al rosmarino.</p>
             </div>
           </div>
         </div>
-
-        <a href="https://example.com/full-menu.pdf" target="_blank" className={styles.btnFullMenu}>
-          Visualizza Menu Completo
-        </a>
       </section>
 
-      {/* FOOTER & PRENOTA */}
-      <section id="prenota" className="py-24 bg-zinc-900 text-white text-center">
-        <h2 className="font-serif text-5xl mb-8">Riserva il tuo posto</h2>
-        <p className="mb-12 opacity-60">Siamo aperti tutti i giorni dalle 12:30 alle 23:00</p>
-        <a href="tel:+39012345678" className="px-10 py-4 border border-white hover:bg-white hover:text-black transition uppercase tracking-widest">
-          Chiama Ora
-        </a>
+      {/* PRENOTA E FOOTER */}
+      <section id="prenota" style={{ background: '#111', color: 'white', textAlign: 'center', padding: '10rem 2rem' }}>
+        <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', marginBottom: '3rem', fontStyle: 'italic' }}>Un tavolo per te</h2>
+        <a href="tel:+39012345678" className="btn-illume" style={{ color: 'white', borderColor: 'white' }}>Chiama Ora</a>
         
-        <footer className="mt-32 pt-10 border-t border-white/10">
-          <img src="/logo.png" alt="Logo Footer" className="h-12 mx-auto mb-6 brightness-0 invert" />
-          <p className="text-xs opacity-40">© 2026 ILLUME CUCINA EMILIANA. TUTTI I DIRITTI RISERVATI.</p>
+        <footer style={{ marginTop: '10rem', paddingTop: '4rem', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
+          <img src="/logo.png" alt="Illume" style={{ height: '80px', filter: 'brightness(0) invert(1)', marginBottom: '2rem' }} />
+          <p style={{ fontSize: '10px', letterSpacing: '5px', opacity: '0.3', textTransform: 'uppercase' }}>
+            © 2026 ILLUME CUCINA • BOLOGNA, ITALIA
+          </p>
         </footer>
       </section>
-
     </div>
   );
 }
