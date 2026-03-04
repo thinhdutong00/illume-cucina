@@ -52,23 +52,21 @@ export default function Home() {
 
 .nav-header {
   position: fixed;
-  top: 0; 
-  width: 100%; 
-  height: 110px; /* Aumentato per dare respiro al logo */
-  display: flex; 
-  justify-content: center; 
-  align-items: center;
-  padding: 0 2rem; 
+  top: 0; left: 0; width: 100%; height: 120px;
+  display: flex; align-items: center;
   z-index: 1000;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  box-sizing: border-box;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.nav-scrolled { 
-  background: rgba(253, 252, 248, 0.98); 
-  backdrop-filter: blur(15px); 
-  border-bottom: 1px solid rgba(0,0,0,0.03); 
-  height: 85px; /* Si stringe elegantemente quando scendi */
+.nav-hidden {
+  transform: translateY(-100%);
+}
+
+.nav-scrolled {
+  height: 90px;
+  background: rgba(253, 252, 248, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
 .logo-img {
@@ -149,20 +147,47 @@ export default function Home() {
 
       {/* HEADER */}
 <header className={`nav-header ${!navVisible ? 'nav-hidden' : ''} ${navScrolled ? 'nav-scrolled' : ''}`}>
-  {/* Logo cliccabile che riporta in cima */}
-  <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo(0,0); }} style={{ display: 'block' }}>
-    <img src="/logo.png" alt="Illume Cucina" className="logo-img" />
-  </a>
+  {/* Contenitore Logo centrato */}
+  <div className="logo-container">
+    <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'}); }}>
+      <img src="/logo.png" alt="Illume Cucina" className="logo-img" />
+    </a>
+  </div>
   
+  {/* Pulsante Hamburger a destra */}
   <button className={`hamburger ${isMenuOpen ? 'open' : ''}`} onClick={() => setIsMenuOpen(!isMenuOpen)}>
     <span></span><span></span><span></span>
   </button>
 
+  {/* Menu Overlay */}
   <nav className={`mobile-menu ${isMenuOpen ? 'open' : ''}`}>
     <a href="#storia" onClick={closeMenu}>Storia</a>
     <a href="#menu" onClick={closeMenu}>Menu</a>
     <a href="#prenota" onClick={closeMenu}>Prenota</a>
   </nav>
+
+  <style jsx>{`
+    .logo-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+    .logo-img {
+      height: 75px; /* Dimensione aumentata per leggibilità font sottile */
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.05)); /* Leggera profondità */
+      transition: all 0.4s ease;
+    }
+    .nav-scrolled .logo-img {
+      height: 55px; /* Si rimpicciolisce elegantemente allo scroll */
+    }
+    @media (max-width: 768px) {
+      .logo-img { height: 50px; }
+      .nav-scrolled .logo-img { height: 40px; }
+    }
+  `}</style>
 </header>
 
       {/* HERO SECTION */}
