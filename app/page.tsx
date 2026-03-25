@@ -8,18 +8,7 @@ export default function Home() {
   const [navScrolled, setNavScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      setNavVisible(currentScrollY < lastScrollY || currentScrollY < 100);
-      setNavScrolled(currentScrollY > 50);
-      setLastScrollY(currentScrollY);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
-
-  const closeMenu = () => setIsMenuOpen(false);
+  
 
   return (
     <div className="main-wrapper">
@@ -42,85 +31,7 @@ export default function Home() {
           scroll-behavior: smooth;
         }
 
-        /* HEADER */
-        .nav-header {
-          position: fixed; top: 0; left: 0; width: 100%; height: 110px;
-          display: flex; justify-content: center; align-items: center;
-          padding: 0 2rem; z-index: 9999;
-          transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-          box-sizing: border-box;
-        }
-        .nav-hidden { transform: translateY(-100%); }
-        .nav-scrolled { 
-          background: rgba(253, 252, 248, 0.98); 
-          backdrop-filter: blur(10px); 
-          border-bottom: 1px solid rgba(0,0,0,0.05); 
-          height: 85px;
-        }
-
-        .logo-img { height: 65px; width: auto; transition: height 0.3s ease; }
-        .nav-scrolled .logo-img { height: 48px; }
-
-        /* MENU SECTION CUSTOM */
-        .menu-section {
-          background-color: var(--illume-panna);
-          color: var(--illume-mattone);
-          padding: 100px 8%;
-        }
-        .menu-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 60px 100px;
-          max-width: 1200px;
-          margin: 0 auto;
-        }
-        .menu-item-custom {
-          border-bottom: 1px solid rgba(100, 45, 58, 0.2);
-          padding-bottom: 20px;
-        }
-        .menu-header-flex {
-          display: flex;
-          justify-content: space-between;
-          font-weight: 700;
-          font-size: 1.1rem;
-          text-transform: uppercase;
-          letter-spacing: 1px;
-        }
-        .menu-desc {
-          font-size: 14px;
-          margin-top: 8px;
-          font-style: italic;
-          opacity: 0.8;
-        }
-
-        .btn-menu-completo {
-          display: inline-block;
-          background-color: var(--illume-mattone);
-          color: var(--illume-panna);
-          padding: 18px 45px;
-          border-radius: 50px;
-          text-decoration: none;
-          font-weight: bold;
-          letter-spacing: 2px;
-          font-size: 12px;
-          transition: transform 0.3s ease;
-          margin-top: 60px;
-        }
-        .btn-menu-completo:hover { transform: scale(1.05); }
-
-        /* HAMBURGER */
-        .hamburger {
-          position: absolute; right: 2rem;
-          background: none; border: none; cursor: pointer;
-          display: flex; flex-direction: column; gap: 7px; z-index: 10000;
-        }
-        .hamburger span { display: block; width: 26px; height: 1px; background: #1a1a1a; transition: 0.3s; }
-
-        @media (max-width: 900px) {
-          .menu-grid { grid-template-columns: 1fr; gap: 40px; }
-          .section-split { flex-direction: column; }
-          .content-col { padding: 4rem 2rem; }
-        }
+        
       `}</style>
 
       {/* HEADER */}
