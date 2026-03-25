@@ -33,12 +33,15 @@ export default function Header() {
           transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
           box-sizing: border-box;
           background: transparent;
+          /* BORDO SOTTILE QUASI INVISIBILE */
+          border-bottom: 1px solid rgba(26, 26, 26, 0.05);
         }
         .nav-hidden { transform: translateY(-100%); }
         .nav-scrolled { 
           background: rgba(253, 252, 248, 0.98); 
           backdrop-filter: blur(10px); 
-          border-bottom: 1px solid rgba(0,0,0,0.05); 
+          /* MANTENIAMO IL BORDO ALLO SCROLL */
+          border-bottom: 1px solid rgba(26, 26, 26, 0.08); 
           height: 90px;
         }
 
@@ -51,7 +54,7 @@ export default function Header() {
         .address-link {
           display: flex;
           align-items: center;
-          gap: 8px; /* Spazio tra icona e testo */
+          gap: 8px;
           font-size: 10px;
           letter-spacing: 2px;
           text-decoration: none;
@@ -63,7 +66,7 @@ export default function Header() {
         .nav-icon {
           width: 14px;
           height: 14px;
-          fill: currentColor; /* Prende il colore del testo (mattone) */
+          fill: currentColor;
         }
 
         /* COLONNA CENTRALE: LOGO */
@@ -128,8 +131,6 @@ export default function Header() {
       `}</style>
 
       <header className={`nav-header ${!navVisible ? 'nav-hidden' : ''} ${navScrolled ? 'nav-scrolled' : ''}`}>
-        
-        {/* Sinistra: Indirizzo + Icona Navigazione */}
         <div className="header-left">
           <a 
             href="https://www.google.com/maps/dir/?api=1&destination=Via+S.+Francesco+4+Carpi" 
@@ -144,21 +145,15 @@ export default function Header() {
           </a>
         </div>
 
-        {/* Centro: Logo */}
         <div className="header-center">
           <Link href="/" onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}>
             <img src="/logo.png" alt="Illume" className="logo-img" />
           </Link>
         </div>
 
-        {/* Destra: Azioni */}
         <div className="header-right">
-          <a href="tel:+393384622362" className="btn-header btn-call">
-            Chiama
-          </a>
-          <Link href="/prenota" className="btn-header btn-book">
-            Prenota
-          </Link>
+          <a href="tel:+393384622362" className="btn-header btn-call">Chiama</a>
+          <Link href="/prenota" className="btn-header btn-book">Prenota</Link>
           <button className={`hamburger ${isMenuOpen ? 'open' : ''}`} onClick={() => setIsMenuOpen(!isMenuOpen)}>
             <span></span><span></span><span></span>
           </button>
