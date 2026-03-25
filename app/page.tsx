@@ -11,7 +11,6 @@ export default function Home() {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      // Nasconde l'header quando scendi, lo mostra quando sali
       setNavVisible(currentScrollY < lastScrollY || currentScrollY < 100);
       setNavScrolled(currentScrollY > 50);
       setLastScrollY(currentScrollY);
@@ -28,6 +27,8 @@ export default function Home() {
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap');
 
         :root {
+          --illume-mattone: #642d3a;
+          --illume-panna: #ffefcc;
           --bg-paper: #fdfcf8;
           --text-dark: #1a1a1a;
         }
@@ -41,15 +42,14 @@ export default function Home() {
           scroll-behavior: smooth;
         }
 
-        /* HEADER & LOGO */
+        /* HEADER */
         .nav-header {
           position: fixed; top: 0; left: 0; width: 100%; height: 110px;
           display: flex; justify-content: center; align-items: center;
-          padding: 0 2rem; z-index: 9999; /* Z-index altissimo per stare sopra tutto */
+          padding: 0 2rem; z-index: 9999;
           transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
           box-sizing: border-box;
         }
-
         .nav-hidden { transform: translateY(-100%); }
         .nav-scrolled { 
           background: rgba(253, 252, 248, 0.98); 
@@ -58,235 +58,156 @@ export default function Home() {
           height: 85px;
         }
 
-        .logo-img {
-          height: 65px;
-          width: auto;
-          object-fit: contain;
-          transition: height 0.3s ease;
-        }
+        .logo-img { height: 65px; width: auto; transition: height 0.3s ease; }
         .nav-scrolled .logo-img { height: 48px; }
 
-        /* HAMBURGER MENU */
+        /* MENU SECTION CUSTOM */
+        .menu-section {
+          background-color: var(--illume-panna);
+          color: var(--illume-mattone);
+          padding: 100px 8%;
+        }
+        .menu-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 60px 100px;
+          max-width: 1200px;
+          margin: 0 auto;
+        }
+        .menu-item-custom {
+          border-bottom: 1px solid rgba(100, 45, 58, 0.2);
+          padding-bottom: 20px;
+        }
+        .menu-header-flex {
+          display: flex;
+          justify-content: space-between;
+          font-weight: 700;
+          font-size: 1.1rem;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+        }
+        .menu-desc {
+          font-size: 14px;
+          margin-top: 8px;
+          font-style: italic;
+          opacity: 0.8;
+        }
+
+        .btn-menu-completo {
+          display: inline-block;
+          background-color: var(--illume-mattone);
+          color: var(--illume-panna);
+          padding: 18px 45px;
+          border-radius: 50px;
+          text-decoration: none;
+          font-weight: bold;
+          letter-spacing: 2px;
+          font-size: 12px;
+          transition: transform 0.3s ease;
+          margin-top: 60px;
+        }
+        .btn-menu-completo:hover { transform: scale(1.05); }
+
+        /* HAMBURGER */
         .hamburger {
           position: absolute; right: 2rem;
           background: none; border: none; cursor: pointer;
           display: flex; flex-direction: column; gap: 7px; z-index: 10000;
         }
         .hamburger span { display: block; width: 26px; height: 1px; background: #1a1a1a; transition: 0.3s; }
-        .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-        .hamburger.open span:nth-child(2) { opacity: 0; }
-        .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-
-        .mobile-menu {
-          position: fixed; top: 0; right: -100%; width: 100%; height: 100vh;
-          background: var(--bg-paper); display: flex; flex-direction: column;
-          justify-content: center; align-items: center; gap: 2.5rem;
-          transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1); z-index: 9998;
-        }
-        .mobile-menu.open { right: 0; }
-        .mobile-menu a {
-          font-family: 'Playfair Display', serif; font-size: 2rem;
-          text-decoration: none; color: #1a1a1a; text-transform: uppercase;
-        }
-
-        /* LAYOUT SEZIONI */
-        .section-split { display: flex; flex-wrap: wrap; min-height: 100vh; width: 100%; }
-        .content-col { flex: 1 1 50%; display: flex; flex-direction: column; justify-content: center; padding: 10% 8%; box-sizing: border-box; }
-        .image-col { flex: 1 1 50%; min-height: 500px; position: relative; z-index: 1; }
-        .image-col img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-        .btn-illume {
-          display: inline-block; padding: 1rem 2.5rem; border: 1px solid #1a1a1a;
-          text-decoration: none; color: #1a1a1a; text-transform: uppercase;
-          font-size: 10px; letter-spacing: 3px; transition: 0.3s;
-        }
-        .btn-illume:hover { background: #1a1a1a; color: #fff; }
-
-        .menu-item { border-bottom: 1px dotted rgba(0,0,0,0.2); padding-bottom: 1rem; margin-bottom: 2rem; }
 
         @media (max-width: 900px) {
+          .menu-grid { grid-template-columns: 1fr; gap: 40px; }
           .section-split { flex-direction: column; }
-          .image-col { min-height: 400px; }
           .content-col { padding: 4rem 2rem; }
-          .logo-img { height: 45px; }
         }
       `}</style>
 
       {/* HEADER */}
       <header className={`nav-header ${!navVisible ? 'nav-hidden' : ''} ${navScrolled ? 'nav-scrolled' : ''}`}>
-        <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'}); }}>
+        <Link href="/" onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}>
           <img src="/logo.png" alt="Illume" className="logo-img" />
-        </a>
+        </Link>
         <button className={`hamburger ${isMenuOpen ? 'open' : ''}`} onClick={() => setIsMenuOpen(!isMenuOpen)}>
           <span></span><span></span><span></span>
         </button>
-        <nav className={`mobile-menu ${isMenuOpen ? 'open' : ''}`}>
-          <a href="#storia" onClick={closeMenu}>Storia</a>
-          <a href="#menu" onClick={closeMenu}>Menu</a>
-          <a href="#prenota" onClick={closeMenu}>Prenota</a>
-        </nav>
       </header>
 
-      {/* 1. HERO SECTION */}
-      <section className="section-split">
-        <div className="content-col">
-          <p style={{ letterSpacing: '5px', fontSize: '10px', color: '#8b4513', marginBottom: '1.5rem', fontWeight: 'bold' }}>BOLOGNA • EST. 2026</p>
+      {/* 1. HERO SECTION (Mantieni la tua attuale) */}
+      <section className="section-split" style={{ display: 'flex', flexWrap: 'wrap', minHeight: '100vh' }}>
+        <div style={{ flex: '1 1 50%', padding: '10% 8%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+          <p style={{ letterSpacing: '5px', fontSize: '10px', color: '#642d3a', marginBottom: '1.5rem', fontWeight: 'bold' }}>CARPI • VIA S. FRANCESCO 4</p>
           <h1 style={{ fontFamily: 'Playfair Display', fontSize: 'clamp(3.5rem, 7vw, 6rem)', lineHeight: '1', marginBottom: '2rem' }}>Illume <br/><i>Cucina</i></h1>
           <p style={{ fontSize: '1.1rem', lineHeight: '1.8', opacity: '0.7', marginBottom: '2.5rem', maxWidth: '450px' }}>
-            Dove la luce incontra la materia. Un viaggio sensoriale nel cuore dell'Emilia, tra ricette dimenticate e visioni contemporanee.
+            Tradizione emiliana e arte della pizza nel cuore storico di Carpi.
           </p>
-          <div><a href="#menu" className="btn-illume">Esplora il Menu</a></div>
+          <div><a href="#menu" className="btn-illume" style={{ border: '1px solid #1a1a1a', padding: '1rem 2.5rem', textDecoration: 'none', color: '#1a1a1a', textTransform: 'uppercase', fontSize: '10px', letterSpacing: '3px' }}>Esplora il Menu</a></div>
         </div>
-        <div className="image-col">
-          <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1400" alt="Specialità Illume" />
+        <div style={{ flex: '1 1 50%', minHeight: '500px' }}>
+          <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1400" alt="Specialità" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
         </div>
       </section>
 
-      {/* 2. SEZIONE STORIA */}
-      <section id="storia" className="section-split" style={{ flexDirection: 'row-reverse' }}>
-        <div className="content-col">
-          <h2 style={{ fontFamily: 'Playfair Display', fontSize: 'clamp(2.5rem, 5vw, 4rem)', marginBottom: '2rem' }}>La nostra <br/><i>Filosofia</i></h2>
-          <p style={{ fontSize: '1.05rem', lineHeight: '1.9', opacity: '0.8' }}>
-            Non solo ristorazione, ma un omaggio alla lentezza. Selezioniamo piccoli produttori locali per garantire una materia prima che non ha bisogno di artifici per brillare.
-          </p>
+      {/* 3. SEZIONE MENU - CORRETTA */}
+      <section id="menu" className="menu-section">
+        <div style={{ textAlign: 'center', marginBottom: '80px' }}>
+          <h2 style={{ fontFamily: 'Playfair Display', fontSize: 'clamp(3rem, 6vw, 5rem)', fontStyle: 'italic', marginBottom: '10px' }}>Il Menù</h2>
+          <p style={{ letterSpacing: '4px', fontSize: '12px', opacity: '0.6', fontWeight: 'bold' }}>SELEZIONE STAGIONALE</p>
         </div>
-        <div className="image-col">
-          <img src="https://images.unsplash.com/photo-1550966842-28c465609a6d?q=80&w=1400" alt="Atmosfera" />
+
+        <div className="menu-grid">
+          {/* Colonna 1 */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
+            <div className="menu-item-custom">
+              <div className="menu-header-flex"><span>Margherita DOP</span><span>€14</span></div>
+              <p className="menu-desc">San Marzano, Bufala campana, Basilico fritto.</p>
+            </div>
+            <div className="menu-item-custom">
+              <div className="menu-header-flex"><span>Oro Emiliano</span><span>€18</span></div>
+              <p className="menu-desc">Mortadella, Stracciatella, Granella di Pistacchio.</p>
+            </div>
+            <div className="menu-item-custom">
+              <div className="menu-header-flex"><span>Gramigna Gialla e Verde</span><span>€16</span></div>
+              <p className="menu-desc">Ragù bianco di salsiccia di mora romagnola e panna fresca.</p>
+            </div>
+            <div className="menu-item-custom">
+              <div className="menu-header-flex"><span>Tigelle Gourmet (5pz)</span><span>€15</span></div>
+              <p className="menu-desc">Accompagnate da battuto di lardo, rosmarino e Parmigiano.</p>
+            </div>
+          </div>
+
+          {/* Colonna 2 */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
+            <div className="menu-item-custom">
+              <div className="menu-header-flex"><span>Tortellino 36 Mesi</span><span>€22</span></div>
+              <p className="menu-desc">Fatti a mano, crema di Parmigiano Reggiano delle Vacche Rosse.</p>
+            </div>
+            <div className="menu-item-custom">
+              <div className="menu-header-flex"><span>Polpo e Luce</span><span>€20</span></div>
+              <p className="menu-desc">Patata viola, polpo croccante, olio al rosmarino.</p>
+            </div>
+            <div className="menu-item-custom">
+              <div className="menu-header-flex"><span>Tagliata di Fassona</span><span>€24</span></div>
+              <p className="menu-desc">Sale di Cervia, burro chiarificato e patate al forno.</p>
+            </div>
+            <div className="menu-item-custom">
+              <div className="menu-header-flex"><span>Zuppa Inglese Illume</span><span>€8</span></div>
+              <p className="menu-desc">Ricetta tradizionale con Alchermes e cioccolato fondente.</p>
+            </div>
+          </div>
+        </div>
+
+        <div style={{ textAlign: 'center' }}>
+          <Link href="/menu" className="btn-menu-completo">
+            SCOPRI IL MENÙ COMPLETO
+          </Link>
         </div>
       </section>
 
-      {/* 3. SEZIONE MENU - PALETTE MATTONE & PANNA */}
-<section id="menu" className="py-24 bg-illume-panna text-illume-mattone">
-  <div className="container mx-auto px-4 md:px-[10%]">
-    
-    {/* Intestazione */}
-    <div className="text-center mb-20">
-      <h2 className="font-serif italic text-5xl md:text-7xl lg:text-8xl tracking-tight">
-        Il Menù
-      </h2>
-      <p className="tracking-[4px] text-[12px] mt-4 opacity-60 uppercase font-bold">
-        Selezione Stagionale
-      </p>
-    </div>
-
-    {/* Griglia Piatti */}
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12 max-w-[1200px] mx-auto">
-      
-      {/* Prima Colonna */}
-      <div className="space-y-12">
-        <div className="menu-item group">
-          <div className="flex justify-between font-bold border-b border-illume-mattone/20 pb-2">
-            <span className="uppercase tracking-wide">Margherita DOP</span>
-            <span>€14</span>
-          </div>
-          <p className="text-[14px] opacity-70 mt-3 italic">
-            San Marzano, Bufala campana, Basilico fritto.
-          </p>
-        </div>
-
-        <div className="menu-item group">
-          <div className="flex justify-between font-bold border-b border-illume-mattone/20 pb-2">
-            <span className="uppercase tracking-wide">Oro Emiliano</span>
-            <span>€18</span>
-          </div>
-          <p className="text-[14px] opacity-70 mt-3 italic">
-            Mortadella, Stracciatella, Granella di Pistacchio.
-          </p>
-        </div>
-
-        {/* AGGIUNTA 1 */}
-        <div className="menu-item group">
-          <div className="flex justify-between font-bold border-b border-illume-mattone/20 pb-2">
-            <span className="uppercase tracking-wide">Gramigna Gialla e Verde</span>
-            <span>€16</span>
-          </div>
-          <p className="text-[14px] opacity-70 mt-3 italic">
-            Ragù bianco di salsiccia di mora romagnola e panna fresca.
-          </p>
-        </div>
-
-        {/* AGGIUNTA 2 */}
-        <div className="menu-item group">
-          <div className="flex justify-between font-bold border-b border-illume-mattone/20 pb-2">
-            <span className="uppercase tracking-wide">Tigelle Gourmet (5pz)</span>
-            <span>€15</span>
-          </div>
-          <p className="text-[14px] opacity-70 mt-3 italic">
-            Accompagnate da battuto di lardo, rosmarino e Parmigiano.
-          </p>
-        </div>
-      </div>
-
-      {/* Seconda Colonna */}
-      <div className="space-y-12">
-        <div className="menu-item group">
-          <div className="flex justify-between font-bold border-b border-illume-mattone/20 pb-2">
-            <span className="uppercase tracking-wide">Tortellino 36 Mesi</span>
-            <span>€22</span>
-          </div>
-          <p className="text-[14px] opacity-70 mt-3 italic">
-            Fatti a mano, crema di Parmigiano Reggiano delle Vacche Rosse.
-          </p>
-        </div>
-
-        <div className="menu-item group">
-          <div className="flex justify-between font-bold border-b border-illume-mattone/20 pb-2">
-            <span className="uppercase tracking-wide">Polpo e Luce</span>
-            <span>€20</span>
-          </div>
-          <p className="text-[14px] opacity-70 mt-3 italic">
-            Patata viola, polpo croccante, olio al rosmarino.
-          </p>
-        </div>
-
-        {/* AGGIUNTA 3 */}
-        <div className="menu-item group">
-          <div className="flex justify-between font-bold border-b border-illume-mattone/20 pb-2">
-            <span className="uppercase tracking-wide">Tagliata di Fassona</span>
-            <span>€24</span>
-          </div>
-          <p className="text-[14px] opacity-70 mt-3 italic">
-            Sale di Cervia, burro chiarificato e patate al forno.
-          </p>
-        </div>
-
-        {/* AGGIUNTA 4 */}
-        <div className="menu-item group">
-          <div className="flex justify-between font-bold border-b border-illume-mattone/20 pb-2">
-            <span className="uppercase tracking-wide">Zuppa Inglese Illume</span>
-            <span>€8</span>
-          </div>
-          <p className="text-[14px] opacity-70 mt-3 italic">
-            Ricetta tradizionale con Alchermes e cioccolato fondente.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    {/* Pulsante che riporta alla pagina Menu */}
-    <div className="text-center mt-20">
-      <Link 
-        href="/menu" 
-        className="inline-block bg-illume-mattone text-illume-panna px-12 py-5 rounded-full font-bold uppercase text-[10px] tracking-[3px] hover:scale-105 transition-transform duration-300 shadow-lg"
-      >
-        Scopri il Menù Completo
-      </Link>
-    </div>
-  </div>
-</section>
-
-      {/* 4. SEZIONE PRENOTA & FOOTER */}
+      {/* 4. SEZIONE PRENOTA (Mantieni la tua attuale) */}
       <section id="prenota" style={{ background: '#0d0d0d', color: '#fff', textAlign: 'center', padding: '10rem 2rem' }}>
         <h2 style={{ fontFamily: 'Playfair Display', fontSize: 'clamp(2.5rem, 5vw, 4rem)', marginBottom: '3rem', fontStyle: 'italic' }}>Riserva la tua esperienza</h2>
-        <p style={{ opacity: '0.4', marginBottom: '4rem', letterSpacing: '2px' }}>VIA DELL'INDIPENDENZA, BOLOGNA</p>
-        <a href="tel:+39012345678" className="btn-illume" style={{ color: '#fff', borderColor: '#fff' }}>Prenota un tavolo</a>
-        
-        <footer style={{ marginTop: '12rem', paddingTop: '5rem', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
-          <img src="/logo.png" alt="Illume" style={{ height: '70px', filter: 'brightness(0) invert(1)', marginBottom: '2.5rem' }} />
-          <p style={{ fontSize: '9px', letterSpacing: '5px', opacity: '0.2', textTransform: 'uppercase' }}>
-            © 2026 ILLUME CUCINA EMILIANA • ALL RIGHTS RESERVED
-          </p>
-        </footer>
+        <a href="tel:+39012345678" style={{ border: '1px solid #fff', padding: '1rem 2.5rem', textDecoration: 'none', color: '#fff', textTransform: 'uppercase', fontSize: '10px', letterSpacing: '3px' }}>Prenota un tavolo</a>
       </section>
     </div>
   );
