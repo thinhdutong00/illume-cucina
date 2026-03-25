@@ -27,7 +27,7 @@ export default function Header() {
         .nav-header {
           position: fixed; top: 0; left: 0; width: 100%; height: 110px;
           display: grid;
-          grid-template-columns: 1fr auto 1fr; /* Tre colonne: sinistra, centro, destra */
+          grid-template-columns: 1fr auto 1fr;
           align-items: center;
           padding: 0 2rem; z-index: 9999;
           transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -42,12 +42,16 @@ export default function Header() {
           height: 90px;
         }
 
-        /* COLONNA SINISTRA: INDIRIZZO */
+        /* COLONNA SINISTRA: INDIRIZZO + ICONA */
         .header-left {
           display: flex;
           justify-content: flex-start;
+          align-items: center;
         }
         .address-link {
+          display: flex;
+          align-items: center;
+          gap: 8px; /* Spazio tra icona e testo */
           font-size: 10px;
           letter-spacing: 2px;
           text-decoration: none;
@@ -56,6 +60,11 @@ export default function Header() {
           transition: opacity 0.3s;
         }
         .address-link:hover { opacity: 0.7; }
+        .nav-icon {
+          width: 14px;
+          height: 14px;
+          fill: currentColor; /* Prende il colore del testo (mattone) */
+        }
 
         /* COLONNA CENTRALE: LOGO */
         .header-center {
@@ -100,11 +109,9 @@ export default function Header() {
         }
         .hamburger span { display: block; width: 24px; height: 1px; background: #1a1a1a; transition: 0.3s; }
         
-        /* MOBILE RESPONSIVE */
         @media (max-width: 1024px) {
-          .address-link, .btn-call { display: none; } /* Nascondiamo i dettagli meno vitali su mobile per spazio */
+          .header-left, .btn-call { display: none; }
           .nav-header { grid-template-columns: 1fr 1fr; }
-          .header-left { display: none; }
         }
 
         .mobile-menu {
@@ -122,7 +129,7 @@ export default function Header() {
 
       <header className={`nav-header ${!navVisible ? 'nav-hidden' : ''} ${navScrolled ? 'nav-scrolled' : ''}`}>
         
-        {/* Sinistra: Indirizzo */}
+        {/* Sinistra: Indirizzo + Icona Navigazione */}
         <div className="header-left">
           <a 
             href="https://www.google.com/maps/dir/?api=1&destination=Via+S.+Francesco+4+Carpi" 
@@ -130,7 +137,10 @@ export default function Header() {
             rel="noopener noreferrer"
             className="address-link"
           >
-            CARPI • VIA S. FRANCESCO 4
+            <svg className="nav-icon" viewBox="0 0 24 24">
+              <path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z" />
+            </svg>
+            <span>CARPI • VIA S. FRANCESCO 4</span>
           </a>
         </div>
 
@@ -154,7 +164,6 @@ export default function Header() {
           </button>
         </div>
 
-        {/* Menu Mobile Overlay */}
         <nav className={`mobile-menu ${isMenuOpen ? 'open' : ''}`}>
           <Link href="/#storia" onClick={closeMenu}>Storia</Link>
           <Link href="/#menu" onClick={closeMenu}>Menu</Link>
