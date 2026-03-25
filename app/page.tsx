@@ -82,7 +82,7 @@ export default function Home() {
       {/* 1. HERO SECTION */}
       <section className="section-split" style={{ display: 'flex', flexWrap: 'wrap', minHeight: '100vh' }}>
         <div style={{ flex: '1 1 50%', padding: '10% 8%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-          <p style={{ letterSpacing: '5px', fontSize: '10px', color: '#642d3a', marginBottom: '1.5rem', fontWeight: 'bold' }}>CARPI • VIA S. FRANCESCO 4</p>
+          
           <h1 style={{ fontFamily: 'Playfair Display', fontSize: 'clamp(3.5rem, 7vw, 6rem)', lineHeight: '1', marginBottom: '2rem' }}>Illume <br/><i>Cucina</i></h1>
           <p style={{ fontSize: '1.1rem', lineHeight: '1.8', opacity: '0.7', marginBottom: '2.5rem', maxWidth: '450px' }}>
             Tradizione emiliana e arte della pizza nel cuore storico di Carpi.
