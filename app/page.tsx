@@ -90,7 +90,7 @@ export default function Home() {
           <div><a href="#menu" style={{ border: '1px solid #1a1a1a', padding: '1rem 2.5rem', textDecoration: 'none', color: '#1a1a1a', textTransform: 'uppercase', fontSize: '10px', letterSpacing: '3px' }}>Esplora il Menu</a></div>
         </div>
         <div style={{ flex: '1 1 50%', minHeight: '500px' }}>
-          <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1400" alt="Specialità" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          <img src="illume-esterno.png" alt="Specialità" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
         </div>
       </section>
 
