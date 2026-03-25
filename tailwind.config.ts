@@ -9,11 +9,9 @@ const config: Config = {
     extend: {
       colors: {
         // COLORI PER ILLUME
-        'illume-gold': '#D4AF37',
-        'illume-black': '#0A0A0A',
-        // COLORI PER FISIOTERAPISTA
-        'clinico-blue': '#022166',
-        'clinico-light': '#55B4FF',
+        'illume-mattone': '#642d3a',
+        'illume-panna': '#ffefcc',
+        
       },
     },
   },
