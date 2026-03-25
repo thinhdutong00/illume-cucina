@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 export default function Home() {
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -154,38 +155,125 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3. SEZIONE MENU */}
-      <section id="menu" style={{ padding: '10rem 10%' }}>
-        <div style={{ textAlign: 'center', marginBottom: '6rem' }}>
-          <h2 style={{ fontFamily: 'Playfair Display', fontSize: 'clamp(3rem, 6vw, 5rem)', fontStyle: 'italic' }}>Il Menù</h2>
-          <p style={{ letterSpacing: '3px', fontSize: '12px', marginTop: '1rem', opacity: '0.5' }}>SELEZIONE STAGIONALE</p>
-        </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '5rem', maxWidth: '1200px', margin: '0 auto' }}>
-          <div>
-            <div className="menu-item">
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold' }}><span>Margherita DOP</span><span>€14</span></div>
-              <p style={{ fontSize: '14px', opacity: '0.6', marginTop: '8px', fontStyle: 'italic' }}>San Marzano, Bufala campana, Basilico fritto.</p>
-            </div>
-            <div className="menu-item">
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold' }}><span>Oro Emiliano</span><span>€18</span></div>
-              <p style={{ fontSize: '14px', opacity: '0.6', marginTop: '8px', fontStyle: 'italic' }}>Mortadella, Stracciatella, Granella di Pistacchio.</p>
-            </div>
+      {/* 3. SEZIONE MENU - PALETTE MATTONE & PANNA */}
+<section id="menu" className="py-24 bg-illume-panna text-illume-mattone">
+  <div className="container mx-auto px-4 md:px-[10%]">
+    
+    {/* Intestazione */}
+    <div className="text-center mb-20">
+      <h2 className="font-serif italic text-5xl md:text-7xl lg:text-8xl tracking-tight">
+        Il Menù
+      </h2>
+      <p className="tracking-[4px] text-[12px] mt-4 opacity-60 uppercase font-bold">
+        Selezione Stagionale
+      </p>
+    </div>
+
+    {/* Griglia Piatti */}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12 max-w-[1200px] mx-auto">
+      
+      {/* Prima Colonna */}
+      <div className="space-y-12">
+        <div className="menu-item group">
+          <div className="flex justify-between font-bold border-b border-illume-mattone/20 pb-2">
+            <span className="uppercase tracking-wide">Margherita DOP</span>
+            <span>€14</span>
           </div>
-          <div>
-            <div className="menu-item">
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold' }}><span>Tortellino 36 Mesi</span><span>€22</span></div>
-              <p style={{ fontSize: '14px', opacity: '0.6', marginTop: '8px', fontStyle: 'italic' }}>Fatti a mano, crema di Parmigiano Reggiano.</p>
-            </div>
-            <div className="menu-item">
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold' }}><span>Polpo e Luce</span><span>€20</span></div>
-              <p style={{ fontSize: '14px', opacity: '0.6', marginTop: '8px', fontStyle: 'italic' }}>Patata viola, polpo croccante, olio al rosmarino.</p>
-            </div>
+          <p className="text-[14px] opacity-70 mt-3 italic">
+            San Marzano, Bufala campana, Basilico fritto.
+          </p>
+        </div>
+
+        <div className="menu-item group">
+          <div className="flex justify-between font-bold border-b border-illume-mattone/20 pb-2">
+            <span className="uppercase tracking-wide">Oro Emiliano</span>
+            <span>€18</span>
           </div>
+          <p className="text-[14px] opacity-70 mt-3 italic">
+            Mortadella, Stracciatella, Granella di Pistacchio.
+          </p>
         </div>
-        <div style={{ textAlign: 'center', marginTop: '4rem' }}>
-          <a href="#" className="btn-illume">Menu Completo PDF</a>
+
+        {/* AGGIUNTA 1 */}
+        <div className="menu-item group">
+          <div className="flex justify-between font-bold border-b border-illume-mattone/20 pb-2">
+            <span className="uppercase tracking-wide">Gramigna Gialla e Verde</span>
+            <span>€16</span>
+          </div>
+          <p className="text-[14px] opacity-70 mt-3 italic">
+            Ragù bianco di salsiccia di mora romagnola e panna fresca.
+          </p>
         </div>
-      </section>
+
+        {/* AGGIUNTA 2 */}
+        <div className="menu-item group">
+          <div className="flex justify-between font-bold border-b border-illume-mattone/20 pb-2">
+            <span className="uppercase tracking-wide">Tigelle Gourmet (5pz)</span>
+            <span>€15</span>
+          </div>
+          <p className="text-[14px] opacity-70 mt-3 italic">
+            Accompagnate da battuto di lardo, rosmarino e Parmigiano.
+          </p>
+        </div>
+      </div>
+
+      {/* Seconda Colonna */}
+      <div className="space-y-12">
+        <div className="menu-item group">
+          <div className="flex justify-between font-bold border-b border-illume-mattone/20 pb-2">
+            <span className="uppercase tracking-wide">Tortellino 36 Mesi</span>
+            <span>€22</span>
+          </div>
+          <p className="text-[14px] opacity-70 mt-3 italic">
+            Fatti a mano, crema di Parmigiano Reggiano delle Vacche Rosse.
+          </p>
+        </div>
+
+        <div className="menu-item group">
+          <div className="flex justify-between font-bold border-b border-illume-mattone/20 pb-2">
+            <span className="uppercase tracking-wide">Polpo e Luce</span>
+            <span>€20</span>
+          </div>
+          <p className="text-[14px] opacity-70 mt-3 italic">
+            Patata viola, polpo croccante, olio al rosmarino.
+          </p>
+        </div>
+
+        {/* AGGIUNTA 3 */}
+        <div className="menu-item group">
+          <div className="flex justify-between font-bold border-b border-illume-mattone/20 pb-2">
+            <span className="uppercase tracking-wide">Tagliata di Fassona</span>
+            <span>€24</span>
+          </div>
+          <p className="text-[14px] opacity-70 mt-3 italic">
+            Sale di Cervia, burro chiarificato e patate al forno.
+          </p>
+        </div>
+
+        {/* AGGIUNTA 4 */}
+        <div className="menu-item group">
+          <div className="flex justify-between font-bold border-b border-illume-mattone/20 pb-2">
+            <span className="uppercase tracking-wide">Zuppa Inglese Illume</span>
+            <span>€8</span>
+          </div>
+          <p className="text-[14px] opacity-70 mt-3 italic">
+            Ricetta tradizionale con Alchermes e cioccolato fondente.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    {/* Pulsante che riporta alla pagina Menu */}
+    <div className="text-center mt-20">
+      <Link 
+        href="/menu" 
+        className="inline-block bg-illume-mattone text-illume-panna px-12 py-5 rounded-full font-bold uppercase text-[10px] tracking-[3px] hover:scale-105 transition-transform duration-300 shadow-lg"
+      >
+        Scopri il Menù Completo
+      </Link>
+    </div>
+  </div>
+</section>
 
       {/* 4. SEZIONE PRENOTA & FOOTER */}
       <section id="prenota" style={{ background: '#0d0d0d', color: '#fff', textAlign: 'center', padding: '10rem 2rem' }}>
