@@ -80,17 +80,122 @@ export default function Home() {
       <Header />
 
       {/* 1. HERO SECTION */}
-      <section className="section-split" style={{ display: 'flex', flexWrap: 'wrap', minHeight: '100vh' }}>
-        <div style={{ flex: '1 1 50%', padding: '10% 8%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-          
-          <h1 style={{ fontFamily: 'Playfair Display', fontSize: 'clamp(3.5rem, 7vw, 6rem)', lineHeight: '1', marginBottom: '2rem' }}>Illume <br/><i>Cucina</i></h1>
-          <p style={{ fontSize: '1.1rem', lineHeight: '1.8', opacity: '0.7', marginBottom: '2.5rem', maxWidth: '450px' }}>
-            Tradizione emiliana e arte della pizza nel cuore storico di Carpi.
+      <section className="hero-section">
+        <style jsx>{`
+          .hero-section {
+            display: flex;
+            flex-wrap: wrap;
+            min-height: 100vh;
+            background-color: var(--illume-panna); /* Sfondo Panna */
+            padding-top: 110px; /* Spazio per l'header fisso */
+          }
+
+          .hero-content {
+            flex: 1 1 50%;
+            padding: 5% 8%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: var(--illume-mattone); /* Testi Mattone */
+          }
+
+          .hero-eyebrow {
+            letter-spacing: 5px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            opacity: 0.9;
+          }
+
+          .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3.5rem, 8vw, 6.5rem);
+            line-height: 0.95;
+            margin-bottom: 2rem;
+            font-weight: 400;
+          }
+
+          .hero-title i {
+            font-style: italic;
+            display: block;
+            margin-left: 1.5rem;
+          }
+
+          .hero-description {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            max-width: 480px;
+            opacity: 0.85;
+            font-family: 'Inter', sans-serif;
+          }
+
+          .hero-btn {
+            display: inline-block;
+            border: 1.5px solid var(--illume-mattone);
+            padding: 1.2rem 2.8rem;
+            text-decoration: none;
+            color: var(--illume-mattone);
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 3px;
+            font-weight: 700;
+            transition: all 0.4s ease;
+          }
+
+          .hero-btn:hover {
+            background-color: var(--illume-mattone);
+            color: var(--illume-panna);
+            transform: translateY(-3px);
+          }
+
+          .hero-image-container {
+            flex: 1 1 50%;
+            padding: 40px; /* Crea un distacco morbido */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+
+          .hero-img {
+            width: 100%;
+            height: 100%;
+            max-height: 80vh;
+            object-fit: cover;
+            border-radius: 20px; /* Angoli morbidi */
+            box-shadow: 0 20px 40px rgba(100, 45, 58, 0.1); /* Ombra calda */
+          }
+
+          @media (max-width: 1024px) {
+            .hero-section { flex-direction: column; }
+            .hero-content { padding: 4rem 2rem; text-align: center; align-items: center; }
+            .hero-description { max-width: 100%; }
+            .hero-image-container { padding: 20px; min-height: 400px; }
+            .hero-title i { margin-left: 0; }
+          }
+        `}</style>
+
+        <div className="hero-content">
+          <p className="hero-eyebrow">Benvenuti da Illume</p>
+          <h1 className="hero-title">
+            Illume <br/>
+            <i>Cucina</i>
+          </h1>
+          <p className="hero-description">
+            Un connubio tra la sapienza della tradizione emiliana e l'arte contemporanea della pizza, servito nell'abbraccio storico di Carpi.
           </p>
-          <div><a href="#menu" style={{ border: '1px solid #1a1a1a', padding: '1rem 2.5rem', textDecoration: 'none', color: '#1a1a1a', textTransform: 'uppercase', fontSize: '10px', letterSpacing: '3px' }}>Esplora il Menu</a></div>
+          <div>
+            <a href="#menu" className="hero-btn">Esplora il Menu</a>
+          </div>
         </div>
-        <div style={{ flex: '1 1 50%', minHeight: '500px' }}>
-          <img src="illume-esterno.png" alt="Specialità" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+
+        <div className="hero-image-container">
+          <img 
+            src="illume-esterno.png" 
+            alt="Esterno di Illume Cucina" 
+            className="hero-img" 
+          />
         </div>
       </section>
 
