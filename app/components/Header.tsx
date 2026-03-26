@@ -58,7 +58,7 @@ export default function Header() {
     };
   }, [isMenuOpen]);
 
-  const themeColor = isScrolled ? 'var(--illume-mattone)' : 'var(--illume-panna)';
+  const themeColor = isScrolled ? '#642d3a' : '#ffefcc';
 
   return (
     <>
@@ -104,12 +104,13 @@ export default function Header() {
             <a href="tel:+3931469587" className="icon-circle-btn" style={{ borderColor: themeColor, color: themeColor }}>
               <Phone size={18} />
             </a>
-            <Link href="/prenotazioni" className="btn-book-header hide-tablet" style={{ 
-              backgroundColor: isScrolled ? 'var(--illume-mattone)' : 'var(--illume-panna)',
-              color: isScrolled ? 'var(--illume-panna)' : 'var(--illume-mattone)'
-            }}>
-              Prenota
-            </Link>
+            <Link href="/prenota" className="btn-book-header hide-tablet" style={{ 
+  backgroundColor: isScrolled ? '#642d3a' : '#ffefcc',
+  color: isScrolled ? '#ffefcc' : '#642d3a',
+  border: isScrolled ? 'none' : '1px solid #ffefcc' // Aggiunto per visibilità su foto scure
+}}>
+  Prenota
+</Link>
             <button className="hamburger-btn" onClick={() => setIsMenuOpen(true)} style={{ color: themeColor }}>
               <Menu size={30} />
             </button>
