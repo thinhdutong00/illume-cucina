@@ -182,8 +182,8 @@ body {
 
 /* --- FOOTER --- */
 .main-footer {
-  background-color: var(--dark);
-  color: rgba(255, 239, 204, 0.5);
+  background-color: #642d3a;
+  color: rgba(255, 239, 204, 0.5); /* Panna al 50% */
   padding: 80px 24px;
 }
 
