@@ -1,170 +1,59 @@
 "use client";
+
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { Menu, X, Phone } from 'lucide-react';
 
 export default function Header() {
-  const [lastScrollY, setLastScrollY] = useState(0);
-  const [navVisible, setNavVisible] = useState(true);
-  const [navScrolled, setNavScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      setNavVisible(currentScrollY < lastScrollY || currentScrollY < 100);
-      setNavScrolled(currentScrollY > 50);
-      setLastScrollY(currentScrollY);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
-
-  const closeMenu = () => setIsMenuOpen(false);
+  }, []);
 
   return (
     <>
-      <style jsx>{`
-        .nav-header {
-          position: fixed; top: 0; left: 0; width: 100%; height: 110px;
-          display: grid;
-          grid-template-columns: 1fr auto 1fr;
-          align-items: center;
-          padding: 0 2rem; z-index: 9999;
-          transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-          box-sizing: border-box;
-          background: transparent;
-          /* BORDO SOTTILE QUASI INVISIBILE */
-          border-bottom: 1px solid rgba(26, 26, 26, 0.05);
-        }
-        .nav-hidden { transform: translateY(-100%); }
-        .nav-scrolled { 
-          background: rgba(253, 252, 248, 0.98); 
-          backdrop-filter: blur(10px); 
-          /* MANTENIAMO IL BORDO ALLO SCROLL */
-          border-bottom: 1px solid rgba(26, 26, 26, 0.08); 
-          height: 90px;
-        }
-
-        /* COLONNA SINISTRA: INDIRIZZO + ICONA */
-        .header-left {
-          display: flex;
-          justify-content: flex-start;
-          align-items: center;
-        }
-        .address-link {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          font-size: 10px;
-          letter-spacing: 2px;
-          text-decoration: none;
-          color: var(--illume-mattone, #642d3a);
-          font-weight: 600;
-          transition: opacity 0.3s;
-        }
-        .address-link:hover { opacity: 0.7; }
-        .nav-icon {
-          width: 14px;
-          height: 14px;
-          fill: currentColor;
-        }
-
-        /* COLONNA CENTRALE: LOGO */
-        .header-center {
-          display: flex;
-          justify-content: center;
-        }
-        .logo-img { height: 65px; width: auto; transition: height 0.3s ease; }
-        .nav-scrolled .logo-img { height: 50px; }
-
-        /* COLONNA DESTRA: BOTTONI + HAMBURGER */
-        .header-right {
-          display: flex;
-          justify-content: flex-end;
-          align-items: center;
-          gap: 1.5rem;
-        }
-
-        .btn-header {
-          font-size: 10px;
-          letter-spacing: 1.5px;
-          text-transform: uppercase;
-          text-decoration: none;
-          padding: 10px 20px;
-          border-radius: 50px;
-          transition: all 0.3s;
-          font-weight: bold;
-        }
-        .btn-call {
-          color: var(--illume-mattone, #642d3a);
-          border: 1px solid var(--illume-mattone, #642d3a);
-        }
-        .btn-book {
-          background: var(--illume-mattone, #642d3a);
-          color: #ffefcc;
-        }
-        .btn-header:hover { transform: translateY(-2px); opacity: 0.9; }
-
-        .hamburger {
-          background: none; border: none; cursor: pointer;
-          display: flex; flex-direction: column; gap: 6px; z-index: 10000;
-          padding: 0; margin-left: 10px;
-        }
-        .hamburger span { display: block; width: 24px; height: 1px; background: #1a1a1a; transition: 0.3s; }
-        
-        @media (max-width: 1024px) {
-          .header-left, .btn-call { display: none; }
-          .nav-header { grid-template-columns: 1fr 1fr; }
-        }
-
-        .mobile-menu {
-          position: fixed; top: 0; right: -100%; width: 100%; height: 100vh;
-          background: #fdfcf8; display: flex; flex-direction: column;
-          justify-content: center; align-items: center; gap: 2.5rem;
-          transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1); z-index: 9998;
-        }
-        .mobile-menu.open { right: 0; }
-        .mobile-menu a {
-          font-family: 'Playfair Display', serif; font-size: 2rem;
-          text-decoration: none; color: #1a1a1a; text-transform: uppercase;
-        }
-      `}</style>
-
-      <header className={`nav-header ${!navVisible ? 'nav-hidden' : ''} ${navScrolled ? 'nav-scrolled' : ''}`}>
-        <div className="header-left">
-          <a 
-            href="https://www.google.com/maps/dir/?api=1&destination=Via+S.+Francesco+4+Carpi" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="address-link"
-          >
-            <svg className="nav-icon" viewBox="0 0 24 24">
-              <path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z" />
-            </svg>
-            <span>CARPI • VIA S. FRANCESCO 4</span>
-          </a>
-        </div>
-
-        <div className="header-center">
-          <Link href="/" onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}>
-            <img src="/logo.png" alt="Illume" className="logo-img" />
+      <header className={`fixed top-0 inset-x-0 z-[100] transition-all duration-500 ${
+        isScrolled ? 'py-4 bg-[#fdfcf8]/90 backdrop-blur-md shadow-sm' : 'py-6 bg-transparent'
+      }`}>
+        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+          <Link href="/">
+            <h1 className={`text-2xl font-black tracking-tighter transition-colors ${isScrolled ? 'text-[#642d3a]' : 'text-[#ffefcc]'}`}>
+              ILLUME
+            </h1>
           </Link>
-        </div>
 
-        <div className="header-right">
-          <a href="tel:+393384622362" className="btn-header btn-call">Chiama</a>
-          <Link href="/prenota" className="btn-header btn-book">Prenota</Link>
-          <button className={`hamburger ${isMenuOpen ? 'open' : ''}`} onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            <span></span><span></span><span></span>
-          </button>
-        </div>
+          <nav className={`hidden md:flex items-center gap-10 text-[11px] font-bold uppercase tracking-[0.2em] ${isScrolled ? 'text-[#1a1a1a]' : 'text-[#ffefcc]'}`}>
+            <a href="#menu" className="hover:text-[#642d3a] transition-colors">Il Menù</a>
+            <a href="#storia" className="hover:text-[#642d3a] transition-colors">La Visione</a>
+            <a href="#prenota" className="hover:text-[#642d3a] transition-colors">Contatti</a>
+          </nav>
 
-        <nav className={`mobile-menu ${isMenuOpen ? 'open' : ''}`}>
-          <Link href="/#storia" onClick={closeMenu}>Storia</Link>
-          <Link href="/#menu" onClick={closeMenu}>Menu</Link>
-          <Link href="/#prenota" onClick={closeMenu}>Prenota</Link>
-        </nav>
+          <div className="flex items-center gap-4">
+            <a href="tel:+39012345678" className={`p-2.5 rounded-full border transition-all ${isScrolled ? 'border-[#642d3a] text-[#642d3a]' : 'border-[#ffefcc]/30 text-[#ffefcc]'}`}>
+              <Phone size={18} />
+            </a>
+            <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+              {isMenuOpen ? <X size={28} className="text-[#ffefcc]" /> : <Menu size={28} className={isScrolled ? 'text-[#642d3a]' : 'text-[#ffefcc]'} />}
+            </button>
+          </div>
+        </div>
       </header>
+
+      {/* Mobile Menu Overlay */}
+      {isMenuOpen && (
+        <div className="fixed inset-0 z-[150] bg-[#642d3a] text-[#ffefcc] flex flex-col p-10 animate-in fade-in slide-in-from-top duration-500">
+          <button onClick={() => setIsMenuOpen(false)} className="self-end p-4"><X size={40} /></button>
+          <nav className="flex flex-col gap-8 mt-20 text-4xl font-serif italic font-light">
+            <a href="#menu" onClick={() => setIsMenuOpen(false)}>Il Menù</a>
+            <a href="#storia" onClick={() => setIsMenuOpen(false)}>La Visione</a>
+            <a href="#prenota" onClick={() => setIsMenuOpen(false)}>Prenota</a>
+          </nav>
+        </div>
+      )}
     </>
   );
 }
