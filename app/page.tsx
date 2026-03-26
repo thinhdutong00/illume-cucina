@@ -81,34 +81,37 @@ export default function Home() {
       <Header />
 
       {/* 1. HERO SECTION */}
-      <section className="hero-wrapper">
-        <div className="hero-text-side">
-          <p style={{ letterSpacing: '5px', fontSize: '10px', fontWeight: 'bold', marginBottom: '1.5rem' }}>
-            CARPI • VIA S. FRANCESCO 4
-          </p>
-          <h1 className="hero-title-main">
-            Illume <br/>
-            <i>Cucina</i>
-          </h1>
-          <p className="hero-subtitle">
-            Tradizione emiliana e arte della pizza nel cuore storico di Carpi. 
-            Un'atmosfera calda dove la materia prima incontra l'eccellenza.
-          </p>
-          <div>
-            <a href="#menu" className="btn-hero-explore">
-              Esplora il Menu
-            </a>
-          </div>
-        </div>
+<section className="flex flex-col lg:flex-row min-h-screen bg-illume-panna pt-[110px]">
+  
+  {/* Testo a sinistra */}
+  <div className="flex-1 flex flex-col justify-center px-[8%] py-12 text-illume-mattone">
+    <p className="tracking-[5px] text-[10px] font-bold mb-6 uppercase">
+      Carpi • Via S. Francesco 4
+    </p>
+    <h1 className="font-serif text-6xl md:text-8xl leading-none mb-8">
+      Illume <br/>
+      <i className="block ml-6">Cucina</i>
+    </h1>
+    <p className="text-lg leading-relaxed mb-10 max-w-md opacity-90">
+      Tradizione emiliana e arte della pizza nel cuore storico di Carpi. 
+      Un'atmosfera calda dove la materia prima incontra l'eccellenza.
+    </p>
+    <div>
+      <Link href="#menu" className="inline-block border border-illume-mattone px-10 py-4 text-[11px] tracking-[3px] font-bold uppercase hover:bg-illume-mattone hover:text-illume-panna transition-all">
+        Esplora il Menu
+      </Link>
+    </div>
+  </div>
 
-        <div className="hero-image-side">
-          <img 
-            src="/illume-esterno.png" 
-            alt="Illume Cucina Esterno" 
-            className="hero-image-card" 
-          />
-        </div>
-      </section>
+  {/* Immagine a destra */}
+  <div className="flex-1 p-8 lg:p-12 flex items-center justify-center">
+    <img 
+      src="/illume-esterno.png" 
+      alt="Illume Esterno" 
+      className="w-full h-full max-h-[70vh] object-cover rounded-[40px_10px_40px_10px] shadow-2xl shadow-illume-mattone/20" 
+    />
+  </div>
+</section>
 
       {/* 3. SEZIONE MENU */}
       <section id="menu" className="menu-section">
