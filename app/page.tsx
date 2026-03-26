@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -27,179 +28,143 @@ export default function Home() {
       </section>
 
 
-{/* 2. SEZIONE MENU ANTEPRIMA */}
-      <section id="menu-preview" className="menu-preview-section">
-        <style jsx>{`
-          .menu-preview-section {
-            padding: 120px 8%;
-            background-color: var(--illume-panna, #ffefcc);
-            color: var(--illume-mattone, #642d3a);
-          }
+      {/* 2. SEZIONE INTRODUTTIVA */}
+      <section className="bg-illume-panna py-24 px-[8%] flex flex-col lg:flex-row items-center gap-16">
+        <div className="flex-1 order-2 lg:order-1">
+          <img 
+            src="/interni-illume.jpg" 
+            alt="Interni Illume" 
+            className="w-full h-[500px] object-cover rounded-[60px_20px_60px_20px] shadow-xl shadow-illume-mattone/10"
+          />
+        </div>
+        
+        <div className="flex-1 text-illume-mattone order-1 lg:order-2">
+          <span className="block tracking-[5px] text-[10px] font-bold mb-6 uppercase opacity-80">L'Anima di Illume</span>
+          <h2 className="font-serif text-4xl md:text-5xl leading-tight mb-8">
+            Dove la luce incontra <br/> la materia prima.
+          </h2>
+          <p className="text-lg leading-relaxed mb-10 opacity-90 italic">
+            Ogni dettaglio, dall'illuminazione calda ai materiali naturali, è pensato per farti sentire a casa, mentre la nostra cucina celebra l'eccellenza del territorio.
+          </p>
+          <Link href="/informazioni" className="inline-block border border-illume-mattone px-10 py-4 text-[11px] tracking-[3px] font-bold uppercase hover:bg-illume-mattone hover:text-illume-panna transition-all">
+            Scopri la nostra storia
+          </Link>
+        </div>
+      </section>
 
-          .menu-header {
-            text-align: center;
-            margin-bottom: 80px;
-          }
-
-          .menu-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-style: italic;
-            margin-bottom: 10px;
-          }
-
-          .menu-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr; /* Due colonne */
-            gap: 60px 100px; /* Spazio tra righe e colonne */
-            max-width: 1200px;
-            margin: 0 auto 80px auto;
-          }
-
-          .menu-item {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-          }
-
-          .item-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            border-bottom: 1px solid rgba(100, 45, 58, 0.1);
-            padding-bottom: 8px;
-          }
-
-          .item-name {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-          }
-
-          .item-price {
-            font-weight: 700;
-            font-size: 1.1rem;
-          }
-
-          .item-ingredients {
-            font-size: 0.95rem;
-            line-height: 1.6;
-            opacity: 0.8;
-            font-family: 'Inter', sans-serif;
-          }
-
-          .menu-footer {
-            text-align: center;
-          }
-
-          .btn-full-menu {
-            display: inline-block;
-            border: 1px solid var(--illume-mattone);
-            padding: 1.2rem 3rem;
-            text-decoration: none;
-            color: var(--illume-mattone);
-            text-transform: uppercase;
-            font-size: 11px;
-            letter-spacing: 3px;
-            font-weight: 700;
-            transition: all 0.3s ease;
-          }
-
-          .btn-full-menu:hover {
-            background-color: var(--illume-mattone);
-            color: var(--illume-panna);
-          }
-
-          /* Mobile: una sola colonna */
-          @media (max-width: 900px) {
-            .menu-grid {
-              grid-template-columns: 1fr;
-              gap: 40px;
-            }
-          }
-        `}</style>
-
-        {/* Titolo Centrale */}
-        <div className="menu-header">
-          <p style={{ letterSpacing: '4px', fontSize: '10px', fontWeight: 'bold', marginBottom: '1rem' }}>DALLA NOSTRA CUCINA</p>
-          <h2 className="menu-title">Le Specialità</h2>
+      {/* 3. SEZIONE MENU ANTEPRIMA */}
+      <section className="bg-illume-panna py-24 px-[8%] border-t border-illume-mattone/10">
+        <div className="text-center mb-20 text-illume-mattone">
+          <span className="block tracking-[5px] text-[10px] font-bold mb-4 uppercase">DALLA NOSTRA CUCINA</span>
+          <h2 className="font-serif text-5xl italic">Le Specialità</h2>
         </div>
 
-        {/* Grid 2 Colonne */}
-        <div className="menu-grid">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-24 gap-y-12 max-w-7xl mx-auto mb-20">
           {/* Colonna 1 */}
-          <div className="menu-col">
-            <div className="menu-item">
-              <div className="item-header">
-                <span className="item-name">Margherita D.O.P.</span>
-                <span className="item-price">€10</span>
+          <div className="space-y-10">
+            {[
+              { name: "Margherita D.O.P.", price: "10", desc: "Pomodoro San Marzano, mozzarella di bufala, basilico fresco, olio EVO." },
+              { name: "Emiliana", price: "14", desc: "Mozzarella fior di latte, Prosciutto di Parma 24 mesi, scaglie di Parmigiano." },
+              { name: "Diavola Calabra", price: "12", desc: "Pomodoro, fior di latte, spianata piccante, 'nduja di Spilinga." },
+              { name: "Boscaiola", price: "13", desc: "Funghi porcini trifolati, salsiccia di Modena, prezzemolo, mozzarella." }
+            ].map((item, i) => (
+              <div key={i} className="text-illume-mattone group">
+                <div className="flex justify-between items-baseline border-b border-illume-mattone/20 pb-2 mb-2">
+                  <h3 className="font-serif text-xl uppercase tracking-wider">{item.name}</h3>
+                  <span className="font-bold">€{item.price}</span>
+                </div>
+                <p className="text-sm opacity-80 italic leading-relaxed">{item.desc}</p>
               </div>
-              <p className="item-ingredients">Pomodoro San Marzano, mozzarella di bufala, basilico fresco, olio EVO.</p>
-            </div>
-            <div className="menu-item" style={{ marginTop: '40px' }}>
-              <div className="item-header">
-                <span className="item-name">Emiliana</span>
-                <span className="item-price">€14</span>
-              </div>
-              <p className="item-ingredients">Mozzarella fior di latte, Prosciutto di Parma 24 mesi, scaglie di Parmigiano Reggiano.</p>
-            </div>
-            <div className="menu-item" style={{ marginTop: '40px' }}>
-              <div className="item-header">
-                <span className="item-name">Diavola Calabra</span>
-                <span className="item-price">€12</span>
-              </div>
-              <p className="item-ingredients">Pomodoro, fior di latte, spianata piccante, 'nduja di Spilinga, olive taggiasche.</p>
-            </div>
-            <div className="menu-item" style={{ marginTop: '40px' }}>
-              <div className="item-header">
-                <span className="item-name">Boscaiola</span>
-                <span className="item-price">€13</span>
-              </div>
-              <p className="item-ingredients">Funghi porcini trifolati, salsiccia di Modena, prezzemolo, mozzarella.</p>
-            </div>
+            ))}
           </div>
 
           {/* Colonna 2 */}
-          <div className="menu-col">
-            <div className="menu-item">
-              <div className="item-header">
-                <span className="item-name">Cappelletti Tradizionali</span>
-                <span className="item-price">€16</span>
+          <div className="space-y-10">
+            {[
+              { name: "Cappelletti", price: "16", desc: "In brodo di cappone o con crema di Parmigiano Reggiano 36 mesi." },
+              { name: "Tagliatelle al Ragù", price: "14", desc: "Pasta all'uovo tirata al mattarello con ragù bianco di cortile." },
+              { name: "Tortellini Goccia d'Oro", price: "15", desc: "Ripieno classico modenese, panna d'affioramento, prosciutto croccante." },
+              { name: "Guancialino Brasato", price: "18", desc: "Cotto a bassa temperatura nel Lambrusco, servito su purè di patate." }
+            ].map((item, i) => (
+              <div key={i} className="text-illume-mattone">
+                <div className="flex justify-between items-baseline border-b border-illume-mattone/20 pb-2 mb-2">
+                  <h3 className="font-serif text-xl uppercase tracking-wider">{item.name}</h3>
+                  <span className="font-bold">€{item.price}</span>
+                </div>
+                <p className="text-sm opacity-80 italic leading-relaxed">{item.desc}</p>
               </div>
-              <p className="item-ingredients">In brodo di cappone o con crema di Parmigiano Reggiano 36 mesi.</p>
-            </div>
-            <div className="menu-item" style={{ marginTop: '40px' }}>
-              <div className="item-header">
-                <span className="item-name">Tagliatelle al Ragù</span>
-                <span className="item-price">€14</span>
-              </div>
-              <p className="item-ingredients">Pasta all'uovo tirata al mattarello con ragù bianco di cortile.</p>
-            </div>
-            <div className="menu-item" style={{ marginTop: '40px' }}>
-              <div className="item-header">
-                <span className="item-name">Tortellini Goccia d'Oro</span>
-                <span className="item-price">€15</span>
-              </div>
-              <p className="item-ingredients">Ripieno classico modenese, panna d'affioramento, prosciutto croccante.</p>
-            </div>
-            <div className="menu-item" style={{ marginTop: '40px' }}>
-              <div className="item-header">
-                <span className="item-name">Guancialino Brasato</span>
-                <span className="item-price">€18</span>
-              </div>
-              <p className="item-ingredients">Cotto a bassa temperatura nel Lambrusco, servito su purè di patate soffice.</p>
-            </div>
+            ))}
           </div>
         </div>
 
-        {/* Pulsante Menu Completo */}
-        <div className="menu-footer">
-          <a href="/menu-completo.pdf" className="btn-full-menu" target="_blank">
+        <div className="text-center">
+          <Link href="/menu-completo.pdf" className="inline-block border border-illume-mattone px-12 py-4 text-[11px] tracking-[3px] font-bold uppercase hover:bg-illume-mattone hover:text-illume-panna transition-all">
             Consulta il Menu Completo
-          </a>
+          </Link>
         </div>
       </section>
+
+
+{/* 2. SEZIONE MENU ANTEPRIMA */}
+<section id="menu-preview" className="py-24 px-[8%] bg-[#ffefcc] text-[#642d3a]">
+  
+  {/* Titolo Centrale */}
+  <div className="text-center mb-20">
+    <p className="tracking-[4px] text-[10px] font-bold mb-4 uppercase">DALLA NOSTRA CUCINA</p>
+    <h2 className="font-serif text-[clamp(2.5rem,5vw,4rem)] italic leading-tight">Le Specialità</h2>
+  </div>
+
+  {/* Grid 2 Colonne */}
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-24 gap-y-12 max-w-7xl mx-auto mb-20">
+    
+    {/* Colonna 1: Pizze */}
+    <div className="flex flex-col gap-10">
+      {[
+        { nome: "Margherita D.O.P.", prezzo: "10", ingredienti: "Pomodoro San Marzano, mozzarella di bufala, basilico fresco, olio EVO." },
+        { nome: "Emiliana", prezzo: "14", ingredienti: "Mozzarella fior di latte, Prosciutto di Parma 24 mesi, scaglie di Parmigiano Reggiano." },
+        { nome: "Diavola Calabra", prezzo: "12", ingredienti: "Pomodoro, fior di latte, spianata piccante, 'nduja di Spilinga, olive taggiasche." },
+        { nome: "Boscaiola", prezzo: "13", ingredienti: "Funghi porcini trifolati, salsiccia di Modena, prezzemolo, mozzarella." }
+      ].map((piatto, index) => (
+        <div key={index} className="flex flex-col gap-2">
+          <div className="flex justify-between items-baseline border-b border-[#642d3a]/20 pb-2">
+            <span className="font-serif text-xl uppercase tracking-wider">{piatto.nome}</span>
+            <span className="font-bold text-lg">€{piatto.prezzo}</span>
+          </div>
+          <p className="text-[0.95rem] leading-relaxed opacity-80 italic">{piatto.ingredienti}</p>
+        </div>
+      ))}
+    </div>
+
+    {/* Colonna 2: Cucina */}
+    <div className="flex flex-col gap-10">
+      {[
+        { nome: "Cappelletti Tradizionali", prezzo: "16", ingredienti: "In brodo di cappone o con crema di Parmigiano Reggiano 36 mesi." },
+        { nome: "Tagliatelle al Ragù", prezzo: "14", ingredienti: "Pasta all'uovo tirata al mattarello con ragù bianco di cortile." },
+        { nome: "Tortellini Goccia d'Oro", prezzo: "15", ingredienti: "Ripieno classico modenese, panna d'affioramento, prosciutto croccante." },
+        { nome: "Guancialino Brasato", prezzo: "18", ingredienti: "Cotto a bassa temperatura nel Lambrusco, servito su purè di patate soffice." }
+      ].map((piatto, index) => (
+        <div key={index} className="flex flex-col gap-2">
+          <div className="flex justify-between items-baseline border-b border-[#642d3a]/20 pb-2">
+            <span className="font-serif text-xl uppercase tracking-wider">{piatto.nome}</span>
+            <span className="font-bold text-lg">€{piatto.prezzo}</span>
+          </div>
+          <p className="text-[0.95rem] leading-relaxed opacity-80 italic">{piatto.ingredienti}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  {/* Pulsante Menu Completo */}
+  <div className="text-center">
+    <Link 
+      href="/menu-completo.pdf" 
+      target="_blank" 
+      className="inline-block border border-[#642d3a] px-12 py-4 text-[11px] tracking-[3px] font-bold uppercase transition-all duration-300 hover:bg-[#642d3a] hover:text-[#ffefcc]"
+    >
+      Consulta il Menu Completo
+    </Link>
+  </div>
+</section>
 
 
 
