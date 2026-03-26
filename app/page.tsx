@@ -184,6 +184,77 @@ export default function Home() {
       </section>
 
 
+      {/* 4. SEZIONE GALLERIA PIATTI */}
+      <section style={{ 
+        backgroundColor: '#ffefcc', 
+        padding: '0 8% 100px 8%', // Padding solo ai lati e sotto per dare continuità al menu
+      }}>
+        <div style={{ 
+          display: 'grid', 
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
+          gap: '20px', 
+          maxWidth: '1200px', 
+          margin: '0 auto' 
+        }}>
+          
+          {/* Foto 1 */}
+          <div style={{ aspectRatio: '1/1', position: 'relative', overflow: 'hidden', borderRadius: '20px' }}>
+            <img 
+              src="/piatto-1.jpg" 
+              alt="Specialità Illume" 
+              style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }} 
+            />
+          </div>
+
+          {/* Foto 2 */}
+          <div style={{ aspectRatio: '1/1', position: 'relative', overflow: 'hidden', borderRadius: '20px' }}>
+            <img 
+              src="/piatto-2.jpg" 
+              alt="Specialità Illume" 
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+            />
+          </div>
+
+          {/* Foto 3 */}
+          <div style={{ aspectRatio: '1/1', position: 'relative', overflow: 'hidden', borderRadius: '20px' }}>
+            <img 
+              src="/piatto-3.jpg" 
+              alt="Specialità Illume" 
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+            />
+          </div>
+
+          {/* Foto 4 */}
+          <div style={{ aspectRatio: '1/1', position: 'relative', overflow: 'hidden', borderRadius: '20px' }}>
+            <img 
+              src="/piatto-4.jpg" 
+              alt="Specialità Illume" 
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+            />
+          </div>
+
+          {/* Foto 5 */}
+          <div style={{ aspectRatio: '1/1', position: 'relative', overflow: 'hidden', borderRadius: '20px' }}>
+            <img 
+              src="/piatto-5.jpg" 
+              alt="Specialità Illume" 
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+            />
+          </div>
+
+          {/* Foto 6 */}
+          <div style={{ aspectRatio: '1/1', position: 'relative', overflow: 'hidden', borderRadius: '20px' }}>
+            <img 
+              src="/piatto-6.jpg" 
+              alt="Specialità Illume" 
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+            />
+          </div>
+
+        </div>
+      </section>
+
+
 
       <section style={{ padding: '100px 20px', textAlign: 'center', backgroundColor: 'var(--bg-crema)' }}>
         <h2 style={{ color: 'var(--illume-mattone)', fontSize: '3rem', fontStyle: 'italic' }}>
