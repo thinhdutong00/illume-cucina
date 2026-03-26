@@ -71,15 +71,15 @@ export default function Header() {
               <span className="status-text" style={{ color: themeColor }}>{status.label}</span>
             </div>
             <a 
-              href="https://www.google.com/maps/dir/?api=1&destination=Via+S.+Francesco+4+Carpi" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="nav-geo-link hide-mobile"
-              style={{ color: themeColor, marginLeft: '20px' }}
-            >
-              <Navigation size={14} />
-              <span>Via S. Francesco, 4</span>
-            </a>
+  href="https://www.google.com/maps/dir/?api=1&destination=Via+S.+Francesco+4+Carpi" 
+  target="_blank" 
+  rel="noopener noreferrer"
+  className="nav-geo-link hide-mobile"
+  style={{ color: themeColor, marginLeft: '20px' }}
+>
+  <span>Via S. Francesco, 4</span> {/* Testo prima */}
+  <Navigation size={14} />        {/* Icona dopo */}
+</a>
           </div>
 
           <div className="header-center">
@@ -88,8 +88,8 @@ export default function Header() {
                 <Image 
                   src="/logo.png" 
                   alt="Illume Logo" 
-                  width={130} 
-                  height={50} 
+                  width={160} 
+                  height={60} 
                   priority
                   style={{ 
                     filter: isScrolled ? 'none' : 'brightness(0) invert(1)',
