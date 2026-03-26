@@ -86,23 +86,85 @@ export default function Home() {
           maxWidth: '1200px', 
           margin: '0 auto 60px auto' 
         }}>
-          {/* Esempio Piatto (Copia questo blocco per gli altri 7 piatti) */}
-          <div style={{ borderBottom: '1px solid rgba(100, 45, 58, 0.2)', paddingBottom: '15px' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '1px' }}>
-              <span>Margherita D.O.P.</span>
-              <span>€10</span>
+          
+          {/* --- COLONNA SINISTRA: PIZZE --- */}
+          <div>
+            {/* Piatto 1 */}
+            <div style={{ borderBottom: '1px solid rgba(100, 45, 58, 0.2)', paddingBottom: '15px', marginBottom: '30px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '1px' }}>
+                <span>Margherita D.O.P.</span>
+                <span>€10</span>
+              </div>
+              <p style={{ fontSize: '0.9rem', fontStyle: 'italic', opacity: 0.8 }}>Pomodoro San Marzano, bufala, basilico fresco, olio EVO.</p>
             </div>
-            <p style={{ fontSize: '0.9rem', fontStyle: 'italic', opacity: 0.8 }}>Pomodoro San Marzano, bufala, basilico fresco.</p>
+
+            {/* Piatto 2 */}
+            <div style={{ borderBottom: '1px solid rgba(100, 45, 58, 0.2)', paddingBottom: '15px', marginBottom: '30px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '1px' }}>
+                <span>Emiliana</span>
+                <span>€14</span>
+              </div>
+              <p style={{ fontSize: '0.9rem', fontStyle: 'italic', opacity: 0.8 }}>Fior di latte, Prosciutto di Parma 24 mesi, scaglie di Parmigiano.</p>
+            </div>
+
+            {/* Piatto 3 */}
+            <div style={{ borderBottom: '1px solid rgba(100, 45, 58, 0.2)', paddingBottom: '15px', marginBottom: '30px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '1px' }}>
+                <span>Diavola Calabra</span>
+                <span>€12</span>
+              </div>
+              <p style={{ fontSize: '0.9rem', fontStyle: 'italic', opacity: 0.8 }}>Pomodoro, spianata piccante, 'nduja di Spilinga, olive taggiasche.</p>
+            </div>
+
+            {/* Piatto 4 */}
+            <div style={{ borderBottom: '1px solid rgba(100, 45, 58, 0.2)', paddingBottom: '15px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '1px' }}>
+                <span>Boscaiola</span>
+                <span>€13</span>
+              </div>
+              <p style={{ fontSize: '0.9rem', fontStyle: 'italic', opacity: 0.8 }}>Funghi porcini trifolati, salsiccia modenese, mozzarella.</p>
+            </div>
           </div>
 
-          <div style={{ borderBottom: '1px solid rgba(100, 45, 58, 0.2)', paddingBottom: '15px' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '1px' }}>
-              <span>Cappelletti</span>
-              <span>€16</span>
+          {/* --- COLONNA DESTRA: CUCINA --- */}
+          <div>
+            {/* Piatto 1 */}
+            <div style={{ borderBottom: '1px solid rgba(100, 45, 58, 0.2)', paddingBottom: '15px', marginBottom: '30px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '1px' }}>
+                <span>Cappelletti</span>
+                <span>€16</span>
+              </div>
+              <p style={{ fontSize: '0.9rem', fontStyle: 'italic', opacity: 0.8 }}>In brodo di cappone o crema di Parmigiano Reggiano 36 mesi.</p>
             </div>
-            <p style={{ fontSize: '0.9rem', fontStyle: 'italic', opacity: 0.8 }}>In brodo di cappone o crema di Parmigiano.</p>
+
+            {/* Piatto 2 */}
+            <div style={{ borderBottom: '1px solid rgba(100, 45, 58, 0.2)', paddingBottom: '15px', marginBottom: '30px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '1px' }}>
+                <span>Tagliatelle al Ragù</span>
+                <span>€14</span>
+              </div>
+              <p style={{ fontSize: '0.9rem', fontStyle: 'italic', opacity: 0.8 }}>Pasta all'uovo tirata al mattarello con ragù bianco di cortile.</p>
+            </div>
+
+            {/* Piatto 3 */}
+            <div style={{ borderBottom: '1px solid rgba(100, 45, 58, 0.2)', paddingBottom: '15px', marginBottom: '30px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '1px' }}>
+                <span>Tortellini Oro</span>
+                <span>€15</span>
+              </div>
+              <p style={{ fontSize: '0.9rem', fontStyle: 'italic', opacity: 0.8 }}>Ripieno classico modenese, panna d'affioramento e prosciutto croccante.</p>
+            </div>
+
+            {/* Piatto 4 */}
+            <div style={{ borderBottom: '1px solid rgba(100, 45, 58, 0.2)', paddingBottom: '15px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '1px' }}>
+                <span>Guancialino</span>
+                <span>€18</span>
+              </div>
+              <p style={{ fontSize: '0.9rem', fontStyle: 'italic', opacity: 0.8 }}>Brasato al Lambrusco con soffice purè di patate.</p>
+            </div>
           </div>
-          {/* ... Aggiungi gli altri piatti qui sotto ... */}
+
         </div>
 
         <div style={{ textAlign: 'center' }}>
