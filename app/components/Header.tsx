@@ -88,8 +88,8 @@ export default function Header() {
                 <Image 
                   src="/logo.png" 
                   alt="Illume Logo" 
-                  width={200} 
-                  height={80} 
+                  width={220} 
+                  height={90} 
                   priority
                   style={{ 
                     filter: isScrolled ? 'none' : 'brightness(0) invert(1)',
