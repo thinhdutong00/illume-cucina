@@ -200,7 +200,7 @@ export default function Home() {
           {/* Foto 1 */}
           <div style={{ aspectRatio: '1/1', position: 'relative', overflow: 'hidden', borderRadius: '20px' }}>
             <img 
-              src="/piatto-1.jpg" 
+              src="pizza-prova01.jpg" 
               alt="Specialità Illume" 
               style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }} 
             />
@@ -209,7 +209,7 @@ export default function Home() {
           {/* Foto 2 */}
           <div style={{ aspectRatio: '1/1', position: 'relative', overflow: 'hidden', borderRadius: '20px' }}>
             <img 
-              src="/piatto-2.jpg" 
+              src="pizza-prova01.jpg" 
               alt="Specialità Illume" 
               style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
             />
@@ -218,7 +218,7 @@ export default function Home() {
           {/* Foto 3 */}
           <div style={{ aspectRatio: '1/1', position: 'relative', overflow: 'hidden', borderRadius: '20px' }}>
             <img 
-              src="/piatto-3.jpg" 
+              src="pizza-prova01.jpg" 
               alt="Specialità Illume" 
               style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
             />
@@ -227,7 +227,7 @@ export default function Home() {
           {/* Foto 4 */}
           <div style={{ aspectRatio: '1/1', position: 'relative', overflow: 'hidden', borderRadius: '20px' }}>
             <img 
-              src="/piatto-4.jpg" 
+              src="pizza-prova01.jpg" 
               alt="Specialità Illume" 
               style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
             />
@@ -236,7 +236,7 @@ export default function Home() {
           {/* Foto 5 */}
           <div style={{ aspectRatio: '1/1', position: 'relative', overflow: 'hidden', borderRadius: '20px' }}>
             <img 
-              src="/piatto-5.jpg" 
+              src="pizza-prova01.jpg" 
               alt="Specialità Illume" 
               style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
             />
@@ -245,7 +245,7 @@ export default function Home() {
           {/* Foto 6 */}
           <div style={{ aspectRatio: '1/1', position: 'relative', overflow: 'hidden', borderRadius: '20px' }}>
             <img 
-              src="/piatto-6.jpg" 
+              src="pizza-prova01.jpg" 
               alt="Specialità Illume" 
               style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
             />
