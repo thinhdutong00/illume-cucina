@@ -7,7 +7,6 @@ export default function Footer() {
   return (
     <footer className="main-footer">
       <div className="footer-grid">
-        
         <div>
           <h3 style={{ color: 'white', fontWeight: '900', fontSize: '24px', letterSpacing: '-1px', marginBottom: '24px' }}>
             ILLUME
@@ -33,7 +32,7 @@ export default function Footer() {
         <div>
           <h4 className="footer-title">Orari</h4>
           <div style={{ fontSize: '14px' }}>
-            <p style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '8px' }}>
+            <p style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '8px', margin: '0 0 8px 0' }}>
               <span>Lun - Dom</span> <span>19:30 - 23:30</span>
             </p>
             <p style={{ color: 'var(--illume-panna)', fontWeight: 'bold', marginTop: '16px', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '2px' }}>
@@ -41,7 +40,6 @@ export default function Footer() {
             </p>
           </div>
         </div>
-
       </div>
       
       <div style={{ maxWidth: '1280px', margin: '80px auto 0', paddingTop: '32px', borderTop: '1px solid rgba(255,255,255,0.05)', textAlign: 'center', fontSize: '10px', letterSpacing: '2px', opacity: 0.4 }}>

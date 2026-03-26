@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import "./globals.css"; // Fondamentale: carica il tuo CSS standard
+import "./globals.css"; 
 
 export const metadata: Metadata = {
-  title: "ILLUME | Ristorante Pizzeria Contemporanea",
-  description: "Luce ai tuoi sensi - Carpi",
+  title: "ILLUME | Carpi",
+  description: "Ristorante Pizzeria Contemporanea",
 };
 
 export default function RootLayout({
