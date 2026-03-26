@@ -14,8 +14,6 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [status, setStatus] = useState({ label: "Verifica...", isOpen: false });
 
-  // LOGICA CRUCIALE: Determina se l'header deve essere scuro
-  // È scuro se abbiamo scrollato OPPURE se non siamo in Home
   const shouldShowDark = isScrolled || !isHomePage;
 
   useEffect(() => {
@@ -65,25 +63,40 @@ export default function Header() {
     };
   }, [isMenuOpen]);
 
-  // Il colore dei testi e delle icone segue la logica shouldShowDark
   const themeColor = shouldShowDark ? '#642d3a' : '#ffefcc';
 
   return (
     <>
-      {/* Applichiamo la classe 'scrolled' via CSS anche se shouldShowDark è vero per attivare lo sfondo */}
-      <header className={`main-header ${shouldShowDark ? 'scrolled' : ''}`}>
+      <header 
+        className={`main-header ${shouldShowDark ? 'scrolled' : ''}`}
+        style={{
+          // Header di partenza (Home): Velo scuro e bordo impercettibile
+          backgroundColor: shouldShowDark ? 'rgba(253, 252, 248, 0.98)' : 'rgba(0, 0, 0, 0.2)',
+          borderBottom: shouldShowDark ? '1px solid rgba(100, 45, 58, 0.1)' : '1px solid rgba(255, 239, 204, 0.15)',
+          padding: shouldShowDark ? '15px 0' : '30px 0', // Altezza aumentata
+          transition: 'all 0.5s ease',
+          backdropFilter: shouldShowDark ? 'blur(10px)' : 'blur(4px)'
+        }}
+      >
         <div className="header-container-grid">
           
           {/* SINISTRA: DOT E VIA */}
           <div className="header-left">
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
               <span style={{ 
-                width: '8px', 
-                height: '8px', 
+                width: '10px', 
+                height: '10px', 
                 borderRadius: '50%', 
-                backgroundColor: status.isOpen ? '#4ade80' : '#f87171' 
+                backgroundColor: status.isOpen ? '#4ade80' : '#f87171',
+                boxShadow: status.isOpen ? '0 0 10px rgba(74, 222, 128, 0.5)' : 'none'
               }}></span>
-              <span style={{ color: themeColor, fontSize: '12px', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '1px' }}>
+              <span style={{ 
+                color: themeColor, 
+                fontSize: '14px', // Font aumentato
+                fontWeight: '800', 
+                textTransform: 'uppercase', 
+                letterSpacing: '1.5px' 
+              }}>
                 {status.label}
               </span>
             </div>
@@ -94,34 +107,34 @@ export default function Header() {
               rel="noopener noreferrer"
               style={{ 
                 color: themeColor, 
-                marginLeft: '20px', 
+                marginLeft: '25px', 
                 textDecoration: 'none', 
                 display: 'flex', 
                 alignItems: 'center', 
-                gap: '6px',
-                fontSize: '12px',
-                fontWeight: 'bold',
-                textTransform: 'uppercase'
+                gap: '8px',
+                fontSize: '14px', // Font aumentato
+                fontWeight: '700',
+                textTransform: 'uppercase',
+                letterSpacing: '0.5px'
               }}
               className="hide-mobile"
             >
+              <Navigation size={16} />
               <span>Via S. Francesco, 4</span>
-              <Navigation size={14} />
             </a>
           </div>
 
           {/* CENTRO: LOGO */}
           <div className="header-center">
             <Link href="/">
-              <div style={{ width: shouldShowDark ? '180px' : '220px', transition: 'width 0.3s ease' }}>
+              <div style={{ width: shouldShowDark ? '190px' : '240px', transition: 'width 0.4s ease' }}>
                 <Image 
                   src="/logo.png" 
                   alt="Illume Logo" 
-                  width={220} 
-                  height={90} 
+                  width={240} 
+                  height={100} 
                   priority
                   style={{ 
-                    // Invertiamo il logo (bianco) solo se NON siamo in dark mode
                     filter: shouldShowDark ? 'none' : 'brightness(0) invert(1)',
                     objectFit: 'contain',
                     width: '100%',
@@ -133,33 +146,36 @@ export default function Header() {
           </div>
 
           {/* DESTRA: CHIAMATA, PRENOTA, HAMBURGER */}
-          <div className="header-right" style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+          <div className="header-right" style={{ display: 'flex', alignItems: 'center', gap: '25px' }}>
             <a href="tel:+3931469587" style={{ 
-              width: '40px', 
-              height: '40px', 
+              width: '44px', 
+              height: '44px', 
               borderRadius: '50%', 
               border: `1px solid ${themeColor}`, 
               display: 'flex', 
               alignItems: 'center', 
               justifyContent: 'center',
               color: themeColor,
-              textDecoration: 'none'
-            }}>
-              <Phone size={18} />
+              textDecoration: 'none',
+              transition: 'transform 0.3s'
+            }} onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.1)'} 
+               onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}>
+              <Phone size={20} />
             </a>
 
             <Link href="/prenotazioni" style={{ 
               backgroundColor: shouldShowDark ? '#642d3a' : '#ffefcc',
               color: shouldShowDark ? '#ffefcc' : '#642d3a',
-              padding: '10px 20px',
+              padding: '12px 26px',
               borderRadius: '50px',
               textDecoration: 'none',
-              fontSize: '11px',
-              fontWeight: '800',
+              fontSize: '12px',
+              fontWeight: '900',
               textTransform: 'uppercase',
-              letterSpacing: '1px',
-              display: 'block'
-            }} className="hide-mobile">
+              letterSpacing: '1.5px',
+              display: 'block',
+              transition: 'opacity 0.3s'
+            }} className="hide-tablet">
               Prenota un tavolo
             </Link>
 
@@ -167,7 +183,7 @@ export default function Header() {
               onClick={() => setIsMenuOpen(true)} 
               style={{ background: 'none', border: 'none', cursor: 'pointer', color: themeColor, display: 'flex', alignItems: 'center' }}
             >
-              <Menu size={30} />
+              <Menu size={34} />
             </button>
           </div>
         </div>
@@ -184,16 +200,16 @@ export default function Header() {
         justifyContent: 'center',
         alignItems: 'center',
         transform: isMenuOpen ? 'translateX(0)' : 'translateX(100%)',
-        transition: 'transform 0.5s cubic-bezier(0.77, 0, 0.175, 1)'
+        transition: 'transform 0.6s cubic-bezier(0.77, 0, 0.175, 1)'
       }}>
-        <button onClick={() => setIsMenuOpen(false)} style={{ position: 'absolute', top: '30px', right: '30px', background: 'none', border: 'none', color: '#ffefcc' }}>
-          <X size={40} />
+        <button onClick={() => setIsMenuOpen(false)} style={{ position: 'absolute', top: '40px', right: '40px', background: 'none', border: 'none', color: '#ffefcc' }}>
+          <X size={45} />
         </button>
-        <nav style={{ display: 'flex', flexDirection: 'column', gap: '30px', textAlign: 'center' }}>
-          <Link href="/menu" onClick={() => setIsMenuOpen(false)} style={{ color: '#ffefcc', textDecoration: 'none', fontSize: '2rem', fontStyle: 'italic', fontFamily: 'serif' }}>Il Menù</Link>
-          <Link href="/informazioni" onClick={() => setIsMenuOpen(false)} style={{ color: '#ffefcc', textDecoration: 'none', fontSize: '2rem', fontStyle: 'italic', fontFamily: 'serif' }}>La Visione</Link>
-          <Link href="/prenotazioni" onClick={() => setIsMenuOpen(false)} style={{ color: '#ffefcc', textDecoration: 'none', fontSize: '2rem', fontStyle: 'italic', fontFamily: 'serif' }}>Prenota</Link>
-          <Link href="/contatti" onClick={() => setIsMenuOpen(false)} style={{ color: '#ffefcc', textDecoration: 'none', fontSize: '2rem', fontStyle: 'italic', fontFamily: 'serif' }}>Dove Siamo</Link>
+        <nav style={{ display: 'flex', flexDirection: 'column', gap: '40px', textAlign: 'center' }}>
+          <Link href="/menu" onClick={() => setIsMenuOpen(false)} style={{ color: '#ffefcc', textDecoration: 'none', fontSize: '2.5rem', fontStyle: 'italic', fontFamily: 'serif' }}>Il Menù</Link>
+          <Link href="/informazioni" onClick={() => setIsMenuOpen(false)} style={{ color: '#ffefcc', textDecoration: 'none', fontSize: '2.5rem', fontStyle: 'italic', fontFamily: 'serif' }}>La Visione</Link>
+          <Link href="/prenotazioni" onClick={() => setIsMenuOpen(false)} style={{ color: '#ffefcc', textDecoration: 'none', fontSize: '2.5rem', fontStyle: 'italic', fontFamily: 'serif' }}>Prenota</Link>
+          <Link href="/contatti" onClick={() => setIsMenuOpen(false)} style={{ color: '#ffefcc', textDecoration: 'none', fontSize: '2.5rem', fontStyle: 'italic', fontFamily: 'serif' }}>Dove Siamo</Link>
         </nav>
       </div>
     </>
