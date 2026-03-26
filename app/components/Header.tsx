@@ -120,9 +120,10 @@ export default function Header() {
       <div className={`mobile-menu-overlay ${isMenuOpen ? 'open' : ''}`}>
         <button onClick={() => setIsMenuOpen(false)} className="close-menu-btn"><X size={40} /></button>
         <nav className="mobile-nav-links">
-          <a href="#menu" onClick={() => setIsMenuOpen(false)}>Il Menù</a>
-          <a href="#storia" onClick={() => setIsMenuOpen(false)}>La Visione</a>
+          <a href="/menu" onClick={() => setIsMenuOpen(false)}>Il Menù</a>
+          <a href="/informazioni" onClick={() => setIsMenuOpen(false)}>La Visione</a>
           <a href="/prenotazioni" onClick={() => setIsMenuOpen(false)}>Prenota</a>
+          <a href="/contatti" onClick={() => setIsMenuOpen(false)}>Dove Siamo</a>
         </nav>
       </div>
     </>
