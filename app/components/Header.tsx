@@ -16,16 +16,15 @@ export default function Header() {
 
     const checkStatus = () => {
       const now = new Date();
-      const day = now.getDay(); // 0=Dom, 1=Lun, ..., 6=Sab
+      const day = now.getDay(); 
       const time = now.getHours() + now.getMinutes() / 60;
 
       let open = false;
       let nextOpen = "12:30";
 
-      // Definizione turni
       const morningShift = { start: 12.5, end: 15 };
       const eveningShift = { start: 18.5, end: 0 };
-      const eveningShiftLate = { start: 18.5, end: 0.5 }; // Per Ven e Sab
+      const eveningShiftLate = { start: 18.5, end: 0.5 };
 
       if (day === 1) { // LUNEDÌ
         if (time >= eveningShift.start && time < 24) open = true;
@@ -47,7 +46,7 @@ export default function Header() {
     };
 
     checkStatus();
-    const interval = setInterval(checkStatus, 60000); // Aggiorna ogni minuto
+    const interval = setInterval(checkStatus, 60000);
 
     if (isMenuOpen) document.body.style.overflow = 'hidden';
     else document.body.style.overflow = 'unset';
@@ -58,6 +57,7 @@ export default function Header() {
     };
   }, [isMenuOpen]);
 
+  // Colori definiti: Mattone #642d3a | Panna #ffefcc
   const themeColor = isScrolled ? '#642d3a' : '#ffefcc';
 
   return (
@@ -65,26 +65,46 @@ export default function Header() {
       <header className={`main-header ${isScrolled ? 'scrolled' : ''}`}>
         <div className="header-container-grid">
           
+          {/* SINISTRA: DOT E VIA */}
           <div className="header-left">
-            <div className="status-container hide-tablet">
-              <span className={`status-dot ${status.isOpen ? 'open' : 'closed'}`}></span>
-              <span className="status-text" style={{ color: themeColor }}>{status.label}</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span style={{ 
+                width: '8px', 
+                height: '8px', 
+                borderRadius: '50%', 
+                backgroundColor: status.isOpen ? '#4ade80' : '#f87171' // Verde se aperto, rosso se chiuso
+              }}></span>
+              <span style={{ color: themeColor, fontSize: '12px', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '1px' }}>
+                {status.label}
+              </span>
             </div>
+            
             <a 
-  href="https://www.google.com/maps/dir/?api=1&destination=Via+S.+Francesco+4+Carpi" 
-  target="_blank" 
-  rel="noopener noreferrer"
-  className="nav-geo-link hide-mobile"
-  style={{ color: themeColor, marginLeft: '20px' }}
->
-  <span>Via S. Francesco, 4</span> {/* Testo prima */}
-  <Navigation size={14} />        {/* Icona dopo */}
-</a>
+              href="https://maps.google.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              style={{ 
+                color: themeColor, 
+                marginLeft: '20px', 
+                textDecoration: 'none', 
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: '6px',
+                fontSize: '12px',
+                fontWeight: 'bold',
+                textTransform: 'uppercase'
+              }}
+              className="hide-mobile"
+            >
+              <span>Via S. Francesco, 4</span>
+              <Navigation size={14} />
+            </a>
           </div>
 
+          {/* CENTRO: LOGO */}
           <div className="header-center">
             <Link href="/">
-              <div className="header-logo-wrapper">
+              <div style={{ width: isScrolled ? '180px' : '220px', transition: 'width 0.3s ease' }}>
                 <Image 
                   src="/logo.png" 
                   alt="Illume Logo" 
@@ -93,38 +113,80 @@ export default function Header() {
                   priority
                   style={{ 
                     filter: isScrolled ? 'none' : 'brightness(0) invert(1)',
-                    objectFit: 'contain'
+                    objectFit: 'contain',
+                    width: '100%',
+                    height: 'auto'
                   }}
                 />
               </div>
             </Link>
           </div>
 
-          <div className="header-right">
-            <a href="tel:+3931469587" className="icon-circle-btn" style={{ borderColor: themeColor, color: themeColor }}>
+          {/* DESTRA: CHIAMATA, PRENOTA, HAMBURGER */}
+          <div className="header-right" style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+            {/* Pulsante Chiamata */}
+            <a href="tel:+3931469587" style={{ 
+              width: '40px', 
+              height: '40px', 
+              borderRadius: '50%', 
+              border: `1px solid ${themeColor}`, 
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'center',
+              color: themeColor,
+              textDecoration: 'none'
+            }}>
               <Phone size={18} />
             </a>
-            <Link href="/prenota" className="btn-book-header hide-tablet" style={{ 
-  backgroundColor: isScrolled ? '#642d3a' : '#ffefcc',
-  color: isScrolled ? '#ffefcc' : '#642d3a',
-  border: isScrolled ? 'none' : '1px solid #ffefcc' // Aggiunto per visibilità su foto scure
-}}>
-  Prenota
-</Link>
-            <button className="hamburger-btn" onClick={() => setIsMenuOpen(true)} style={{ color: themeColor }}>
+
+            {/* Pulsante Prenota */}
+            <Link href="/prenotazioni" style={{ 
+              backgroundColor: isScrolled ? '#642d3a' : '#ffefcc',
+              color: isScrolled ? '#ffefcc' : '#642d3a',
+              padding: '10px 20px',
+              borderRadius: '50px',
+              textDecoration: 'none',
+              fontSize: '11px',
+              fontWeight: '800',
+              textTransform: 'uppercase',
+              letterSpacing: '1px',
+              display: 'block'
+            }} className="hide-mobile">
+              Prenota un tavolo
+            </Link>
+
+            {/* Hamburger */}
+            <button 
+              onClick={() => setIsMenuOpen(true)} 
+              style={{ background: 'none', border: 'none', cursor: 'pointer', color: themeColor, display: 'flex', alignItems: 'center' }}
+            >
               <Menu size={30} />
             </button>
           </div>
         </div>
       </header>
 
-      <div className={`mobile-menu-overlay ${isMenuOpen ? 'open' : ''}`}>
-        <button onClick={() => setIsMenuOpen(false)} className="close-menu-btn"><X size={40} /></button>
-        <nav className="mobile-nav-links">
-          <a href="/menu" onClick={() => setIsMenuOpen(false)}>Il Menù</a>
-          <a href="/informazioni" onClick={() => setIsMenuOpen(false)}>La Visione</a>
-          <a href="/prenotazioni" onClick={() => setIsMenuOpen(false)}>Prenota</a>
-          <a href="/contatti" onClick={() => setIsMenuOpen(false)}>Dove Siamo</a>
+      {/* OVERLAY MENU MOBILE */}
+      <div className={`mobile-menu-overlay ${isMenuOpen ? 'open' : ''}`} style={{
+        position: 'fixed',
+        inset: 0,
+        backgroundColor: '#642d3a',
+        zIndex: 2000,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        transform: isMenuOpen ? 'translateX(0)' : 'translateX(100%)',
+        transition: 'transform 0.5s ease'
+      }}>
+        <button onClick={() => setIsMenuOpen(false)} style={{ position: 'absolute', top: '30px', right: '30px', background: 'none', border: 'none', color: '#ffefcc' }}>
+          <X size={40} />
+        </button>
+        <nav style={{ display: 'flex', flexDirection: 'column', gap: '30px', textAlign: 'center' }}>
+          <Link href="/menu" onClick={() => setIsMenuOpen(false)} style={{ color: '#ffefcc', textDecoration: 'none', fontSize: '2rem', fontStyle: 'italic', fontFamily: 'serif' }}>Il Menù</Link>
+          <Link href="/informazioni" onClick={() => setIsMenuOpen(false)} style={{ color: '#ffefcc', textDecoration: 'none', fontSize: '2rem', fontStyle: 'italic', fontFamily: 'serif' }}>La Visione</Link>
+          <Link href="/prenotazioni" onClick={() => setIsMenuOpen(false)} style={{ color: '#ffefcc', textDecoration: 'none', fontSize: '2rem', fontStyle: 'italic', fontFamily: 'serif' }}>Prenota</Link>
+          <Link href="/contatti" onClick={() => setIsMenuOpen(false)} style={{ color: '#ffefcc', textDecoration: 'none', fontSize: '2rem', fontStyle: 'italic', fontFamily: 'serif' }}>Dove Siamo</Link>
         </nav>
       </div>
     </>
