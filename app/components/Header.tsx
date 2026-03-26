@@ -4,11 +4,19 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Menu, X, Phone, Navigation } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 
 export default function Header() {
+  const pathname = usePathname();
+  const isHomePage = pathname === '/';
+  
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [status, setStatus] = useState({ label: "Verifica...", isOpen: false });
+
+  // LOGICA CRUCIALE: Determina se l'header deve essere scuro
+  // È scuro se abbiamo scrollato OPPURE se non siamo in Home
+  const shouldShowDark = isScrolled || !isHomePage;
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -57,12 +65,13 @@ export default function Header() {
     };
   }, [isMenuOpen]);
 
-  // Colori definiti: Mattone #642d3a | Panna #ffefcc
-  const themeColor = isScrolled ? '#642d3a' : '#ffefcc';
+  // Il colore dei testi e delle icone segue la logica shouldShowDark
+  const themeColor = shouldShowDark ? '#642d3a' : '#ffefcc';
 
   return (
     <>
-      <header className={`main-header ${isScrolled ? 'scrolled' : ''}`}>
+      {/* Applichiamo la classe 'scrolled' via CSS anche se shouldShowDark è vero per attivare lo sfondo */}
+      <header className={`main-header ${shouldShowDark ? 'scrolled' : ''}`}>
         <div className="header-container-grid">
           
           {/* SINISTRA: DOT E VIA */}
@@ -72,7 +81,7 @@ export default function Header() {
                 width: '8px', 
                 height: '8px', 
                 borderRadius: '50%', 
-                backgroundColor: status.isOpen ? '#4ade80' : '#f87171' // Verde se aperto, rosso se chiuso
+                backgroundColor: status.isOpen ? '#4ade80' : '#f87171' 
               }}></span>
               <span style={{ color: themeColor, fontSize: '12px', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '1px' }}>
                 {status.label}
@@ -104,7 +113,7 @@ export default function Header() {
           {/* CENTRO: LOGO */}
           <div className="header-center">
             <Link href="/">
-              <div style={{ width: isScrolled ? '180px' : '220px', transition: 'width 0.3s ease' }}>
+              <div style={{ width: shouldShowDark ? '180px' : '220px', transition: 'width 0.3s ease' }}>
                 <Image 
                   src="/logo.png" 
                   alt="Illume Logo" 
@@ -112,7 +121,8 @@ export default function Header() {
                   height={90} 
                   priority
                   style={{ 
-                    filter: isScrolled ? 'none' : 'brightness(0) invert(1)',
+                    // Invertiamo il logo (bianco) solo se NON siamo in dark mode
+                    filter: shouldShowDark ? 'none' : 'brightness(0) invert(1)',
                     objectFit: 'contain',
                     width: '100%',
                     height: 'auto'
@@ -124,7 +134,6 @@ export default function Header() {
 
           {/* DESTRA: CHIAMATA, PRENOTA, HAMBURGER */}
           <div className="header-right" style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-            {/* Pulsante Chiamata */}
             <a href="tel:+3931469587" style={{ 
               width: '40px', 
               height: '40px', 
@@ -139,10 +148,9 @@ export default function Header() {
               <Phone size={18} />
             </a>
 
-            {/* Pulsante Prenota */}
             <Link href="/prenotazioni" style={{ 
-              backgroundColor: isScrolled ? '#642d3a' : '#ffefcc',
-              color: isScrolled ? '#ffefcc' : '#642d3a',
+              backgroundColor: shouldShowDark ? '#642d3a' : '#ffefcc',
+              color: shouldShowDark ? '#ffefcc' : '#642d3a',
               padding: '10px 20px',
               borderRadius: '50px',
               textDecoration: 'none',
@@ -155,7 +163,6 @@ export default function Header() {
               Prenota un tavolo
             </Link>
 
-            {/* Hamburger */}
             <button 
               onClick={() => setIsMenuOpen(true)} 
               style={{ background: 'none', border: 'none', cursor: 'pointer', color: themeColor, display: 'flex', alignItems: 'center' }}
@@ -177,7 +184,7 @@ export default function Header() {
         justifyContent: 'center',
         alignItems: 'center',
         transform: isMenuOpen ? 'translateX(0)' : 'translateX(100%)',
-        transition: 'transform 0.5s ease'
+        transition: 'transform 0.5s cubic-bezier(0.77, 0, 0.175, 1)'
       }}>
         <button onClick={() => setIsMenuOpen(false)} style={{ position: 'absolute', top: '30px', right: '30px', background: 'none', border: 'none', color: '#ffefcc' }}>
           <X size={40} />
