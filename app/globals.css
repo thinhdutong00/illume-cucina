@@ -1,0 +1,166 @@
+/* COLORI ISTITUZIONALI ILLUME */
+:root {
+  --illume-mattone: #642d3a;
+  --illume-panna: #ffefcc;
+  --bg-crema: #fdfcf8;
+  --dark: #1a1a1a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-crema);
+  font-family: 'Times New Roman', serif; /* O un font elegante a tua scelta */
+  color: var(--dark);
+  line-height: 1.6;
+}
+
+/* HERO SECTION - La base che contiene l'immagine */
+.hero-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--dark);
+  overflow: hidden;
+}
+
+/* L'immagine Next.js con fill deve stare dentro un wrapper con z-index basso */
+.hero-image-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-image-wrapper img {
+  object-fit: cover;
+  opacity: 0.6;
+}
+
+/* Overlay per dare profondità e leggibilità */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent, var(--dark));
+  z-index: 2;
+}
+
+/* Il contenuto DEVE avere z-index superiore all'immagine */
+.hero-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  color: var(--illume-panna);
+  padding: 0 20px;
+}
+
+.hero-subtitle {
+  display: block;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  font-family: sans-serif;
+}
+
+.hero-title {
+  font-size: clamp(3rem, 10vw, 8rem);
+  font-style: italic;
+  margin: 0;
+  line-height: 0.9;
+}
+
+.btn-explore {
+  margin-top: 40px;
+  display: inline-block;
+  padding: 18px 45px;
+  background-color: var(--illume-panna);
+  color: var(--illume-mattone);
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: bold;
+  font-family: sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  transition: transform 0.3s ease;
+}
+
+.btn-explore:hover {
+  transform: scale(1.05);
+}
+
+/* SEZIONE MENU */
+.section-menu {
+  padding: 100px 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.section-title {
+  color: var(--illume-mattone);
+  font-size: 4rem;
+  font-style: italic;
+  margin-bottom: 50px;
+}
+
+/* --- HEADER --- */
+.main-header {
+  position: fixed;
+  top: 0;
+  left: 0;   /* Sostituisce inset-x */
+  right: 0;  /* Sostituisce inset-x */
+  z-index: 100;
+  padding: 24px 0;
+  transition: all 0.5s ease;
+  background-color: transparent;
+}
+
+.main-header.scrolled {
+  padding: 16px 0;
+  background-color: rgba(253, 252, 248, 0.9);
+  backdrop-filter: blur(8px);
+  /* Sostituisce shadow */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); 
+}
+
+/* --- FOOTER --- */
+.main-footer {
+  background-color: var(--dark);
+  color: rgba(255, 239, 204, 0.5); /* panna opaco */
+  padding: 80px 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-grid {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  gap: 64px;
+}
+
+@media (min-width: 768px) {
+  .footer-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+}
+
+.footer-title {
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
