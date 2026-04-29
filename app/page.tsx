@@ -67,6 +67,11 @@ const ingredients = [
       "right-[8%] top-[188rem] w-36 rotate-[9deg] opacity-65 md:w-52",
   },
   {
+    src: "/farina.png",
+    className:
+      "right-[8%] top-[188rem] w-36 rotate-[9deg] opacity-65 md:w-52",
+  },
+  {
     src: "/parsley.png",
     className:
       "left-[3%] bottom-[38rem] w-28 rotate-[14deg] opacity-60 md:w-44",
