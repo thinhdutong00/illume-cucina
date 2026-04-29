@@ -47,7 +47,7 @@ const ingredients = [
       "left-[8%] top-[52rem] w-28 rotate-[8deg] opacity-70 md:w-40",
   },
   {
-    src: "/orange.png",
+    src: "/mozzarella.png",
     className:
       "left-[-3rem] top-[105rem] w-36 rotate-[10deg] opacity-70 md:w-52",
   },
@@ -72,7 +72,7 @@ const ingredients = [
       "left-[3%] bottom-[38rem] w-28 rotate-[14deg] opacity-60 md:w-44",
   },
   {
-    src: "/flour-bag.png",
+    src: "/salame.png",
     className:
       "right-[-2rem] bottom-[16rem] w-40 rotate-[-10deg] opacity-70 md:w-56",
   },
