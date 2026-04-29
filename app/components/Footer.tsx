@@ -1,78 +1,96 @@
 "use client";
 
-import React from 'react';
-import { MapPin, Phone, Camera } from 'lucide-react';
+import { MapPin, Phone, Camera } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer style={{ 
-      backgroundColor: '#642d3a', 
-      color: '#ffefcc', 
-      padding: '80px 8% 40px 8%',
-      fontFamily: 'sans-serif' 
-    }}>
-      <div style={{ 
-        display: 'grid', 
-        gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
-        gap: '60px', 
-        maxWidth: '1280px', 
-        margin: '0 auto' 
-      }}>
-        
-        {/* LOGO E DESCRIZIONE */}
-        <div>
-          <h3 style={{ color: '#ffefcc', fontWeight: '900', fontSize: '28px', letterSpacing: '2px', marginBottom: '24px', fontFamily: 'serif' }}>
-            ILLUME
-          </h3>
-          <p style={{ fontSize: '14px', fontStyle: 'italic', lineHeight: '1.8', opacity: 0.8 }}>
-            Un concetto di ristorazione dove la luce guida la scelta delle materie prime.
-          </p>
-        </div>
-
-        {/* CONTATTI */}
-        <div>
-          <h4 style={{ fontSize: '12px', fontWeight: 'bold', letterSpacing: '3px', textTransform: 'uppercase', marginBottom: '24px', opacity: 0.6 }}>
-            Contatti
-          </h4>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', fontSize: '14px' }}>
-            <span style={{ display: 'flex', alignItems: 'center', gap: '12px' }}><MapPin size={16} /> Via S. Francesco 4, Carpi (MO)</span>
-            <a href="tel:+39012345678" style={{ color: 'inherit', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '12px' }}>
-              <Phone size={16} /> +39 059 123 456
-            </a>
-            <a href="#" style={{ color: 'inherit', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '12px' }}>
-              <Camera size={16} /> @illume_pizzeria
-            </a>
-          </div>
-        </div>
-
-        {/* ORARI */}
-        <div>
-          <h4 style={{ fontSize: '12px', fontWeight: 'bold', letterSpacing: '3px', textTransform: 'uppercase', marginBottom: '24px', opacity: 0.6 }}>
-            Orari
-          </h4>
-          <div style={{ fontSize: '14px' }}>
-            <p style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid rgba(255,239,204,0.1)', paddingBottom: '8px', margin: '0 0 8px 0' }}>
-              <span>Lun - Dom</span> <span>19:30 - 23:30</span>
-            </p>
-            <p style={{ color: '#ffefcc', fontWeight: 'bold', marginTop: '16px', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '2px' }}>
-              Sempre aperti a cena
-            </p>
-          </div>
-        </div>
-      </div>
+    <footer className="relative mt-24 px-5 pb-10 pt-20 md:px-10">
       
-      {/* COPYRIGHT FINALE */}
-      <div style={{ 
-        maxWidth: '1280px', 
-        margin: '80px auto 0', 
-        paddingTop: '32px', 
-        borderTop: '1px solid rgba(255,239,204,0.1)', 
-        textAlign: 'center', 
-        fontSize: '10px', 
-        letterSpacing: '2px', 
-        opacity: 0.5 
-      }}>
-        © 2026 ILLUME RISTORANTE PIZZERIA - TUTTI I DIRITTI RISERVATI
+      {/* background soft */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-[#e98f81]/10 via-[#fbf7ef] to-[#fbf7ef]" />
+
+      <div className="mx-auto max-w-7xl">
+        <div className="grid gap-14 md:grid-cols-3">
+          
+          {/* LOGO */}
+          <div>
+            <h3 className="font-serif text-4xl italic tracking-wide text-[#3b2a24]">
+              ILLUME
+            </h3>
+
+            <p className="mt-5 max-w-sm text-sm italic leading-7 text-[#3b2a24]/70">
+              Un concetto di ristorazione dove la luce guida la scelta delle
+              materie prime e accompagna ogni esperienza a tavola.
+            </p>
+          </div>
+
+          {/* CONTATTI */}
+          <div>
+            <p className="text-xs font-black uppercase tracking-[0.35em] text-[#c9793f]">
+              Contatti
+            </p>
+
+            <div className="mt-6 space-y-4 text-sm text-[#3b2a24]/80">
+              <div className="flex items-center gap-3">
+                <MapPin size={16} />
+                <span>Via S. Francesco 4, Carpi (MO)</span>
+              </div>
+
+              <a
+                href="tel:+39012345678"
+                className="flex items-center gap-3 transition hover:opacity-70"
+              >
+                <Phone size={16} />
+                <span>+39 059 123 456</span>
+              </a>
+
+              <a
+                href="#"
+                className="flex items-center gap-3 transition hover:opacity-70"
+              >
+                <Camera size={16} />
+                <span>@illume_pizzeria</span>
+              </a>
+            </div>
+          </div>
+
+          {/* ORARI */}
+          <div>
+            <p className="text-xs font-black uppercase tracking-[0.35em] text-[#c9793f]">
+              Orari
+            </p>
+
+            <div className="mt-6 text-sm text-[#3b2a24]/80">
+              <div className="flex justify-between border-b border-[#3b2a24]/10 pb-2">
+                <span>Lun - Dom</span>
+                <span>19:30 - 23:30</span>
+              </div>
+
+              <p className="mt-4 text-xs font-black uppercase tracking-[0.25em] text-[#b5a02f]">
+                Sempre aperti a cena
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* CTA LEGGERA */}
+        <div className="mt-16 rounded-[2.5rem] border border-white/60 bg-white/40 p-6 text-center shadow-lg backdrop-blur-xl md:p-8">
+          <p className="text-sm text-[#3b2a24]/70">
+            Hai già deciso per stasera?
+          </p>
+
+          <a
+            href="/prenotazioni"
+            className="mt-4 inline-block rounded-full bg-[#c9793f] px-8 py-4 text-xs font-black uppercase tracking-[0.25em] text-[#fbf7ef] transition hover:scale-[1.02] hover:bg-[#b86a30]"
+          >
+            Prenota un tavolo
+          </a>
+        </div>
+
+        {/* COPYRIGHT */}
+        <div className="mt-16 border-t border-[#3b2a24]/10 pt-6 text-center text-[10px] tracking-[0.25em] text-[#3b2a24]/50">
+          © 2026 ILLUME PIZZERIA - TUTTI I DIRITTI RISERVATI
+        </div>
       </div>
     </footer>
   );
