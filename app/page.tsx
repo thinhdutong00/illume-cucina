@@ -32,52 +32,52 @@ const menuPreview = [
 
 const ingredients = [
   {
-    src: "/illume-art/tomato.png",
+    src: "/tomato.png",
     className:
       "left-[-2rem] top-[10rem] w-32 rotate-[-12deg] opacity-80 md:w-44",
   },
   {
-    src: "/illume-art/basil.png",
+    src: "/basil.png",
     className:
       "right-[6%] top-[14rem] w-28 rotate-[18deg] opacity-65 md:w-40",
   },
   {
-    src: "/illume-art/lemon.png",
+    src: "/lemon.png",
     className:
       "left-[8%] top-[52rem] w-28 rotate-[8deg] opacity-70 md:w-40",
   },
   {
-    src: "/illume-art/rosemary.png",
+    src: "/rosemary.png",
     className:
       "right-[-1rem] top-[58rem] w-28 rotate-[12deg] opacity-65 md:w-44",
   },
   {
-    src: "/illume-art/orange.png",
+    src: "/orange.png",
     className:
       "left-[-3rem] top-[105rem] w-36 rotate-[10deg] opacity-70 md:w-52",
   },
   {
-    src: "/illume-art/grana-padano.png",
+    src: "/grana-padano.png",
     className:
       "right-[4%] top-[118rem] w-36 rotate-[-8deg] opacity-70 md:w-52",
   },
   {
-    src: "/illume-art/porcino.png",
+    src: "/porcino.png",
     className:
       "left-[5%] top-[172rem] w-32 rotate-[-5deg] opacity-65 md:w-48",
   },
   {
-    src: "/illume-art/champignon.png",
+    src: "/champignon.png",
     className:
       "right-[8%] top-[188rem] w-36 rotate-[9deg] opacity-65 md:w-52",
   },
   {
-    src: "/illume-art/parsley.png",
+    src: "/parsley.png",
     className:
       "left-[3%] bottom-[38rem] w-28 rotate-[14deg] opacity-60 md:w-44",
   },
   {
-    src: "/illume-art/flour-bag.png",
+    src: "/flour-bag.png",
     className:
       "right-[-2rem] bottom-[16rem] w-40 rotate-[-10deg] opacity-70 md:w-56",
   },
