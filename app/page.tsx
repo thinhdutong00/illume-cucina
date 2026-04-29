@@ -33,88 +33,83 @@ const menuPreview = [
 const ingredients = [
   {
     src: "/tomato.png",
-    className:
-      "left-[-2rem] top-[10rem] w-32 rotate-[-12deg] opacity-80 md:w-44",
+    className: "left-[-3rem] top-[9rem] w-36 rotate-[-12deg] opacity-70 md:w-52",
   },
   {
     src: "/basil.png",
-    className:
-      "right-[6%] top-[14rem] w-28 rotate-[18deg] opacity-65 md:w-40",
+    className: "right-[5%] top-[16rem] w-28 rotate-[18deg] opacity-55 md:w-40",
   },
   {
     src: "/lemon.png",
-    className:
-      "left-[8%] top-[52rem] w-28 rotate-[8deg] opacity-70 md:w-40",
+    className: "left-[7%] top-[54rem] w-32 rotate-[8deg] opacity-60 md:w-44",
   },
   {
     src: "/mozzarella.png",
-    className:
-      "left-[-3rem] top-[105rem] w-36 rotate-[10deg] opacity-70 md:w-52",
+    className: "right-[-3rem] top-[86rem] w-40 rotate-[-8deg] opacity-55 md:w-56",
   },
   {
     src: "/grana-padano.png",
-    className:
-      "right-[4%] top-[118rem] w-36 rotate-[-8deg] opacity-70 md:w-52",
+    className: "left-[-4rem] top-[120rem] w-44 rotate-[10deg] opacity-55 md:w-60",
   },
   {
     src: "/porcino.png",
-    className:
-      "left-[5%] top-[172rem] w-32 rotate-[-5deg] opacity-65 md:w-48",
+    className: "right-[5%] top-[148rem] w-36 rotate-[-5deg] opacity-55 md:w-52",
   },
   {
     src: "/champignon.png",
-    className:
-      "right-[8%] top-[188rem] w-36 rotate-[9deg] opacity-65 md:w-52",
+    className: "left-[4%] top-[185rem] w-36 rotate-[9deg] opacity-50 md:w-52",
   },
   {
     src: "/farina.png",
-    className:
-      "right-[8%] top-[188rem] w-36 rotate-[9deg] opacity-65 md:w-52",
+    className: "right-[-4rem] top-[220rem] w-44 rotate-[-8deg] opacity-55 md:w-64",
   },
   {
     src: "/parsley.png",
-    className:
-      "left-[3%] bottom-[38rem] w-28 rotate-[14deg] opacity-60 md:w-44",
+    className: "left-[2%] bottom-[42rem] w-32 rotate-[14deg] opacity-50 md:w-48",
   },
   {
     src: "/salame.png",
-    className:
-      "right-[-2rem] bottom-[16rem] w-40 rotate-[-10deg] opacity-70 md:w-56",
+    className: "right-[4%] bottom-[18rem] w-36 rotate-[-10deg] opacity-55 md:w-52",
   },
 ];
 
 function IngredientBackground() {
   return (
-    <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+    <div className="pointer-events-none absolute inset-0 z-[1] overflow-hidden">
       {ingredients.map((item) => (
         <img
           key={item.src}
           src={item.src}
           alt=""
           className={`absolute hidden select-none md:block ${item.className}`}
+          loading="lazy"
         />
       ))}
 
-      {/* versione mobile: pochi elementi, meno caos */}
+      {/* mobile: pochi elementi, altrimenti diventa una tovaglia troppo apparecchiata */}
       <img
-        src="/illume-art/tomato.png"
+        src="/tomato.png"
         alt=""
-        className="absolute left-[-2rem] top-[18rem] w-28 rotate-[-12deg] opacity-45 md:hidden"
+        className="absolute left-[-3rem] top-[20rem] w-32 rotate-[-12deg] opacity-35 md:hidden"
+        loading="lazy"
       />
       <img
-        src="/illume-art/basil.png"
+        src="/basil.png"
         alt=""
-        className="absolute right-[-1rem] top-[55rem] w-28 rotate-[18deg] opacity-45 md:hidden"
+        className="absolute right-[-2rem] top-[58rem] w-28 rotate-[18deg] opacity-35 md:hidden"
+        loading="lazy"
       />
       <img
-        src="/illume-art/orange.png"
+        src="/lemon.png"
         alt=""
-        className="absolute left-[-2rem] top-[120rem] w-32 rotate-[10deg] opacity-45 md:hidden"
+        className="absolute left-[-2rem] top-[118rem] w-32 rotate-[8deg] opacity-35 md:hidden"
+        loading="lazy"
       />
       <img
-        src="/illume-art/rosemary.png"
+        src="/farina.png"
         alt=""
-        className="absolute right-[-1rem] bottom-[30rem] w-28 rotate-[12deg] opacity-45 md:hidden"
+        className="absolute right-[-4rem] bottom-[34rem] w-40 rotate-[-10deg] opacity-35 md:hidden"
+        loading="lazy"
       />
     </div>
   );
@@ -125,8 +120,8 @@ export default function Home() {
     <main className="relative overflow-hidden bg-[#fbf7ef] text-[#3b2a24]">
       {/* texture cartoncino */}
       <div className="pointer-events-none fixed inset-0 z-0 opacity-[0.42]">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(59,42,36,0.12)_1px,transparent_0)] bg-[length:20px_20px]" />
-        <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(255,255,255,0.65),rgba(233,143,129,0.08),rgba(255,255,255,0.5))]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(59,42,36,0.10)_1px,transparent_0)] bg-[length:20px_20px]" />
+        <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(255,255,255,0.72),rgba(233,143,129,0.07),rgba(255,255,255,0.55))]" />
       </div>
 
       <IngredientBackground />
@@ -172,7 +167,7 @@ export default function Home() {
                 {reasons.map((item) => (
                   <div
                     key={item}
-                    className="rounded-2xl border border-white/60 bg-white/45 p-4 text-sm font-bold shadow-sm backdrop-blur-xl"
+                    className="rounded-2xl border border-white/60 bg-white/55 p-4 text-sm font-bold shadow-sm backdrop-blur-xl"
                   >
                     {item}
                   </div>
@@ -191,7 +186,7 @@ export default function Home() {
                 />
               </div>
 
-              <div className="absolute bottom-4 left-0 w-[72%] rounded-[2.5rem] border border-white/60 bg-white/45 p-6 shadow-2xl backdrop-blur-2xl md:p-8">
+              <div className="absolute bottom-4 left-0 w-[72%] rounded-[2.5rem] border border-white/60 bg-white/55 p-6 shadow-2xl backdrop-blur-2xl md:p-8">
                 <p className="text-xs font-black uppercase tracking-[0.28em] text-[#b5a02f]">
                   Prenota senza pensarci troppo
                 </p>
@@ -224,7 +219,7 @@ export default function Home() {
                 </h2>
               </div>
 
-              <div className="rounded-[3rem] border border-white/60 bg-white/55 p-7 shadow-xl backdrop-blur-2xl md:p-10">
+              <div className="rounded-[3rem] border border-white/60 bg-white/60 p-7 shadow-xl backdrop-blur-2xl md:p-10">
                 <p className="text-xl leading-9 text-[#3b2a24]/75">
                   A volte non vuoi “provare un posto”. Vuoi semplicemente andare
                   sul sicuro: una pizza fatta bene, un ambiente piacevole, un menu
@@ -285,7 +280,7 @@ export default function Home() {
                 {menuPreview.map((item) => (
                   <div
                     key={item.name}
-                    className="rounded-[2rem] border border-white/60 bg-white/55 p-6 shadow-sm backdrop-blur-xl"
+                    className="rounded-[2rem] border border-white/60 bg-white/60 p-6 shadow-sm backdrop-blur-xl"
                   >
                     <div className="flex items-start justify-between gap-5">
                       <h3 className="text-lg font-black uppercase tracking-[0.08em]">
@@ -305,7 +300,7 @@ export default function Home() {
               <div className="mt-8 flex flex-col gap-4 sm:flex-row">
                 <Link
                   href="/menu"
-                  className="rounded-full border border-[#3b2a24]/15 bg-white/50 px-8 py-4 text-center text-sm font-black uppercase tracking-[0.22em] text-[#3b2a24] backdrop-blur-xl"
+                  className="rounded-full border border-[#3b2a24]/15 bg-white/55 px-8 py-4 text-center text-sm font-black uppercase tracking-[0.22em] text-[#3b2a24] backdrop-blur-xl"
                 >
                   Menu completo
                 </Link>
@@ -353,7 +348,7 @@ export default function Home() {
                   </p>
                 </div>
 
-                <div className="rounded-[3rem] border border-white/60 bg-white/55 p-8 shadow-xl backdrop-blur-2xl">
+                <div className="rounded-[3rem] border border-white/60 bg-white/60 p-8 shadow-xl backdrop-blur-2xl">
                   <h3 className="font-serif text-5xl italic">Semplice.</h3>
                   <p className="mt-5 text-lg leading-8 text-[#3b2a24]/70">
                     Menu leggibile, prenotazione chiara, serata fluida. Le cose
@@ -375,7 +370,7 @@ export default function Home() {
 
         {/* PRACTICAL CTA */}
         <section className="relative px-5 py-20 md:px-10 md:py-28">
-          <div className="mx-auto max-w-7xl rounded-[4rem] border border-white/60 bg-white/55 p-8 shadow-2xl backdrop-blur-2xl md:p-14">
+          <div className="mx-auto max-w-7xl rounded-[4rem] border border-white/60 bg-white/60 p-8 shadow-2xl backdrop-blur-2xl md:p-14">
             <div className="grid gap-10 lg:grid-cols-[1fr_0.85fr] lg:items-center">
               <div>
                 <p className="text-xs font-black uppercase tracking-[0.35em] text-[#c9793f]">
@@ -441,7 +436,7 @@ export default function Home() {
 
               <Link
                 href="/menu"
-                className="rounded-full border border-[#3b2a24]/15 bg-white/50 px-9 py-5 text-sm font-black uppercase tracking-[0.22em] text-[#3b2a24] backdrop-blur-xl transition hover:bg-white/75"
+                className="rounded-full border border-[#3b2a24]/15 bg-white/55 px-9 py-5 text-sm font-black uppercase tracking-[0.22em] text-[#3b2a24] backdrop-blur-xl transition hover:bg-white/75"
               >
                 Guarda il menu
               </Link>
