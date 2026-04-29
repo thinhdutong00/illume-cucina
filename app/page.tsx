@@ -5,122 +5,86 @@ import Link from "next/link";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
-const specialties = [
+const highlights = [
+  "Pizza contemporanea",
+  "Cucina emiliana",
+  "Tavoli accoglienti",
+  "Atmosfera calda",
+];
+
+const menuPreview = [
   {
     name: "Margherita D.O.P.",
+    desc: "Pomodoro San Marzano, bufala, basilico fresco, olio EVO.",
     price: "€10",
-    desc: "Pomodoro San Marzano, bufala, basilico fresco e olio EVO.",
   },
   {
     name: "Emiliana",
+    desc: "Fior di latte, Prosciutto di Parma 24 mesi, Parmigiano Reggiano.",
     price: "€14",
-    desc: "Fior di latte, Prosciutto di Parma 24 mesi e Parmigiano Reggiano.",
   },
   {
     name: "Diavola Calabra",
+    desc: "Pomodoro, spianata piccante, ’nduja di Spilinga, olive taggiasche.",
     price: "€12",
-    desc: "Pomodoro, spianata piccante, ’nduja di Spilinga e olive taggiasche.",
   },
-  {
-    name: "Boscaiola",
-    price: "€13",
-    desc: "Funghi porcini, salsiccia modenese e mozzarella.",
-  },
-];
-
-const experiences = [
-  "Impasti leggeri e contemporanei",
-  "Ingredienti selezionati",
-  "Cucina emiliana e pizza d’autore",
-  "Atmosfera calda, elegante e conviviale",
 ];
 
 export default function Home() {
   return (
-    <main className="bg-[#ffefcc] text-[#642d3a]">
+    <main className="bg-[#fff1d7] text-[#642d3a]">
       <Header />
 
       {/* HERO */}
       <section className="relative min-h-screen overflow-hidden">
         <Image
-          src="/illume-esterno.png"
-          alt="Illume Pizzeria Contemporanea a Carpi"
+          src="/pizza-prova01.jpg"
+          alt="Pizza contemporanea Illume a Carpi"
           fill
-          className="object-cover"
           priority
+          className="object-cover"
         />
 
-        <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/35 to-[#ffefcc]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#642d3a]/70 via-[#642d3a]/35 to-[#fff1d7]" />
 
-        <div className="relative z-10 flex min-h-screen items-center px-6 pt-24">
-          <div className="mx-auto max-w-7xl">
+        <div className="relative z-10 flex min-h-screen items-end px-5 pb-16 pt-32 md:px-10 md:pb-24">
+          <div className="mx-auto w-full max-w-7xl">
             <div className="max-w-4xl">
-              <p className="mb-6 text-xs font-bold uppercase tracking-[0.45em] text-[#ffefcc]">
-                Carpi · Pizzeria contemporanea
+              <p className="mb-5 text-xs font-black uppercase tracking-[0.35em] text-[#f7dfb8]">
+                Carpi · Pizzeria emiliana contemporanea
               </p>
 
               <h1 className="font-serif text-6xl italic leading-[0.9] text-white md:text-8xl lg:text-9xl">
-                Luce ai tuoi sensi.
+                Stasera si mangia da Illume.
               </h1>
 
-              <p className="mt-8 max-w-2xl text-lg leading-8 text-white/85 md:text-xl">
-                Pizza contemporanea, cucina emiliana e un’atmosfera pensata per
-                farti rallentare. Da Illume ogni dettaglio nasce per trasformare
-                una cena in un’esperienza.
+              <p className="mt-7 max-w-2xl text-lg leading-8 text-white/85 md:text-xl">
+                Pizza contemporanea, cucina emiliana e un ambiente caldo dove
+                sedersi bene, mangiare meglio e godersi la serata senza fretta.
               </p>
 
-              <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+              <div className="mt-9 flex flex-col gap-4 sm:flex-row">
                 <Link
-                  href="/prenota"
-                  className="rounded-full bg-[#ffefcc] px-8 py-4 text-center text-sm font-black uppercase tracking-[0.25em] text-[#642d3a] transition hover:scale-[1.02]"
+                  href="/prenotazioni"
+                  className="rounded-full bg-[#fff1d7] px-8 py-4 text-center text-sm font-black uppercase tracking-[0.22em] text-[#642d3a] transition hover:scale-[1.02]"
                 >
                   Prenota un tavolo
                 </Link>
 
                 <Link
                   href="/menu"
-                  className="rounded-full border border-white/40 bg-white/10 px-8 py-4 text-center text-sm font-black uppercase tracking-[0.25em] text-white backdrop-blur-xl transition hover:bg-white/20"
+                  className="rounded-full border border-white/40 bg-white/10 px-8 py-4 text-center text-sm font-black uppercase tracking-[0.22em] text-white backdrop-blur transition hover:bg-white/20"
                 >
                   Guarda il menu
                 </Link>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* INTRO */}
-      <section className="px-6 py-24 md:py-32">
-        <div className="mx-auto grid max-w-7xl gap-14 md:grid-cols-[0.9fr_1.1fr] md:items-center">
-          <div className="relative h-[520px] overflow-hidden rounded-[3rem_1rem_3rem_1rem] shadow-2xl">
-            <Image
-              src="/illume-esterno.png"
-              alt="Ingresso Illume Carpi"
-              fill
-              className="object-cover"
-            />
-          </div>
-
-          <div>
-            <p className="text-xs font-black uppercase tracking-[0.35em]">
-              L’anima di Illume
-            </p>
-
-            <h2 className="mt-6 max-w-3xl font-serif text-5xl italic leading-tight md:text-7xl">
-              Una pizzeria moderna con il cuore caldo di casa.
-            </h2>
-
-            <p className="mt-8 max-w-2xl text-lg leading-9 text-[#642d3a]/80">
-              Illume nasce per chi ama la pizza fatta bene, ma cerca qualcosa in
-              più: un ambiente curato, ingredienti scelti con attenzione e una
-              cucina capace di unire tradizione emiliana e gusto contemporaneo.
-            </p>
-
-            <div className="mt-10 grid gap-4 sm:grid-cols-2">
-              {experiences.map((item) => (
+            <div className="mt-12 grid gap-3 sm:grid-cols-4">
+              {highlights.map((item) => (
                 <div
                   key={item}
-                  className="rounded-2xl border border-[#642d3a]/15 bg-white/35 p-5 font-bold backdrop-blur"
+                  className="rounded-2xl border border-white/20 bg-white/15 p-4 text-sm font-bold text-white backdrop-blur"
                 >
                   {item}
                 </div>
@@ -130,162 +94,177 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SIGNATURE */}
-      <section className="px-6 py-24">
-        <div className="mx-auto max-w-7xl rounded-[3rem] bg-[#642d3a] p-8 text-[#ffefcc] md:p-14">
-          <div className="grid gap-12 md:grid-cols-[0.8fr_1.2fr]">
-            <div>
-              <p className="text-xs font-black uppercase tracking-[0.35em] text-[#ffefcc]/70">
-                Dalla nostra cucina
-              </p>
+      {/* INTRO ESPERIENZA */}
+      <section className="relative px-5 py-20 md:px-10 md:py-32">
+        <div className="absolute left-8 top-16 h-28 w-28 rounded-full bg-[#e98f81]/35 blur-2xl" />
+        <div className="absolute bottom-20 right-10 h-36 w-36 rounded-full bg-[#b5a02f]/30 blur-2xl" />
 
-              <h2 className="mt-6 font-serif text-5xl italic leading-tight md:text-7xl">
-                Le specialità che accendono la tavola.
-              </h2>
+        <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-[1.1fr_0.9fr] md:items-center">
+          <div>
+            <p className="text-xs font-black uppercase tracking-[0.35em] text-[#c9793f]">
+              Non solo pizza
+            </p>
 
-              <p className="mt-6 text-lg leading-8 text-[#ffefcc]/75">
-                Una selezione pensata per raccontare Illume: pizze fragranti,
-                materie prime riconoscibili e sapori che non hanno bisogno di
-                urlare per farsi ricordare.
-              </p>
+            <h2 className="mt-5 max-w-4xl font-serif text-5xl italic leading-tight md:text-7xl">
+              Una tavola calda, una luce morbida, una pizza fatta come si deve.
+            </h2>
 
+            <p className="mt-7 max-w-2xl text-lg leading-9 text-[#642d3a]/80">
+              Illume è pensato per chi vuole uscire a cena e sentirsi nel posto
+              giusto: ingredienti riconoscibili, impasti curati, sapori emiliani
+              e un’atmosfera che invita a restare.
+            </p>
+
+            <div className="mt-9">
               <Link
-                href="/menu"
-                className="mt-10 inline-block rounded-full border border-[#ffefcc]/40 px-8 py-4 text-sm font-black uppercase tracking-[0.25em] text-[#ffefcc] transition hover:bg-[#ffefcc] hover:text-[#642d3a]"
+                href="/prenotazioni"
+                className="inline-block rounded-full bg-[#642d3a] px-8 py-4 text-sm font-black uppercase tracking-[0.22em] text-[#fff1d7]"
               >
-                Menu completo
+                Prenota ora
               </Link>
             </div>
+          </div>
 
-            <div className="space-y-5">
-              {specialties.map((item) => (
+          <div className="relative h-[620px] overflow-hidden rounded-[4rem_1.5rem_4rem_1.5rem] shadow-2xl">
+            <Image
+              src="/illume-esterno.png"
+              alt="Atmosfera Illume Carpi"
+              fill
+              className="object-cover"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* MENU PREVIEW FLUIDA */}
+      <section className="px-5 py-20 md:px-10 md:py-28">
+        <div className="mx-auto max-w-7xl rounded-[3.5rem] bg-[#642d3a] p-7 text-[#fff1d7] md:p-14">
+          <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.35em] text-[#e98f81]">
+                Da assaggiare
+              </p>
+
+              <h2 className="mt-5 font-serif text-5xl italic leading-tight md:text-7xl">
+                Pizze che arrivano al tavolo e fanno silenzio.
+              </h2>
+
+              <p className="mt-6 text-lg leading-8 text-[#fff1d7]/75">
+                Quelle cose semplici ma fatte bene: cornicione, profumo,
+                ingredienti giusti e voglia di ordinarne un’altra.
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              {menuPreview.map((item) => (
                 <div
                   key={item.name}
-                  className="rounded-[2rem] border border-[#ffefcc]/15 bg-white/[0.06] p-6 backdrop-blur"
+                  className="rounded-[2rem] border border-[#fff1d7]/15 bg-white/[0.07] p-6 backdrop-blur"
                 >
-                  <div className="flex items-start justify-between gap-6">
-                    <h3 className="text-xl font-black uppercase tracking-[0.08em]">
+                  <div className="flex items-start justify-between gap-5">
+                    <h3 className="text-lg font-black uppercase tracking-[0.08em]">
                       {item.name}
                     </h3>
-                    <span className="font-serif text-2xl italic">
+                    <span className="font-serif text-3xl italic text-[#e98f81]">
                       {item.price}
                     </span>
                   </div>
-                  <p className="mt-3 leading-7 text-[#ffefcc]/70">
+                  <p className="mt-3 leading-7 text-[#fff1d7]/70">
                     {item.desc}
                   </p>
                 </div>
               ))}
+
+              <Link
+                href="/menu"
+                className="mt-6 inline-block rounded-full border border-[#fff1d7]/35 px-8 py-4 text-sm font-black uppercase tracking-[0.22em] text-[#fff1d7] transition hover:bg-[#fff1d7] hover:text-[#642d3a]"
+              >
+                Consulta il menu completo
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* GALLERY */}
-      <section className="px-6 py-24">
+      {/* ATMOSFERA */}
+      <section className="px-5 py-20 md:px-10 md:py-28">
         <div className="mx-auto max-w-7xl">
-          <div className="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
-            <div>
-              <p className="text-xs font-black uppercase tracking-[0.35em]">
-                Atmosfera
-              </p>
-              <h2 className="mt-5 font-serif text-5xl italic md:text-7xl">
-                Si mangia prima con gli occhi.
-              </h2>
-            </div>
-
-            <p className="max-w-md text-lg leading-8 text-[#642d3a]/75">
-              Luci calde, dettagli curati, piatti che arrivano al tavolo con la
-              semplicità delle cose fatte bene.
+          <div className="mb-10 max-w-3xl">
+            <p className="text-xs font-black uppercase tracking-[0.35em] text-[#c9793f]">
+              Atmosfera Illume
             </p>
+
+            <h2 className="mt-5 font-serif text-5xl italic leading-tight md:text-7xl">
+              Il posto giusto per una cena fatta bene.
+            </h2>
           </div>
 
-          <div className="grid gap-5 md:grid-cols-4">
-            <div className="relative h-[420px] overflow-hidden rounded-[2.5rem] md:col-span-2 md:row-span-2 md:h-full">
+          <div className="grid gap-5 md:grid-cols-5">
+            <div className="relative h-[520px] overflow-hidden rounded-[3rem] md:col-span-3">
               <Image
-                src="/pizza-prova01.jpg"
-                alt="Pizza contemporanea Illume"
+                src="/illume-esterno.png"
+                alt="Sala Illume"
                 fill
                 className="object-cover transition duration-700 hover:scale-105"
               />
             </div>
 
-            {[1, 2, 3, 4].map((item) => (
-              <div
-                key={item}
-                className="relative h-[260px] overflow-hidden rounded-[2rem]"
-              >
-                <Image
-                  src="/pizza-prova01.jpg"
-                  alt="Specialità Illume"
-                  fill
-                  className="object-cover transition duration-700 hover:scale-105"
-                />
+            <div className="flex flex-col gap-5 md:col-span-2">
+              <div className="rounded-[3rem] bg-[#e98f81] p-8 text-[#642d3a]">
+                <h3 className="font-serif text-4xl italic">Luce calda.</h3>
+                <p className="mt-4 leading-8">
+                  Colori morbidi, tavoli accoglienti e dettagli che fanno
+                  subito serata.
+                </p>
               </div>
-            ))}
+
+              <div className="rounded-[3rem] bg-[#c9793f] p-8 text-[#fff1d7]">
+                <h3 className="font-serif text-4xl italic">Pizza al centro.</h3>
+                <p className="mt-4 leading-8">
+                  Il menu è pensato per chi vuole scegliere bene, senza perdersi.
+                </p>
+              </div>
+
+              <div className="rounded-[3rem] bg-[#b5a02f] p-8 text-[#fff1d7]">
+                <h3 className="font-serif text-4xl italic">Prenota facile.</h3>
+                <p className="mt-4 leading-8">
+                  Scegli il tavolo, arriva, siediti. Al resto pensiamo noi.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* WHY */}
-      <section className="px-6 py-24">
-        <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-3">
-          {[
-            {
-              title: "Pizza contemporanea",
-              text: "Impasti studiati, ingredienti riconoscibili e abbinamenti equilibrati.",
-            },
-            {
-              title: "Cucina del territorio",
-              text: "Sapori emiliani, materie prime selezionate e piatti che parlano di casa.",
-            },
-            {
-              title: "Esperienza completa",
-              text: "Non solo cena: ambiente, servizio, atmosfera e convivialità.",
-            },
-          ].map((item) => (
-            <div
-              key={item.title}
-              className="rounded-[2.5rem] border border-[#642d3a]/15 bg-white/35 p-8 backdrop-blur"
-            >
-              <h3 className="font-serif text-4xl italic">{item.title}</h3>
-              <p className="mt-5 text-lg leading-8 text-[#642d3a]/75">
-                {item.text}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="px-6 py-28">
-        <div className="mx-auto max-w-6xl rounded-[3rem] bg-[#642d3a] p-8 text-center text-[#ffefcc] md:p-16">
-          <p className="text-xs font-black uppercase tracking-[0.35em] text-[#ffefcc]/70">
-            Prenota la tua esperienza
+      {/* CTA FINALE */}
+      <section className="px-5 py-24 md:px-10 md:py-32">
+        <div className="mx-auto max-w-6xl rounded-[3.5rem] bg-[#642d3a] p-8 text-center text-[#fff1d7] md:p-16">
+          <p className="text-xs font-black uppercase tracking-[0.35em] text-[#e98f81]">
+            Prenotazioni
           </p>
 
-          <h2 className="mx-auto mt-6 max-w-4xl font-serif text-5xl italic leading-tight md:text-7xl">
-            Una tavola, una luce calda, qualcosa di buono da ricordare.
+          <h2 className="mx-auto mt-5 max-w-4xl font-serif text-5xl italic leading-tight md:text-7xl">
+            Hai già deciso dove mangiare stasera?
           </h2>
 
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-[#ffefcc]/75">
-            Che sia una cena tranquilla, una serata tra amici o un’occasione da
-            celebrare, Illume ti aspetta nel cuore di Carpi.
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-[#fff1d7]/75">
+            Prenota il tuo tavolo da Illume e goditi una serata di pizza,
+            cucina emiliana e atmosfera calda nel cuore di Carpi.
           </p>
 
           <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
             <Link
-              href="/prenota"
-              className="rounded-full bg-[#ffefcc] px-8 py-4 text-sm font-black uppercase tracking-[0.25em] text-[#642d3a] transition hover:scale-[1.02]"
+              href="/prenotazioni"
+              className="rounded-full bg-[#fff1d7] px-8 py-4 text-sm font-black uppercase tracking-[0.22em] text-[#642d3a] transition hover:scale-[1.02]"
             >
-              Prenota ora
+              Prenota un tavolo
             </Link>
 
             <Link
-              href="/informazioni"
-              className="rounded-full border border-[#ffefcc]/40 px-8 py-4 text-sm font-black uppercase tracking-[0.25em] text-[#ffefcc] transition hover:bg-[#ffefcc] hover:text-[#642d3a]"
+              href="/menu"
+              className="rounded-full border border-[#fff1d7]/35 px-8 py-4 text-sm font-black uppercase tracking-[0.22em] text-[#fff1d7] transition hover:bg-[#fff1d7] hover:text-[#642d3a]"
             >
-              Scopri Illume
+              Guarda il menu
             </Link>
           </div>
         </div>
