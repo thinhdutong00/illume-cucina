@@ -47,11 +47,6 @@ const ingredients = [
       "left-[8%] top-[52rem] w-28 rotate-[8deg] opacity-70 md:w-40",
   },
   {
-    src: "/rosemary.png",
-    className:
-      "right-[-1rem] top-[58rem] w-28 rotate-[12deg] opacity-65 md:w-44",
-  },
-  {
     src: "/orange.png",
     className:
       "left-[-3rem] top-[105rem] w-36 rotate-[10deg] opacity-70 md:w-52",
