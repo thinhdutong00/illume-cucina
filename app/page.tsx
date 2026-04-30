@@ -178,7 +178,7 @@ export default function Home() {
             <div className="relative min-h-[520px] lg:min-h-[680px]">
               <div className="absolute right-0 top-0 h-[78%] w-[82%] overflow-hidden rounded-[8rem_2rem_8rem_2rem] shadow-2xl">
                 <Image
-                  src="/pizza-cruda.jpg"
+                  src="/pizza-salsiccia.jpg"
                   alt="Pizza contemporanea Illume"
                   fill
                   priority
@@ -245,7 +245,7 @@ export default function Home() {
             <div className="relative min-h-[620px]">
               <div className="absolute left-0 top-0 h-[78%] w-[88%] overflow-hidden rounded-[2rem_8rem_2rem_8rem] shadow-2xl">
                 <Image
-                  src="/pizza-prova01.jpg"
+                  src="/pizza-cruda.jpg"
                   alt="Pizza Illume"
                   fill
                   className="object-cover transition duration-700 hover:scale-105"
