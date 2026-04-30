@@ -3,15 +3,7 @@
 import Link from "next/link";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import {
-  Flame,
-  Wheat,
-  Sparkles,
-  Clock,
-  MapPin,
-  Camera,
-  Phone,
-} from "lucide-react";
+import { Flame, Wheat, Clock, Sparkles, MapPin } from "lucide-react";
 
 export default function Informazioni() {
   return (
@@ -30,7 +22,7 @@ export default function Informazioni() {
           <section className="px-5 pb-20 pt-36 md:px-10 md:pb-28 md:pt-44">
             <div className="mx-auto max-w-7xl">
               <p className="mb-5 text-xs font-black uppercase tracking-[0.35em] text-[#c9793f]">
-                La nostra visione
+                Illume · Pizzeria Emiliana
               </p>
 
               <div className="grid gap-10 lg:grid-cols-[1fr_0.85fr] lg:items-end">
@@ -40,97 +32,95 @@ export default function Informazioni() {
                   </h1>
 
                   <p className="mt-7 max-w-2xl text-lg leading-8 text-[#3b2a24]/70 md:text-xl">
-                    Illume deriva da splendente: ciò che emerge con chiarezza,
-                    senza bisogno di eccessi. Una pizza emiliana contemporanea,
-                    fatta di ingredienti veri, tempo e rispetto.
+                    Illume deriva da splendente. Da ciò che emerge con
+                    chiarezza, senza bisogno di eccessi.
                   </p>
                 </div>
 
                 <div className="rounded-[2.5rem] bg-[#3b2a24] p-7 text-[#fbf7ef] shadow-2xl md:p-9">
+                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#c9793f]">
+                    <MapPin size={22} />
+                  </div>
+
                   <p className="text-xs font-black uppercase tracking-[0.3em] text-[#e98f81]">
-                    Illume · Carpi
+                    Dove siamo
                   </p>
 
                   <h2 className="mt-4 font-serif text-4xl italic leading-tight">
-                    Splendente è un’idea pulita.
+                    Via San Francesco 4 · Carpi
                   </h2>
 
                   <p className="mt-4 leading-7 text-[#fbf7ef]/75">
-                    Splendente è una tradizione che non si nasconde. Splendente
-                    è la semplicità fatta con rispetto.
+                    Un luogo dove pizza emiliana, semplicità e accoglienza
+                    trovano la loro luce.
                   </p>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* RACCONTO */}
+          {/* MANIFESTO */}
           <section className="px-5 pb-24 md:px-10 md:pb-32">
-            <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+            <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
               <div className="relative min-h-[560px] overflow-hidden rounded-[4rem_1.5rem_4rem_1.5rem] shadow-2xl">
                 <img
                   src="/pizza-prova01.jpg"
-                  alt="Pizza Illume"
+                  alt="Pizza emiliana Illume"
                   className="h-full w-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#3b2a24]/45 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#3b2a24]/55 via-transparent to-transparent" />
+
+                <div className="absolute bottom-6 left-6 right-6 rounded-[2rem] bg-[#fbf7ef] p-6 shadow-xl md:bottom-8 md:left-8 md:right-8">
+                  <p className="text-xs font-black uppercase tracking-[0.3em] text-[#c9793f]">
+                    Splendente
+                  </p>
+                  <h2 className="mt-3 font-serif text-4xl italic leading-tight">
+                    Una tradizione che non si nasconde.
+                  </h2>
+                </div>
               </div>
 
-              <div>
-                <p className="text-xs font-black uppercase tracking-[0.35em] text-[#c9793f]">
-                  Cosa significa Illume
+              <div className="rounded-[3rem] border border-[#3b2a24]/10 bg-[#fbf7ef] p-7 shadow-sm md:p-10">
+                <p className="text-xs font-black uppercase tracking-[0.35em] text-[#b5a02f]">
+                  La nostra idea
                 </p>
 
                 <h2 className="mt-5 font-serif text-5xl italic leading-tight md:text-7xl">
-                  Portiamo luce sulla pizza emiliana.
+                  Semplicità fatta con rispetto.
                 </h2>
 
                 <div className="mt-8 space-y-6 text-lg leading-9 text-[#3b2a24]/72">
                   <p>
-                    Sugli ingredienti veri, sul tempo che serve, sul fuoco che
+                    Splendente è un’idea pulita. Splendente è una tradizione
+                    che non si nasconde. Splendente è la semplicità fatta con
+                    rispetto.
+                  </p>
+
+                  <p>
+                    In Illume portiamo luce sulla pizza emiliana: sugli
+                    ingredienti veri, sul tempo che serve, sul fuoco che
                     trasforma.
                   </p>
 
                   <p>
-                    Ogni impasto nasce nel silenzio, cresce con pazienza e arriva
-                    al tavolo per brillare di autenticità.
+                    Ogni impasto nasce nel silenzio, cresce con pazienza e
+                    arriva al tavolo per brillare di autenticità.
                   </p>
-
-                  <p>
-                    Questa apertura è una scelta precisa: accendere un luogo dove
-                    il superfluo si spegne e resta solo ciò che conta davvero.
-                  </p>
-                </div>
-
-                <div className="mt-9 flex flex-col gap-4 sm:flex-row">
-                  <Link
-                    href="/menu"
-                    className="rounded-full bg-[#c9793f] px-8 py-4 text-center text-xs font-black uppercase tracking-[0.22em] text-[#fbf7ef] transition hover:bg-[#9b0232]"
-                  >
-                    Guarda il menu
-                  </Link>
-
-                  <Link
-                    href="/prenotazioni"
-                    className="rounded-full border border-[#3b2a24]/15 bg-white px-8 py-4 text-center text-xs font-black uppercase tracking-[0.22em] text-[#3b2a24] transition hover:bg-[#f2ede4]"
-                  >
-                    Prenota un tavolo
-                  </Link>
                 </div>
               </div>
             </div>
           </section>
 
-          {/* PILASTRI */}
+          {/* TRE LEVE */}
           <section className="px-5 pb-24 md:px-10 md:pb-32">
             <div className="mx-auto max-w-7xl">
-              <div className="mb-12 max-w-3xl">
-                <p className="text-xs font-black uppercase tracking-[0.35em] text-[#b5a02f]">
-                  I nostri pilastri
+              <div className="mb-12 max-w-4xl">
+                <p className="text-xs font-black uppercase tracking-[0.35em] text-[#c9793f]">
+                  Cosa conta davvero
                 </p>
 
                 <h2 className="mt-5 font-serif text-5xl italic leading-tight md:text-7xl">
-                  Semplice non vuol dire banale.
+                  Il superfluo si spegne. Resta solo l’essenziale.
                 </h2>
               </div>
 
@@ -138,19 +128,19 @@ export default function Informazioni() {
                 <Pillar
                   icon={<Wheat size={26} />}
                   title="Ingredienti veri"
-                  text="Materie prime riconoscibili, scelte per raccontare il territorio senza mascherarlo."
+                  text="Materie prime riconoscibili, scelte con cura e lasciate parlare senza coprirle."
                 />
 
                 <Pillar
                   icon={<Clock size={26} />}
                   title="Il tempo che serve"
-                  text="L’impasto non corre. Riposa, cresce e arriva al tavolo con la pazienza delle cose fatte bene."
+                  text="Ogni impasto nasce nel silenzio, cresce con pazienza e arriva al tavolo quando è pronto."
                 />
 
                 <Pillar
                   icon={<Flame size={26} />}
                   title="Il fuoco che trasforma"
-                  text="La cottura dà carattere, profumo e identità. Il forno non è uno strumento: è parte della storia."
+                  text="La cottura dà carattere alla pizza: profumo, consistenza e identità."
                 />
               </div>
             </div>
@@ -162,35 +152,31 @@ export default function Informazioni() {
               <Sparkles className="mx-auto text-[#e98f81]" size={34} />
 
               <h2 className="mx-auto mt-6 max-w-4xl font-serif text-5xl italic leading-tight md:text-7xl">
-                Illume. Accendiamo la tradizione.
+                Illume.
+                <br />
+                Accendiamo la tradizione.
               </h2>
 
               <p className="mx-auto mt-7 max-w-2xl text-lg leading-8 text-[#fbf7ef]/75">
-                Una nuova apertura, una scelta precisa, un luogo dove pizza,
-                cucina emiliana e accoglienza trovano la loro luce.
+                Questa nuova apertura è una scelta precisa: accendere un luogo
+                dove il superfluo si spegne e resta solo ciò che conta davvero.
               </p>
-            </div>
-          </section>
 
-          {/* INFO RAPIDE */}
-          <section className="px-5 pb-28 md:px-10">
-            <div className="mx-auto grid max-w-7xl gap-5 md:grid-cols-3">
-              <Info href="/contatti" icon={<MapPin size={22} />} title="Dove siamo" text="Via San Francesco 4 · Carpi (MO)" />
-              <Info href="tel:+390599716021" icon={<Phone size={22} />} title="Telefono" text="+39 059 9716021" />
-              <Info href="/prenotazioni" icon={<Camera size={22} />} title="Instagram" text="illume.pizzeriaemiliana" />
-            </div>
+              <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
+                <Link
+                  href="/menu"
+                  className="rounded-full bg-[#c9793f] px-8 py-4 text-center text-xs font-black uppercase tracking-[0.22em] text-[#fbf7ef] transition hover:bg-[#9b0232]"
+                >
+                  Guarda il menu
+                </Link>
 
-            <div className="mx-auto mt-16 max-w-5xl text-center">
-              <h2 className="font-serif text-5xl italic leading-tight md:text-7xl">
-                Vieni a vivere Illume.
-              </h2>
-
-              <Link
-                href="/prenotazioni"
-                className="mt-8 inline-block rounded-full bg-[#c9793f] px-9 py-5 text-sm font-black uppercase tracking-[0.22em] text-[#fbf7ef] shadow-xl transition hover:bg-[#9b0232]"
-              >
-                Prenota ora
-              </Link>
+                <Link
+                  href="/prenotazioni"
+                  className="rounded-full border border-[#fbf7ef]/20 px-8 py-4 text-center text-xs font-black uppercase tracking-[0.22em] text-[#fbf7ef] transition hover:bg-[#fbf7ef] hover:text-[#3b2a24]"
+                >
+                  Prenota un tavolo
+                </Link>
+              </div>
             </div>
           </section>
 
@@ -211,7 +197,7 @@ function Pillar({
   text: string;
 }) {
   return (
-    <div className="rounded-[2.5rem] border border-[#3b2a24]/10 bg-[#fbf7ef] p-8 shadow-sm">
+    <div className="rounded-[2.5rem] border border-[#3b2a24]/10 bg-[#fbf7ef] p-8 shadow-sm transition hover:-translate-y-1 hover:bg-[#f2ede4]">
       <div className="mb-7 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#c9793f] text-[#fbf7ef]">
         {icon}
       </div>
@@ -220,37 +206,5 @@ function Pillar({
 
       <p className="mt-4 leading-7 text-[#3b2a24]/70">{text}</p>
     </div>
-  );
-}
-
-function Info({
-  href,
-  icon,
-  title,
-  text,
-}: {
-  href: string;
-  icon: React.ReactNode;
-  title: string;
-  text: string;
-}) {
-  return (
-    <Link
-      href={href}
-      className="rounded-[2rem] border border-[#3b2a24]/10 bg-[#fbf7ef] p-6 transition hover:bg-[#f2ede4]"
-    >
-      <div className="flex items-center gap-4">
-        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#c9793f] text-[#fbf7ef]">
-          {icon}
-        </div>
-
-        <div>
-          <p className="text-xs font-black uppercase tracking-[0.25em] text-[#c9793f]">
-            {title}
-          </p>
-          <p className="mt-1 text-sm font-bold text-[#3b2a24]/75">{text}</p>
-        </div>
-      </div>
-    </Link>
   );
 }
