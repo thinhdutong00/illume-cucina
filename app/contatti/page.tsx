@@ -203,7 +203,7 @@ export default function Contatti() {
               </p>
 
               <h2 className="mx-auto mt-5 max-w-4xl font-serif text-5xl italic leading-tight md:text-7xl">
-                Una cena fatta bene parte da un tavolo prenotato.
+                Il tavolo giusto cambia tutta la cena.
               </h2>
 
               <Link

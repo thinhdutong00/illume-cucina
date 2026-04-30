@@ -418,7 +418,7 @@ export default function Home() {
             </p>
 
             <h2 className="mx-auto mt-5 max-w-5xl font-serif text-6xl italic leading-[0.95] md:text-8xl">
-              Una cena fatta bene comincia con una prenotazione.
+              Il tavolo giusto cambia tutta la cena.
             </h2>
 
             <p className="mx-auto mt-7 max-w-2xl text-lg leading-8 text-[#3b2a24]/70">
