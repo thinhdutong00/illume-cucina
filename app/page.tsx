@@ -56,7 +56,7 @@ const ingredients = [
     className: "right-[5%] top-[148rem] w-36 rotate-[-5deg] opacity-55 md:w-52",
   },
   {
-    src: "/champignon.webp",
+    src: "/pizzacartone.webp",
     className: "left-[4%] top-[185rem] w-36 rotate-[9deg] opacity-50 md:w-52",
   },
   {
@@ -65,10 +65,6 @@ const ingredients = [
   },
   {
     src: "/parsley.webp",
-    className: "left-[2%] bottom-[42rem] w-32 rotate-[14deg] opacity-50 md:w-48",
-  },
-  {
-    src: "/pizzacartone.webp",
     className: "left-[2%] bottom-[42rem] w-32 rotate-[14deg] opacity-50 md:w-48",
   },
   {
