@@ -1,106 +1,92 @@
-"use client";
-import Link from 'next/link';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-
-export default function MenuPagina() {
-  // Array delle immagini del menu (Aggiungi qui i percorsi delle tue PNG)
-  const menuImages = [
-    '/menu-pag-1.png',
-    '/menu-pag-2.png',
-    '/menu-pag-3.png',
-  ];
-
+export default function MenuPage() {
   return (
-    <main style={{ backgroundColor: '#ffefcc', minHeight: '100vh' }}>
-      <Header />
+    <div className="flex min-h-screen items-center justify-center bg-[#fbf7ef] p-10">
+      <div className="relative w-[900px] bg-[#fbf7ef] px-16 py-20 text-[#3b2a24]">
 
-      {/* 1. INTESTAZIONE */}
-      <section style={{ padding: '160px 8% 40px 8%', textAlign: 'center', color: '#642d3a' }}>
-        <h1 style={{ fontFamily: 'serif', fontSize: 'clamp(3rem, 6vw, 5rem)', fontStyle: 'italic', marginBottom: '10px' }}>
-          Il Nostro Menu
-        </h1>
-        <p style={{ letterSpacing: '4px', fontSize: '11px', fontWeight: 'bold', textTransform: 'uppercase', opacity: 0.8 }}>
-          Stagionalità e Materia Prima
-        </p>
-      </section>
+        {/* DECORAZIONI ARTISTICHE */}
+        <img src="/tomato.png" className="absolute left-[-50px] top-[80px] w-32 opacity-60 rotate-[-12deg]" />
+        <img src="/basil.png" className="absolute right-[-40px] top-[140px] w-28 opacity-60 rotate-[18deg]" />
+        <img src="/grana-padano.png" className="absolute left-[-40px] bottom-[120px] w-36 opacity-60 rotate-[8deg]" />
+        <img src="/porcino.png" className="absolute right-[-50px] bottom-[80px] w-32 opacity-60 rotate-[-10deg]" />
 
-      {/* 2. CAROSELLO RESPONSIVE (SNAP SCROLL) */}
-      <section style={{ padding: '0 5% 60px 5%', maxWidth: '1200px', margin: '0 auto' }}>
-        
-        {/* Istruzione per l'utente */}
-        <p style={{ textAlign: 'center', fontSize: '12px', color: '#642d3a', marginBottom: '20px', opacity: 0.6 }}>
-          ← Scorri per sfogliare le pagine →
-        </p>
-
-        <div style={{ 
-          display: 'flex', 
-          overflowX: 'auto', 
-          scrollSnapType: 'x mandatory', 
-          gap: '20px',
-          paddingBottom: '20px',
-          WebkitOverflowScrolling: 'touch', // Fluidità su iOS
-          scrollbarWidth: 'none', // Nasconde scrollbar su Firefox
-        }}>
-          {menuImages.map((src, index) => (
-            <div key={index} style={{ 
-              flex: '0 0 100%', 
-              scrollSnapAlign: 'center',
-              display: 'flex',
-              justifyContent: 'center'
-            }}>
-              <div style={{ 
-                width: '100%', 
-                maxWidth: '800px', 
-                backgroundColor: '#fff', 
-                borderRadius: '15px', 
-                boxShadow: '0 20px 40px rgba(100, 45, 58, 0.1)',
-                overflow: 'hidden',
-                border: '1px solid rgba(100, 45, 58, 0.05)'
-              }}>
-                <img 
-                  src={src} 
-                  alt={`Pagina Menu ${index + 1}`} 
-                  style={{ width: '100%', height: 'auto', display: 'block' }} 
-                />
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* 3. DOWNLOAD PDF E INFO AGGIUNTIVE */}
-      <section style={{ padding: '40px 8% 120px 8%', textAlign: 'center', color: '#642d3a' }}>
-        <div style={{ marginBottom: '60px' }}>
-          <a 
-            href="/menu-completo.pdf" 
-            target="_blank" 
-            style={{ 
-              display: 'inline-block',
-              border: '1px solid #642d3a', 
-              padding: '1.2rem 3rem', 
-              textDecoration: 'none', 
-              color: '#642d3a', 
-              fontSize: '11px', 
-              fontWeight: 'bold', 
-              letterSpacing: '3px', 
-              textTransform: 'uppercase',
-              transition: 'all 0.3s ease'
-            }}
-          >
-            Scarica Menu PDF
-          </a>
-        </div>
-
-        <div style={{ maxWidth: '600px', margin: '0 auto', opacity: 0.8, fontSize: '0.9rem', lineHeight: '1.8' }}>
-          <p>
-            * I nostri piatti possono contenere allergeni. <br />
-            Per qualsiasi esigenza alimentare o intolleranza, vi preghiamo di consultare il nostro personale di sala prima di ordinare.
+        {/* HEADER */}
+        <div className="text-center mb-16">
+          <h1 className="text-7xl font-serif italic tracking-tight">
+            ILLUME
+          </h1>
+          <p className="mt-3 text-xs tracking-[0.45em] uppercase opacity-60">
+            Pizzeria Contemporanea · Carpi
           </p>
         </div>
-      </section>
 
-      <Footer />
-    </main>
+        {/* ANTIPASTI */}
+        <div className="mb-12">
+          <h2 className="text-xs font-bold tracking-[0.4em] uppercase text-[#c9793f] mb-6">
+            Antipasti
+          </h2>
+
+          <div className="space-y-5 text-sm">
+            <div>
+              <div className="flex justify-between font-bold uppercase">
+                <span>Gnocco fritto di pizza</span>
+                <span>15</span>
+              </div>
+              <p className="italic opacity-70">
+                Salumi Villani e formaggi Valsamoggia
+              </p>
+            </div>
+
+            <div className="flex justify-between font-bold uppercase">
+              <span>Tris frittatine</span>
+              <span>14</span>
+            </div>
+          </div>
+        </div>
+
+        {/* PRIMI */}
+        <div className="mb-12">
+          <h2 className="text-xs font-bold tracking-[0.4em] uppercase text-[#b5a02f] mb-6">
+            Primi
+          </h2>
+
+          <div className="space-y-5 text-sm">
+            <div className="flex justify-between font-bold uppercase">
+              <span>Tortellini in brodo</span>
+              <span>16</span>
+            </div>
+
+            <div className="flex justify-between font-bold uppercase">
+              <span>Tagliatelle ai porcini</span>
+              <span>15.5</span>
+            </div>
+          </div>
+        </div>
+
+        {/* PIZZE */}
+        <div>
+          <h2 className="text-xs font-bold tracking-[0.4em] uppercase text-[#c9793f] mb-6">
+            Pizze
+          </h2>
+
+          <div className="space-y-5 text-sm">
+            <div className="flex justify-between font-bold uppercase">
+              <span>Mortazza</span>
+              <span>14.5</span>
+            </div>
+
+            <div className="flex justify-between font-bold uppercase">
+              <span>Margherita Emiliana</span>
+              <span>13.5</span>
+            </div>
+
+            <div className="flex justify-between font-bold uppercase">
+              <span>Provola e Pepe</span>
+              <span>12.5</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
   );
 }
