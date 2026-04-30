@@ -163,7 +163,7 @@ export default function Header() {
             <div
               className={[
                 "relative transition-all duration-500",
-                shouldShowSolid ? "h-14 w-44 md:w-56" : "h-16 w-56 md:w-72",
+                shouldShowSolid ? "h-16 w-52 md:w-64" : "h-20 w-64 md:w-80",
               ].join(" ")}
             >
               <Image
