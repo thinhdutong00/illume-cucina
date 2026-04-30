@@ -64,7 +64,7 @@ export default function Informazioni() {
             <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
               <div className="relative min-h-[560px] overflow-hidden rounded-[4rem_1.5rem_4rem_1.5rem] shadow-2xl">
                 <img
-                  src="/pizza-prova01.jpg"
+                  src="/sala-illume.jpg"
                   alt="Pizza emiliana Illume"
                   className="h-full w-full object-cover"
                 />
