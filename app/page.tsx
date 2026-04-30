@@ -8,24 +8,24 @@ import Footer from "./components/Footer";
 const reasons = [
   "Pizza contemporanea",
   "Cucina emiliana",
-  "Atmosfera calda",
+  "Ingredienti selezionati",
   "Prenotazione semplice",
 ];
 
 const menuPreview = [
   {
     name: "Margherita D.O.P.",
-    desc: "Pomodoro San Marzano, bufala, basilico fresco, olio EVO.",
+    desc: "Pomodoro San Marzano, bufala, basilico fresco e olio EVO.",
     price: "€10",
   },
   {
     name: "Emiliana",
-    desc: "Fior di latte, Prosciutto di Parma 24 mesi, Parmigiano Reggiano.",
+    desc: "Fior di latte, Prosciutto di Parma 24 mesi e Parmigiano Reggiano.",
     price: "€14",
   },
   {
     name: "Diavola Calabra",
-    desc: "Pomodoro, spianata piccante, ’nduja di Spilinga, olive taggiasche.",
+    desc: "Pomodoro, spianata piccante, ’nduja di Spilinga e olive taggiasche.",
     price: "€12",
   },
 ];
@@ -33,43 +33,33 @@ const menuPreview = [
 const ingredients = [
   {
     src: "/tomato.webp",
-    className: "left-[-3rem] top-[9rem] w-36 rotate-[-12deg] opacity-70 md:w-52",
+    className:
+      "left-[-3rem] top-[11rem] w-32 rotate-[-12deg] opacity-55 md:w-48 lg:w-56",
   },
   {
     src: "/basil.webp",
-    className: "right-[5%] top-[16rem] w-28 rotate-[18deg] opacity-55 md:w-40",
-  },
-  {
-    src: "/lemon.webp",
-    className: "left-[7%] top-[54rem] w-32 rotate-[8deg] opacity-60 md:w-44",
-  },
-  {
-    src: "/mozzarella.webp",
-    className: "right-[-3rem] top-[86rem] w-40 rotate-[-8deg] opacity-55 md:w-56",
+    className:
+      "right-[6%] top-[39rem] w-24 rotate-[18deg] opacity-45 md:w-36 lg:w-44",
   },
   {
     src: "/grana-padano.webp",
-    className: "left-[-4rem] top-[120rem] w-44 rotate-[10deg] opacity-55 md:w-60",
+    className:
+      "left-[-4rem] top-[103rem] w-40 rotate-[10deg] opacity-45 md:w-56 lg:w-64",
   },
   {
-    src: "/porcino.webp",
-    className: "right-[5%] top-[148rem] w-36 rotate-[-5deg] opacity-55 md:w-52",
-  },
-  {
-    src: "/pizzacartone.webp",
-    className: "left-[4%] top-[185rem] w-36 rotate-[9deg] opacity-50 md:w-52",
+    src: "/mozzarella.webp",
+    className:
+      "right-[-4rem] top-[140rem] w-36 rotate-[-8deg] opacity-45 md:w-52 lg:w-64",
   },
   {
     src: "/farina.webp",
-    className: "right-[-4rem] top-[220rem] w-44 rotate-[-8deg] opacity-55 md:w-64",
+    className:
+      "left-[2%] top-[197rem] w-44 rotate-[-6deg] opacity-40 md:w-64 lg:w-72",
   },
   {
     src: "/parsley.webp",
-    className: "left-[2%] bottom-[42rem] w-32 rotate-[14deg] opacity-50 md:w-48",
-  },
-  {
-    src: "/salame.webp",
-    className: "right-[4%] bottom-[18rem] w-36 rotate-[-10deg] opacity-55 md:w-52",
+    className:
+      "right-[5%] bottom-[43rem] w-28 rotate-[14deg] opacity-40 md:w-44 lg:w-52",
   },
 ];
 
@@ -86,44 +76,49 @@ function IngredientBackground() {
         />
       ))}
 
-      {/* mobile: pochi elementi, altrimenti diventa una tovaglia troppo apparecchiata */}
       <img
-        src="/tomato.png"
+        src="/tomato.webp"
         alt=""
-        className="absolute left-[-3rem] top-[20rem] w-32 rotate-[-12deg] opacity-35 md:hidden"
+        className="absolute left-[-3rem] top-[22rem] w-32 rotate-[-12deg] opacity-25 md:hidden"
         loading="lazy"
       />
       <img
-        src="/basil.png"
+        src="/basil.webp"
         alt=""
-        className="absolute right-[-2rem] top-[58rem] w-28 rotate-[18deg] opacity-35 md:hidden"
+        className="absolute right-[-2rem] top-[72rem] w-28 rotate-[18deg] opacity-25 md:hidden"
         loading="lazy"
       />
       <img
-        src="/lemon.png"
+        src="/farina.webp"
         alt=""
-        className="absolute left-[-2rem] top-[118rem] w-32 rotate-[8deg] opacity-35 md:hidden"
-        loading="lazy"
-      />
-      <img
-        src="/farina.png"
-        alt=""
-        className="absolute right-[-4rem] bottom-[34rem] w-40 rotate-[-10deg] opacity-35 md:hidden"
+        className="absolute left-[-4rem] bottom-[42rem] w-40 rotate-[-10deg] opacity-25 md:hidden"
         loading="lazy"
       />
     </div>
   );
 }
 
+function SoftColorBackground() {
+  return (
+    <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+      <div className="absolute inset-0 bg-[#fbf7ef]" />
+
+      <div className="absolute left-[-12rem] top-[10rem] h-[34rem] w-[34rem] rounded-full bg-[#e98f81]/24 blur-[95px]" />
+      <div className="absolute right-[-10rem] top-[45rem] h-[30rem] w-[30rem] rounded-full bg-[#c9793f]/18 blur-[100px]" />
+      <div className="absolute left-[18%] top-[90rem] h-[28rem] w-[28rem] rounded-full bg-[#b5a02f]/18 blur-[105px]" />
+      <div className="absolute right-[10%] top-[150rem] h-[34rem] w-[34rem] rounded-full bg-[#e98f81]/16 blur-[110px]" />
+      <div className="absolute left-[-8rem] bottom-[38rem] h-[32rem] w-[32rem] rounded-full bg-[#c9793f]/14 blur-[110px]" />
+
+      <div className="absolute inset-0 opacity-[0.36] bg-[radial-gradient(circle_at_1px_1px,rgba(59,42,36,0.10)_1px,transparent_0)] bg-[length:20px_20px]" />
+      <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(255,255,255,0.78),rgba(255,255,255,0.35),rgba(255,255,255,0.62))]" />
+    </div>
+  );
+}
+
 export default function Home() {
   return (
-    <main className="relative overflow-hidden bg-[#fbf7ef] text-[#3b2a24]">
-      {/* texture cartoncino */}
-      <div className="pointer-events-none fixed inset-0 z-0 opacity-[0.42]">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(59,42,36,0.10)_1px,transparent_0)] bg-[length:20px_20px]" />
-        <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(255,255,255,0.72),rgba(233,143,129,0.07),rgba(255,255,255,0.55))]" />
-      </div>
-
+    <main className="relative overflow-hidden text-[#3b2a24]">
+      <SoftColorBackground />
       <IngredientBackground />
 
       <div className="relative z-10">
@@ -134,17 +129,17 @@ export default function Home() {
           <div className="mx-auto grid min-h-[78vh] max-w-7xl items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
             <div className="relative z-10">
               <p className="mb-6 text-xs font-black uppercase tracking-[0.35em] text-[#c9793f]">
-                Carpi · Pizzeria contemporanea
+                Carpi · Pizzeria e cucina emiliana
               </p>
 
               <h1 className="max-w-5xl font-serif text-6xl italic leading-[0.88] tracking-tight text-[#3b2a24] md:text-8xl lg:text-9xl">
-                La serata giusta inizia dalla pizza.
+                Pizza fatta bene, cucina di casa.
               </h1>
 
               <p className="mt-8 max-w-2xl text-lg leading-8 text-[#3b2a24]/75 md:text-xl">
-                Illume è pizza contemporanea, cucina emiliana e atmosfera calda:
-                il posto dove prenotare quando vuoi mangiare bene, stare comodo e
-                goderti la cena senza complicazioni.
+                Illume è il posto dove venire quando vuoi una pizza fragrante,
+                piatti emiliani sinceri e una cena tranquilla, senza troppe
+                cerimonie. Il forno lavora, il tavolo ti aspetta.
               </p>
 
               <div className="mt-10 flex flex-col gap-4 sm:flex-row">
@@ -188,14 +183,14 @@ export default function Home() {
 
               <div className="absolute bottom-4 left-0 w-[72%] rounded-[2.5rem] border border-white/60 bg-white/55 p-6 shadow-2xl backdrop-blur-2xl md:p-8">
                 <p className="text-xs font-black uppercase tracking-[0.28em] text-[#b5a02f]">
-                  Prenota senza pensarci troppo
+                  Dal forno al tavolo
                 </p>
                 <h2 className="mt-3 font-serif text-4xl italic leading-tight">
-                  Tavolo, pizza, luce calda.
+                  Impasto, ingredienti, compagnia.
                 </h2>
                 <p className="mt-3 leading-7 text-[#3b2a24]/70">
-                  Se hai già fame, il percorso è semplice: scegli il tavolo e
-                  vieni da Illume.
+                  Una cena semplice, fatta come si deve. Che poi è ancora la cosa
+                  più difficile da trovare.
                 </p>
               </div>
 
@@ -211,19 +206,20 @@ export default function Home() {
             <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
               <div>
                 <p className="text-xs font-black uppercase tracking-[0.35em] text-[#c9793f]">
-                  Prima scelta
+                  A tavola senza complicarsi la vita
                 </p>
 
                 <h2 className="mt-5 max-w-3xl font-serif text-5xl italic leading-tight md:text-7xl">
-                  Quando cerchi una cena facile da scegliere.
+                  Quando vuoi mangiare bene e andare sul sicuro.
                 </h2>
               </div>
 
               <div className="rounded-[3rem] border border-white/60 bg-white/60 p-7 shadow-xl backdrop-blur-2xl md:p-10">
                 <p className="text-xl leading-9 text-[#3b2a24]/75">
-                  A volte non vuoi “provare un posto”. Vuoi semplicemente andare
-                  sul sicuro: una pizza fatta bene, un ambiente piacevole, un menu
-                  chiaro e un tavolo dove stare bene. Illume nasce per questo.
+                  Ci sono sere in cui non cerchi esperimenti strani. Cerchi una
+                  pizza con un buon impasto, ingredienti riconoscibili, qualche
+                  piatto della tradizione emiliana e un ambiente dove stare bene.
+                  Illume nasce per quelle sere lì.
                 </p>
 
                 <div className="mt-8">
@@ -254,10 +250,10 @@ export default function Home() {
 
               <div className="absolute bottom-0 right-0 max-w-sm rounded-[2.5rem] bg-[#e98f81] p-8 shadow-2xl">
                 <h3 className="font-serif text-4xl italic leading-tight">
-                  Profumo di forno, sapore di casa.
+                  Profumo di forno, sapore emiliano.
                 </h3>
                 <p className="mt-4 leading-8 text-[#3b2a24]/75">
-                  Contemporanea nel modo, sincera nel gusto.
+                  Contemporanea nell’impasto, concreta nel gusto.
                 </p>
               </div>
             </div>
@@ -268,12 +264,13 @@ export default function Home() {
               </p>
 
               <h2 className="mt-5 font-serif text-5xl italic leading-tight md:text-7xl">
-                Poche indecisioni, molta fame.
+                Pizze, cucina e cose buone fatte come si deve.
               </h2>
 
               <p className="mt-6 max-w-xl text-lg leading-8 text-[#3b2a24]/70">
-                Una selezione pensata per farti scegliere bene: pizze fragranti,
-                ingredienti riconoscibili e sapori che arrivano dritti.
+                Una selezione pensata per scegliere senza perdersi: pizze
+                fragranti, ingredienti italiani e sapori familiari, quelli che
+                non hanno bisogno di presentazioni lunghe.
               </p>
 
               <div className="mt-8 space-y-4">
@@ -325,7 +322,7 @@ export default function Home() {
               </p>
 
               <h2 className="mt-5 font-serif text-5xl italic leading-tight md:text-7xl">
-                Non è solo dove mangi. È come ti senti mentre sei lì.
+                Una sala calda, un tavolo comodo, una cena che scorre bene.
               </h2>
             </div>
 
@@ -341,26 +338,26 @@ export default function Home() {
 
               <div className="grid gap-5 lg:col-span-5">
                 <div className="rounded-[3rem] bg-[#c9793f] p-8 text-[#fbf7ef] shadow-xl">
-                  <h3 className="font-serif text-5xl italic">Caldo.</h3>
+                  <h3 className="font-serif text-5xl italic">Accogliente.</h3>
                   <p className="mt-5 text-lg leading-8 text-[#fbf7ef]/80">
-                    Colori morbidi, luce gentile e un ambiente che non vuole
-                    impressionarti: vuole farti restare.
+                    Un ambiente curato, caldo e rilassato. Non serve fare scena:
+                    quando si sta bene, si capisce subito.
                   </p>
                 </div>
 
                 <div className="rounded-[3rem] border border-white/60 bg-white/60 p-8 shadow-xl backdrop-blur-2xl">
-                  <h3 className="font-serif text-5xl italic">Semplice.</h3>
+                  <h3 className="font-serif text-5xl italic">Sincero.</h3>
                   <p className="mt-5 text-lg leading-8 text-[#3b2a24]/70">
-                    Menu leggibile, prenotazione chiara, serata fluida. Le cose
-                    buone non hanno bisogno di fare rumore.
+                    Menu leggibile, sapori chiari, ingredienti scelti con criterio.
+                    La tradizione non va complicata, va rispettata.
                   </p>
                 </div>
 
                 <div className="rounded-[3rem] bg-[#b5a02f] p-8 text-[#fbf7ef] shadow-xl">
                   <h3 className="font-serif text-5xl italic">Conviviale.</h3>
                   <p className="mt-5 text-lg leading-8 text-[#fbf7ef]/85">
-                    Perfetto per una cena tranquilla, un tavolo tra amici o una
-                    serata scelta all’ultimo minuto.
+                    Perfetto per una cena tra amici, una serata in famiglia o un
+                    tavolo deciso all’ultimo minuto.
                   </p>
                 </div>
               </div>
@@ -374,17 +371,17 @@ export default function Home() {
             <div className="grid gap-10 lg:grid-cols-[1fr_0.85fr] lg:items-center">
               <div>
                 <p className="text-xs font-black uppercase tracking-[0.35em] text-[#c9793f]">
-                  Il momento giusto
+                  Prenota il tuo tavolo
                 </p>
 
                 <h2 className="mt-5 font-serif text-5xl italic leading-tight md:text-7xl">
-                  Accendi la serata. Vieni da Illume.
+                  Pizza, cucina emiliana e una serata senza pensieri.
                 </h2>
 
                 <p className="mt-6 max-w-2xl text-lg leading-8 text-[#3b2a24]/70">
                   Prenota adesso e togli il pensiero. Arrivi, ti siedi e scegli
-                  cosa accendere per primo: una pizza, un piatto di cucina o una
-                  serata senza fretta.
+                  cosa ordinare: una pizza, un piatto della cucina o qualcosa da
+                  condividere. Il resto lo fa la tavola.
                 </p>
               </div>
 
@@ -423,7 +420,7 @@ export default function Home() {
 
             <p className="mx-auto mt-7 max-w-2xl text-lg leading-8 text-[#3b2a24]/70">
               Pizza contemporanea, cucina emiliana e atmosfera calda. Se vuoi
-              sederti al tavolo giusto, ti aspettiamo.
+              mangiare bene senza girarci troppo intorno, ti aspettiamo.
             </p>
 
             <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
