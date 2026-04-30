@@ -32,7 +32,7 @@ const menuPreview = [
 
 const ingredients = [
   {
-    src: "/tomato.png",
+    src: "/tomato.webp",
     className: "left-[-3rem] top-[9rem] w-36 rotate-[-12deg] opacity-70 md:w-52",
   },
   {
@@ -48,11 +48,11 @@ const ingredients = [
     className: "right-[-3rem] top-[86rem] w-40 rotate-[-8deg] opacity-55 md:w-56",
   },
   {
-    src: "/grana-padano.png",
+    src: "/grana-padano.webp",
     className: "left-[-4rem] top-[120rem] w-44 rotate-[10deg] opacity-55 md:w-60",
   },
   {
-    src: "/porcino.png",
+    src: "/porcino.webp",
     className: "right-[5%] top-[148rem] w-36 rotate-[-5deg] opacity-55 md:w-52",
   },
   {
