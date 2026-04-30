@@ -160,7 +160,7 @@ export default function MenuPage() {
             <h1 className="text-6xl italic font-serif">Menu</h1>
 
             <p className="mt-6 text-lg opacity-70">
-              Poche scelte. Fatte bene.
+              Scopri i nostri piatti gustosi.
             </p>
           </div>
 
