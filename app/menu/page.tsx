@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
@@ -24,7 +23,6 @@ const sections: MenuSection[] = [
         name: "Gnocco fritto di pizza",
         price: "15.00",
         desc: "Servito con selezione salumi Villani e formaggi Valsamoggia.",
-        highlight: true,
       },
       { name: "Tris di frittatine artigianali", price: "14.00" },
       { name: "Frittatina Lasagna Bolo", price: "5.50" },
@@ -41,25 +39,15 @@ const sections: MenuSection[] = [
         name: "Tortellini in brodo",
         price: "16.00",
         desc: "Tortellante. Abbinamento: Lusvardi Blanc.",
-        highlight: true,
       },
       {
         name: "Tortellini crema di parmigiano",
         price: "16.00",
         desc: "Abbinamento: Lusvardi Robin.",
       },
-      {
-        name: "Tagliatelle ai porcini",
-        price: "15.50",
-      },
-      {
-        name: "Lasagna alla bolognese",
-        price: "13.50",
-      },
-      {
-        name: "Tagliatelle al ragù",
-        price: "12.00",
-      },
+      { name: "Tagliatelle ai porcini", price: "15.50" },
+      { name: "Lasagna alla bolognese", price: "13.50" },
+      { name: "Tagliatelle al ragù", price: "12.00" },
     ],
   },
 
@@ -69,8 +57,7 @@ const sections: MenuSection[] = [
       {
         name: "Genovese di mare",
         price: "16.00",
-        desc: "Genovese di tonno, provola affumicata, bottarga, lime, timo.",
-        highlight: true,
+        desc: "Tonno, provola affumicata, bottarga, lime, timo.",
       },
       {
         name: "Nerano",
@@ -81,16 +68,9 @@ const sections: MenuSection[] = [
         name: "Mortazza",
         price: "14.50",
         desc: "Mortadella Villani, squacquerone, pistacchio.",
-        highlight: true,
       },
-      {
-        name: "Margherita Emiliana",
-        price: "13.50",
-      },
-      {
-        name: "Provola e pepe",
-        price: "12.50",
-      },
+      { name: "Margherita Emiliana", price: "13.50" },
+      { name: "Provola e pepe", price: "12.50" },
     ],
   },
 
@@ -122,15 +102,8 @@ const sections: MenuSection[] = [
   {
     title: "Dolci",
     items: [
-      {
-        name: "Torta di pane, amaretti e cioccolato",
-        price: "7.50",
-      },
-      {
-        name: "Tiramisù Illume",
-        price: "6.50",
-        highlight: true,
-      },
+      { name: "Torta di pane, amaretti e cioccolato", price: "7.50" },
+      { name: "Tiramisù Illume", price: "6.50" },
     ],
   },
 
@@ -152,11 +125,7 @@ const sections: MenuSection[] = [
   {
     title: "Cocktail & Spritz",
     items: [
-      {
-        name: "Spritz Illume",
-        price: "8.00",
-        highlight: true,
-      },
+      { name: "Spritz Illume", price: "8.00" },
       { name: "Aperol Spritz", price: "6.00" },
       { name: "Gin Tonic", price: "8.00" },
       { name: "Gin Tonic Special", price: "10.00" },
@@ -191,21 +160,17 @@ export default function MenuPage() {
             <h1 className="text-6xl italic font-serif">Menu</h1>
 
             <p className="mt-6 text-lg opacity-70">
-              Scegli cosa mangiare. Prenota. Vieni. Fine.
+              Poche scelte. Fatte bene.
             </p>
-
-            <Link
-              href="/prenotazioni"
-              className="mt-8 inline-block bg-[#c9793f] text-white px-8 py-4 rounded-full uppercase text-sm font-bold"
-            >
-              Prenota ora
-            </Link>
           </div>
 
           {/* MENU */}
           <div className="grid md:grid-cols-2 gap-10">
             {sections.map((section) => (
-              <div key={section.title} className="bg-white/60 p-6 rounded-2xl backdrop-blur-lg">
+              <div
+                key={section.title}
+                className="bg-white/60 p-6 rounded-2xl backdrop-blur-lg"
+              >
                 <h2 className="text-xs uppercase tracking-widest text-[#c9793f] mb-6 font-bold">
                   {section.title}
                 </h2>
@@ -215,31 +180,21 @@ export default function MenuPage() {
                     <div key={item.name}>
                       <div className="flex justify-between">
                         <span className="font-semibold">{item.name}</span>
-                        <span className="text-[#c9793f]">{item.price}</span>
+                        <span className="text-[#c9793f]">
+                          €{item.price}
+                        </span>
                       </div>
 
                       {item.desc && (
-                        <p className="text-sm opacity-60 italic">{item.desc}</p>
+                        <p className="text-sm opacity-60 italic">
+                          {item.desc}
+                        </p>
                       )}
                     </div>
                   ))}
                 </div>
               </div>
             ))}
-          </div>
-
-          {/* CTA FINALE */}
-          <div className="text-center mt-20">
-            <h2 className="text-4xl italic font-serif">
-              Hai già deciso.
-            </h2>
-
-            <Link
-              href="/prenotazioni"
-              className="mt-6 inline-block bg-[#3b2a24] text-white px-8 py-4 rounded-full uppercase text-sm font-bold"
-            >
-              Prenota il tuo tavolo
-            </Link>
           </div>
 
         </div>
