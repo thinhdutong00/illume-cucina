@@ -36,11 +36,11 @@ const ingredients = [
     className: "left-[-3rem] top-[9rem] w-36 rotate-[-12deg] opacity-70 md:w-52",
   },
   {
-    src: "/basil.png",
+    src: "/basil.webp",
     className: "right-[5%] top-[16rem] w-28 rotate-[18deg] opacity-55 md:w-40",
   },
   {
-    src: "/lemon.png",
+    src: "/lemon.webp",
     className: "left-[7%] top-[54rem] w-32 rotate-[8deg] opacity-60 md:w-44",
   },
   {
@@ -56,19 +56,19 @@ const ingredients = [
     className: "right-[5%] top-[148rem] w-36 rotate-[-5deg] opacity-55 md:w-52",
   },
   {
-    src: "/champignon.png",
+    src: "/champignon.webp",
     className: "left-[4%] top-[185rem] w-36 rotate-[9deg] opacity-50 md:w-52",
   },
   {
-    src: "/farina.png",
+    src: "/farina.webp",
     className: "right-[-4rem] top-[220rem] w-44 rotate-[-8deg] opacity-55 md:w-64",
   },
   {
-    src: "/parsley.png",
+    src: "/parsley.webp",
     className: "left-[2%] bottom-[42rem] w-32 rotate-[14deg] opacity-50 md:w-48",
   },
   {
-    src: "/salame.png",
+    src: "/salame.webp",
     className: "right-[4%] bottom-[18rem] w-36 rotate-[-10deg] opacity-55 md:w-52",
   },
 ];
