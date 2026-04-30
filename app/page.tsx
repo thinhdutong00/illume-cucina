@@ -34,32 +34,32 @@ const ingredients = [
   {
     src: "/tomato.webp",
     className:
-      "left-[-2rem] top-[33rem] w-28 rotate-[-13deg] opacity-42 md:w-40 lg:w-48 xl:w-52",
+      "left-[-2rem] top-[36rem] w-28 rotate-[-13deg] opacity-38 md:w-40 lg:w-48 xl:w-52",
   },
   {
     src: "/basil.webp",
     className:
-      "right-[4%] top-[58rem] w-20 rotate-[18deg] opacity-38 md:w-28 lg:w-36",
+      "right-[4%] top-[78rem] w-20 rotate-[18deg] opacity-34 md:w-28 lg:w-36",
   },
   {
     src: "/grana-padano.webp",
     className:
-      "left-[-3.5rem] top-[112rem] w-36 rotate-[9deg] opacity-38 md:w-48 lg:w-60",
+      "left-[-3.5rem] top-[132rem] w-36 rotate-[9deg] opacity-36 md:w-48 lg:w-60",
   },
   {
     src: "/mozzarella.webp",
     className:
-      "right-[-4rem] top-[160rem] w-32 rotate-[-8deg] opacity-36 md:w-44 lg:w-56",
+      "right-[-4rem] top-[188rem] w-32 rotate-[-8deg] opacity-34 md:w-44 lg:w-56",
   },
   {
     src: "/farina.webp",
     className:
-      "left-[1%] top-[222rem] w-36 rotate-[-7deg] opacity-32 md:w-52 lg:w-64",
+      "left-[1%] top-[252rem] w-36 rotate-[-7deg] opacity-30 md:w-52 lg:w-64",
   },
   {
     src: "/parsley.webp",
     className:
-      "right-[4%] bottom-[52rem] w-24 rotate-[14deg] opacity-32 md:w-36 lg:w-44",
+      "right-[4%] bottom-[64rem] w-24 rotate-[14deg] opacity-30 md:w-36 lg:w-44",
   },
 ];
 
@@ -80,19 +80,19 @@ function IngredientBackground() {
             <img
         src="/tomato.webp"
         alt=""
-        className="absolute left-[-3rem] top-[39rem] w-24 rotate-[-12deg] opacity-18 md:hidden"
+        className="absolute left-[-3rem] top-[43rem] w-24 rotate-[-12deg] opacity-16 md:hidden"
         loading="lazy"
       />
       <img
         src="/basil.webp"
         alt=""
-        className="absolute right-[-2rem] top-[102rem] w-20 rotate-[18deg] opacity-18 md:hidden"
+        className="absolute right-[-2rem] top-[116rem] w-20 rotate-[18deg] opacity-16 md:hidden"
         loading="lazy"
       />
       <img
         src="/farina.webp"
         alt=""
-        className="absolute left-[-3.5rem] bottom-[50rem] w-28 rotate-[-10deg] opacity-16 md:hidden"
+        className="absolute left-[-3.5rem] bottom-[58rem] w-28 rotate-[-10deg] opacity-14 md:hidden"
         loading="lazy"
       />
     </div>
