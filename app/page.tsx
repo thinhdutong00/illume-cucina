@@ -44,7 +44,7 @@ const ingredients = [
     className: "left-[7%] top-[54rem] w-32 rotate-[8deg] opacity-60 md:w-44",
   },
   {
-    src: "/mozzarella.png",
+    src: "/mozzarella.webp",
     className: "right-[-3rem] top-[86rem] w-40 rotate-[-8deg] opacity-55 md:w-56",
   },
   {
