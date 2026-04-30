@@ -34,32 +34,32 @@ const ingredients = [
   {
     src: "/tomato.webp",
     className:
-      "left-[-2.5rem] top-[33rem] w-36 rotate-[-13deg] opacity-45 md:w-48 lg:w-56 xl:w-64",
+      "left-[-3rem] top-[38rem] w-36 rotate-[-14deg] opacity-42 md:w-48 lg:w-60 xl:w-64",
   },
   {
     src: "/basil.webp",
     className:
-      "right-[3%] top-[58rem] w-24 rotate-[18deg] opacity-40 md:w-36 lg:w-44",
+      "right-[7%] top-[72rem] w-24 rotate-[18deg] opacity-38 md:w-36 lg:w-44",
   },
   {
     src: "/grana-padano.webp",
     className:
-      "left-[-4rem] top-[112rem] w-44 rotate-[9deg] opacity-40 md:w-56 lg:w-72",
+      "left-[-5rem] top-[126rem] w-44 rotate-[8deg] opacity-40 md:w-60 lg:w-76 xl:w-80",
   },
   {
     src: "/mozzarella.webp",
     className:
-      "right-[-5rem] top-[160rem] w-40 rotate-[-8deg] opacity-38 md:w-56 lg:w-72",
+      "right-[-5.5rem] top-[174rem] w-40 rotate-[-9deg] opacity-38 md:w-56 lg:w-72",
   },
   {
     src: "/farina.webp",
     className:
-      "left-[1%] top-[222rem] w-44 rotate-[-7deg] opacity-35 md:w-64 lg:w-80",
+      "left-[3%] top-[238rem] w-44 rotate-[-7deg] opacity-34 md:w-64 lg:w-80",
   },
   {
     src: "/parsley.webp",
     className:
-      "right-[4%] bottom-[52rem] w-28 rotate-[14deg] opacity-35 md:w-44 lg:w-56",
+      "right-[6%] bottom-[58rem] w-28 rotate-[13deg] opacity-34 md:w-44 lg:w-56",
   },
 ];
 
@@ -76,23 +76,23 @@ function IngredientBackground() {
         />
       ))}
 
-      {/* Mobile: pochi elementi, piccoli e lontani dal testo */}
+      {/* Mobile: pochi elementi, piccoli e lontani dai blocchi di testo */}
       <img
         src="/tomato.webp"
         alt=""
-        className="absolute left-[-3.5rem] top-[39rem] w-28 rotate-[-12deg] opacity-20 md:hidden"
+        className="absolute left-[-3.5rem] top-[44rem] w-28 rotate-[-12deg] opacity-20 md:hidden"
         loading="lazy"
       />
       <img
         src="/basil.webp"
         alt=""
-        className="absolute right-[-2.5rem] top-[102rem] w-24 rotate-[18deg] opacity-20 md:hidden"
+        className="absolute right-[-2.5rem] top-[112rem] w-24 rotate-[18deg] opacity-20 md:hidden"
         loading="lazy"
       />
       <img
         src="/farina.webp"
         alt=""
-        className="absolute left-[-4rem] bottom-[50rem] w-36 rotate-[-10deg] opacity-18 md:hidden"
+        className="absolute left-[-4rem] bottom-[54rem] w-36 rotate-[-10deg] opacity-18 md:hidden"
         loading="lazy"
       />
     </div>
@@ -130,18 +130,18 @@ export default function Home() {
           <div className="mx-auto grid min-h-[78vh] max-w-7xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
             <div className="relative z-10">
               <p className="mb-5 text-[0.68rem] font-black uppercase tracking-[0.28em] text-[#c9793f] sm:text-xs sm:tracking-[0.35em]">
-                Pizzeria e cucina emiliana nel centro di Carpi
+                Ristorante pizzeria nel centro di Carpi
               </p>
 
               <h1 className="max-w-5xl font-serif text-5xl italic leading-[0.9] tracking-tight text-[#3b2a24] sm:text-6xl md:text-8xl lg:text-9xl">
-                Pizza fatta bene, cucina di casa.
+                Pizza contemporanea, anima emiliana.
               </h1>
 
               <p className="mt-7 max-w-2xl text-base leading-8 text-[#3b2a24]/75 sm:text-lg md:text-xl">
-                Illume è un ristorante pizzeria in centro a Carpi, pensato per
-                chi vuole una pizza fragrante, piatti emiliani sinceri e una
-                cena comoda da organizzare. Sei già in centro, ti siedi, scegli
-                bene e la serata parte con il piede giusto.
+                Illume è un ristorante pizzeria in centro a Carpi dove la pizza
+                incontra la cucina emiliana di tradizione. Una posizione comoda
+                nel cuore della città, una sala accogliente e un menu pensato per
+                chi vuole cenare bene, senza complicarsi la serata.
               </p>
 
               <div className="mt-9 flex flex-col gap-4 sm:flex-row">
@@ -186,14 +186,15 @@ export default function Home() {
 
               <div className="absolute bottom-3 left-0 w-[88%] rounded-[2rem] border border-white/60 bg-white/60 p-5 shadow-2xl backdrop-blur-2xl sm:w-[74%] sm:rounded-[2.5rem] sm:p-7 md:p-8">
                 <p className="text-[0.65rem] font-black uppercase tracking-[0.24em] text-[#b5a02f] sm:text-xs sm:tracking-[0.28em]">
-                  Dal forno al tavolo
+                  Dal forno alla tavola
                 </p>
                 <h2 className="mt-3 font-serif text-3xl italic leading-tight sm:text-4xl">
-                  Impasto, ingredienti, compagnia.
+                  Impasto curato, sapori riconoscibili.
                 </h2>
                 <p className="mt-3 text-sm leading-7 text-[#3b2a24]/70 sm:text-base">
-                  Una cena semplice, fatta come si deve. Che poi è ancora la cosa
-                  più difficile da trovare.
+                  Una pizza fatta con attenzione, piatti emiliani sinceri e il
+                  piacere semplice di sedersi a tavola senza dover pensare ad
+                  altro.
                 </p>
               </div>
 
@@ -209,21 +210,22 @@ export default function Home() {
             <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
               <div>
                 <p className="text-[0.68rem] font-black uppercase tracking-[0.28em] text-[#c9793f] sm:text-xs sm:tracking-[0.35em]">
-                  Una scelta semplice in centro
+                  Nel cuore della città
                 </p>
 
                 <h2 className="mt-5 max-w-3xl font-serif text-4xl italic leading-tight sm:text-5xl md:text-7xl">
-                  Quando vuoi mangiare bene senza girare mezza città.
+                  Il posto giusto quando la cena deve riuscire bene.
                 </h2>
               </div>
 
               <div className="rounded-[2.25rem] border border-white/60 bg-white/60 p-6 shadow-xl backdrop-blur-2xl sm:rounded-[3rem] md:p-10">
                 <p className="text-base leading-8 text-[#3b2a24]/75 sm:text-xl sm:leading-9">
-                  Siamo in una posizione comoda del centro di Carpi: ideale per
-                  una cena dopo un giro in centro, un tavolo tra amici o una
-                  serata decisa senza troppe complicazioni. Da Illume trovi pizza
-                  contemporanea, cucina emiliana e un ambiente caldo dove stare
-                  bene dall’inizio alla fine.
+                  Ci sono sere in cui vuoi una scelta sicura: una pizzeria in
+                  centro a Carpi, facile da inserire nella serata, con una cucina
+                  capace di parlare emiliano senza diventare pesante. Illume nasce
+                  per questo: pizza contemporanea, piatti di tradizione e un
+                  ambiente caldo dove il tavolo diventa subito il centro della
+                  serata.
                 </p>
 
                 <div className="mt-8">
@@ -255,28 +257,29 @@ export default function Home() {
 
               <div className="absolute bottom-0 right-0 max-w-[19rem] rounded-[2rem] bg-[#e98f81] p-6 shadow-2xl sm:max-w-sm sm:rounded-[2.5rem] sm:p-8">
                 <h3 className="font-serif text-3xl italic leading-tight sm:text-4xl">
-                  Profumo di forno, sapore emiliano.
+                  Il forno dà il ritmo, l’Emilia dà il carattere.
                 </h3>
                 <p className="mt-4 text-sm leading-7 text-[#3b2a24]/75 sm:text-base sm:leading-8">
-                  Contemporanea nell’impasto, concreta nel gusto.
+                  Una cucina concreta, fatta di ingredienti riconoscibili e
+                  sapori che non hanno bisogno di alzare la voce.
                 </p>
               </div>
             </div>
 
             <div>
               <p className="text-[0.68rem] font-black uppercase tracking-[0.28em] text-[#b5a02f] sm:text-xs sm:tracking-[0.35em]">
-                Pizza e cucina
+                Pizza e cucina emiliana
               </p>
 
               <h2 className="mt-5 font-serif text-4xl italic leading-tight sm:text-5xl md:text-7xl">
-                Un menu pensato per scegliere bene.
+                Un menu che fa venire fame prima ancora di scegliere.
               </h2>
 
               <p className="mt-6 max-w-xl text-base leading-8 text-[#3b2a24]/70 sm:text-lg">
-                Nel menu trovi pizze fragranti, ingredienti italiani e piatti
-                legati alla cucina emiliana. Una proposta chiara, curata e
-                familiare: abbastanza ricca da farti venire fame, abbastanza
-                semplice da non farti perdere dieci minuti davanti alla carta.
+                La proposta di Illume unisce pizze fragranti, ingredienti italiani
+                e piatti legati alla tradizione emiliana. Una carta chiara,
+                curata e piacevole da leggere: abbastanza ricca per tornare più
+                volte, abbastanza diretta da farti ordinare senza indecisioni.
               </p>
 
               <div className="mt-8 space-y-4">
@@ -324,11 +327,11 @@ export default function Home() {
           <div className="mx-auto max-w-7xl">
             <div className="mb-10 max-w-4xl sm:mb-12">
               <p className="text-[0.68rem] font-black uppercase tracking-[0.28em] text-[#c9793f] sm:text-xs sm:tracking-[0.35em]">
-                Ristorante pizzeria a Carpi
+                Una sala accogliente nel centro di Carpi
               </p>
 
               <h2 className="mt-5 font-serif text-4xl italic leading-tight sm:text-5xl md:text-7xl">
-                Una sala calda, un tavolo comodo, una cena che scorre bene.
+                L’atmosfera giusta fa arrivare meglio anche il primo morso.
               </h2>
             </div>
 
@@ -349,9 +352,9 @@ export default function Home() {
                     Accogliente.
                   </h3>
                   <p className="mt-5 text-base leading-8 text-[#fbf7ef]/80 sm:text-lg">
-                    Un ambiente curato, caldo e rilassato. Adatto a una cena in
-                    coppia, tra amici o in famiglia, senza quell’aria ingessata
-                    che rovina anche il pane buono.
+                    Una sala calda, curata e rilassata. Il tipo di ambiente dove
+                    una cena in coppia, tra amici o in famiglia trova subito il
+                    tono giusto.
                   </p>
                 </div>
 
@@ -361,7 +364,8 @@ export default function Home() {
                   </h3>
                   <p className="mt-5 text-base leading-8 text-[#3b2a24]/70 sm:text-lg">
                     Pizza, cucina emiliana e sapori chiari. La tradizione non va
-                    complicata per sembrare interessante: va fatta bene.
+                    mascherata per sembrare moderna: va rispettata e portata bene
+                    a tavola.
                   </p>
                 </div>
 
@@ -370,9 +374,9 @@ export default function Home() {
                     Centrale.
                   </h3>
                   <p className="mt-5 text-base leading-8 text-[#fbf7ef]/85 sm:text-lg">
-                    Sei nel centro di Carpi, in una posizione comoda per
-                    raggiungerci quando vuoi organizzare una cena senza perdere
-                    tempo a cercare il posto giusto.
+                    Illume si trova nel centro di Carpi, in una posizione comoda
+                    per organizzare una cena, incontrarsi a tavola e proseguire la
+                    serata con naturalezza.
                   </p>
                 </div>
               </div>
@@ -390,14 +394,14 @@ export default function Home() {
                 </p>
 
                 <h2 className="mt-5 font-serif text-4xl italic leading-tight sm:text-5xl md:text-7xl">
-                  Pizza, cucina emiliana e una serata senza pensieri.
+                  La cena è più semplice quando sai già dove andare.
                 </h2>
 
                 <p className="mt-6 max-w-2xl text-base leading-8 text-[#3b2a24]/70 sm:text-lg">
                   Se cerchi una pizzeria a Carpi dove mangiare bene e prenotare
-                  senza complicazioni, Illume è una scelta semplice: sei in
-                  centro, trovi una sala accogliente e un menu pensato per una
-                  cena completa, dalla pizza ai piatti della cucina emiliana.
+                  senza complicazioni, Illume è una scelta naturale: sei in centro,
+                  trovi un ambiente accogliente e un menu pensato per una cena
+                  completa, dalla pizza ai piatti della cucina emiliana.
                 </p>
               </div>
 
@@ -406,10 +410,11 @@ export default function Home() {
                   Prenotazioni
                 </p>
                 <h3 className="mt-4 font-serif text-4xl italic leading-tight sm:text-5xl">
-                  Tavolo per stasera?
+                  Hai già scelto la serata?
                 </h3>
                 <p className="mt-5 leading-8 text-[#fbf7ef]/75">
-                  Il modo più rapido per assicurarti il posto da Illume.
+                  Prenota il tuo tavolo da Illume e goditi una cena in centro a
+                  Carpi tra pizza, cucina emiliana e buona compagnia.
                 </p>
 
                 <Link
@@ -431,13 +436,13 @@ export default function Home() {
             </p>
 
             <h2 className="mx-auto mt-5 max-w-5xl font-serif text-5xl italic leading-[0.95] sm:text-6xl md:text-8xl">
-              Il tavolo giusto cambia tutta la cena.
+              Una buona cena non ha bisogno di spiegarsi troppo.
             </h2>
 
             <p className="mx-auto mt-7 max-w-2xl text-base leading-8 text-[#3b2a24]/70 sm:text-lg">
               Nel centro di Carpi, Illume unisce pizza contemporanea, cucina
-              emiliana e un’atmosfera calda. Per una cena fatta bene, senza
-              bisogno di farla troppo lunga.
+              emiliana e un’atmosfera calda. Prenota il tuo tavolo e scegli una
+              cena fatta bene, dall’inizio alla fine.
             </p>
 
             <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
