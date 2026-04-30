@@ -378,7 +378,7 @@ export default function Home() {
                 </p>
 
                 <h2 className="mt-5 font-serif text-5xl italic leading-tight md:text-7xl">
-                  Se stai guardando il menu, probabilmente hai già deciso.
+                  Accendi la serata. Vieni da Illume
                 </h2>
 
                 <p className="mt-6 max-w-2xl text-lg leading-8 text-[#3b2a24]/70">
