@@ -329,7 +329,7 @@ export default function Home() {
             <div className="grid gap-5 lg:grid-cols-12">
               <div className="relative h-[580px] overflow-hidden rounded-[4rem] shadow-2xl lg:col-span-7">
                 <Image
-                  src="/illume-esterno.png"
+                  src="/illume-interno02.png"
                   alt="Illume Carpi"
                   fill
                   className="object-cover"
