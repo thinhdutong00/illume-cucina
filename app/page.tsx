@@ -68,6 +68,10 @@ const ingredients = [
     className: "left-[2%] bottom-[42rem] w-32 rotate-[14deg] opacity-50 md:w-48",
   },
   {
+    src: "/pizzacartone.webp",
+    className: "left-[2%] bottom-[42rem] w-32 rotate-[14deg] opacity-50 md:w-48",
+  },
+  {
     src: "/salame.webp",
     className: "right-[4%] bottom-[18rem] w-36 rotate-[-10deg] opacity-55 md:w-52",
   },
