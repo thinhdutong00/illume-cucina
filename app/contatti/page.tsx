@@ -99,9 +99,7 @@ export default function Contatti() {
                       <p className="text-xs font-black uppercase tracking-[0.3em] text-[#c9793f]">
                         Orari
                       </p>
-                      <h2 className="font-serif text-3xl italic">
-                        Quando siamo aperti
-                      </h2>
+                      
                     </div>
                   </div>
 
