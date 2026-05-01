@@ -152,51 +152,67 @@ export default function MenuPage() {
     <>
       <Header />
 
-      <main className="bg-[#fbf7ef] text-[#3b2a24] px-6 py-20">
-        <div className="max-w-6xl mx-auto">
+      <main className="relative overflow-x-hidden bg-[#fbf7ef] text-[#3b2a24]">
+        {/* texture cartoncino */}
+        <div className="pointer-events-none fixed inset-0 z-0 opacity-[0.42]">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(59,42,36,0.10)_1px,transparent_0)] bg-[length:20px_20px]" />
+          <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(255,255,255,0.72),rgba(233,143,129,0.07),rgba(255,255,255,0.55))]" />
+        </div>
 
-          {/* HERO */}
-          <div className="text-center mb-16">
-            <h1 className="text-6xl italic font-serif">Menu</h1>
+        <div className="relative z-10 w-full max-w-full px-4 pb-24 pt-12 sm:px-5 md:px-10 md:pb-32 md:pt-24">
+          <div className="mx-auto w-full max-w-7xl">
+            {/* HERO */}
+            <div className="mb-12 text-center md:mb-16">
+              <p className="mb-5 text-[11px] font-black uppercase tracking-[0.22em] text-[#c9793f] sm:text-xs sm:tracking-[0.35em]">
+                Illume Carpi
+              </p>
 
-            <p className="mt-6 text-lg opacity-70">
-              Scopri i nostri piatti gustosi.
-            </p>
-          </div>
+              <h1 className="font-serif text-5xl italic leading-[0.96] sm:text-6xl md:text-8xl md:leading-[0.9]">
+                Menu
+              </h1>
 
-          {/* MENU */}
-          <div className="grid md:grid-cols-2 gap-10">
-            {sections.map((section) => (
-              <div
-                key={section.title}
-                className="bg-white/60 p-6 rounded-2xl backdrop-blur-lg"
-              >
-                <h2 className="text-xs uppercase tracking-widest text-[#c9793f] mb-6 font-bold">
-                  {section.title}
-                </h2>
+              
+            </div>
 
-                <div className="space-y-4">
-                  {section.items.map((item) => (
-                    <div key={item.name}>
-                      <div className="flex justify-between">
-                        <span className="font-semibold">{item.name}</span>
-                        <span className="text-[#c9793f]">
-                          €{item.price}
-                        </span>
+            {/* MENU */}
+            <div className="grid w-full max-w-full gap-6 md:grid-cols-2 md:gap-8 lg:gap-10">
+              {sections.map((section) => (
+                <div
+                  key={section.title}
+                  className="w-full max-w-full rounded-[2rem] border border-white/70 bg-white/60 p-5 shadow-sm backdrop-blur-lg sm:p-6 md:rounded-[2.5rem]"
+                >
+                  <h2 className="mb-6 break-words text-[11px] font-black uppercase tracking-[0.22em] text-[#c9793f] sm:text-xs sm:tracking-[0.3em]">
+                    {section.title}
+                  </h2>
+
+                  <div className="space-y-4">
+                    {section.items.map((item) => (
+                      <div
+                        key={item.name}
+                        className="border-b border-[#3b2a24]/10 pb-4 last:border-b-0 last:pb-0"
+                      >
+                        <div className="flex min-w-0 items-start justify-between gap-4">
+                          <span className="min-w-0 break-words text-sm font-bold leading-6 text-[#3b2a24] sm:text-base">
+                            {item.name}
+                          </span>
+
+                          <span className="shrink-0 whitespace-nowrap font-serif text-xl italic leading-6 text-[#c9793f] sm:text-2xl">
+                            €{item.price}
+                          </span>
+                        </div>
+
+                        {item.desc && (
+                          <p className="mt-2 max-w-full break-words text-sm italic leading-6 text-[#3b2a24]/60">
+                            {item.desc}
+                          </p>
+                        )}
                       </div>
-
-                      {item.desc && (
-                        <p className="text-sm opacity-60 italic">
-                          {item.desc}
-                        </p>
-                      )}
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-
         </div>
       </main>
 
