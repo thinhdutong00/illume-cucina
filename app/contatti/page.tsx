@@ -155,7 +155,7 @@ export default function Contatti() {
               {/* MAPPA / FOTO */}
               <div className="relative min-h-[620px] overflow-hidden rounded-[4rem_1.5rem_4rem_1.5rem] shadow-2xl">
                 <img
-                  src="/illume-esterno.png"
+                  src="/illume-interno03.jpg"
                   alt="Ingresso Illume a Carpi"
                   className="h-full w-full object-cover"
                 />
