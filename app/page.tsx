@@ -37,7 +37,7 @@ const ingredients = [
       "left-[-2rem] top-[34rem] w-28 rotate-[-13deg] opacity-36 md:w-40 lg:w-48 xl:w-52",
   },
   {
-    src: "/basil.webp",
+    src: "/tagliatelledec.webp",
     className:
       "right-[5%] top-[86rem] w-20 rotate-[18deg] opacity-32 md:w-28 lg:w-36",
   },
