@@ -136,7 +136,7 @@ export default function Header() {
               </div>
 
               <a
-                href="https://maps.google.com"
+                href="https://maps.google.com/?q=Via%20S.%20Francesco%204%20Carpi%20MO"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={[
@@ -156,7 +156,7 @@ export default function Header() {
               className="absolute left-1/2 flex -translate-x-1/2 items-center justify-center"
               aria-label="Vai alla home"
             >
-              <div className="relative h-16 w-44 transition-all duration-500 sm:h-18 sm:w-52 md:h-20 md:w-72 lg:h-24 lg:w-96">
+              <div className="relative h-16 w-44 transition-all duration-500 sm:h-[4.5rem] sm:w-52 md:h-20 md:w-72 lg:h-24 lg:w-96">
                 <Image
                   src="/logo.png"
                   alt="Illume Pizzeria Emiliana"
@@ -229,10 +229,7 @@ export default function Header() {
       </header>
 
       {!isHomePage && (
-        <div
-          aria-hidden="true"
-          className="h-[132px] md:h-[118px]"
-        />
+        <div aria-hidden="true" className="h-[132px] md:h-[118px]" />
       )}
 
       <div
@@ -241,16 +238,16 @@ export default function Header() {
           isMenuOpen ? "translate-x-0" : "translate-x-full",
         ].join(" ")}
       >
-        <div className="relative flex h-full flex-col overflow-hidden bg-[#fbf7ef] text-[#3b2a24]">
+        <div className="relative flex h-full flex-col overflow-y-auto overflow-x-hidden bg-[#fbf7ef] text-[#3b2a24]">
           <div className="pointer-events-none absolute left-[-10%] top-[-10%] h-72 w-72 rounded-full bg-[#e98f81]/25 blur-3xl" />
           <div className="pointer-events-none absolute bottom-[-10%] right-[-10%] h-96 w-96 rounded-full bg-[#c9793f]/20 blur-3xl" />
           <div className="pointer-events-none absolute left-[30%] top-[45%] h-72 w-72 rounded-full bg-[#b5a02f]/15 blur-3xl" />
 
-          <div className="relative z-10 flex items-center justify-between px-6 py-6 md:px-10">
+          <div className="relative z-10 flex items-center justify-between px-5 py-6 md:px-10">
             <Link
               href="/"
               onClick={() => setIsMenuOpen(false)}
-              className="relative h-16 w-52"
+              className="relative h-24 w-72 sm:h-28 sm:w-80 md:h-16 md:w-52"
               aria-label="Vai alla home"
             >
               <Image
@@ -264,30 +261,33 @@ export default function Header() {
             <button
               onClick={() => setIsMenuOpen(false)}
               aria-label="Chiudi menu"
-              className="flex h-12 w-12 items-center justify-center rounded-full border border-[#3b2a24]/10 bg-[#fbf7ef] text-[#3b2a24] transition hover:scale-105"
+              className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#3b2a24]/10 bg-[#fbf7ef] text-[#3b2a24] transition hover:scale-105"
             >
               <X size={24} />
             </button>
           </div>
 
-          <div className="relative z-10 mx-auto grid w-full max-w-7xl flex-1 items-center gap-10 px-6 pb-10 md:grid-cols-[1fr_0.85fr] md:px-10">
+          <div className="relative z-10 mx-auto grid w-full max-w-7xl flex-1 items-center gap-6 px-5 pb-10 md:grid-cols-[1fr_0.85fr] md:gap-10 md:px-10">
             <nav className="flex flex-col gap-4">
               <MenuLink
                 href="/menu"
                 label="Il Menù"
                 close={() => setIsMenuOpen(false)}
+                highlight
               />
+
               <MenuLink
                 href="/informazioni"
                 label="La Visione"
                 close={() => setIsMenuOpen(false)}
               />
+
               <MenuLink
                 href="/prenotazioni"
                 label="Prenota"
                 close={() => setIsMenuOpen(false)}
-                highlight
               />
+
               <MenuLink
                 href="/contatti"
                 label="Dove Siamo"
@@ -295,7 +295,24 @@ export default function Header() {
               />
             </nav>
 
-            <div className="rounded-[2.5rem] border border-[#3b2a24]/10 bg-[#fbf7ef] p-7 shadow-xl md:p-9">
+            {/* MOBILE: tasto chiamata al posto del riquadro descrittivo */}
+            <div className="md:hidden">
+              <a
+                href="tel:+393384622362"
+                onClick={() => setIsMenuOpen(false)}
+                className="flex w-full items-center justify-center gap-3 rounded-full bg-[#3b2a24] px-7 py-5 text-center text-xs font-black uppercase tracking-[0.22em] text-[#fbf7ef] shadow-xl transition hover:bg-[#9b0232]"
+              >
+                <Phone size={18} className="shrink-0 text-[#e98f81]" />
+                Chiama ora
+              </a>
+
+              <p className="mt-4 text-center text-xs font-bold leading-6 text-[#3b2a24]/60">
+                Per prenotazioni rapide o tavoli numerosi.
+              </p>
+            </div>
+
+            {/* DESKTOP: riquadro descrittivo invariato */}
+            <div className="hidden rounded-[2.5rem] border border-[#3b2a24]/10 bg-[#fbf7ef] p-7 shadow-xl md:block md:p-9">
               <p className="text-xs font-black uppercase tracking-[0.3em] text-[#c9793f]">
                 Illume Carpi
               </p>
