@@ -42,7 +42,7 @@ const ingredients = [
     "right-[5%] top-[86rem] w-20 rotate-[18deg] opacity-32 md:w-28 lg:w-72",
 },
   {
-    src: "/grana-padano.webp",
+    src: "/pizzacartone.webp",
     className:
       "left-[-3.5rem] top-[140rem] w-36 rotate-[9deg] opacity-34 md:w-48 lg:w-60",
   },
@@ -52,12 +52,12 @@ const ingredients = [
       "right-[-4rem] top-[182rem] w-32 rotate-[-8deg] opacity-32 md:w-44 lg:w-56",
   },
   {
-    src: "/farina.webp",
+    src: "/grana-padano.webp",
     className:
       "left-[1%] top-[246rem] w-36 rotate-[-7deg] opacity-28 md:w-52 lg:w-64",
   },
   {
-    src: "/parsley.webp",
+    src: "/salame.webp",
     className:
       "right-[4%] top-[304rem] w-24 rotate-[14deg] opacity-28 md:w-36 lg:w-44",
   },
