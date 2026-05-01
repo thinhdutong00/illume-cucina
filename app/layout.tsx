@@ -1,5 +1,9 @@
-import type { Metadata } from "next";
-import "./globals.css"; 
+import type { Metadata, Viewport } from "next";
+import "./globals.css";
+
+export const viewport: Viewport = {
+  themeColor: "#3b2a24",
+};
 
 export const metadata: Metadata = {
   title: "ILLUME | Carpi",
@@ -13,9 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="it">
-      <body>
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
