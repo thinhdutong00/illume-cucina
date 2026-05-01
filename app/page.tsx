@@ -47,7 +47,7 @@ const ingredients = [
       "left-[-3.5rem] top-[140rem] w-36 rotate-[9deg] opacity-34 md:w-48 lg:w-60",
   },
   {
-    src: "/mozzarella.webp",
+    src: "/porcino.webp",
     className:
       "right-[-4rem] top-[182rem] w-32 rotate-[-8deg] opacity-32 md:w-44 lg:w-56",
   },
