@@ -44,7 +44,7 @@ const ingredients = [
   {
   src: "/pizzacartone.webp",
   className:
-    "left-[-3.5rem] top-[140rem] w-36 rotate-[9deg] opacity-34 md:w-48 lg:w-80",
+    "left-[-3.5rem] top-[140rem] w-36 rotate-[9deg] opacity-34 md:w-48 lg:w-[22rem]",
 },
   {
   src: "/porcino.webp",
@@ -57,10 +57,10 @@ const ingredients = [
       "left-[1%] top-[246rem] w-36 rotate-[-7deg] opacity-28 md:w-52 lg:w-64",
   },
   {
-    src: "/salame.webp",
-    className:
-      "right-[4%] top-[304rem] w-24 rotate-[14deg] opacity-28 md:w-36 lg:w-44",
-  },
+  src: "/salame.webp",
+  className:
+    "right-[4%] top-[304rem] w-24 rotate-[14deg] opacity-28 md:w-36 lg:w-72",
+},
 ];
 
 function IngredientBackground() {
