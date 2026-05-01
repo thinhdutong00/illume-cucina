@@ -115,11 +115,11 @@ export default function Header() {
         <div className="mx-auto max-w-[1500px] px-4 md:px-8">
           {/* MOBILE HEADER */}
           <div className="md:hidden">
-            <div className="relative flex min-h-[76px] items-center justify-center">
+            <div className="flex justify-center">
               <Link
                 href="/"
                 aria-label="Vai alla home"
-                className="relative h-[76px] w-[230px]"
+                className="relative h-[88px] w-[270px]"
               >
                 <Image
                   src="/logo.png"
@@ -129,23 +129,10 @@ export default function Header() {
                   className="object-contain"
                 />
               </Link>
-
-              <button
-                onClick={() => setIsMenuOpen(true)}
-                aria-label="Apri menu"
-                className={[
-                  "absolute right-0 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border transition hover:scale-105",
-                  textColor,
-                  borderColor,
-                  pillBg,
-                ].join(" ")}
-              >
-                <Menu size={22} />
-              </button>
             </div>
 
-            <div className="mt-1 flex justify-center">
-              <div className="flex max-w-[320px] items-center justify-center gap-2 rounded-full border border-[#fbf7ef]/15 bg-[#fbf7ef]/8 px-4 py-2">
+            <div className="mt-1 flex items-center justify-between gap-3">
+              <div className="flex min-w-0 flex-1 items-center gap-2 rounded-full border border-[#fbf7ef]/15 bg-[#fbf7ef]/8 px-3 py-2">
                 <span
                   className={[
                     "h-2.5 w-2.5 shrink-0 rounded-full",
@@ -156,13 +143,26 @@ export default function Header() {
                 />
 
                 <span
-                  className={`truncate text-center text-[10px] font-black uppercase tracking-[0.13em] ${textColor}`}
+                  className={`min-w-0 truncate text-[10px] font-black uppercase tracking-[0.12em] ${textColor}`}
                 >
                   {status.label}
                 </span>
 
                 <Clock size={13} className={`shrink-0 ${textColor}`} />
               </div>
+
+              <button
+                onClick={() => setIsMenuOpen(true)}
+                aria-label="Apri menu"
+                className={[
+                  "flex h-11 w-11 shrink-0 items-center justify-center rounded-full border transition hover:scale-105",
+                  textColor,
+                  borderColor,
+                  pillBg,
+                ].join(" ")}
+              >
+                <Menu size={22} />
+              </button>
             </div>
           </div>
 
@@ -263,7 +263,7 @@ export default function Header() {
       </header>
 
       {!isHomePage && (
-        <div aria-hidden="true" className="h-[126px] md:h-[118px]" />
+        <div aria-hidden="true" className="h-[144px] md:h-[118px]" />
       )}
 
       <div
