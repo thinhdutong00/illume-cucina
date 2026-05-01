@@ -20,8 +20,6 @@ export default function Header() {
     isOpen: false,
   });
 
-  const shouldShowSolid = isScrolled || !isHomePage;
-
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -99,142 +97,143 @@ export default function Header() {
     };
   }, [isMenuOpen]);
 
-  const textColor = shouldShowSolid ? "text-[#3b2a24]" : "text-[#fbf7ef]";
-  const borderColor = shouldShowSolid ? "border-[#3b2a24]/10" : "border-[#fbf7ef]/25";
-  const pillBg = shouldShowSolid ? "bg-[#fbf7ef]" : "bg-[#3b2a24]";
-  const headerBg = shouldShowSolid ? "bg-[#fbf7ef]" : "bg-[#3b2a24]";
+  const textColor = "text-[#fbf7ef]";
+  const borderColor = "border-[#fbf7ef]/20";
+  const pillBg = "bg-[#3b2a24]";
 
   return (
     <>
       <header
         className={[
-          "fixed left-0 top-0 z-[1000] w-full border-b transition-all duration-500",
+          "fixed left-0 top-0 z-[1000] w-full border-b border-[#fbf7ef]/15 bg-[#3b2a24] shadow-sm transition-all duration-500",
           isHeaderHidden ? "-translate-y-full" : "translate-y-0",
-          shouldShowSolid
-            ? "border-[#3b2a24]/10 bg-[#fbf7ef] py-3 shadow-sm"
-            : "border-[#fbf7ef]/15 bg-[#3b2a24] py-5",
+          isScrolled ? "py-3" : "py-3 md:py-5",
         ].join(" ")}
       >
-        <div className="mx-auto grid max-w-[1500px] grid-cols-[1fr_auto_1fr] items-center gap-4 px-4 md:px-8">
-          <div className="flex min-w-0 items-center gap-3">
+        <div className="mx-auto max-w-[1500px] px-4 md:px-8">
+          <div className="relative flex min-h-[72px] items-center justify-between md:min-h-[88px]">
+            <div className="hidden min-w-0 flex-1 items-center gap-3 md:flex">
+              <div
+                className={[
+                  "flex items-center gap-2 rounded-full border px-4 py-2",
+                  borderColor,
+                  pillBg,
+                ].join(" ")}
+              >
+                <span
+                  className={[
+                    "h-2.5 w-2.5 rounded-full",
+                    status.isOpen
+                      ? "bg-emerald-400 shadow-[0_0_14px_rgba(52,211,153,0.8)]"
+                      : "bg-[#9b0232]",
+                  ].join(" ")}
+                />
+                <span
+                  className={`truncate text-[11px] font-black uppercase tracking-[0.18em] ${textColor}`}
+                >
+                  {status.label}
+                </span>
+              </div>
+
+              <a
+                href="https://maps.google.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={[
+                  "hidden items-center gap-2 rounded-full border px-4 py-2 text-[11px] font-black uppercase tracking-[0.16em] transition hover:scale-[1.02] lg:flex",
+                  textColor,
+                  borderColor,
+                  pillBg,
+                ].join(" ")}
+              >
+                <Navigation size={14} />
+                Via S. Francesco, 4
+              </a>
+            </div>
+
+            <Link
+              href="/"
+              className="absolute left-1/2 flex -translate-x-1/2 items-center justify-center"
+              aria-label="Vai alla home"
+            >
+              <div className="relative h-16 w-44 transition-all duration-500 sm:h-18 sm:w-52 md:h-20 md:w-72 lg:h-24 lg:w-96">
+                <Image
+                  src="/logo.png"
+                  alt="Illume Pizzeria Emiliana"
+                  fill
+                  priority
+                  className="object-contain"
+                />
+              </div>
+            </Link>
+
+            <div className="ml-auto flex flex-1 items-center justify-end gap-2 md:gap-3">
+              <a
+                href="tel:+393384622362"
+                aria-label="Chiama Illume"
+                className={[
+                  "flex h-11 w-11 shrink-0 items-center justify-center rounded-full border transition hover:scale-105",
+                  textColor,
+                  borderColor,
+                  pillBg,
+                ].join(" ")}
+              >
+                <Phone size={18} />
+              </a>
+
+              <Link
+                href="/prenotazioni"
+                className="hidden rounded-full bg-[#c9793f] px-6 py-3 text-[11px] font-black uppercase tracking-[0.2em] text-[#fbf7ef] shadow-lg transition hover:scale-[1.02] hover:bg-[#9b0232] md:block"
+              >
+                Prenota
+              </Link>
+
+              <button
+                onClick={() => setIsMenuOpen(true)}
+                aria-label="Apri menu"
+                className={[
+                  "flex h-11 w-11 shrink-0 items-center justify-center rounded-full border transition hover:scale-105",
+                  textColor,
+                  borderColor,
+                  pillBg,
+                ].join(" ")}
+              >
+                <Menu size={22} />
+              </button>
+            </div>
+          </div>
+
+          <div className="mt-2 flex md:hidden">
             <div
               className={[
-                "hidden items-center gap-2 rounded-full border px-4 py-2 md:flex",
+                "flex w-full items-center justify-center gap-2 rounded-full border px-4 py-2",
                 borderColor,
                 pillBg,
               ].join(" ")}
             >
+              <Clock size={13} className={textColor} />
               <span
                 className={[
-                  "h-2.5 w-2.5 rounded-full",
-                  status.isOpen
-                    ? "bg-emerald-400 shadow-[0_0_14px_rgba(52,211,153,0.8)]"
-                    : "bg-[#9b0232]",
+                  "h-2 w-2 rounded-full",
+                  status.isOpen ? "bg-emerald-400" : "bg-[#9b0232]",
                 ].join(" ")}
               />
               <span
-                className={`truncate text-[11px] font-black uppercase tracking-[0.18em] ${textColor}`}
+                className={`text-center text-[10px] font-black uppercase tracking-[0.16em] ${textColor}`}
               >
                 {status.label}
               </span>
             </div>
-
-            <a
-              href="https://maps.google.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={[
-                "hidden items-center gap-2 rounded-full border px-4 py-2 text-[11px] font-black uppercase tracking-[0.16em] transition hover:scale-[1.02] lg:flex",
-                textColor,
-                borderColor,
-                pillBg,
-              ].join(" ")}
-            >
-              <Navigation size={14} />
-              Via S. Francesco, 4
-            </a>
-          </div>
-
-          <Link
-            href="/"
-            className="flex items-center justify-center"
-            aria-label="Vai alla home"
-          >
-            <div
-  className={[
-    "relative transition-all duration-500",
-    shouldShowSolid ? "h-20 w-64 md:w-80" : "h-24 w-72 md:w-96",
-  ].join(" ")}
->
-  <Image
-    src="/logo.png"
-    alt="Illume Pizzeria Emiliana"
-    fill
-    priority
-    className="object-contain"
-  />
-</div>
-          </Link>
-
-          <div className="flex items-center justify-end gap-2 md:gap-3">
-            <a
-              href="tel:+393384622362"
-              aria-label="Chiama Illume"
-              className={[
-                "flex h-11 w-11 items-center justify-center rounded-full border transition hover:scale-105",
-                textColor,
-                borderColor,
-                pillBg,
-              ].join(" ")}
-            >
-              <Phone size={18} />
-            </a>
-
-            <Link
-              href="/prenotazioni"
-              className="hidden rounded-full bg-[#c9793f] px-6 py-3 text-[11px] font-black uppercase tracking-[0.2em] text-[#fbf7ef] shadow-lg transition hover:scale-[1.02] hover:bg-[#9b0232] md:block"
-            >
-              Prenota
-            </Link>
-
-            <button
-              onClick={() => setIsMenuOpen(true)}
-              aria-label="Apri menu"
-              className={[
-                "flex h-11 w-11 items-center justify-center rounded-full border transition hover:scale-105",
-                textColor,
-                borderColor,
-                pillBg,
-              ].join(" ")}
-            >
-              <Menu size={22} />
-            </button>
-          </div>
-        </div>
-
-        <div className="mx-auto mt-3 flex max-w-[1500px] px-4 md:hidden">
-          <div
-            className={[
-              "flex w-full items-center justify-center gap-2 rounded-full border px-4 py-2",
-              borderColor,
-              pillBg,
-            ].join(" ")}
-          >
-            <Clock size={13} className={textColor} />
-            <span
-              className={[
-                "h-2 w-2 rounded-full",
-                status.isOpen ? "bg-emerald-400" : "bg-[#9b0232]",
-              ].join(" ")}
-            />
-            <span
-              className={`text-center text-[10px] font-black uppercase tracking-[0.16em] ${textColor}`}
-            >
-              {status.label}
-            </span>
           </div>
         </div>
       </header>
+
+      {!isHomePage && (
+        <div
+          aria-hidden="true"
+          className="h-[132px] md:h-[118px]"
+        />
+      )}
 
       <div
         className={[
@@ -251,7 +250,7 @@ export default function Header() {
             <Link
               href="/"
               onClick={() => setIsMenuOpen(false)}
-              className="relative h-12 w-40"
+              className="relative h-16 w-52"
               aria-label="Vai alla home"
             >
               <Image
@@ -273,10 +272,27 @@ export default function Header() {
 
           <div className="relative z-10 mx-auto grid w-full max-w-7xl flex-1 items-center gap-10 px-6 pb-10 md:grid-cols-[1fr_0.85fr] md:px-10">
             <nav className="flex flex-col gap-4">
-              <MenuLink href="/menu" label="Il Menù" close={() => setIsMenuOpen(false)} />
-              <MenuLink href="/informazioni" label="La Visione" close={() => setIsMenuOpen(false)} />
-              <MenuLink href="/prenotazioni" label="Prenota" close={() => setIsMenuOpen(false)} highlight />
-              <MenuLink href="/contatti" label="Dove Siamo" close={() => setIsMenuOpen(false)} />
+              <MenuLink
+                href="/menu"
+                label="Il Menù"
+                close={() => setIsMenuOpen(false)}
+              />
+              <MenuLink
+                href="/informazioni"
+                label="La Visione"
+                close={() => setIsMenuOpen(false)}
+              />
+              <MenuLink
+                href="/prenotazioni"
+                label="Prenota"
+                close={() => setIsMenuOpen(false)}
+                highlight
+              />
+              <MenuLink
+                href="/contatti"
+                label="Dove Siamo"
+                close={() => setIsMenuOpen(false)}
+              />
             </nav>
 
             <div className="rounded-[2.5rem] border border-[#3b2a24]/10 bg-[#fbf7ef] p-7 shadow-xl md:p-9">
