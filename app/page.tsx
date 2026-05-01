@@ -134,7 +134,7 @@ export default function Home() {
               </p>
 
               <h1 className="max-w-5xl font-serif text-5xl italic leading-[0.9] tracking-tight text-[#3b2a24] sm:text-6xl md:text-8xl lg:text-9xl">
-                Pizza al forno a legna, sapori emiliani.
+                Pizza e Cucina Emiliana
               </h1>
 
               <p className="mt-7 max-w-2xl text-base leading-8 text-[#3b2a24]/75 sm:text-lg md:text-xl">
