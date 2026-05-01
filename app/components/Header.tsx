@@ -109,17 +109,17 @@ export default function Header() {
         className={[
           "fixed left-0 top-0 z-[1000] w-full border-b border-[#fbf7ef]/15 bg-[#3b2a24] shadow-sm transition-all duration-500",
           isHeaderHidden ? "-translate-y-full" : "translate-y-0",
-          isScrolled ? "py-2 md:py-3" : "py-3 md:py-5",
+          isScrolled ? "py-1.5 md:py-3" : "py-1.5 md:py-5",
         ].join(" ")}
       >
         <div className="mx-auto max-w-[1500px] px-4 md:px-8">
           {/* MOBILE HEADER */}
           <div className="md:hidden">
-            <div className="flex justify-center">
+            <div className="flex h-[68px] items-center justify-center overflow-hidden">
               <Link
                 href="/"
                 aria-label="Vai alla home"
-                className="relative h-[88px] w-[270px]"
+                className="relative h-[86px] w-[270px]"
               >
                 <Image
                   src="/logo.png"
@@ -131,8 +131,8 @@ export default function Header() {
               </Link>
             </div>
 
-            <div className="mt-1 flex items-center justify-between gap-3">
-              <div className="flex min-w-0 flex-1 items-center gap-2 rounded-full border border-[#fbf7ef]/15 bg-[#fbf7ef]/8 px-3 py-2">
+            <div className="-mt-1 flex items-center justify-between gap-3">
+              <div className="flex min-w-0 flex-1 items-center gap-2 rounded-full border border-[#fbf7ef]/15 bg-[#fbf7ef]/8 px-3 py-1.5">
                 <span
                   className={[
                     "h-2.5 w-2.5 shrink-0 rounded-full",
@@ -155,13 +155,13 @@ export default function Header() {
                 onClick={() => setIsMenuOpen(true)}
                 aria-label="Apri menu"
                 className={[
-                  "flex h-11 w-11 shrink-0 items-center justify-center rounded-full border transition hover:scale-105",
+                  "flex h-10 w-10 shrink-0 items-center justify-center rounded-full border transition hover:scale-105",
                   textColor,
                   borderColor,
                   pillBg,
                 ].join(" ")}
               >
-                <Menu size={22} />
+                <Menu size={21} />
               </button>
             </div>
           </div>
@@ -263,7 +263,7 @@ export default function Header() {
       </header>
 
       {!isHomePage && (
-        <div aria-hidden="true" className="h-[144px] md:h-[118px]" />
+        <div aria-hidden="true" className="h-[120px] md:h-[118px]" />
       )}
 
       <div
