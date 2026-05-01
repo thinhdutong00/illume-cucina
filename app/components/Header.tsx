@@ -109,70 +109,49 @@ export default function Header() {
         className={[
           "fixed left-0 top-0 z-[1000] w-full border-b border-[#fbf7ef]/15 bg-[#3b2a24] shadow-sm transition-all duration-500",
           isHeaderHidden ? "-translate-y-full" : "translate-y-0",
-          isScrolled ? "py-2 md:py-3" : "py-2 md:py-5",
+          isScrolled ? "py-2 md:py-3" : "py-3 md:py-5",
         ].join(" ")}
       >
         <div className="mx-auto max-w-[1500px] px-4 md:px-8">
           {/* MOBILE HEADER */}
           <div className="md:hidden">
-            <div className="flex min-h-[56px] items-center justify-between gap-3">
+            <div className="relative flex min-h-[76px] items-center justify-center">
               <Link
                 href="/"
                 aria-label="Vai alla home"
-                className="relative h-14 w-40 shrink-0"
+                className="relative h-[76px] w-[230px]"
               >
                 <Image
                   src="/logo.png"
                   alt="Illume Pizzeria Emiliana"
                   fill
                   priority
-                  className="object-contain object-left"
+                  className="object-contain"
                 />
               </Link>
 
-              <div className="flex shrink-0 items-center gap-2">
-                <a
-                  href="tel:+393384622362"
-                  aria-label="Chiama Illume"
-                  className={[
-                    "flex h-10 w-10 items-center justify-center rounded-full border transition hover:scale-105",
-                    textColor,
-                    borderColor,
-                    pillBg,
-                  ].join(" ")}
-                >
-                  <Phone size={17} />
-                </a>
-
-                <button
-                  onClick={() => setIsMenuOpen(true)}
-                  aria-label="Apri menu"
-                  className={[
-                    "flex h-10 w-10 items-center justify-center rounded-full border transition hover:scale-105",
-                    textColor,
-                    borderColor,
-                    pillBg,
-                  ].join(" ")}
-                >
-                  <Menu size={21} />
-                </button>
-              </div>
-            </div>
-
-            <div className="mt-2 flex">
-              <div
+              <button
+                onClick={() => setIsMenuOpen(true)}
+                aria-label="Apri menu"
                 className={[
-                  "flex w-full items-center justify-center gap-2 rounded-full border px-3 py-2",
+                  "absolute right-0 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border transition hover:scale-105",
+                  textColor,
                   borderColor,
                   pillBg,
                 ].join(" ")}
               >
-                <Clock size={13} className={textColor} />
+                <Menu size={22} />
+              </button>
+            </div>
 
+            <div className="mt-1 flex justify-center">
+              <div className="flex max-w-[320px] items-center justify-center gap-2 rounded-full border border-[#fbf7ef]/15 bg-[#fbf7ef]/8 px-4 py-2">
                 <span
                   className={[
-                    "h-2 w-2 shrink-0 rounded-full",
-                    status.isOpen ? "bg-emerald-400" : "bg-[#9b0232]",
+                    "h-2.5 w-2.5 shrink-0 rounded-full",
+                    status.isOpen
+                      ? "bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.75)]"
+                      : "bg-[#9b0232]",
                   ].join(" ")}
                 />
 
@@ -181,6 +160,8 @@ export default function Header() {
                 >
                   {status.label}
                 </span>
+
+                <Clock size={13} className={`shrink-0 ${textColor}`} />
               </div>
             </div>
           </div>
@@ -282,7 +263,7 @@ export default function Header() {
       </header>
 
       {!isHomePage && (
-        <div aria-hidden="true" className="h-[112px] md:h-[118px]" />
+        <div aria-hidden="true" className="h-[126px] md:h-[118px]" />
       )}
 
       <div
