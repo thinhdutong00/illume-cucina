@@ -161,19 +161,19 @@ export default function Header() {
             aria-label="Vai alla home"
           >
             <div
-              className={[
-                "relative transition-all duration-500",
-                shouldShowSolid ? "h-16 w-52 md:w-64" : "h-20 w-64 md:w-80",
-              ].join(" ")}
-            >
-              <Image
-                src="/logo.png"
-                alt="Illume Pizzeria Emiliana"
-                fill
-                priority
-                className="object-contain"
-              />
-            </div>
+  className={[
+    "relative transition-all duration-500",
+    shouldShowSolid ? "h-20 w-64 md:w-80" : "h-24 w-72 md:w-96",
+  ].join(" ")}
+>
+  <Image
+    src="/logo.png"
+    alt="Illume Pizzeria Emiliana"
+    fill
+    priority
+    className="object-contain"
+  />
+</div>
           </Link>
 
           <div className="flex items-center justify-end gap-2 md:gap-3">
