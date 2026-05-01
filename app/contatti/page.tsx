@@ -146,7 +146,7 @@ export default function Contatti() {
                       href="mailto:info@illumecucina.it"
                       className="hover:text-[#c9793f]"
                     >
-                      info@illumecucina.it
+                      infoillume.pizzeriaemiliana@gmail.com
                     </a>
                   }
                 />
@@ -164,11 +164,11 @@ export default function Contatti() {
 
                 <div className="absolute bottom-6 left-6 right-6 rounded-[2rem] bg-[#fbf7ef] p-6 shadow-2xl md:bottom-8 md:left-8 md:right-8 md:p-8">
                   <p className="text-xs font-black uppercase tracking-[0.3em] text-[#c9793f]">
-                    Naviga verso Illume
+                    Apri le navigazioni stradali
                   </p>
 
                   <h2 className="mt-3 font-serif text-4xl italic leading-tight">
-                    Apri la strada e vieni a cena.
+                    Ti aspettiamo!
                   </h2>
 
                   <div className="mt-6 flex flex-col gap-3 sm:flex-row">
