@@ -63,6 +63,7 @@ export default function Header() {
         ) {
           open = true;
         }
+
         nextOpen = time < 12.5 ? "12:30" : "18:30";
       } else {
         if (
@@ -71,6 +72,7 @@ export default function Header() {
         ) {
           open = true;
         }
+
         nextOpen = time < 12.5 ? "12:30" : "18:30";
       }
 
@@ -107,11 +109,84 @@ export default function Header() {
         className={[
           "fixed left-0 top-0 z-[1000] w-full border-b border-[#fbf7ef]/15 bg-[#3b2a24] shadow-sm transition-all duration-500",
           isHeaderHidden ? "-translate-y-full" : "translate-y-0",
-          isScrolled ? "py-3" : "py-3 md:py-5",
+          isScrolled ? "py-2 md:py-3" : "py-2 md:py-5",
         ].join(" ")}
       >
         <div className="mx-auto max-w-[1500px] px-4 md:px-8">
-          <div className="relative flex min-h-[72px] items-center justify-between md:min-h-[88px]">
+          {/* MOBILE HEADER */}
+          <div className="md:hidden">
+            <div className="flex min-h-[56px] items-center justify-between gap-3">
+              <Link
+                href="/"
+                aria-label="Vai alla home"
+                className="relative h-14 w-40 shrink-0"
+              >
+                <Image
+                  src="/logo.png"
+                  alt="Illume Pizzeria Emiliana"
+                  fill
+                  priority
+                  className="object-contain object-left"
+                />
+              </Link>
+
+              <div className="flex shrink-0 items-center gap-2">
+                <a
+                  href="tel:+393384622362"
+                  aria-label="Chiama Illume"
+                  className={[
+                    "flex h-10 w-10 items-center justify-center rounded-full border transition hover:scale-105",
+                    textColor,
+                    borderColor,
+                    pillBg,
+                  ].join(" ")}
+                >
+                  <Phone size={17} />
+                </a>
+
+                <button
+                  onClick={() => setIsMenuOpen(true)}
+                  aria-label="Apri menu"
+                  className={[
+                    "flex h-10 w-10 items-center justify-center rounded-full border transition hover:scale-105",
+                    textColor,
+                    borderColor,
+                    pillBg,
+                  ].join(" ")}
+                >
+                  <Menu size={21} />
+                </button>
+              </div>
+            </div>
+
+            <div className="mt-2 flex">
+              <div
+                className={[
+                  "flex w-full items-center justify-center gap-2 rounded-full border px-3 py-2",
+                  borderColor,
+                  pillBg,
+                ].join(" ")}
+              >
+                <Clock size={13} className={textColor} />
+
+                <span
+                  className={[
+                    "h-2 w-2 shrink-0 rounded-full",
+                    status.isOpen ? "bg-emerald-400" : "bg-[#9b0232]",
+                  ].join(" ")}
+                />
+
+                <span
+                  className={`truncate text-center text-[10px] font-black uppercase tracking-[0.13em] ${textColor}`}
+                >
+                  {status.label}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* DESKTOP HEADER */}
+          <div className="relative hidden min-h-[88px] items-center justify-between md:flex">
             <div className="hidden min-w-0 flex-1 items-center gap-3 md:flex">
               <div
                 className={[
@@ -128,6 +203,7 @@ export default function Header() {
                       : "bg-[#9b0232]",
                   ].join(" ")}
                 />
+
                 <span
                   className={`truncate text-[11px] font-black uppercase tracking-[0.18em] ${textColor}`}
                 >
@@ -156,7 +232,7 @@ export default function Header() {
               className="absolute left-1/2 flex -translate-x-1/2 items-center justify-center"
               aria-label="Vai alla home"
             >
-              <div className="relative h-16 w-44 transition-all duration-500 sm:h-[4.5rem] sm:w-52 md:h-20 md:w-72 lg:h-24 lg:w-96">
+              <div className="relative h-20 w-72 transition-all duration-500 lg:h-24 lg:w-96">
                 <Image
                   src="/logo.png"
                   alt="Illume Pizzeria Emiliana"
@@ -167,7 +243,7 @@ export default function Header() {
               </div>
             </Link>
 
-            <div className="ml-auto flex flex-1 items-center justify-end gap-2 md:gap-3">
+            <div className="ml-auto flex flex-1 items-center justify-end gap-3">
               <a
                 href="tel:+393384622362"
                 aria-label="Chiama Illume"
@@ -202,34 +278,11 @@ export default function Header() {
               </button>
             </div>
           </div>
-
-          <div className="mt-2 flex md:hidden">
-            <div
-              className={[
-                "flex w-full items-center justify-center gap-2 rounded-full border px-4 py-2",
-                borderColor,
-                pillBg,
-              ].join(" ")}
-            >
-              <Clock size={13} className={textColor} />
-              <span
-                className={[
-                  "h-2 w-2 rounded-full",
-                  status.isOpen ? "bg-emerald-400" : "bg-[#9b0232]",
-                ].join(" ")}
-              />
-              <span
-                className={`text-center text-[10px] font-black uppercase tracking-[0.16em] ${textColor}`}
-              >
-                {status.label}
-              </span>
-            </div>
-          </div>
         </div>
       </header>
 
       {!isHomePage && (
-        <div aria-hidden="true" className="h-[132px] md:h-[118px]" />
+        <div aria-hidden="true" className="h-[112px] md:h-[118px]" />
       )}
 
       <div
@@ -243,18 +296,18 @@ export default function Header() {
           <div className="pointer-events-none absolute bottom-[-10%] right-[-10%] h-96 w-96 rounded-full bg-[#c9793f]/20 blur-3xl" />
           <div className="pointer-events-none absolute left-[30%] top-[45%] h-72 w-72 rounded-full bg-[#b5a02f]/15 blur-3xl" />
 
-          <div className="relative z-10 flex items-center justify-between px-5 py-6 md:px-10">
+          <div className="relative z-10 mx-auto flex w-full max-w-7xl items-center justify-between px-5 py-6 md:px-10">
             <Link
               href="/"
               onClick={() => setIsMenuOpen(false)}
-              className="relative h-24 w-72 sm:h-28 sm:w-80 md:h-16 md:w-52"
+              className="relative h-24 w-72 shrink-0 sm:h-28 sm:w-80 md:h-16 md:w-52"
               aria-label="Vai alla home"
             >
               <Image
                 src="/logo.png"
                 alt="Illume Pizzeria Emiliana"
                 fill
-                className="object-contain"
+                className="object-contain object-left"
               />
             </Link>
 
@@ -326,10 +379,12 @@ export default function Header() {
                   <Navigation size={17} className="text-[#c9793f]" />
                   Via S. Francesco, 4 · Carpi
                 </p>
+
                 <p className="flex items-center gap-3">
                   <Phone size={17} className="text-[#c9793f]" />
                   +39 338 462 2362
                 </p>
+
                 <p className="flex items-center gap-3">
                   <Clock size={17} className="text-[#c9793f]" />
                   {status.label}
@@ -376,6 +431,7 @@ function MenuLink({
       <span className="font-serif text-4xl italic leading-none md:text-6xl">
         {label}
       </span>
+
       <span className="text-xl transition group-hover:translate-x-1">→</span>
     </Link>
   );
