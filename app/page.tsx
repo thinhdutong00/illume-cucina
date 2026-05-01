@@ -42,15 +42,15 @@ const ingredients = [
     "right-[5%] top-[86rem] w-20 rotate-[18deg] opacity-32 md:w-28 lg:w-72",
 },
   {
-    src: "/pizzacartone.webp",
-    className:
-      "left-[-3.5rem] top-[140rem] w-36 rotate-[9deg] opacity-34 md:w-48 lg:w-60",
-  },
+  src: "/pizzacartone.webp",
+  className:
+    "left-[-3.5rem] top-[140rem] w-36 rotate-[9deg] opacity-34 md:w-48 lg:w-80",
+},
   {
-    src: "/porcino.webp",
-    className:
-      "right-[-4rem] top-[182rem] w-32 rotate-[-8deg] opacity-32 md:w-44 lg:w-56",
-  },
+  src: "/porcino.webp",
+  className:
+    "right-[-4rem] top-[182rem] w-32 rotate-[-8deg] opacity-32 md:w-44 lg:w-72",
+},
   {
     src: "/grana-padano.webp",
     className:
