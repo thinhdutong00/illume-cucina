@@ -97,7 +97,7 @@ export default function Contatti() {
                     </div>
                     <div>
                       <p className="text-xs font-black uppercase tracking-[0.3em] text-[#c9793f]">
-                        Orari
+                        Orari di Apertura
                       </p>
                       
                     </div>
