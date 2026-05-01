@@ -147,7 +147,7 @@ export default function Prenota() {
               <div className="space-y-5">
                 <div className="relative min-h-[360px] overflow-hidden rounded-[3rem] shadow-2xl">
                   <img
-                    src="/illume-esterno.png"
+                    src="/illume-interno03.jpg"
                     alt="Atmosfera Illume"
                     className="h-full w-full object-cover"
                   />
