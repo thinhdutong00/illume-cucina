@@ -359,22 +359,20 @@ export default function Home() {
 
                 <div className="rounded-[2.25rem] border border-white/60 bg-white/60 p-7 shadow-xl backdrop-blur-2xl sm:rounded-[3rem] sm:p-8">
                   <h3 className="font-serif text-4xl italic sm:text-5xl">
-                    Sincero.
+                    Cucina e Forno a Legna.
                   </h3>
                   <p className="mt-5 text-base leading-8 text-[#3b2a24]/70 sm:text-lg">
-                    Pizza al forno a legna, cucina emiliana e sapori chiari. Ogni
-                    ingrediente deve avere un motivo per essere nel piatto.
+                    Pizza al forno a legna, cucina emiliana e sapori tutti da esplorare. Ogni
+                    ingrediente è selezionato per rendere ogni boccone indimenticabile.
                   </p>
                 </div>
 
                 <div className="rounded-[2.25rem] bg-[#b5a02f] p-7 text-[#fbf7ef] shadow-xl sm:rounded-[3rem] sm:p-8">
                   <h3 className="font-serif text-4xl italic sm:text-5xl">
-                    Centrale.
+                    In Centro a Carpi
                   </h3>
                   <p className="mt-5 text-base leading-8 text-[#fbf7ef]/85 sm:text-lg">
-                    Illume si trova nel centro di Carpi, ma il vero motivo per
-                    venire è ciò che arriva a tavola: impasti, profumi,
-                    consistenze e combinazioni di gusto.
+                    Illume si trova nel centro di Carpi, con un dehor pensato per vivere la cena anche all’aperto, tra l’atmosfera della città e il piacere di stare a tavola con calma. Una posizione perfetta per godersi pizza, cucina emiliana e continuare la serata con due passi tra le vie del centro.
                   </p>
                 </div>
               </div>
