@@ -17,7 +17,7 @@ export default function Prenota() {
     <>
       <Header />
 
-      <main className="relative overflow-hidden bg-[#fbf7ef] text-[#3b2a24]">
+      <main className="relative overflow-x-hidden bg-[#fbf7ef] text-[#3b2a24]">
         {/* texture cartoncino */}
         <div className="pointer-events-none fixed inset-0 z-0 opacity-[0.42]">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(59,42,36,0.10)_1px,transparent_0)] bg-[length:20px_20px]" />
@@ -32,46 +32,46 @@ export default function Prenota() {
           <div className="absolute bottom-[-4rem] right-[18%] h-52 w-64 rotate-[-10deg] rounded-[50%_50%_35%_65%] bg-[#9b0232]/15 blur-sm" />
         </div>
 
-        <div className="relative z-10">
+        <div className="relative z-10 w-full max-w-full">
           {/* HERO */}
-          <section className="px-5 pb-16 pt-36 md:px-10 md:pb-24 md:pt-44">
-            <div className="mx-auto max-w-7xl">
-              <p className="mb-5 text-xs font-black uppercase tracking-[0.35em] text-[#c9793f]">
+          <section className="w-full max-w-full px-4 pb-14 pt-12 sm:px-5 sm:pb-16 md:px-10 md:pb-24 md:pt-24">
+            <div className="mx-auto w-full max-w-7xl">
+              <p className="mb-5 max-w-full text-[11px] font-black uppercase tracking-[0.22em] text-[#c9793f] sm:text-xs sm:tracking-[0.35em]">
                 Prenotazioni · Illume Carpi
               </p>
 
-              <div className="grid gap-10 lg:grid-cols-[1fr_0.75fr] lg:items-end">
-                <div>
-                  <h1 className="max-w-5xl font-serif text-6xl italic leading-[0.9] md:text-8xl">
+              <div className="grid w-full max-w-full gap-8 lg:grid-cols-[1fr_0.75fr] lg:items-end">
+                <div className="min-w-0">
+                  <h1 className="max-w-5xl break-words font-serif text-5xl italic leading-[0.96] sm:text-6xl md:text-8xl md:leading-[0.9]">
                     Riserva il tuo tavolo.
                   </h1>
 
-                  <p className="mt-7 max-w-2xl text-lg leading-8 text-[#3b2a24]/70 md:text-xl">
+                  <p className="mt-6 max-w-2xl text-base leading-7 text-[#3b2a24]/70 sm:text-lg sm:leading-8 md:mt-7 md:text-xl">
                     Compila il modulo con giorno, orario e numero di persone.
                     Ti risponderemo via email per confermare la disponibilità.
                   </p>
                 </div>
 
-                <div className="rounded-[2.5rem] bg-[#3b2a24] p-7 text-[#fbf7ef] shadow-2xl md:p-9">
-                  <p className="text-xs font-black uppercase tracking-[0.3em] text-[#e98f81]">
+                <div className="w-full max-w-full rounded-[2rem] bg-[#3b2a24] p-5 text-[#fbf7ef] shadow-2xl sm:p-7 md:rounded-[2.5rem] md:p-9">
+                  <p className="text-[11px] font-black uppercase tracking-[0.22em] text-[#e98f81] sm:text-xs sm:tracking-[0.3em]">
                     Prenotazione rapida
                   </p>
 
-                  <h2 className="mt-4 font-serif text-4xl italic leading-tight">
+                  <h2 className="mt-4 font-serif text-3xl italic leading-tight sm:text-4xl">
                     Preferisci chiamare?
                   </h2>
 
-                  <p className="mt-4 leading-7 text-[#fbf7ef]/75">
+                  <p className="mt-4 text-sm leading-7 text-[#fbf7ef]/75 sm:text-base">
                     Per prenotazioni dell’ultimo minuto o tavoli numerosi,
                     meglio una telefonata.
                   </p>
 
                   <a
                     href="tel:+393384622362"
-                    className="mt-7 inline-flex items-center gap-3 rounded-full bg-[#c9793f] px-7 py-4 text-xs font-black uppercase tracking-[0.22em] text-[#fbf7ef] transition hover:bg-[#9b0232]"
+                    className="mt-7 inline-flex w-full max-w-full items-center justify-center gap-3 rounded-full bg-[#c9793f] px-5 py-4 text-center text-[11px] font-black uppercase tracking-[0.16em] text-[#fbf7ef] transition hover:bg-[#9b0232] sm:w-auto sm:px-7 sm:text-xs sm:tracking-[0.22em]"
                   >
-                    <Phone size={16} />
-                    Chiama ora
+                    <Phone size={16} className="shrink-0" />
+                    <span>Chiama ora</span>
                   </a>
                 </div>
               </div>
@@ -79,31 +79,31 @@ export default function Prenota() {
           </section>
 
           {/* FORM + BROCHURE */}
-          <section className="px-5 pb-24 md:px-10 md:pb-32">
-            <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1.05fr_0.95fr]">
+          <section className="w-full max-w-full px-4 pb-20 sm:px-5 md:px-10 md:pb-32">
+            <div className="mx-auto grid w-full max-w-7xl gap-8 lg:grid-cols-[1.05fr_0.95fr]">
               {/* FORM */}
               <form
-                action={`mailto:infoillume.pizzeriaemiliana@gmail.com`}
+                action="mailto:infoillume.pizzeriaemiliana@gmail.com"
                 method="POST"
                 encType="text/plain"
-                className="rounded-[3rem] border border-[#3b2a24]/10 bg-[#fbf7ef] p-6 shadow-2xl md:p-10"
+                className="w-full max-w-full rounded-[2rem] border border-[#3b2a24]/10 bg-[#fbf7ef] p-5 shadow-2xl sm:p-6 md:rounded-[3rem] md:p-10"
               >
-                <div className="mb-10">
-                  <p className="text-xs font-black uppercase tracking-[0.35em] text-[#c9793f]">
+                <div className="mb-8 min-w-0 md:mb-10">
+                  <p className="break-words text-[11px] font-black uppercase tracking-[0.22em] text-[#c9793f] sm:text-xs sm:tracking-[0.35em]">
                     Modulo prenotazione
                   </p>
 
-                  <h2 className="mt-4 font-serif text-5xl italic leading-tight md:text-6xl">
+                  <h2 className="mt-4 break-words font-serif text-4xl italic leading-[1.05] sm:text-5xl md:text-6xl md:leading-tight">
                     Dimmi quando arrivi.
                   </h2>
 
-                  <p className="mt-4 max-w-2xl leading-7 text-[#3b2a24]/65">
+                  <p className="mt-4 max-w-2xl text-sm leading-7 text-[#3b2a24]/65 sm:text-base">
                     La richiesta non è automatica: il tavolo è confermato solo
                     dopo nostra risposta.
                   </p>
                 </div>
 
-                <div className="grid gap-5 md:grid-cols-2">
+                <div className="grid w-full max-w-full gap-5 md:grid-cols-2">
                   <Field label="Nome e cognome" name="Nome" type="text" required />
                   <Field label="Telefono" name="Telefono" type="tel" required />
                   <Field label="Email" name="Email" type="email" required />
@@ -112,31 +112,32 @@ export default function Prenota() {
                   <Field label="Orario" name="Orario" type="time" required />
                 </div>
 
-                <div className="mt-5">
-                  <label className="mb-2 block text-xs font-black uppercase tracking-[0.25em] text-[#3b2a24]/55">
+                <div className="mt-5 min-w-0">
+                  <label className="mb-2 block break-words text-[11px] font-black uppercase tracking-[0.18em] text-[#3b2a24]/55 sm:text-xs sm:tracking-[0.25em]">
                     Note / allergie / richieste
                   </label>
+
                   <textarea
                     name="Note"
                     rows={5}
                     placeholder="Scrivi qui eventuali allergie, richieste particolari o informazioni utili."
-                    className="w-full rounded-[1.5rem] border border-[#3b2a24]/10 bg-white px-5 py-4 text-sm font-medium outline-none transition placeholder:text-[#3b2a24]/35 focus:border-[#c9793f]"
+                    className="w-full max-w-full rounded-[1.5rem] border border-[#3b2a24]/10 bg-white px-5 py-4 text-sm font-medium outline-none transition placeholder:text-[#3b2a24]/35 focus:border-[#c9793f]"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="mt-8 inline-flex w-full items-center justify-center gap-3 rounded-full bg-[#c9793f] px-8 py-5 text-sm font-black uppercase tracking-[0.22em] text-[#fbf7ef] shadow-xl transition hover:bg-[#9b0232] md:w-auto"
+                  className="mt-8 inline-flex w-full max-w-full items-center justify-center gap-3 rounded-full bg-[#c9793f] px-5 py-5 text-center text-[11px] font-black uppercase tracking-[0.16em] text-[#fbf7ef] shadow-xl transition hover:bg-[#9b0232] sm:text-xs sm:tracking-[0.22em] md:w-auto md:px-8 md:text-sm"
                 >
-                  <Mail size={17} />
-                  Invia richiesta
+                  <Mail size={17} className="shrink-0" />
+                  <span>Invia richiesta</span>
                 </button>
 
-                <p className="mt-5 text-sm leading-6 text-[#3b2a24]/55">
+                <p className="mt-5 max-w-full break-words text-sm leading-6 text-[#3b2a24]/55">
                   In alternativa puoi scriverci direttamente a{" "}
                   <a
                     href="mailto:infoillume.pizzeriaemiliana@gmail.com"
-                    className="font-bold text-[#c9793f]"
+                    className="break-all font-bold text-[#c9793f] sm:break-words"
                   >
                     infoillume.pizzeriaemiliana@gmail.com
                   </a>
@@ -144,19 +145,22 @@ export default function Prenota() {
               </form>
 
               {/* INFO BROCHURE */}
-              <div className="space-y-5">
-                <div className="relative min-h-[360px] overflow-hidden rounded-[3rem] shadow-2xl">
+              <div className="min-w-0 space-y-5">
+                <div className="relative min-h-[320px] w-full max-w-full overflow-hidden rounded-[2rem] shadow-2xl sm:min-h-[360px] md:rounded-[3rem]">
                   <img
                     src="/illume-interno02.png"
                     alt="Atmosfera Illume"
                     className="h-full w-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#3b2a24]/65 via-transparent to-transparent" />
-                  <div className="absolute bottom-6 left-6 right-6">
-                    <p className="text-xs font-black uppercase tracking-[0.3em] text-[#e98f81]">
+
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#3b2a24]/70 via-[#3b2a24]/10 to-transparent md:from-[#3b2a24]/65 md:via-transparent" />
+
+                  <div className="absolute bottom-5 left-5 right-5 md:bottom-6 md:left-6 md:right-6">
+                    <p className="break-words text-[11px] font-black uppercase tracking-[0.22em] text-[#e98f81] sm:text-xs sm:tracking-[0.3em]">
                       Illume
                     </p>
-                    <h2 className="mt-3 font-serif text-4xl italic leading-tight text-[#fbf7ef]">
+
+                    <h2 className="mt-3 break-words font-serif text-3xl italic leading-tight text-[#fbf7ef] sm:text-4xl">
                       La serata giusta comincia da qui.
                     </h2>
                   </div>
@@ -208,15 +212,16 @@ function Field({
   required?: boolean;
 }) {
   return (
-    <div>
-      <label className="mb-2 block text-xs font-black uppercase tracking-[0.25em] text-[#3b2a24]/55">
+    <div className="min-w-0">
+      <label className="mb-2 block break-words text-[11px] font-black uppercase tracking-[0.18em] text-[#3b2a24]/55 sm:text-xs sm:tracking-[0.25em]">
         {label}
       </label>
+
       <input
         name={name}
         type={type}
         required={required}
-        className="w-full rounded-full border border-[#3b2a24]/10 bg-white px-5 py-4 text-sm font-medium outline-none transition placeholder:text-[#3b2a24]/35 focus:border-[#c9793f]"
+        className="w-full max-w-full rounded-full border border-[#3b2a24]/10 bg-white px-5 py-4 text-sm font-medium outline-none transition placeholder:text-[#3b2a24]/35 focus:border-[#c9793f]"
       />
     </div>
   );
@@ -232,16 +237,20 @@ function InfoBox({
   text: string;
 }) {
   return (
-    <div className="rounded-[2.2rem] border border-[#3b2a24]/10 bg-[#fbf7ef] p-6 shadow-sm">
-      <div className="flex gap-4">
-        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#c9793f] text-[#fbf7ef]">
+    <div className="w-full max-w-full rounded-[2rem] border border-[#3b2a24]/10 bg-[#fbf7ef] p-5 shadow-sm sm:p-6 md:rounded-[2.2rem]">
+      <div className="flex min-w-0 gap-4">
+        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#c9793f] text-[#fbf7ef] sm:h-12 sm:w-12">
           {icon}
         </div>
-        <div>
-          <p className="text-xs font-black uppercase tracking-[0.25em] text-[#c9793f]">
+
+        <div className="min-w-0 flex-1">
+          <p className="break-words text-[11px] font-black uppercase tracking-[0.18em] text-[#c9793f] sm:text-xs sm:tracking-[0.25em]">
             {title}
           </p>
-          <p className="mt-2 text-sm leading-6 text-[#3b2a24]/70">{text}</p>
+
+          <p className="mt-2 max-w-full break-words text-sm leading-6 text-[#3b2a24]/70">
+            {text}
+          </p>
         </div>
       </div>
     </div>
