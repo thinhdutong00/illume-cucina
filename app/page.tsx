@@ -433,9 +433,9 @@ export default function Home() {
               Illume Carpi
             </p>
 
-            <h2 className="mx-auto mt-5 max-w-5xl font-serif text-5xl italic leading-[0.95] sm:text-6xl md:text-8xl">
-              Quando gli ingredienti sono giusti, la cena cambia sapore.
-            </h2>
+            <h2 className="mx-auto mt-5 max-w-5xl font-serif text-5xl italic leading-[0.95] sm:text-6xl md:text-8xl md:leading-[1.08]">
+  Quando gli ingredienti sono giusti, la cena cambia sapore.
+</h2>
 
             <p className="mx-auto mt-7 max-w-2xl text-base leading-8 text-[#3b2a24]/70 sm:text-lg">
               Nel centro di Carpi, Illume unisce pizza cotta in forno a legna,
