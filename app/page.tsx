@@ -126,7 +126,7 @@ export default function Home() {
         <Header />
 
         {/* HERO */}
-        <section className="relative min-h-screen px-5 pb-14 pt-24 sm:pt-28 md:px-10 md:pb-16 md:pt-36">
+       <section className="relative min-h-screen px-4 pb-14 pt-36 sm:px-5 sm:pt-40 md:px-10 md:pb-16 md:pt-44">
           <div className="mx-auto grid min-h-[78vh] max-w-7xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
             <div className="relative z-10">
               <p className="mb-5 text-[0.68rem] font-black uppercase tracking-[0.28em] text-[#c9793f] sm:text-xs sm:tracking-[0.35em]">
