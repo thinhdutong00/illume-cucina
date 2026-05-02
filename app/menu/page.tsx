@@ -315,6 +315,10 @@ const sections: MenuSection[] = [
   },
 ];
 
+const anchorSections = sections.filter(
+  (section) => section.title !== "Coperto & Servizi"
+);
+
 function getSectionId(title: string) {
   return title
     .toLowerCase()
@@ -333,8 +337,8 @@ export default function MenuPage() {
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
 
   const scrollToSection = (index: number) => {
-    const safeIndex = Math.max(0, Math.min(index, sections.length - 1));
-    const section = sections[safeIndex];
+    const safeIndex = Math.max(0, Math.min(index, anchorSections.length - 1));
+    const section = anchorSections[safeIndex];
     const element = document.getElementById(getSectionId(section.title));
 
     if (!element) {
@@ -384,7 +388,7 @@ export default function MenuPage() {
         <div className="relative z-10 w-full max-w-full px-4 pb-24 pt-12 sm:px-5 md:px-10 md:pb-10 md:pt-24">
           <div className="mx-auto w-full max-w-7xl">
             {/* HERO */}
-            <div className="mb-12 text-center md:mb-16">
+            <div className="mb-10 text-center md:mb-16">
               <p className="mb-5 text-[11px] font-black uppercase tracking-[0.22em] text-[#c9793f] sm:text-xs sm:tracking-[0.35em]">
                 Illúme Carpi
               </p>
@@ -395,18 +399,20 @@ export default function MenuPage() {
 
               <nav
                 aria-label="Sezioni del menu"
-                className="mx-auto mt-8 flex max-w-5xl flex-wrap justify-center gap-2 sm:mt-10 sm:gap-3"
+                className="mx-auto mt-7 max-w-full overflow-x-auto pb-2 sm:mt-9 sm:max-w-5xl sm:overflow-visible sm:pb-0"
               >
-                {sections.map((section, index) => (
-                  <a
-                    key={section.title}
-                    href={`#${getSectionId(section.title)}`}
-                    onClick={() => setCurrentSectionIndex(index)}
-                    className="rounded-full border border-[#c9793f] bg-[#fbf7ef]/55 px-4 py-2.5 text-[10px] font-black uppercase tracking-[0.14em] text-[#c9793f] shadow-sm backdrop-blur-sm transition hover:bg-[#c9793f] hover:text-[#fbf7ef] sm:px-5 sm:py-3 sm:text-[11px] sm:tracking-[0.18em]"
-                  >
-                    {section.title}
-                  </a>
-                ))}
+                <div className="flex w-max gap-2 px-1 sm:mx-auto sm:w-auto sm:flex-wrap sm:justify-center sm:gap-3">
+                  {anchorSections.map((section, index) => (
+                    <a
+                      key={section.title}
+                      href={`#${getSectionId(section.title)}`}
+                      onClick={() => setCurrentSectionIndex(index)}
+                      className="shrink-0 rounded-full border border-[#c9793f] bg-[#fbf7ef]/55 px-3.5 py-2 text-[9px] font-black uppercase tracking-[0.12em] text-[#c9793f] shadow-sm backdrop-blur-sm transition hover:bg-[#c9793f] hover:text-[#fbf7ef] sm:px-5 sm:py-3 sm:text-[11px] sm:tracking-[0.18em]"
+                    >
+                      {section.title}
+                    </a>
+                  ))}
+                </div>
               </nav>
             </div>
 
@@ -471,14 +477,14 @@ export default function MenuPage() {
               Sezione
             </p>
             <p className="mt-0.5 line-clamp-1 text-xs font-bold leading-5 text-[#3b2a24]">
-              {sections[currentSectionIndex].title}
+              {anchorSections[currentSectionIndex].title}
             </p>
           </div>
 
           <button
             type="button"
             onClick={goToNextSection}
-            disabled={currentSectionIndex === sections.length - 1}
+            disabled={currentSectionIndex === anchorSections.length - 1}
             aria-label="Sezione successiva"
             className="flex h-12 w-12 items-center justify-center rounded-full border border-[#c9793f] bg-[#fbf7ef] font-serif text-2xl italic leading-none text-[#c9793f] transition hover:bg-[#c9793f] hover:text-[#fbf7ef] disabled:pointer-events-none disabled:opacity-35"
           >
