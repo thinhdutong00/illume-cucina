@@ -22,7 +22,7 @@ export default function Footer() {
           {/* LOGO */}
           <div>
             <Link href="/" aria-label="Vai alla home" className="inline-block">
-              <div className="relative h-20 w-56">
+              <div className="relative h-28 w-72 md:h-36 md:w-96">
                 <Image
                   src="/logo.png"
                   alt="Illume Pizzeria Emiliana"
@@ -86,30 +86,34 @@ export default function Footer() {
               <p className="mt-4 text-xs font-black uppercase tracking-[0.25em] text-[#b5a02f]">
                 Sempre aperti a cena
               </p>
-
-              <div className="mt-8 flex flex-wrap gap-x-5 gap-y-3 text-xs font-bold uppercase tracking-[0.18em] text-[#3b2a24]/55">
-                <Link
-                  href="/privacy-policy"
-                  className="transition hover:text-[#c9793f]"
-                >
-                  Privacy Policy
-                </Link>
-
-                <Link
-                  href="/cookie-policy"
-                  className="transition hover:text-[#c9793f]"
-                >
-                  Cookie Policy
-                </Link>
-              </div>
             </div>
           </div>
         </div>
 
-        {/* COPYRIGHT */}
-        <div className="mt-20 border-t border-[#3b2a24]/10 pt-6 text-center text-[10px] leading-6 tracking-[0.22em] text-[#3b2a24]/50">
-          © 2026 Zenithia SRLS | P.IVA 04228080364 | Via San Francesco 4 41012 |
-          REA Mo-453507 - Powered by Mago System
+        {/* COPYRIGHT / DATI AZIENDALI / LEGAL */}
+        <div className="mt-20 border-t border-[#3b2a24]/10 pt-6">
+          <div className="flex flex-col items-center justify-between gap-4 text-center text-[9px] leading-6 tracking-[0.18em] text-[#3b2a24]/45 md:flex-row md:text-left">
+            <p>
+              © 2026 Zenithia SRLS | P.IVA 04228080364 | Via San Francesco 4
+              41012 | REA Mo-453507 - Powered by Mago System
+            </p>
+
+            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[9px] font-bold uppercase tracking-[0.16em]">
+              <Link
+                href="/privacy-policy"
+                className="transition hover:text-[#c9793f]"
+              >
+                Privacy
+              </Link>
+
+              <Link
+                href="/cookie-policy"
+                className="transition hover:text-[#c9793f]"
+              >
+                Cookie
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </footer>
