@@ -1,5 +1,7 @@
 "use client";
 
+import { useMemo, useState } from "react";
+import type React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import {
@@ -10,7 +12,47 @@ import {
   Users,
   MessageSquare,
   AlertCircle,
+  ChevronLeft,
+  ChevronRight,
+  Check,
+  User,
+  StickyNote,
 } from "lucide-react";
+
+type ReservationForm = {
+  nome: string;
+  telefono: string;
+  email: string;
+  persone: string;
+  data: string;
+  orario: string;
+  note: string;
+};
+
+const initialForm: ReservationForm = {
+  nome: "",
+  telefono: "",
+  email: "",
+  persone: "",
+  data: "",
+  orario: "",
+  note: "",
+};
+
+const weekDays = ["Lun", "Mar", "Mer", "Gio", "Ven", "Sab", "Dom"];
+
+const lunchSlots = ["12:00", "12:30", "13:00", "13:30", "14:00"];
+const dinnerSlots = [
+  "18:30",
+  "19:00",
+  "19:30",
+  "20:00",
+  "20:30",
+  "21:00",
+  "21:30",
+  "22:00",
+  "22:30",
+];
 
 export default function Prenota() {
   return (
@@ -82,67 +124,7 @@ export default function Prenota() {
           <section className="w-full max-w-full px-4 pb-20 sm:px-5 md:px-10 md:pb-32">
             <div className="mx-auto grid w-full max-w-7xl gap-8 lg:grid-cols-[1.05fr_0.95fr]">
               {/* FORM */}
-              <form
-                action="mailto:infoillume.pizzeriaemiliana@gmail.com"
-                method="POST"
-                encType="text/plain"
-                className="w-full max-w-full rounded-[2rem] border border-[#3b2a24]/10 bg-[#fbf7ef] p-5 shadow-2xl sm:p-6 md:rounded-[3rem] md:p-10"
-              >
-                <div className="mb-8 min-w-0 md:mb-10">
-                  <p className="break-words text-[11px] font-black uppercase tracking-[0.22em] text-[#c9793f] sm:text-xs sm:tracking-[0.35em]">
-                    Modulo prenotazione
-                  </p>
-
-                  <h2 className="mt-4 break-words font-serif text-4xl italic leading-[1.05] sm:text-5xl md:text-6xl md:leading-tight">
-                    Dimmi quando arrivi.
-                  </h2>
-
-                  <p className="mt-4 max-w-2xl text-sm leading-7 text-[#3b2a24]/65 sm:text-base">
-                    La richiesta non è automatica: il tavolo è confermato solo
-                    dopo nostra risposta.
-                  </p>
-                </div>
-
-                <div className="grid w-full max-w-full gap-5 md:grid-cols-2">
-                  <Field label="Nome e cognome" name="Nome" type="text" required />
-                  <Field label="Telefono" name="Telefono" type="tel" required />
-                  <Field label="Email" name="Email" type="email" required />
-                  <Field label="Numero persone" name="Persone" type="number" required />
-                  <Field label="Data" name="Data" type="date" required />
-                  <Field label="Orario" name="Orario" type="time" required />
-                </div>
-
-                <div className="mt-5 min-w-0">
-                  <label className="mb-2 block break-words text-[11px] font-black uppercase tracking-[0.18em] text-[#3b2a24]/55 sm:text-xs sm:tracking-[0.25em]">
-                    Note / allergie / richieste
-                  </label>
-
-                  <textarea
-                    name="Note"
-                    rows={5}
-                    placeholder="Scrivi qui eventuali allergie, richieste particolari o informazioni utili."
-                    className="w-full max-w-full rounded-[1.5rem] border border-[#3b2a24]/10 bg-white px-5 py-4 text-sm font-medium outline-none transition placeholder:text-[#3b2a24]/35 focus:border-[#c9793f]"
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="mt-8 inline-flex w-full max-w-full items-center justify-center gap-3 rounded-full bg-[#c9793f] px-5 py-5 text-center text-[11px] font-black uppercase tracking-[0.16em] text-[#fbf7ef] shadow-xl transition hover:bg-[#9b0232] sm:text-xs sm:tracking-[0.22em] md:w-auto md:px-8 md:text-sm"
-                >
-                  <Mail size={17} className="shrink-0" />
-                  <span>Invia richiesta</span>
-                </button>
-
-                <p className="mt-5 max-w-full break-words text-sm leading-6 text-[#3b2a24]/55">
-                  In alternativa puoi scriverci direttamente a{" "}
-                  <a
-                    href="mailto:infoillume.pizzeriaemiliana@gmail.com"
-                    className="break-all font-bold text-[#c9793f] sm:break-words"
-                  >
-                    infoillume.pizzeriaemiliana@gmail.com
-                  </a>
-                </p>
-              </form>
+              <ReservationMultiStepForm />
 
               {/* INFO BROCHURE */}
               <div className="min-w-0 space-y-5">
@@ -200,29 +182,566 @@ export default function Prenota() {
   );
 }
 
-function Field({
-  label,
-  name,
-  type,
-  required,
+function ReservationMultiStepForm() {
+  const [step, setStep] = useState(0);
+  const [form, setForm] = useState<ReservationForm>(initialForm);
+  const [calendarMonth, setCalendarMonth] = useState(() => {
+    const today = new Date();
+    return new Date(today.getFullYear(), today.getMonth(), 1);
+  });
+  const [notice, setNotice] = useState("");
+
+  const selectedDate = form.data ? parseDate(form.data) : null;
+  const availableSlots = selectedDate ? getAvailableSlots(selectedDate) : [];
+
+  const calendarDays = useMemo(
+    () => buildCalendarDays(calendarMonth),
+    [calendarMonth]
+  );
+
+  const currentStep = step + 1;
+  const totalSteps = 4;
+
+  const updateField = (field: keyof ReservationForm, value: string) => {
+    setForm((current) => ({
+      ...current,
+      [field]: value,
+    }));
+  };
+
+  const showNotice = (message: string) => {
+    setNotice(message);
+    window.setTimeout(() => {
+      setNotice((current) => (current === message ? "" : current));
+    }, 3200);
+  };
+
+  const selectDate = (date: Date) => {
+    if (isPastDate(date)) {
+      showNotice("Questa data è già passata. Scegli un giorno disponibile.");
+      return;
+    }
+
+    if (isMonday(date)) {
+      showNotice("Il lunedì siamo chiusi. Scegli un altro giorno.");
+      return;
+    }
+
+    updateField("data", formatDateForInput(date));
+    updateField("orario", "");
+
+    if (isTuesday(date)) {
+      showNotice("Il martedì siamo aperti solo a cena: 18:30–23:00.");
+    } else {
+      setNotice("");
+    }
+  };
+
+  const selectTime = (slot: string) => {
+    if (!selectedDate) {
+      showNotice("Prima scegli una data disponibile.");
+      return;
+    }
+
+    if (!availableSlots.includes(slot)) {
+      if (isTuesday(selectedDate)) {
+        showNotice("Il martedì a pranzo siamo chiusi. Puoi prenotare dalle 18:30.");
+      } else if (isMonday(selectedDate)) {
+        showNotice("Il lunedì siamo chiusi.");
+      } else {
+        showNotice("In questo orario il ristorante non è aperto.");
+      }
+
+      return;
+    }
+
+    updateField("orario", slot);
+    setNotice("");
+  };
+
+  const nextStep = () => {
+    if (step === 0 && !form.persone) {
+      showNotice("Seleziona il numero di persone.");
+      return;
+    }
+
+    if (step === 1 && (!form.data || !form.orario)) {
+      showNotice("Scegli data e orario tra quelli disponibili.");
+      return;
+    }
+
+    if (step === 2 && (!form.nome || !form.telefono || !form.email)) {
+      showNotice("Inserisci nome, telefono ed email per continuare.");
+      return;
+    }
+
+    setNotice("");
+    setStep((current) => Math.min(current + 1, totalSteps - 1));
+  };
+
+  const previousStep = () => {
+    setNotice("");
+    setStep((current) => Math.max(current - 1, 0));
+  };
+
+  return (
+    <form
+      action="mailto:infoillume.pizzeriaemiliana@gmail.com"
+      method="POST"
+      encType="text/plain"
+      className="w-full max-w-full overflow-hidden rounded-[2rem] border border-white/55 bg-white/35 p-4 shadow-2xl backdrop-blur-xl sm:p-5 md:rounded-[3rem] md:p-7"
+    >
+      <input type="hidden" name="Nome" value={form.nome} />
+      <input type="hidden" name="Telefono" value={form.telefono} />
+      <input type="hidden" name="Email" value={form.email} />
+      <input type="hidden" name="Persone" value={form.persone} />
+      <input type="hidden" name="Data" value={form.data} />
+      <input type="hidden" name="Orario" value={form.orario} />
+      <input type="hidden" name="Note" value={form.note} />
+
+      <div className="rounded-[1.7rem] border border-white/70 bg-[#fbf7ef]/82 p-5 shadow-inner sm:p-6 md:rounded-[2.4rem] md:p-8">
+        <div className="mb-7 min-w-0 md:mb-8">
+          <div className="flex items-center justify-between gap-4">
+            <p className="break-words text-[11px] font-black uppercase tracking-[0.22em] text-[#c9793f] sm:text-xs sm:tracking-[0.35em]">
+              Modulo prenotazione
+            </p>
+
+            <span className="shrink-0 rounded-full bg-[#3b2a24] px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.16em] text-[#fbf7ef]">
+              {currentStep}/{totalSteps}
+            </span>
+          </div>
+
+          <h2 className="mt-4 break-words font-serif text-4xl italic leading-[1.05] sm:text-5xl md:text-6xl md:leading-tight">
+            {step === 0 && "Quanti siete?"}
+            {step === 1 && "Quando arrivi?"}
+            {step === 2 && "I tuoi contatti."}
+            {step === 3 && "Ultimi dettagli."}
+          </h2>
+
+          <p className="mt-4 max-w-2xl text-sm leading-7 text-[#3b2a24]/65 sm:text-base">
+            {step === 0 &&
+              "Partiamo dal numero di persone. Per tavoli numerosi puoi comunque chiamarci direttamente."}
+            {step === 1 &&
+              "Scegli solo tra giorni e orari in cui il ristorante è aperto. Lunedì chiuso, martedì solo cena."}
+            {step === 2 &&
+              "Lasciaci i dati per risponderti e confermare la disponibilità del tavolo."}
+            {step === 3 &&
+              "Aggiungi eventuali allergie, richieste o informazioni utili prima di inviare."}
+          </p>
+
+          <div className="mt-5 h-2 overflow-hidden rounded-full bg-[#3b2a24]/10">
+            <div
+              className="h-full rounded-full bg-[#c9793f] transition-all duration-500"
+              style={{ width: `${(currentStep / totalSteps) * 100}%` }}
+            />
+          </div>
+
+          {notice && (
+            <div className="mt-5 flex gap-3 rounded-[1.3rem] border border-[#c9793f]/25 bg-[#fffaf2]/90 p-4 text-sm font-bold leading-6 text-[#9b0232] shadow-sm">
+              <AlertCircle size={18} className="mt-0.5 shrink-0" />
+              <span>{notice}</span>
+            </div>
+          )}
+        </div>
+
+        <div className="min-h-[420px]">
+          {step === 0 && (
+            <div className="space-y-6">
+              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+                {["1", "2", "3", "4", "5", "6"].map((people) => (
+                  <button
+                    key={people}
+                    type="button"
+                    onClick={() => {
+                      updateField("persone", people);
+                      setNotice("");
+                    }}
+                    className={[
+                      "flex min-h-[92px] flex-col items-center justify-center rounded-[1.5rem] border px-4 py-5 text-center transition",
+                      form.persone === people
+                        ? "border-[#c9793f] bg-[#c9793f] text-[#fbf7ef] shadow-xl"
+                        : "border-[#3b2a24]/10 bg-white/70 text-[#3b2a24] hover:bg-[#fffaf2]",
+                    ].join(" ")}
+                  >
+                    <Users size={22} />
+                    <span className="mt-2 font-serif text-4xl italic leading-none">
+                      {people}
+                    </span>
+                    <span className="mt-1 text-[10px] font-black uppercase tracking-[0.16em]">
+                      {people === "1" ? "Persona" : "Persone"}
+                    </span>
+                  </button>
+                ))}
+              </div>
+
+              <button
+                type="button"
+                onClick={() => {
+                  updateField("persone", "7+");
+                  showNotice(
+                    "Per gruppi superiori a 6 persone consigliamo anche il contatto telefonico."
+                  );
+                }}
+                className={[
+                  "flex w-full items-center justify-between gap-4 rounded-[1.5rem] border px-5 py-5 text-left transition",
+                  form.persone === "7+"
+                    ? "border-[#c9793f] bg-[#c9793f] text-[#fbf7ef] shadow-xl"
+                    : "border-[#3b2a24]/10 bg-white/70 text-[#3b2a24] hover:bg-[#fffaf2]",
+                ].join(" ")}
+              >
+                <div>
+                  <p className="text-[11px] font-black uppercase tracking-[0.22em]">
+                    Tavolo numeroso
+                  </p>
+                  <p className="mt-1 text-sm leading-6 opacity-75">
+                    7 o più persone
+                  </p>
+                </div>
+
+                <Users size={24} className="shrink-0" />
+              </button>
+            </div>
+          )}
+
+          {step === 1 && (
+            <div className="space-y-6">
+              <div className="rounded-[1.7rem] border border-[#3b2a24]/10 bg-white/65 p-4 shadow-sm sm:p-5">
+                <div className="mb-5 flex items-center justify-between gap-3">
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setCalendarMonth(
+                        new Date(
+                          calendarMonth.getFullYear(),
+                          calendarMonth.getMonth() - 1,
+                          1
+                        )
+                      )
+                    }
+                    className="flex h-10 w-10 items-center justify-center rounded-full border border-[#3b2a24]/10 bg-[#fbf7ef] transition hover:bg-[#f2ede4]"
+                    aria-label="Mese precedente"
+                  >
+                    <ChevronLeft size={18} />
+                  </button>
+
+                  <p className="text-center text-sm font-black uppercase tracking-[0.18em] text-[#3b2a24]">
+                    {formatMonth(calendarMonth)}
+                  </p>
+
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setCalendarMonth(
+                        new Date(
+                          calendarMonth.getFullYear(),
+                          calendarMonth.getMonth() + 1,
+                          1
+                        )
+                      )
+                    }
+                    className="flex h-10 w-10 items-center justify-center rounded-full border border-[#3b2a24]/10 bg-[#fbf7ef] transition hover:bg-[#f2ede4]"
+                    aria-label="Mese successivo"
+                  >
+                    <ChevronRight size={18} />
+                  </button>
+                </div>
+
+                <div className="grid grid-cols-7 gap-2">
+                  {weekDays.map((day) => (
+                    <div
+                      key={day}
+                      className="pb-1 text-center text-[10px] font-black uppercase tracking-[0.12em] text-[#3b2a24]/45"
+                    >
+                      {day}
+                    </div>
+                  ))}
+
+                  {calendarDays.map((item, index) => {
+                    if (!item) {
+                      return <div key={`empty-${index}`} />;
+                    }
+
+                    const formattedDate = formatDateForInput(item);
+                    const selected = form.data === formattedDate;
+                    const unavailable = isPastDate(item) || isMonday(item);
+
+                    return (
+                      <button
+                        key={formattedDate}
+                        type="button"
+                        aria-disabled={unavailable}
+                        onClick={() => selectDate(item)}
+                        className={[
+                          "relative flex aspect-square items-center justify-center rounded-2xl border text-sm font-black transition",
+                          selected
+                            ? "border-[#c9793f] bg-[#c9793f] text-[#fbf7ef] shadow-lg"
+                            : unavailable
+                              ? "border-[#3b2a24]/5 bg-[#3b2a24]/5 text-[#3b2a24]/25"
+                              : "border-[#3b2a24]/10 bg-[#fbf7ef] text-[#3b2a24] hover:border-[#c9793f] hover:bg-[#fffaf2]",
+                        ].join(" ")}
+                      >
+                        {item.getDate()}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                <div className="mt-4 flex flex-wrap gap-2 text-[10px] font-bold uppercase tracking-[0.12em] text-[#3b2a24]/45">
+                  <span className="rounded-full bg-[#3b2a24]/5 px-3 py-1">
+                    Lunedì chiuso
+                  </span>
+                  <span className="rounded-full bg-[#3b2a24]/5 px-3 py-1">
+                    Martedì solo cena
+                  </span>
+                </div>
+              </div>
+
+              <div className="rounded-[1.7rem] border border-[#3b2a24]/10 bg-white/65 p-4 shadow-sm sm:p-5">
+                <div className="mb-4 flex items-center justify-between gap-4">
+                  <div>
+                    <p className="text-[11px] font-black uppercase tracking-[0.22em] text-[#c9793f]">
+                      Orario
+                    </p>
+                    <p className="mt-1 text-xs font-bold text-[#3b2a24]/55">
+                      {selectedDate
+                        ? formatFullDate(selectedDate)
+                        : "Scegli prima una data"}
+                    </p>
+                  </div>
+
+                  <Clock size={22} className="shrink-0 text-[#c9793f]" />
+                </div>
+
+                <TimeSlotGroup
+                  title="Pranzo"
+                  slots={lunchSlots}
+                  selectedTime={form.orario}
+                  selectedDate={selectedDate}
+                  availableSlots={availableSlots}
+                  onSelect={selectTime}
+                />
+
+                <TimeSlotGroup
+                  title="Cena"
+                  slots={dinnerSlots}
+                  selectedTime={form.orario}
+                  selectedDate={selectedDate}
+                  availableSlots={availableSlots}
+                  onSelect={selectTime}
+                />
+              </div>
+            </div>
+          )}
+
+          {step === 2 && (
+            <div className="space-y-5">
+              <SmartField
+                icon={<User size={18} />}
+                label="Nome e cognome"
+                value={form.nome}
+                onChange={(value) => updateField("nome", value)}
+                placeholder="Es. Mario Rossi"
+                type="text"
+              />
+
+              <SmartField
+                icon={<Phone size={18} />}
+                label="Telefono"
+                value={form.telefono}
+                onChange={(value) => updateField("telefono", value)}
+                placeholder="Es. +39 333 000 0000"
+                type="tel"
+              />
+
+              <SmartField
+                icon={<Mail size={18} />}
+                label="Email"
+                value={form.email}
+                onChange={(value) => updateField("email", value)}
+                placeholder="Es. nome@email.it"
+                type="email"
+              />
+            </div>
+          )}
+
+          {step === 3 && (
+            <div className="space-y-5">
+              <div className="rounded-[1.7rem] border border-[#3b2a24]/10 bg-white/70 p-5 shadow-sm">
+                <p className="text-[11px] font-black uppercase tracking-[0.22em] text-[#c9793f]">
+                  Riepilogo richiesta
+                </p>
+
+                <div className="mt-5 grid gap-3 text-sm font-bold leading-6 text-[#3b2a24]/75">
+                  <SummaryRow label="Persone" value={form.persone || "-"} />
+                  <SummaryRow
+                    label="Data"
+                    value={selectedDate ? formatFullDate(selectedDate) : "-"}
+                  />
+                  <SummaryRow label="Orario" value={form.orario || "-"} />
+                  <SummaryRow label="Nome" value={form.nome || "-"} />
+                  <SummaryRow label="Telefono" value={form.telefono || "-"} />
+                  <SummaryRow label="Email" value={form.email || "-"} />
+                </div>
+              </div>
+
+              <div className="min-w-0">
+                <label className="mb-2 flex items-center gap-2 break-words text-[11px] font-black uppercase tracking-[0.18em] text-[#3b2a24]/55 sm:text-xs sm:tracking-[0.25em]">
+                  <StickyNote size={16} />
+                  Note / allergie / richieste
+                </label>
+
+                <textarea
+                  value={form.note}
+                  onChange={(event) => updateField("note", event.target.value)}
+                  rows={5}
+                  placeholder="Scrivi qui eventuali allergie, richieste particolari o informazioni utili."
+                  className="w-full max-w-full rounded-[1.5rem] border border-[#3b2a24]/10 bg-white/80 px-5 py-4 text-sm font-medium outline-none transition placeholder:text-[#3b2a24]/35 focus:border-[#c9793f]"
+                />
+              </div>
+
+              <p className="rounded-[1.5rem] bg-[#3b2a24]/5 p-4 text-sm font-bold leading-6 text-[#3b2a24]/60">
+                La richiesta non è automatica: il tavolo è confermato solo dopo
+                nostra risposta.
+              </p>
+            </div>
+          )}
+        </div>
+
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <button
+            type="button"
+            onClick={previousStep}
+            disabled={step === 0}
+            className="inline-flex w-full items-center justify-center rounded-full border border-[#3b2a24]/10 bg-white/65 px-6 py-4 text-[11px] font-black uppercase tracking-[0.18em] text-[#3b2a24] transition hover:bg-[#fffaf2] disabled:pointer-events-none disabled:opacity-35 sm:w-auto"
+          >
+            Indietro
+          </button>
+
+          {step < totalSteps - 1 ? (
+            <button
+              type="button"
+              onClick={nextStep}
+              className="inline-flex w-full items-center justify-center gap-3 rounded-full bg-[#c9793f] px-6 py-4 text-[11px] font-black uppercase tracking-[0.18em] text-[#fbf7ef] shadow-xl transition hover:bg-[#9b0232] sm:w-auto"
+            >
+              Continua
+              <ChevronRight size={16} />
+            </button>
+          ) : (
+            <button
+              type="submit"
+              className="inline-flex w-full items-center justify-center gap-3 rounded-full bg-[#c9793f] px-6 py-4 text-[11px] font-black uppercase tracking-[0.18em] text-[#fbf7ef] shadow-xl transition hover:bg-[#9b0232] sm:w-auto"
+            >
+              <Mail size={17} className="shrink-0" />
+              <span>Invia richiesta</span>
+            </button>
+          )}
+        </div>
+
+        <p className="mt-5 max-w-full break-words text-sm leading-6 text-[#3b2a24]/55">
+          In alternativa puoi scriverci direttamente a{" "}
+          <a
+            href="mailto:infoillume.pizzeriaemiliana@gmail.com"
+            className="break-all font-bold text-[#c9793f] sm:break-words"
+          >
+            infoillume.pizzeriaemiliana@gmail.com
+          </a>
+        </p>
+      </div>
+    </form>
+  );
+}
+
+function TimeSlotGroup({
+  title,
+  slots,
+  selectedTime,
+  selectedDate,
+  availableSlots,
+  onSelect,
 }: {
-  label: string;
-  name: string;
-  type: string;
-  required?: boolean;
+  title: string;
+  slots: string[];
+  selectedTime: string;
+  selectedDate: Date | null;
+  availableSlots: string[];
+  onSelect: (slot: string) => void;
 }) {
   return (
-    <div className="min-w-0">
-      <label className="mb-2 block break-words text-[11px] font-black uppercase tracking-[0.18em] text-[#3b2a24]/55 sm:text-xs sm:tracking-[0.25em]">
+    <div className="mt-5">
+      <p className="mb-3 text-[10px] font-black uppercase tracking-[0.18em] text-[#3b2a24]/45">
+        {title}
+      </p>
+
+      <div className="grid grid-cols-3 gap-2 sm:grid-cols-4">
+        {slots.map((slot) => {
+          const available = selectedDate && availableSlots.includes(slot);
+          const selected = selectedTime === slot;
+
+          return (
+            <button
+              key={slot}
+              type="button"
+              aria-disabled={!available}
+              onClick={() => onSelect(slot)}
+              className={[
+                "rounded-full border px-3 py-3 text-xs font-black transition",
+                selected
+                  ? "border-[#c9793f] bg-[#c9793f] text-[#fbf7ef] shadow-lg"
+                  : available
+                    ? "border-[#3b2a24]/10 bg-[#fbf7ef] text-[#3b2a24] hover:border-[#c9793f] hover:bg-[#fffaf2]"
+                    : "border-[#3b2a24]/5 bg-[#3b2a24]/5 text-[#3b2a24]/25",
+              ].join(" ")}
+            >
+              {slot}
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function SmartField({
+  icon,
+  label,
+  value,
+  onChange,
+  placeholder,
+  type,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+  placeholder: string;
+  type: string;
+}) {
+  return (
+    <div className="min-w-0 rounded-[1.5rem] border border-[#3b2a24]/10 bg-white/70 p-4 shadow-sm">
+      <label className="mb-3 flex items-center gap-2 break-words text-[11px] font-black uppercase tracking-[0.18em] text-[#3b2a24]/55 sm:text-xs sm:tracking-[0.25em]">
+        {icon}
         {label}
       </label>
 
       <input
-        name={name}
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
         type={type}
-        required={required}
-        className="w-full max-w-full rounded-full border border-[#3b2a24]/10 bg-white px-5 py-4 text-sm font-medium outline-none transition placeholder:text-[#3b2a24]/35 focus:border-[#c9793f]"
+        placeholder={placeholder}
+        className="w-full max-w-full rounded-full border border-[#3b2a24]/10 bg-[#fbf7ef] px-5 py-4 text-sm font-medium outline-none transition placeholder:text-[#3b2a24]/35 focus:border-[#c9793f]"
       />
+    </div>
+  );
+}
+
+function SummaryRow({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="flex items-start justify-between gap-5 border-b border-[#3b2a24]/10 pb-3 last:border-b-0">
+      <span className="text-[10px] font-black uppercase tracking-[0.16em] text-[#3b2a24]/45">
+        {label}
+      </span>
+
+      <span className="text-right text-[#3b2a24]">{value}</span>
     </div>
   );
 }
@@ -255,4 +774,78 @@ function InfoBox({
       </div>
     </div>
   );
+}
+
+function buildCalendarDays(month: Date) {
+  const year = month.getFullYear();
+  const monthIndex = month.getMonth();
+
+  const firstDay = new Date(year, monthIndex, 1);
+  const lastDay = new Date(year, monthIndex + 1, 0);
+
+  const firstDayIndex = (firstDay.getDay() + 6) % 7;
+  const days: Array<Date | null> = [];
+
+  for (let index = 0; index < firstDayIndex; index++) {
+    days.push(null);
+  }
+
+  for (let day = 1; day <= lastDay.getDate(); day++) {
+    days.push(new Date(year, monthIndex, day));
+  }
+
+  return days;
+}
+
+function getAvailableSlots(date: Date) {
+  if (isMonday(date)) return [];
+  if (isTuesday(date)) return dinnerSlots;
+  return [...lunchSlots, ...dinnerSlots];
+}
+
+function isMonday(date: Date) {
+  return date.getDay() === 1;
+}
+
+function isTuesday(date: Date) {
+  return date.getDay() === 2;
+}
+
+function isPastDate(date: Date) {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const target = new Date(date);
+  target.setHours(0, 0, 0, 0);
+
+  return target.getTime() < today.getTime();
+}
+
+function formatDateForInput(date: Date) {
+  const year = date.getFullYear();
+  const month = `${date.getMonth() + 1}`.padStart(2, "0");
+  const day = `${date.getDate()}`.padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+}
+
+function parseDate(value: string) {
+  const [year, month, day] = value.split("-").map(Number);
+  return new Date(year, month - 1, day);
+}
+
+function formatMonth(date: Date) {
+  return new Intl.DateTimeFormat("it-IT", {
+    month: "long",
+    year: "numeric",
+  }).format(date);
+}
+
+function formatFullDate(date: Date) {
+  return new Intl.DateTimeFormat("it-IT", {
+    weekday: "long",
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  }).format(date);
 }
