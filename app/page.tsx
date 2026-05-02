@@ -14,19 +14,19 @@ const reasons = [
 
 const menuPreview = [
   {
-    name: "Mortazza",
-    desc: "Fiordilatte, mortadella Villani, squacquerone del Caseificio Valsamoggia e granella di pistacchio.",
-    price: "€14.50",
+    name: "Tris di Frittatine Artigianali (a scelta)",
+    desc: "Lasagna Bolo, Rosetta Matt, Pistacchio e Mortadella, Classica.",
+    price: "€14.00",
   },
   {
     name: "Tagliatelle al ragù",
-    desc: "Un primo emiliano diretto, saporito e concreto, pensato per chi cerca il gusto vero della tradizione.",
+    desc: "Abbinamento consigliato: Lusvardi Rose. L'acidità spiccata contrasta la succulenza del ragù.",
     price: "€12",
   },
   {
-    name: "Tiramisù Illúme",
-    desc: "Il dolce giusto per chiudere la cena con qualcosa di semplice, cremoso e familiare.",
-    price: "€6.50",
+    name: "Mortazza",
+    desc: "Fior di latte, mortadella Villani, squacquerone del Caseificio Valsamoggia e granella di pistacchio.",
+    price: "€14.50",
   },
 ];
 
