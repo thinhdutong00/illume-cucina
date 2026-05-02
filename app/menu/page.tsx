@@ -159,6 +159,19 @@ export default function MenuPage() {
           <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(255,255,255,0.72),rgba(233,143,129,0.07),rgba(255,255,255,0.55))]" />
         </div>
 
+        {/* chiazze */}
+        <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+          <div className="absolute left-[-6rem] top-[14rem] h-64 w-80 rotate-[-12deg] rounded-[55%_45%_60%_40%] bg-[#e98f81]/35 blur-sm" />
+          <div className="absolute right-[-7rem] top-[34rem] h-72 w-96 rotate-[14deg] rounded-[45%_55%_40%_60%] bg-[#c9793f]/25 blur-sm" />
+          <div className="absolute bottom-[34rem] left-[14%] h-56 w-72 rotate-[8deg] rounded-[60%_40%_45%_55%] bg-[#b5a02f]/25 blur-sm" />
+          <div className="absolute bottom-[10rem] right-[18%] h-52 w-64 rotate-[-10deg] rounded-[50%_50%_35%_65%] bg-[#9b0232]/15 blur-sm" />
+
+          <div className="absolute left-[42%] top-[20rem] h-40 w-56 rotate-[18deg] rounded-[45%_55%_62%_38%] bg-[#e9c77f]/18 blur-sm" />
+          <div className="absolute right-[24%] top-[66rem] h-44 w-64 rotate-[-8deg] rounded-[62%_38%_48%_52%] bg-[#e98f81]/18 blur-sm" />
+          <div className="absolute left-[-4rem] top-[86rem] h-52 w-72 rotate-[10deg] rounded-[52%_48%_35%_65%] bg-[#c9793f]/14 blur-sm" />
+          <div className="absolute right-[-5rem] bottom-[46rem] h-60 w-80 rotate-[12deg] rounded-[48%_52%_60%_40%] bg-[#b5a02f]/14 blur-sm" />
+        </div>
+
         <div className="relative z-10 w-full max-w-full px-4 pb-24 pt-12 sm:px-5 md:px-10 md:pb-32 md:pt-24">
           <div className="mx-auto w-full max-w-7xl">
             {/* HERO */}
@@ -170,8 +183,6 @@ export default function MenuPage() {
               <h1 className="font-serif text-5xl italic leading-[0.96] sm:text-6xl md:text-8xl md:leading-[0.9]">
                 Menu
               </h1>
-
-              
             </div>
 
             {/* MENU */}
