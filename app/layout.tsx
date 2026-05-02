@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import CookieBanner from "./components/CookieBanner";
 
 export const viewport: Viewport = {
   themeColor: "#3b2a24",
@@ -17,7 +18,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="it">
-      <body>{children}</body>
+      <body>
+        {children}
+        <CookieBanner />
+      </body>
     </html>
   );
 }
