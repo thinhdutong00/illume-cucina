@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import type React from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -22,6 +23,7 @@ import {
 
 type ReservationForm = {
   nome: string;
+  nomeTavolo: string;
   telefono: string;
   email: string;
   persone: string;
@@ -32,6 +34,7 @@ type ReservationForm = {
 
 const initialForm: ReservationForm = {
   nome: "",
+  nomeTavolo: "",
   telefono: "",
   email: "",
   persone: "",
@@ -195,6 +198,7 @@ function ReservationMultiStepForm() {
 
   const [step, setStep] = useState(0);
   const [form, setForm] = useState<ReservationForm>(initialForm);
+  const [privacyAccepted, setPrivacyAccepted] = useState(false);
   const [calendarMonth, setCalendarMonth] = useState(() => {
     const today = new Date();
     return new Date(today.getFullYear(), today.getMonth(), 1);
@@ -343,6 +347,11 @@ function ReservationMultiStepForm() {
       return;
     }
 
+    if (!privacyAccepted) {
+      showNotice("Per inviare la richiesta devi accettare l’informativa privacy.");
+      return;
+    }
+
     setIsSending(true);
     setSent(false);
     setNotice("");
@@ -353,7 +362,10 @@ function ReservationMultiStepForm() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          ...form,
+          privacyAccepted,
+        }),
       });
 
       if (!response.ok) {
@@ -388,12 +400,18 @@ function ReservationMultiStepForm() {
       className="w-full max-w-full overflow-hidden rounded-[2rem] border border-white/55 bg-white/35 p-4 shadow-2xl backdrop-blur-xl sm:p-5 md:rounded-[3rem] md:p-7"
     >
       <input type="hidden" name="Nome" value={form.nome} />
+      <input type="hidden" name="Nome tavolo" value={form.nomeTavolo} />
       <input type="hidden" name="Telefono" value={form.telefono} />
       <input type="hidden" name="Email" value={form.email} />
       <input type="hidden" name="Persone" value={form.persone} />
       <input type="hidden" name="Data" value={form.data} />
       <input type="hidden" name="Orario" value={form.orario} />
       <input type="hidden" name="Note" value={form.note} />
+      <input
+        type="hidden"
+        name="Privacy"
+        value={privacyAccepted ? "Accettata" : "Non accettata"}
+      />
 
       <div className="rounded-[1.7rem] border border-white/70 bg-[#fbf7ef]/82 p-5 shadow-inner sm:p-6 md:rounded-[2.4rem] md:p-8">
         <div className="mb-7 min-w-0 md:mb-8">
@@ -649,6 +667,8 @@ function ReservationMultiStepForm() {
               <SmartField
                 icon={<User size={18} />}
                 label="Nome e cognome"
+                name="nome"
+                autoComplete="name"
                 value={form.nome}
                 onChange={(value) => updateField("nome", value)}
                 onEnter={handleContactFieldEnter}
@@ -657,8 +677,22 @@ function ReservationMultiStepForm() {
               />
 
               <SmartField
+                icon={<Users size={18} />}
+                label="Nome del tavolo"
+                name="nome-tavolo"
+                autoComplete="off"
+                value={form.nomeTavolo}
+                onChange={(value) => updateField("nomeTavolo", value)}
+                onEnter={handleContactFieldEnter}
+                placeholder="Es. Rossi, compleanno Luca, tavolo famiglia"
+                type="text"
+              />
+
+              <SmartField
                 icon={<Phone size={18} />}
                 label="Telefono"
+                name="telefono"
+                autoComplete="tel"
                 value={form.telefono}
                 onChange={(value) => updateField("telefono", value)}
                 onEnter={handleContactFieldEnter}
@@ -669,6 +703,8 @@ function ReservationMultiStepForm() {
               <SmartField
                 icon={<Mail size={18} />}
                 label="Email"
+                name="email"
+                autoComplete="email"
                 value={form.email}
                 onChange={(value) => updateField("email", value)}
                 onEnter={handleContactFieldEnter}
@@ -693,6 +729,10 @@ function ReservationMultiStepForm() {
                   />
                   <SummaryRow label="Orario" value={form.orario || "-"} />
                   <SummaryRow label="Nome" value={form.nome || "-"} />
+                  <SummaryRow
+                    label="Nome tavolo"
+                    value={form.nomeTavolo || "-"}
+                  />
                   <SummaryRow label="Telefono" value={form.telefono || "-"} />
                   <SummaryRow label="Email" value={form.email || "-"} />
                 </div>
@@ -712,6 +752,31 @@ function ReservationMultiStepForm() {
                   className="w-full max-w-full rounded-[1.5rem] border border-[#3b2a24]/10 bg-white/80 px-5 py-4 text-sm font-medium outline-none transition placeholder:text-[#3b2a24]/35 focus:border-[#c9793f]"
                 />
               </div>
+
+              <label className="flex cursor-pointer items-start gap-3 rounded-[1.5rem] border border-[#3b2a24]/10 bg-white/70 p-4 text-sm font-bold leading-6 text-[#3b2a24]/70 shadow-sm">
+                <input
+                  type="checkbox"
+                  checked={privacyAccepted}
+                  onChange={(event) => {
+                    setPrivacyAccepted(event.target.checked);
+                    setNotice("");
+                    setSent(false);
+                  }}
+                  className="mt-1 h-5 w-5 shrink-0 accent-[#c9793f]"
+                />
+
+                <span>
+                  Accetto l’informativa{" "}
+                  <Link
+                    href="/privacy-policy"
+                    className="font-black text-[#c9793f] underline decoration-[#c9793f]/35 underline-offset-4 transition hover:text-[#9b0232]"
+                  >
+                    privacy
+                  </Link>{" "}
+                  e autorizzo il trattamento dei dati per la gestione della
+                  richiesta di prenotazione.
+                </span>
+              </label>
 
               <p className="rounded-[1.5rem] bg-[#3b2a24]/5 p-4 text-sm font-bold leading-6 text-[#3b2a24]/60">
                 La richiesta non è automatica: il tavolo è confermato solo dopo
@@ -820,6 +885,8 @@ function TimeSlotGroup({
 function SmartField({
   icon,
   label,
+  name,
+  autoComplete,
   value,
   onChange,
   onEnter,
@@ -828,6 +895,8 @@ function SmartField({
 }: {
   icon: React.ReactNode;
   label: string;
+  name: string;
+  autoComplete: string;
   value: string;
   onChange: (value: string) => void;
   onEnter?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
@@ -842,6 +911,8 @@ function SmartField({
       </label>
 
       <input
+        name={name}
+        autoComplete={autoComplete}
         value={value}
         onChange={(event) => onChange(event.target.value)}
         onKeyDown={onEnter}
