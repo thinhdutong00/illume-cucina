@@ -23,7 +23,7 @@ export async function POST(request: Request) {
     }
 
     const { data: resendData, error } = await resend.emails.send({
-      from: "Illume Prenotazioni <onboarding@resend.dev>",
+      from: "Illume Prenotazioni <prenotazioni@illumepizzeriaemiliana.it>",
       to: ["infoillume.pizzeriaemiliana@gmail.com"],
       replyTo: email,
       subject: `Nuova richiesta prenotazione - ${nome}`,
