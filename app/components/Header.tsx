@@ -358,7 +358,7 @@ export default function Header() {
             {/* DESKTOP: riquadro descrittivo invariato */}
             <div className="hidden rounded-[2.5rem] border border-[#3b2a24]/10 bg-[#fbf7ef] p-7 shadow-xl md:block md:p-9">
               <p className="text-xs font-black uppercase tracking-[0.3em] text-[#c9793f]">
-                Illume Carpi
+                Illúme Carpi
               </p>
 
               <h2 className="mt-4 font-serif text-4xl italic leading-tight md:text-5xl">
