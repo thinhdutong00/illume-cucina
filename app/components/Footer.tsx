@@ -79,7 +79,7 @@ export default function Footer() {
 
         {/* COPYRIGHT */}
         <div className="mt-20 border-t border-[#3b2a24]/10 pt-6 text-center text-[10px] tracking-[0.25em] text-[#3b2a24]/50">
-          © 2026 ILLUME PIZZERIA - TUTTI I DIRITTI RISERVATI
+          © 2026 Zenithia SRLS | P.IVA 04228080364 | Via San Francesco 4 41012 | REA Mo-453507 - Powered by Mago System
         </div>
       </div>
     </footer>
