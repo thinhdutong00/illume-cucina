@@ -41,7 +41,7 @@ export default function Informazioni() {
               <div className="grid w-full max-w-full gap-8 lg:grid-cols-[1fr_0.85fr] lg:items-end">
                 <div className="min-w-0">
                   <h1 className="max-w-5xl break-words font-serif text-5xl italic leading-[0.96] sm:text-6xl md:text-8xl md:leading-[0.9]">
-                    Pizza contemporanea, radici emiliane.
+                    Pizza emiliana, fatta come si deve.
                   </h1>
 
                   <p className="mt-6 max-w-2xl text-base leading-7 text-[#3b2a24]/70 sm:text-lg sm:leading-8 md:mt-7 md:text-xl">
