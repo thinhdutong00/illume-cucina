@@ -197,7 +197,7 @@ export default function MenuPage() {
                           </span>
 
                           <span className="shrink-0 whitespace-nowrap font-serif text-xl italic leading-6 text-[#c9793f] sm:text-2xl">
-                            €{item.price}
+                            {item.price}
                           </span>
                         </div>
 
