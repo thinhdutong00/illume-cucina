@@ -87,7 +87,11 @@ export default function Header() {
       }
 
       setStatus({
-        label: open ? "Siamo aperti" : `Chiusi • Riapriamo ${nextOpen.includes("alle") ? nextOpen : `alle ${nextOpen}`}`,
+        label: open
+          ? "Siamo aperti"
+          : `Chiusi • Riapriamo ${
+              nextOpen.includes("alle") ? nextOpen : `alle ${nextOpen}`
+            }`,
         isOpen: open,
       });
     };
@@ -287,11 +291,11 @@ export default function Header() {
           <div className="pointer-events-none absolute bottom-[-10%] right-[-10%] h-96 w-96 rounded-full bg-[#c9793f]/20 blur-3xl" />
           <div className="pointer-events-none absolute left-[30%] top-[45%] h-72 w-72 rounded-full bg-[#b5a02f]/15 blur-3xl" />
 
-          <div className="relative z-10 mx-auto flex w-full max-w-7xl items-center justify-between px-5 py-6 md:px-10">
+          <div className="relative z-10 mx-auto flex w-full max-w-7xl items-center justify-between px-5 py-6 md:px-10 md:py-8">
             <Link
               href="/"
               onClick={() => setIsMenuOpen(false)}
-              className="relative h-24 w-72 shrink-0 sm:h-28 sm:w-80 md:h-16 md:w-52"
+              className="relative h-24 w-72 shrink-0 sm:h-28 sm:w-80 md:h-28 md:w-[22rem] lg:h-32 lg:w-[26rem]"
               aria-label="Vai alla home"
             >
               <Image
