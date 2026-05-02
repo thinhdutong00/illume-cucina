@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
@@ -329,6 +330,33 @@ function getSectionId(title: string) {
 }
 
 export default function MenuPage() {
+  const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
+
+  const scrollToSection = (index: number) => {
+    const safeIndex = Math.max(0, Math.min(index, sections.length - 1));
+    const section = sections[safeIndex];
+    const element = document.getElementById(getSectionId(section.title));
+
+    if (!element) {
+      return;
+    }
+
+    setCurrentSectionIndex(safeIndex);
+
+    element.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
+  const goToPreviousSection = () => {
+    scrollToSection(currentSectionIndex - 1);
+  };
+
+  const goToNextSection = () => {
+    scrollToSection(currentSectionIndex + 1);
+  };
+
   return (
     <>
       <Header />
@@ -353,7 +381,7 @@ export default function MenuPage() {
           <div className="absolute right-[-5rem] bottom-[46rem] h-60 w-80 rotate-[12deg] rounded-[48%_52%_60%_40%] bg-[#b5a02f]/14 blur-sm" />
         </div>
 
-        <div className="relative z-10 w-full max-w-full px-4 pb-8 pt-12 sm:px-5 md:px-10 md:pb-10 md:pt-24">
+        <div className="relative z-10 w-full max-w-full px-4 pb-24 pt-12 sm:px-5 md:px-10 md:pb-10 md:pt-24">
           <div className="mx-auto w-full max-w-7xl">
             {/* HERO */}
             <div className="mb-12 text-center md:mb-16">
@@ -369,10 +397,11 @@ export default function MenuPage() {
                 aria-label="Sezioni del menu"
                 className="mx-auto mt-8 flex max-w-5xl flex-wrap justify-center gap-2 sm:mt-10 sm:gap-3"
               >
-                {sections.map((section) => (
+                {sections.map((section, index) => (
                   <a
                     key={section.title}
                     href={`#${getSectionId(section.title)}`}
+                    onClick={() => setCurrentSectionIndex(index)}
                     className="rounded-full border border-[#c9793f] bg-[#fbf7ef]/55 px-4 py-2.5 text-[10px] font-black uppercase tracking-[0.14em] text-[#c9793f] shadow-sm backdrop-blur-sm transition hover:bg-[#c9793f] hover:text-[#fbf7ef] sm:px-5 sm:py-3 sm:text-[11px] sm:tracking-[0.18em]"
                   >
                     {section.title}
@@ -423,6 +452,38 @@ export default function MenuPage() {
               ))}
             </div>
           </div>
+        </div>
+
+        {/* navigazione mobile sezioni */}
+        <div className="fixed bottom-5 left-1/2 z-50 flex -translate-x-1/2 items-center gap-3 rounded-full border border-[#c9793f]/30 bg-[#fbf7ef]/90 p-2 shadow-2xl backdrop-blur-xl md:hidden">
+          <button
+            type="button"
+            onClick={goToPreviousSection}
+            disabled={currentSectionIndex === 0}
+            aria-label="Sezione precedente"
+            className="flex h-12 w-12 items-center justify-center rounded-full border border-[#c9793f] bg-[#fbf7ef] font-serif text-2xl italic leading-none text-[#c9793f] transition hover:bg-[#c9793f] hover:text-[#fbf7ef] disabled:pointer-events-none disabled:opacity-35"
+          >
+            {"<"}
+          </button>
+
+          <div className="min-w-[8rem] px-1 text-center">
+            <p className="text-[9px] font-black uppercase tracking-[0.16em] text-[#c9793f]">
+              Sezione
+            </p>
+            <p className="mt-0.5 line-clamp-1 text-xs font-bold leading-5 text-[#3b2a24]">
+              {sections[currentSectionIndex].title}
+            </p>
+          </div>
+
+          <button
+            type="button"
+            onClick={goToNextSection}
+            disabled={currentSectionIndex === sections.length - 1}
+            aria-label="Sezione successiva"
+            className="flex h-12 w-12 items-center justify-center rounded-full border border-[#c9793f] bg-[#fbf7ef] font-serif text-2xl italic leading-none text-[#c9793f] transition hover:bg-[#c9793f] hover:text-[#fbf7ef] disabled:pointer-events-none disabled:opacity-35"
+          >
+            {">"}
+          </button>
         </div>
 
         <Footer />
