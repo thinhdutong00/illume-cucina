@@ -17,23 +17,38 @@ export default function Informazioni() {
           <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(255,255,255,0.72),rgba(233,143,129,0.07),rgba(255,255,255,0.55))]" />
         </div>
 
+        {/* chiazze */}
+        <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+          <div className="absolute left-[-6rem] top-[14rem] h-64 w-80 rotate-[-12deg] rounded-[55%_45%_60%_40%] bg-[#e98f81]/35 blur-sm" />
+          <div className="absolute right-[-7rem] top-[34rem] h-72 w-96 rotate-[14deg] rounded-[45%_55%_40%_60%] bg-[#c9793f]/25 blur-sm" />
+          <div className="absolute bottom-[34rem] left-[14%] h-56 w-72 rotate-[8deg] rounded-[60%_40%_45%_55%] bg-[#b5a02f]/25 blur-sm" />
+          <div className="absolute bottom-[10rem] right-[18%] h-52 w-64 rotate-[-10deg] rounded-[50%_50%_35%_65%] bg-[#9b0232]/15 blur-sm" />
+
+          <div className="absolute left-[42%] top-[20rem] h-40 w-56 rotate-[18deg] rounded-[45%_55%_62%_38%] bg-[#e9c77f]/18 blur-sm" />
+          <div className="absolute right-[24%] top-[66rem] h-44 w-64 rotate-[-8deg] rounded-[62%_38%_48%_52%] bg-[#e98f81]/18 blur-sm" />
+          <div className="absolute left-[-4rem] top-[86rem] h-52 w-72 rotate-[10deg] rounded-[52%_48%_35%_65%] bg-[#c9793f]/14 blur-sm" />
+          <div className="absolute right-[-5rem] bottom-[46rem] h-60 w-80 rotate-[12deg] rounded-[48%_52%_60%_40%] bg-[#b5a02f]/14 blur-sm" />
+        </div>
+
         <div className="relative z-10 w-full max-w-full">
           {/* HERO */}
           <section className="w-full max-w-full px-4 pb-14 pt-12 sm:px-5 sm:pb-16 md:px-10 md:pb-28 md:pt-24">
             <div className="mx-auto w-full max-w-7xl">
               <p className="mb-5 max-w-full break-words text-[11px] font-black uppercase tracking-[0.22em] text-[#c9793f] sm:text-xs sm:tracking-[0.35em]">
-                Illume · Pizzeria Emiliana
+                Pizzeria Emiliana · Carpi centro
               </p>
 
               <div className="grid w-full max-w-full gap-8 lg:grid-cols-[1fr_0.85fr] lg:items-end">
                 <div className="min-w-0">
                   <h1 className="max-w-5xl break-words font-serif text-5xl italic leading-[0.96] sm:text-6xl md:text-8xl md:leading-[0.9]">
-                    Accendiamo la tradizione.
+                    Pizza contemporanea, radici emiliane.
                   </h1>
 
                   <p className="mt-6 max-w-2xl text-base leading-7 text-[#3b2a24]/70 sm:text-lg sm:leading-8 md:mt-7 md:text-xl">
-                    Illume deriva da splendente. Da ciò che emerge con
-                    chiarezza, senza bisogno di eccessi.
+                    Illume è una pizzeria a Carpi dove l’impasto contemporaneo
+                    incontra i sapori dell’Emilia: ingredienti selezionati,
+                    prodotti locali, cucina sincera e una sala pensata per stare
+                    bene a tavola.
                   </p>
                 </div>
 
@@ -51,8 +66,9 @@ export default function Informazioni() {
                   </h2>
 
                   <p className="mt-4 text-sm leading-7 text-[#fbf7ef]/75 sm:text-base">
-                    Un luogo dove pizza emiliana, semplicità e accoglienza
-                    trovano la loro luce.
+                    Nel centro di Carpi, per chi cerca una pizzeria con impasti
+                    curati, cucina emiliana e un’esperienza semplice, calda e
+                    concreta.
                   </p>
                 </div>
               </div>
@@ -65,7 +81,7 @@ export default function Informazioni() {
               <div className="relative min-h-[500px] w-full max-w-full overflow-hidden rounded-[2.25rem_1.25rem_2.25rem_1.25rem] shadow-2xl sm:min-h-[560px] md:rounded-[4rem_1.5rem_4rem_1.5rem]">
                 <img
                   src="/sala-illume.jpg"
-                  alt="Pizza emiliana Illume"
+                  alt="Sala di Illume Pizzeria Emiliana a Carpi"
                   className="h-full w-full object-cover"
                 />
 
@@ -73,11 +89,11 @@ export default function Informazioni() {
 
                 <div className="absolute bottom-4 left-4 right-4 max-w-[calc(100%-2rem)] rounded-[1.5rem] bg-[#fbf7ef] p-5 shadow-xl sm:bottom-6 sm:left-6 sm:right-6 sm:max-w-none sm:rounded-[2rem] sm:p-6 md:bottom-8 md:left-8 md:right-8">
                   <p className="break-words text-[10px] font-black uppercase tracking-[0.18em] text-[#c9793f] sm:text-xs sm:tracking-[0.3em]">
-                    Splendente
+                    Pizzeria a Carpi
                   </p>
 
                   <h2 className="mt-3 break-words font-serif text-3xl italic leading-tight sm:text-4xl">
-                    Una tradizione che non si nasconde.
+                    Un posto dove mangiare bene, senza complicazioni.
                   </h2>
                 </div>
               </div>
@@ -88,25 +104,28 @@ export default function Informazioni() {
                 </p>
 
                 <h2 className="mt-5 break-words font-serif text-4xl italic leading-[1.05] sm:text-5xl md:text-7xl md:leading-tight">
-                  Semplicità fatta con rispetto.
+                  Buon impasto, buoni ingredienti, buon servizio.
                 </h2>
 
                 <div className="mt-7 space-y-5 text-base leading-8 text-[#3b2a24]/72 sm:mt-8 sm:space-y-6 sm:text-lg sm:leading-9">
                   <p>
-                    Splendente è un’idea pulita. Splendente è una tradizione
-                    che non si nasconde. Splendente è la semplicità fatta con
-                    rispetto.
+                    Illume nasce per chi vuole una pizza fatta con criterio:
+                    impasti curati, cottura precisa, materie prime riconoscibili
+                    e abbinamenti che valorizzano il territorio emiliano.
                   </p>
 
                   <p>
-                    In Illume portiamo luce sulla pizza emiliana: sugli
-                    ingredienti veri, sul tempo che serve, sul fuoco che
-                    trasforma.
+                    Nel nostro menu trovi pizze contemporanee, sapori della
+                    tradizione, salumi selezionati, formaggi emiliani e piatti
+                    pensati per una cena completa, non per una semplice pausa
+                    veloce.
                   </p>
 
                   <p>
-                    Ogni impasto nasce nel silenzio, cresce con pazienza e
-                    arriva al tavolo per brillare di autenticità.
+                    Siamo una pizzeria emiliana a Carpi per chi cerca qualità,
+                    atmosfera e sostanza: un tavolo comodo, una pizza fatta bene
+                    e il piacere di uscire sapendo di aver scelto il posto
+                    giusto.
                   </p>
                 </div>
               </div>
@@ -122,7 +141,7 @@ export default function Informazioni() {
                 </p>
 
                 <h2 className="mt-5 break-words font-serif text-4xl italic leading-[1.05] sm:text-5xl md:text-7xl md:leading-tight">
-                  Il superfluo si spegne. Resta solo l’essenziale.
+                  Una pizza buona si riconosce prima ancora del morso.
                 </h2>
               </div>
 
@@ -130,19 +149,19 @@ export default function Informazioni() {
                 <Pillar
                   icon={<Wheat size={26} />}
                   title="Ingredienti veri"
-                  text="Materie prime riconoscibili, scelte con cura e lasciate parlare senza coprirle."
+                  text="Selezioniamo materie prime riconoscibili, prodotti emiliani e ingredienti che danno sapore senza coprire l’impasto."
                 />
 
                 <Pillar
                   icon={<Clock size={26} />}
                   title="Il tempo che serve"
-                  text="Ogni impasto nasce nel silenzio, cresce con pazienza e arriva al tavolo quando è pronto."
+                  text="Lavoriamo l’impasto con attenzione, rispettando tempi e maturazione per ottenere una pizza fragrante, leggera e digeribile."
                 />
 
                 <Pillar
                   icon={<Flame size={26} />}
-                  title="Il fuoco che trasforma"
-                  text="La cottura dà carattere alla pizza: profumo, consistenza e identità."
+                  title="Cottura precisa"
+                  text="La cottura completa il lavoro: cornicione, profumo e consistenza devono arrivare al tavolo nel momento giusto."
                 />
               </div>
             </div>
@@ -154,14 +173,15 @@ export default function Informazioni() {
               <Sparkles className="mx-auto text-[#e98f81]" size={34} />
 
               <h2 className="mx-auto mt-6 max-w-4xl break-words font-serif text-4xl italic leading-[1.05] sm:text-5xl md:text-7xl md:leading-tight">
-                Illume.
+                Vieni per la pizza.
                 <br />
-                Accendiamo la tradizione.
+                Torni per l’esperienza.
               </h2>
 
               <p className="mx-auto mt-7 max-w-2xl text-base leading-7 text-[#fbf7ef]/75 sm:text-lg sm:leading-8">
-                Questa nuova apertura è una scelta precisa: accendere un luogo
-                dove il superfluo si spegne e resta solo ciò che conta davvero.
+                A Carpi, Illume è il posto per una cena tra amici, una serata in
+                coppia o una tavolata senza pensieri: pizza contemporanea,
+                cucina emiliana e un’accoglienza diretta, calda, concreta.
               </p>
 
               <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
