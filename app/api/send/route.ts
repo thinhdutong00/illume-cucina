@@ -4,17 +4,16 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: Request) {
   try {
+    if (!process.env.RESEND_API_KEY) {
+      return Response.json(
+        { error: "RESEND_API_KEY non configurata." },
+        { status: 500 }
+      );
+    }
+
     const body = await request.json();
 
-    const {
-      nome,
-      telefono,
-      email,
-      persone,
-      data,
-      orario,
-      note,
-    } = body;
+    const { nome, telefono, email, persone, data, orario, note } = body;
 
     if (!nome || !telefono || !email || !persone || !data || !orario) {
       return Response.json(
@@ -48,13 +47,25 @@ export async function POST(request: Request) {
     });
 
     if (error) {
-      return Response.json({ error }, { status: 500 });
+      return Response.json(
+        {
+          error: "Errore Resend.",
+          details: error,
+        },
+        { status: 500 }
+      );
     }
 
-    return Response.json({ success: true, data: resendData });
-  } catch {
+    return Response.json({
+      success: true,
+      data: resendData,
+    });
+  } catch (error) {
     return Response.json(
-      { error: "Errore durante l'invio della prenotazione." },
+      {
+        error: "Errore durante l'invio della prenotazione.",
+        details: error instanceof Error ? error.message : String(error),
+      },
       { status: 500 }
     );
   }
