@@ -22,9 +22,13 @@ const sections: MenuSection[] = [
       {
         name: "Gnocco fritto di pizza",
         price: "15.00",
-        desc: "Servito con selezione salumi Villani e formaggi del Caseificio Valsamoggia.",
+        desc: "Gnocco fritto di pizza, servito con la selezione di Salumi Villani e i formaggi del Caseificio Valsamoggia.",
       },
-      { name: "Tris di frittatine artigianali", price: "14.00" },
+      {
+        name: "Tris di frittatine artigianali",
+        price: "14.00",
+        desc: "A scelta.",
+      },
       { name: "Frittatina Lasagna Bolo", price: "5.50" },
       { name: "Frittatina Rosetta Matt", price: "5.50" },
       { name: "Frittatina Pistacchio e Mortadella", price: "5.00" },
@@ -38,16 +42,28 @@ const sections: MenuSection[] = [
       {
         name: "Tortellini in brodo",
         price: "16.00",
-        desc: "Tortellante. Abbinamento: Lusvardi Blanc.",
+        desc: "Tortellante. Abbinamento: Lusvardi Blanc. La grande acidità della Spergola pulisce il palato dalla ricchezza del brodo.",
       },
       {
-        name: "Tortellini crema di parmigiano",
+        name: "Tortellini con crema di parmigiano",
         price: "16.00",
-        desc: "Abbinamento: Lusvardi Robin.",
+        desc: "Tortellante. Abbinamento: Lusvardi Robin. La struttura dei lieviti sostiene la grassezza della panna senza sovrastarla.",
       },
-      { name: "Tagliatelle ai porcini", price: "15.50" },
-      { name: "Lasagna alla bolognese", price: "13.50" },
-      { name: "Tagliatelle al ragù", price: "12.00" },
+      {
+        name: "Tagliatelle ai funghi porcini",
+        price: "15.50",
+        desc: "Abbinamento: Lusvardi Robin. La complessità dei lieviti si sposa con il sentore terroso dei porcini.",
+      },
+      {
+        name: "Lasagna alla bolognese",
+        price: "13.50",
+        desc: "Abbinamento: Lusvardi Mr X Rosato. Un rosato con carattere per pulire la bocca con freschezza.",
+      },
+      {
+        name: "Tagliatelle al ragù",
+        price: "12.00",
+        desc: "Abbinamento: Lusvardi Rosé. L’acidità spiccata contrasta la succulenza del ragù.",
+      },
     ],
   },
 
@@ -57,92 +73,243 @@ const sections: MenuSection[] = [
       {
         name: "Genovese di mare",
         price: "16.00",
-        desc: "Tonno, provola affumicata, bottarga, lime, timo.",
+        desc: "Genovese di tonno Pescheria Bellucci, provola di bufala affumicata, bottarga, zest di lime e timo.",
       },
       {
         name: "Nerano",
         price: "15.00",
-        desc: "Crema di zucchine, caciocavallo affumicato, fiori di zucca.",
+        desc: "Crema di zucchine, caciocavallo affumicato, fiori di zucca e zest di limone.",
       },
       {
         name: "Mortazza",
         price: "14.50",
-        desc: "Mortadella Villani, squacquerone, pistacchio.",
+        desc: "Fiordilatte, mortadella Villani, squacquerone del Caseificio Valsamoggia e granella di pistacchio.",
       },
-      { name: "Margherita Emiliana", price: "13.50" },
-      { name: "Provola e pepe", price: "12.50" },
+      {
+        name: "Margherita Emiliana",
+        price: "13.50",
+        desc: "Il nostro ragù Bottega della Carne, fiordilatte, Parmigiano Reggiano e basilico.",
+      },
+      {
+        name: "Provola e pepe",
+        price: "12.50",
+        desc: "Pomodorini pacatelle, provola di bufala affumicata, pepe nero macinato e parmigiano.",
+      },
     ],
   },
 
   {
     title: "Pizze classiche",
     items: [
-      { name: "Capricciosa", price: "12.50" },
-      { name: "Vecchia Modena", price: "12.00" },
-      { name: "Salsiccia e patate", price: "11.50" },
-      { name: "4 Formaggi", price: "11.00" },
-      { name: "Vegetariana", price: "11.00" },
-      { name: "Marinara Casertana", price: "10.50" },
-      { name: "Diavola", price: "10.00" },
-      { name: "Bufala", price: "9.00" },
-      { name: "Margherita", price: "8.00" },
+      {
+        name: "Capricciosa",
+        price: "12.50",
+        desc: "Pomodoro, fiordilatte, spalla cotta Villani, porcini, olive, parmigiano.",
+      },
+      {
+        name: "Vecchia Modena",
+        price: "12.00",
+        desc: "Fiordilatte, pancetta affumicata Villani, parmigiano, aceto balsamico.",
+      },
+      {
+        name: "Salsiccia e patate",
+        price: "11.50",
+        desc: "Fiordilatte, salsiccia Bottega della Carne, patate al forno.",
+      },
+      {
+        name: "4 Formaggi",
+        price: "11.00",
+        desc: "Fiordilatte, gorgonzola, provola di bufala affumicata, parmigiano.",
+      },
+      {
+        name: "Vegetariana",
+        price: "11.00",
+        desc: "Ombra di pomodoro, mozzarella di bufala, caponata di verdure.",
+      },
+      {
+        name: "Marinara Casertana",
+        price: "10.50",
+        desc: "Vellutata datterino giallo, olive, capperi fritti, alici, olio di aglio orsino.",
+      },
+      {
+        name: "Diavola",
+        price: "10.00",
+        desc: "Pomodoro, fiordilatte, spianata piccante Villani, parmigiano.",
+      },
+      {
+        name: "Bufala",
+        price: "9.00",
+        desc: "Mozzarella di bufala a crudo, pomodorini semi-dry, basilico.",
+      },
+      {
+        name: "Margherita",
+        price: "8.00",
+        desc: "Pomodoro S. Marzano, fiordilatte, parmigiano, basilico, olio EVO.",
+      },
     ],
   },
 
   {
     title: "Calzoni & Focacce",
     items: [
-      { name: "Piada (calzone aperto)", price: "14.00" },
-      { name: "Non è un erbazzone", price: "13.50" },
-      { name: "Calzone classico", price: "12.50" },
+      {
+        name: "Piada",
+        price: "14.00",
+        desc: "Calzone aperto con rucola, squacquerone Valsamoggia, culatta Villani.",
+      },
+      {
+        name: "Non è un Erbazzone",
+        price: "13.50",
+        desc: "Spinaci, bietole, lardo di Patanegra Villani, crema di ortiche, parmigiano.",
+      },
+      {
+        name: "Calzone classico",
+        price: "12.50",
+        desc: "Ricotta di bufala, fiordilatte, spalla cotta Villani, pepe, parmigiano.",
+      },
       { name: "Focaccia bianca / rossa", price: "6.00" },
+      {
+        name: "Aggiunte",
+        price: "",
+        desc: "Salumi 3€, latticini 2€, verdure 1€.",
+      },
     ],
   },
 
   {
     title: "Dolci",
     items: [
-      { name: "Torta di pane, amaretti e cioccolato", price: "7.50" },
+      {
+        name: "Torta di pane, amaretti e cioccolato",
+        price: "7.50",
+        desc: "Servita con gelato artigianale all’amaretto della Gelateria Sottozero.",
+      },
       { name: "Tiramisù Illume", price: "6.50" },
     ],
   },
 
   {
-    title: "Vini",
+    title: "Carta dei Vini",
     items: [
-      { name: "Lusvardi Robin", price: "26.00" },
-      { name: "Lusvardi Mr X Rosato", price: "26.00" },
-      { name: "Lusvardi Blanc", price: "22.00" },
-      { name: "Lusvardi Rosé", price: "22.00" },
-      { name: "Bortolomiol", price: "24.00" },
-      { name: "Gewürztraminer / Falanghina", price: "20.00" },
-      { name: "Lambrusco Sorbara", price: "18.00" },
-      { name: "Lambrusco Grasparossa", price: "18.00" },
-      { name: "Lambrusco Santa Croce", price: "16.00" },
+      {
+        name: "Cantina Lusvardi",
+        price: "",
+        desc: "Bottiglia. Coltiviamo con orgoglio 3,5 ettari di vigneti autoctoni, trasformando Lambrusco Salamino e Grasparossa in vini dal carattere distintivo.",
+      },
+      {
+        name: "Lusvardi Robin",
+        price: "26.00",
+        desc: "100% Salamino, sui lieviti. Rosa cerasuolo con aromi di melograno e fragolina di bosco. Strutturato e fragrante grazie alla sosta sui lieviti.",
+      },
+      {
+        name: "Lusvardi Mr X Rosato",
+        price: "26.00",
+        desc: "100% Salamino. Rosato di carattere con profumi di frutti rossi e melograno; dinamico e straordinariamente gastronomico.",
+      },
+      {
+        name: "Lusvardi Blanc",
+        price: "22.00",
+        desc: "100% Spergola dell’Emilia IGP. Elegante e sapido, con sentori di mela verde, pesca e agrumi. Finale persistente.",
+      },
+      {
+        name: "Lusvardi Rosé",
+        price: "22.00",
+        desc: "100% Salamino. Rosato brillante, fresco e vivace. Note di frutti di bosco, glicine e rosa canina.",
+      },
+      {
+        name: "Bortolomiol Prior / Senior",
+        price: "24.00",
+        desc: "Calice 6.",
+      },
+      {
+        name: "Gewürztraminer H.Lun / Falanghina Vinosia / Contre",
+        price: "20.00",
+        desc: "Calice 5.",
+      },
+      {
+        name: "Lambrusco Sorbara Cialdini",
+        price: "18.00",
+        desc: "Calice 5.",
+      },
+      {
+        name: "Lambrusco Grasparossa Vezzelli",
+        price: "18.00",
+        desc: "Calice 5.",
+      },
+      {
+        name: "Lambrusco Santa Croce Salamino / Sorbara",
+        price: "16.00",
+        desc: "Calice 4.",
+      },
     ],
   },
 
   {
     title: "Cocktail & Spritz",
     items: [
-      { name: "Spritz Illume", price: "8.00" },
+      {
+        name: "Spritz Illume",
+        price: "7.00",
+        desc: "Lambrusco di Sorbara, Vermouth Bianco, sciroppo di Amarene di Modena, soda.",
+      },
+      {
+        name: "Portami in Emilia",
+        price: "7.00",
+        desc: "Porto, aceto balsamico, sciroppo di Amarena, Prosecco.",
+      },
       { name: "Aperol Spritz", price: "6.00" },
-      { name: "Gin Tonic", price: "8.00" },
-      { name: "Gin Tonic Special", price: "10.00" },
+      {
+        name: "Gin Tonic",
+        price: "8.00",
+        desc: "Tabar London Dry Gin.",
+      },
+      {
+        name: "Gin Tonic Special",
+        price: "10.00",
+        desc: "Tabar Ciliegie di Modena IGP / Tabar Bergamotto.",
+      },
     ],
   },
 
   {
     title: "Bevande",
     items: [
-      { name: "Birra Sixtus", price: "5 / 7 / 9.5" },
-      { name: "Birra Radeberger", price: "4.5 / 6.5 / 9" },
-      { name: "Birra ZEN", price: "6" },
-      { name: "IPA artigianale", price: "6" },
-      { name: "Coca-Cola", price: "3.5 / 5 / 8.5" },
-      { name: "Acqua Lurisia", price: "3.5" },
-      { name: "Caffè", price: "2" },
-      { name: "Amari", price: "5" },
+      {
+        name: "Birra Sixtus",
+        price: "5 / 7 / 9.5",
+        desc: "Rossa. Piccola 5.00 | Media 7.00 | 1 Litro 9.50.",
+      },
+      {
+        name: "Birra Radeberger",
+        price: "4.5 / 6.5 / 9",
+        desc: "Pilsner. Piccola 4.50 | Media 6.50 | 1 Litro 9.00.",
+      },
+      {
+        name: "Birra ZEN",
+        price: "6.00",
+        desc: "Weizen.",
+      },
+      { name: "Birra Session IPA artigianale", price: "6.00" },
+      {
+        name: "Coca-Cola alla spina",
+        price: "3.5 / 5 / 8.5",
+        desc: "Piccola 3.50 | Media 5.00 | 1 Litro 8.50.",
+      },
+      {
+        name: "Acqua Lurisia 75cl",
+        price: "3.50",
+        desc: "Naturale / Frizzante.",
+      },
+      { name: "Caffè Espresso", price: "2.00" },
+      { name: "Amari", price: "5.00" },
+    ],
+  },
+
+  {
+    title: "Coperto & Servizi",
+    items: [
+      { name: "Coperto e servizio", price: "2.50" },
+      { name: "Servizio torta", price: "1.00", desc: "A persona." },
     ],
   },
 ];
@@ -207,9 +374,11 @@ export default function MenuPage() {
                             {item.name}
                           </span>
 
-                          <span className="shrink-0 whitespace-nowrap font-serif text-xl italic leading-6 text-[#c9793f] sm:text-2xl">
-                            {item.price}
-                          </span>
+                          {item.price && (
+                            <span className="shrink-0 whitespace-nowrap font-serif text-xl italic leading-6 text-[#c9793f] sm:text-2xl">
+                              {item.price}
+                            </span>
+                          )}
                         </div>
 
                         {item.desc && (
