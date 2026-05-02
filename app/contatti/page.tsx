@@ -51,7 +51,7 @@ export default function Contatti() {
           <section className="w-full max-w-full px-4 pb-14 pt-12 sm:px-5 sm:pb-16 md:px-10 md:pb-24 md:pt-24">
             <div className="mx-auto w-full max-w-7xl">
               <p className="mb-5 max-w-full text-[11px] font-black uppercase tracking-[0.22em] text-[#c9793f] sm:text-xs sm:tracking-[0.35em]">
-                Contatti · Illume Carpi
+                Contatti · Illúme Carpi
               </p>
 
               <div className="grid w-full max-w-full gap-8 lg:grid-cols-[1fr_0.85fr] lg:items-end">
@@ -62,7 +62,7 @@ export default function Contatti() {
 
                   <p className="mt-6 max-w-2xl text-base leading-7 text-[#3b2a24]/70 sm:text-lg sm:leading-8 md:mt-7 md:text-xl">
                     Siamo in Via S. Francesco 4, nel cuore di Carpi. Prenota il
-                    tuo tavolo, chiamaci o apri la mappa: arrivare da Illume deve
+                    tuo tavolo, chiamaci o apri la mappa: arrivare da Illúme deve
                     essere semplice quanto scegliere una buona pizza.
                   </p>
                 </div>

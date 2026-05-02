@@ -90,7 +90,7 @@ export default function Prenota() {
           <section className="w-full max-w-full px-4 pb-14 pt-12 sm:px-5 sm:pb-16 md:px-10 md:pb-24 md:pt-24">
             <div className="mx-auto w-full max-w-7xl">
               <p className="mb-5 max-w-full text-[11px] font-black uppercase tracking-[0.22em] text-[#c9793f] sm:text-xs sm:tracking-[0.35em]">
-                Prenotazioni · Illume Carpi
+                Prenotazioni · Illúme Carpi
               </p>
 
               <div className="grid w-full max-w-full gap-8 lg:grid-cols-[1fr_0.75fr] lg:items-end">
@@ -150,7 +150,7 @@ export default function Prenota() {
 
                   <div className="absolute bottom-5 left-5 right-5 md:bottom-6 md:left-6 md:right-6">
                     <p className="break-words text-[11px] font-black uppercase tracking-[0.22em] text-[#e98f81] sm:text-xs sm:tracking-[0.3em]">
-                      Illume
+                      Illúme
                     </p>
 
                     <h2 className="mt-3 break-words font-serif text-3xl italic leading-tight text-[#fbf7ef] sm:text-4xl">
