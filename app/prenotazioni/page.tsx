@@ -301,6 +301,10 @@ function ReservationMultiStepForm() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    if (isSending) {
+      return;
+    }
+
     if (step < totalSteps - 1) {
       nextStep();
       return;
