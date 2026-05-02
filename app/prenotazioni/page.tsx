@@ -190,6 +190,8 @@ function ReservationMultiStepForm() {
     return new Date(today.getFullYear(), today.getMonth(), 1);
   });
   const [notice, setNotice] = useState("");
+  const [isSending, setIsSending] = useState(false);
+  const [sent, setSent] = useState(false);
 
   const selectedDate = form.data ? parseDate(form.data) : null;
   const availableSlots = selectedDate ? getAvailableSlots(selectedDate) : [];
@@ -203,6 +205,7 @@ function ReservationMultiStepForm() {
   const totalSteps = 4;
 
   const updateField = (field: keyof ReservationForm, value: string) => {
+    setSent(false);
     setForm((current) => ({
       ...current,
       [field]: value,
@@ -210,7 +213,9 @@ function ReservationMultiStepForm() {
   };
 
   const showNotice = (message: string) => {
+    setSent(false);
     setNotice(message);
+
     window.setTimeout(() => {
       setNotice((current) => (current === message ? "" : current));
     }, 3200);
@@ -234,6 +239,7 @@ function ReservationMultiStepForm() {
       showNotice("Il martedì siamo aperti solo a cena: 18:30–23:00.");
     } else {
       setNotice("");
+      setSent(false);
     }
   };
 
@@ -245,7 +251,9 @@ function ReservationMultiStepForm() {
 
     if (!availableSlots.includes(slot)) {
       if (isTuesday(selectedDate)) {
-        showNotice("Il martedì a pranzo siamo chiusi. Puoi prenotare dalle 18:30.");
+        showNotice(
+          "Il martedì a pranzo siamo chiusi. Puoi prenotare dalle 18:30."
+        );
       } else if (isMonday(selectedDate)) {
         showNotice("Il lunedì siamo chiusi.");
       } else {
@@ -257,6 +265,7 @@ function ReservationMultiStepForm() {
 
     updateField("orario", slot);
     setNotice("");
+    setSent(false);
   };
 
   const nextStep = () => {
@@ -276,19 +285,67 @@ function ReservationMultiStepForm() {
     }
 
     setNotice("");
+    setSent(false);
     setStep((current) => Math.min(current + 1, totalSteps - 1));
   };
 
   const previousStep = () => {
     setNotice("");
+    setSent(false);
     setStep((current) => Math.max(current - 1, 0));
+  };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if (
+      !form.nome ||
+      !form.telefono ||
+      !form.email ||
+      !form.persone ||
+      !form.data ||
+      !form.orario
+    ) {
+      showNotice("Completa tutti i campi obbligatori prima di inviare.");
+      return;
+    }
+
+    setIsSending(true);
+    setSent(false);
+    setNotice("");
+
+    try {
+      const response = await fetch("/api/send", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
+
+      if (!response.ok) {
+        throw new Error("Invio non riuscito.");
+      }
+
+      setSent(true);
+      setNotice(
+        "Richiesta inviata correttamente. Ti risponderemo via email per confermare il tavolo."
+      );
+      setForm(initialForm);
+      setStep(0);
+    } catch {
+      setSent(false);
+      showNotice(
+        "Non siamo riusciti a inviare la richiesta. Prova a chiamarci o scriverci via email."
+      );
+    } finally {
+      setIsSending(false);
+    }
   };
 
   return (
     <form
-      action="mailto:infoillume.pizzeriaemiliana@gmail.com"
-      method="POST"
-      encType="text/plain"
+      onSubmit={handleSubmit}
       className="w-full max-w-full overflow-hidden rounded-[2rem] border border-white/55 bg-white/35 p-4 shadow-2xl backdrop-blur-xl sm:p-5 md:rounded-[3rem] md:p-7"
     >
       <input type="hidden" name="Nome" value={form.nome} />
@@ -337,8 +394,20 @@ function ReservationMultiStepForm() {
           </div>
 
           {notice && (
-            <div className="mt-5 flex gap-3 rounded-[1.3rem] border border-[#c9793f]/25 bg-[#fffaf2]/90 p-4 text-sm font-bold leading-6 text-[#9b0232] shadow-sm">
-              <AlertCircle size={18} className="mt-0.5 shrink-0" />
+            <div
+              className={[
+                "mt-5 flex gap-3 rounded-[1.3rem] border p-4 text-sm font-bold leading-6 shadow-sm",
+                sent
+                  ? "border-emerald-500/25 bg-emerald-50 text-emerald-800"
+                  : "border-[#c9793f]/25 bg-[#fffaf2]/90 text-[#9b0232]",
+              ].join(" ")}
+            >
+              {sent ? (
+                <Check size={18} className="mt-0.5 shrink-0" />
+              ) : (
+                <AlertCircle size={18} className="mt-0.5 shrink-0" />
+              )}
+
               <span>{notice}</span>
             </div>
           )}
@@ -629,10 +698,11 @@ function ReservationMultiStepForm() {
           ) : (
             <button
               type="submit"
-              className="inline-flex w-full items-center justify-center gap-3 rounded-full bg-[#c9793f] px-6 py-4 text-[11px] font-black uppercase tracking-[0.18em] text-[#fbf7ef] shadow-xl transition hover:bg-[#9b0232] sm:w-auto"
+              disabled={isSending}
+              className="inline-flex w-full items-center justify-center gap-3 rounded-full bg-[#c9793f] px-6 py-4 text-[11px] font-black uppercase tracking-[0.18em] text-[#fbf7ef] shadow-xl transition hover:bg-[#9b0232] disabled:pointer-events-none disabled:opacity-60 sm:w-auto"
             >
               <Mail size={17} className="shrink-0" />
-              <span>Invia richiesta</span>
+              <span>{isSending ? "Invio in corso..." : "Invia richiesta"}</span>
             </button>
           )}
         </div>
