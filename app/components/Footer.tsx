@@ -22,7 +22,7 @@ export default function Footer() {
           {/* LOGO */}
           <div>
             <Link href="/" aria-label="Vai alla home" className="inline-block">
-              <div className="relative h-28 w-72 md:h-36 md:w-96">
+              <div className="relative h-28 w-72 md:h-44 md:w-[30rem]">
                 <Image
                   src="/logo.png"
                   alt="Illume Pizzeria Emiliana"
@@ -77,14 +77,30 @@ export default function Footer() {
               Orari
             </p>
 
-            <div className="mt-6 text-sm text-[#3b2a24]/80">
+            <div className="mt-6 space-y-3 text-sm text-[#3b2a24]/80">
               <div className="flex justify-between gap-6 border-b border-[#3b2a24]/10 pb-2">
-                <span>Lun - Dom</span>
-                <span>19:30 - 23:30</span>
+                <span>Lunedì</span>
+                <span className="font-bold text-[#9b0232]">Chiuso</span>
               </div>
 
-              <p className="mt-4 text-xs font-black uppercase tracking-[0.25em] text-[#b5a02f]">
-                Sempre aperti a cena
+              <div className="flex justify-between gap-6 border-b border-[#3b2a24]/10 pb-2">
+                <span>Martedì</span>
+                <span className="text-right font-bold">
+                  18:30 - 23:00
+                </span>
+              </div>
+
+              <div className="flex justify-between gap-6 border-b border-[#3b2a24]/10 pb-2">
+                <span>Mer - Dom</span>
+                <span className="text-right font-bold">
+                  12:00 - 14:30
+                  <br />
+                  18:30 - 23:00
+                </span>
+              </div>
+
+              <p className="mt-4 text-xs font-black uppercase tracking-[0.22em] text-[#b5a02f]">
+                Martedì aperti solo a cena
               </p>
             </div>
           </div>
