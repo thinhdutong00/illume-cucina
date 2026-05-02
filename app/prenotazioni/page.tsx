@@ -298,14 +298,16 @@ function ReservationMultiStepForm() {
     setStep((current) => Math.max(current - 1, 0));
   };
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+  };
 
+  const sendReservation = async () => {
     if (isSending) {
       return;
     }
 
-    if (step < totalSteps - 1) {
+    if (step !== totalSteps - 1) {
       nextStep();
       return;
     }
@@ -350,9 +352,18 @@ function ReservationMultiStepForm() {
     }
   };
 
+  const handleContactFieldEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key !== "Enter") {
+      return;
+    }
+
+    event.preventDefault();
+    nextStep();
+  };
+
   return (
     <form
-      onSubmit={handleSubmit}
+      onSubmit={handleFormSubmit}
       className="w-full max-w-full overflow-hidden rounded-[2rem] border border-white/55 bg-white/35 p-4 shadow-2xl backdrop-blur-xl sm:p-5 md:rounded-[3rem] md:p-7"
     >
       <input type="hidden" name="Nome" value={form.nome} />
@@ -616,6 +627,7 @@ function ReservationMultiStepForm() {
                 label="Nome e cognome"
                 value={form.nome}
                 onChange={(value) => updateField("nome", value)}
+                onEnter={handleContactFieldEnter}
                 placeholder="Es. Mario Rossi"
                 type="text"
               />
@@ -625,6 +637,7 @@ function ReservationMultiStepForm() {
                 label="Telefono"
                 value={form.telefono}
                 onChange={(value) => updateField("telefono", value)}
+                onEnter={handleContactFieldEnter}
                 placeholder="Es. +39 333 000 0000"
                 type="tel"
               />
@@ -634,6 +647,7 @@ function ReservationMultiStepForm() {
                 label="Email"
                 value={form.email}
                 onChange={(value) => updateField("email", value)}
+                onEnter={handleContactFieldEnter}
                 placeholder="Es. nome@email.it"
                 type="email"
               />
@@ -704,7 +718,8 @@ function ReservationMultiStepForm() {
             </button>
           ) : (
             <button
-              type="submit"
+              type="button"
+              onClick={sendReservation}
               disabled={isSending}
               className="inline-flex w-full items-center justify-center gap-3 rounded-full bg-[#c9793f] px-6 py-4 text-[11px] font-black uppercase tracking-[0.18em] text-[#fbf7ef] shadow-xl transition hover:bg-[#9b0232] disabled:pointer-events-none disabled:opacity-60 sm:w-auto"
             >
@@ -783,6 +798,7 @@ function SmartField({
   label,
   value,
   onChange,
+  onEnter,
   placeholder,
   type,
 }: {
@@ -790,6 +806,7 @@ function SmartField({
   label: string;
   value: string;
   onChange: (value: string) => void;
+  onEnter?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
   placeholder: string;
   type: string;
 }) {
@@ -803,6 +820,7 @@ function SmartField({
       <input
         value={value}
         onChange={(event) => onChange(event.target.value)}
+        onKeyDown={onEnter}
         type={type}
         placeholder={placeholder}
         className="w-full max-w-full rounded-full border border-[#3b2a24]/10 bg-[#fbf7ef] px-5 py-4 text-sm font-medium outline-none transition placeholder:text-[#3b2a24]/35 focus:border-[#c9793f]"
