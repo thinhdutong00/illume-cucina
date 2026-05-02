@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import type React from "react";
+import { useRouter } from "next/navigation";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import {
@@ -183,6 +184,8 @@ export default function Prenota() {
 }
 
 function ReservationMultiStepForm() {
+  const router = useRouter();
+
   const [step, setStep] = useState(0);
   const [form, setForm] = useState<ReservationForm>(initialForm);
   const [calendarMonth, setCalendarMonth] = useState(() => {
@@ -327,12 +330,7 @@ function ReservationMultiStepForm() {
         throw new Error("Invio non riuscito.");
       }
 
-      setSent(true);
-      setNotice(
-        "Richiesta inviata correttamente. Ti risponderemo via email per confermare il tavolo."
-      );
-      setForm(initialForm);
-      setStep(0);
+      router.push("/thank-you-page");
     } catch {
       setSent(false);
       showNotice(
