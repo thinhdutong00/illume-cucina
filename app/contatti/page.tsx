@@ -13,13 +13,13 @@ import {
 } from "lucide-react";
 
 const openingHours = [
-  { day: "Lunedì", hours: "19:30 – 23:30" },
-  { day: "Martedì", hours: "Chiuso" },
-  { day: "Mercoledì", hours: "19:30 – 23:30" },
-  { day: "Giovedì", hours: "19:30 – 23:30" },
-  { day: "Venerdì", hours: "12:30 – 14:30 · 19:30 – 00:00" },
-  { day: "Sabato", hours: "12:30 – 14:30 · 19:30 – 00:00" },
-  { day: "Domenica", hours: "12:30 – 14:30 · 19:30 – 00:00" },
+  { day: "Lunedì", hours: "Chiuso" },
+  { day: "Martedì", hours: "18:30 – 23:00" },
+  { day: "Mercoledì", hours: "12:00 – 14:30 · 18:30 – 23:00" },
+  { day: "Giovedì", hours: "12:00 – 14:30 · 18:30 – 23:00" },
+  { day: "Venerdì", hours: "12:00 – 14:30 · 18:30 – 23:00" },
+  { day: "Sabato", hours: "12:00 – 14:30 · 18:30 – 23:00" },
+  { day: "Domenica", hours: "12:00 – 14:30 · 18:30 – 23:00" },
 ];
 
 export default function Contatti() {
@@ -32,6 +32,18 @@ export default function Contatti() {
         <div className="pointer-events-none fixed inset-0 z-0 opacity-[0.42]">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(59,42,36,0.10)_1px,transparent_0)] bg-[length:20px_20px]" />
           <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(255,255,255,0.72),rgba(233,143,129,0.07),rgba(255,255,255,0.55))]" />
+        </div>
+
+        {/* chiazze */}
+        <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+          <div className="absolute left-[-6rem] top-[14rem] h-64 w-80 rotate-[-12deg] rounded-[55%_45%_60%_40%] bg-[#e98f81]/35 blur-sm" />
+          <div className="absolute right-[-7rem] top-[34rem] h-72 w-96 rotate-[14deg] rounded-[45%_55%_40%_60%] bg-[#c9793f]/25 blur-sm" />
+          <div className="absolute bottom-[30rem] left-[14%] h-56 w-72 rotate-[8deg] rounded-[60%_40%_45%_55%] bg-[#b5a02f]/25 blur-sm" />
+          <div className="absolute bottom-[10rem] right-[18%] h-52 w-64 rotate-[-10deg] rounded-[50%_50%_35%_65%] bg-[#9b0232]/15 blur-sm" />
+
+          <div className="absolute left-[42%] top-[18rem] h-40 w-56 rotate-[18deg] rounded-[45%_55%_62%_38%] bg-[#e9c77f]/18 blur-sm" />
+          <div className="absolute right-[26%] top-[58rem] h-44 w-64 rotate-[-8deg] rounded-[62%_38%_48%_52%] bg-[#e98f81]/18 blur-sm" />
+          <div className="absolute left-[-4rem] top-[70rem] h-52 w-72 rotate-[10deg] rounded-[52%_48%_35%_65%] bg-[#c9793f]/14 blur-sm" />
         </div>
 
         <div className="relative z-10 w-full max-w-full">
