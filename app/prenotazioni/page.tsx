@@ -990,7 +990,8 @@ function buildCalendarDays(month: Date) {
 function getAvailableSlots(date: Date) {
   if (isMonday(date)) return [];
   if (isTuesday(date)) return dinnerSlots;
-  if (isWeekendDinnerTurnDay(date)) return [...lunchSlots, ...weekendDinnerSlots];
+  if (isWeekendDinnerTurnDay(date))
+    return [...lunchSlots, ...weekendDinnerSlots];
   return [...lunchSlots, ...dinnerSlots];
 }
 
