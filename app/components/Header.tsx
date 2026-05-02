@@ -46,38 +46,48 @@ export default function Header() {
       const time = now.getHours() + now.getMinutes() / 60;
 
       let open = false;
-      let nextOpen = "12:30";
+      let nextOpen = "";
 
-      const morningShift = { start: 12.5, end: 15 };
-      const eveningShift = { start: 18.5, end: 0 };
-      const eveningShiftLate = { start: 18.5, end: 0.5 };
+      const lunchShift = { start: 12, end: 14.5 };
+      const dinnerShift = { start: 18.5, end: 23 };
 
       if (day === 1) {
-        if (time >= eveningShift.start && time < 24) open = true;
-        nextOpen = "18:30";
-      } else if (day === 5 || day === 6) {
-        if (
-          (time >= morningShift.start && time < morningShift.end) ||
-          time >= eveningShiftLate.start ||
-          time < eveningShiftLate.end
-        ) {
+        // Lunedì chiuso tutto il giorno
+        open = false;
+        nextOpen = "martedì alle 18:30";
+      } else if (day === 2) {
+        // Martedì aperto solo a cena
+        if (time >= dinnerShift.start && time < dinnerShift.end) {
           open = true;
         }
 
-        nextOpen = time < 12.5 ? "12:30" : "18:30";
+        if (time < dinnerShift.start) {
+          nextOpen = "18:30";
+        } else {
+          nextOpen = "domani alle 12:00";
+        }
       } else {
+        // Mercoledì - Domenica: pranzo e cena
         if (
-          (time >= morningShift.start && time < morningShift.end) ||
-          (time >= eveningShift.start && time < 24)
+          (time >= lunchShift.start && time < lunchShift.end) ||
+          (time >= dinnerShift.start && time < dinnerShift.end)
         ) {
           open = true;
         }
 
-        nextOpen = time < 12.5 ? "12:30" : "18:30";
+        if (time < lunchShift.start) {
+          nextOpen = "12:00";
+        } else if (time >= lunchShift.end && time < dinnerShift.start) {
+          nextOpen = "18:30";
+        } else if (day === 0 && time >= dinnerShift.end) {
+          nextOpen = "martedì alle 18:30";
+        } else {
+          nextOpen = "domani alle 12:00";
+        }
       }
 
       setStatus({
-        label: open ? "Siamo aperti" : `Chiusi • Riapriamo alle ${nextOpen}`,
+        label: open ? "Siamo aperti" : `Chiusi • Riapriamo ${nextOpen.includes("alle") ? nextOpen : `alle ${nextOpen}`}`,
         isOpen: open,
       });
     };
