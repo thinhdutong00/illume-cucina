@@ -45,7 +45,7 @@ export default function Informazioni() {
                   </h1>
 
                   <p className="mt-6 max-w-2xl text-base leading-7 text-[#3b2a24]/70 sm:text-lg sm:leading-8 md:mt-7 md:text-xl">
-                    Illume è una pizzeria a Carpi dove l’impasto contemporaneo
+                    Illúme è una pizzeria a Carpi dove l’impasto contemporaneo
                     incontra i sapori dell’Emilia: ingredienti selezionati,
                     prodotti locali, cucina sincera e una sala pensata per stare
                     bene a tavola.
@@ -109,7 +109,7 @@ export default function Informazioni() {
 
                 <div className="mt-7 space-y-5 text-base leading-8 text-[#3b2a24]/72 sm:mt-8 sm:space-y-6 sm:text-lg sm:leading-9">
                   <p>
-                    Illume nasce per chi vuole una pizza fatta con criterio:
+                    Illúme nasce per chi vuole una pizza fatta con criterio:
                     impasti curati, cottura precisa, materie prime riconoscibili
                     e abbinamenti che valorizzano il territorio emiliano.
                   </p>
@@ -179,7 +179,7 @@ export default function Informazioni() {
               </h2>
 
               <p className="mx-auto mt-7 max-w-2xl text-base leading-7 text-[#fbf7ef]/75 sm:text-lg sm:leading-8">
-                A Carpi, Illume è il posto per una cena tra amici, una serata in
+                A Carpi, Illúme è il posto per una cena tra amici, una serata in
                 coppia o una tavolata senza pensieri: pizza contemporanea,
                 cucina emiliana e un’accoglienza diretta, calda, concreta.
               </p>
