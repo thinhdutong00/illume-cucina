@@ -172,7 +172,7 @@ export default function MenuPage() {
           <div className="absolute right-[-5rem] bottom-[46rem] h-60 w-80 rotate-[12deg] rounded-[48%_52%_60%_40%] bg-[#b5a02f]/14 blur-sm" />
         </div>
 
-        <div className="relative z-10 w-full max-w-full px-4 pb-24 pt-12 sm:px-5 md:px-10 md:pb-32 md:pt-24">
+        <div className="relative z-10 w-full max-w-full px-4 pb-8 pt-12 sm:px-5 md:px-10 md:pb-10 md:pt-24">
           <div className="mx-auto w-full max-w-7xl">
             {/* HERO */}
             <div className="mb-12 text-center md:mb-16">
@@ -225,9 +225,9 @@ export default function MenuPage() {
             </div>
           </div>
         </div>
-      </main>
 
-      <Footer />
+        <Footer />
+      </main>
     </>
   );
 }
