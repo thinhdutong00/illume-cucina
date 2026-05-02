@@ -322,7 +322,7 @@ export default function Header() {
 
               <MenuLink
                 href="/informazioni"
-                label="La Visione"
+                label="Informazioni"
                 close={() => setIsMenuOpen(false)}
               />
 
