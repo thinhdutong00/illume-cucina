@@ -6,7 +6,7 @@ import { MapPin, Phone, Camera } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="relative mt-24 overflow-hidden px-5 pb-10 pt-24 md:px-10">
+    <footer className="relative mt-24 overflow-hidden px-5 pb-10 pt-16 md:px-10 md:pt-24">
       {/* background */}
       <div className="absolute inset-0 -z-10 bg-[#fbf7ef]" />
 
@@ -19,24 +19,19 @@ export default function Footer() {
 
       <div className="relative mx-auto max-w-7xl">
         <div className="grid gap-14 md:grid-cols-3">
-          {/* LOGO */}
-          <div>
+          {/* LOGO - visibile solo da tablet/desktop */}
+          <div className="hidden md:block">
             <Link href="/" aria-label="Vai alla home" className="inline-block">
-              <div className="relative h-28 w-72 md:h-44 md:w-[30rem]">
+              <div className="relative h-44 w-[30rem]">
                 <Image
                   src="/logo.png"
-                  alt="Illume Pizzeria Emiliana"
+                  alt="Illúme Pizzeria Emiliana"
                   fill
                   className="object-contain object-left"
                   priority={false}
                 />
               </div>
             </Link>
-
-            <p className="mt-5 max-w-sm text-sm italic leading-7 text-[#3b2a24]/70">
-              Un concetto di ristorazione dove la luce guida la scelta delle
-              materie prime e accompagna ogni esperienza a tavola.
-            </p>
           </div>
 
           {/* CONTATTI */}
@@ -85,9 +80,7 @@ export default function Footer() {
 
               <div className="flex justify-between gap-6 border-b border-[#3b2a24]/10 pb-2">
                 <span>Martedì</span>
-                <span className="text-right font-bold">
-                  18:30 - 23:00
-                </span>
+                <span className="text-right font-bold">18:30 - 23:00</span>
               </div>
 
               <div className="flex justify-between gap-6 border-b border-[#3b2a24]/10 pb-2">
