@@ -184,7 +184,7 @@ const sections: MenuSection[] = [
         price: "7.50",
         desc: "Servita con gelato artigianale all’amaretto della Gelateria Sottozero.",
       },
-      { name: "Tiramisù Illume", price: "6.50" },
+      { name: "Tiramisù Illúme", price: "6.50" },
     ],
   },
 
@@ -248,7 +248,7 @@ const sections: MenuSection[] = [
     title: "Cocktail & Spritz",
     items: [
       {
-        name: "Spritz Illume",
+        name: "Spritz Illúme",
         price: "7.00",
         desc: "Lambrusco di Sorbara, Vermouth Bianco, sciroppo di Amarene di Modena, soda.",
       },
@@ -344,7 +344,7 @@ export default function MenuPage() {
             {/* HERO */}
             <div className="mb-12 text-center md:mb-16">
               <p className="mb-5 text-[11px] font-black uppercase tracking-[0.22em] text-[#c9793f] sm:text-xs sm:tracking-[0.35em]">
-                Illume Carpi
+                Illúme Carpi
               </p>
 
               <h1 className="font-serif text-5xl italic leading-[0.96] sm:text-6xl md:text-8xl md:leading-[0.9]">
@@ -353,11 +353,11 @@ export default function MenuPage() {
             </div>
 
             {/* MENU */}
-            <div className="grid w-full max-w-full gap-6 md:grid-cols-2 md:gap-8 lg:gap-10">
+            <div className="columns-1 gap-6 space-y-6 md:columns-2 md:gap-8 md:space-y-8 lg:gap-10">
               {sections.map((section) => (
                 <div
                   key={section.title}
-                  className="w-full max-w-full rounded-[2rem] border border-white/70 bg-white/60 p-5 shadow-sm backdrop-blur-lg sm:p-6 md:rounded-[2.5rem]"
+                  className="mb-6 inline-block w-full max-w-full break-inside-avoid rounded-[2rem] border border-white/70 bg-white/60 p-5 shadow-sm backdrop-blur-lg sm:p-6 md:mb-8 md:rounded-[2.5rem]"
                 >
                   <h2 className="mb-6 break-words text-[11px] font-black uppercase tracking-[0.22em] text-[#c9793f] sm:text-xs sm:tracking-[0.3em]">
                     {section.title}
