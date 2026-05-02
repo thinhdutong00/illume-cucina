@@ -314,6 +314,20 @@ const sections: MenuSection[] = [
   },
 ];
 
+function getSectionId(title: string) {
+  return title
+    .toLowerCase()
+    .replaceAll("&", "e")
+    .replaceAll("à", "a")
+    .replaceAll("è", "e")
+    .replaceAll("é", "e")
+    .replaceAll("ì", "i")
+    .replaceAll("ò", "o")
+    .replaceAll("ù", "u")
+    .replaceAll(" ", "-")
+    .replaceAll("/", "-");
+}
+
 export default function MenuPage() {
   return (
     <>
@@ -350,14 +364,30 @@ export default function MenuPage() {
               <h1 className="font-serif text-5xl italic leading-[0.96] sm:text-6xl md:text-8xl md:leading-[0.9]">
                 Menu
               </h1>
+
+              <nav
+                aria-label="Sezioni del menu"
+                className="mx-auto mt-8 flex max-w-5xl flex-wrap justify-center gap-2 sm:mt-10 sm:gap-3"
+              >
+                {sections.map((section) => (
+                  <a
+                    key={section.title}
+                    href={`#${getSectionId(section.title)}`}
+                    className="rounded-full border border-[#c9793f] bg-[#fbf7ef]/55 px-4 py-2.5 text-[10px] font-black uppercase tracking-[0.14em] text-[#c9793f] shadow-sm backdrop-blur-sm transition hover:bg-[#c9793f] hover:text-[#fbf7ef] sm:px-5 sm:py-3 sm:text-[11px] sm:tracking-[0.18em]"
+                  >
+                    {section.title}
+                  </a>
+                ))}
+              </nav>
             </div>
 
             {/* MENU */}
             <div className="columns-1 gap-6 space-y-6 md:columns-2 md:gap-8 md:space-y-8 lg:gap-10">
               {sections.map((section) => (
                 <div
+                  id={getSectionId(section.title)}
                   key={section.title}
-                  className="mb-6 inline-block w-full max-w-full break-inside-avoid rounded-[2rem] border border-white/70 bg-white/60 p-5 shadow-sm backdrop-blur-lg sm:p-6 md:mb-8 md:rounded-[2.5rem]"
+                  className="mb-6 inline-block w-full max-w-full scroll-mt-32 break-inside-avoid rounded-[2rem] border border-white/70 bg-white/60 p-5 shadow-sm backdrop-blur-lg sm:p-6 md:mb-8 md:rounded-[2.5rem]"
                 >
                   <h2 className="mb-6 break-words text-[11px] font-black uppercase tracking-[0.22em] text-[#c9793f] sm:text-xs sm:tracking-[0.3em]">
                     {section.title}
