@@ -13,11 +13,28 @@ export async function POST(request: Request) {
 
     const body = await request.json();
 
-    const { nome, telefono, email, persone, data, orario, note } = body;
+    const {
+      nome,
+      nomeTavolo,
+      telefono,
+      email,
+      persone,
+      data,
+      orario,
+      note,
+      privacyAccepted,
+    } = body;
 
     if (!nome || !telefono || !email || !persone || !data || !orario) {
       return Response.json(
         { error: "Campi obbligatori mancanti." },
+        { status: 400 }
+      );
+    }
+
+    if (!privacyAccepted) {
+      return Response.json(
+        { error: "Informativa privacy non accettata." },
         { status: 400 }
       );
     }
@@ -32,11 +49,13 @@ export async function POST(request: Request) {
           <h1 style="color: #c9793f;">Nuova richiesta prenotazione</h1>
 
           <p><strong>Nome:</strong> ${escapeHtml(nome)}</p>
+          <p><strong>Nome tavolo:</strong> ${escapeHtml(nomeTavolo || "Non indicato")}</p>
           <p><strong>Telefono:</strong> ${escapeHtml(telefono)}</p>
           <p><strong>Email:</strong> ${escapeHtml(email)}</p>
           <p><strong>Persone:</strong> ${escapeHtml(persone)}</p>
           <p><strong>Data:</strong> ${escapeHtml(data)}</p>
           <p><strong>Orario:</strong> ${escapeHtml(orario)}</p>
+          <p><strong>Privacy:</strong> Accettata</p>
 
           <hr style="border: none; border-top: 1px solid #ddd; margin: 24px 0;" />
 
