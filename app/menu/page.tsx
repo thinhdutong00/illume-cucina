@@ -22,7 +22,7 @@ const sections: MenuSection[] = [
       {
         name: "Gnocco fritto di pizza",
         price: "15.00",
-        desc: "Servito con selezione salumi Villani e formaggi Valsamoggia.",
+        desc: "Servito con selezione salumi Villani e formaggi del Caseificio.",
       },
       { name: "Tris di frittatine artigianali", price: "14.00" },
       { name: "Frittatina Lasagna Bolo", price: "5.50" },
