@@ -16,17 +16,17 @@ const menuPreview = [
   {
     name: "Tris di Frittatine Artigianali (a scelta)",
     desc: "Lasagna Bolo, Rosetta Matt, Pistacchio e Mortadella, Classica.",
-    price: "€14.00",
+    price: "14.00",
   },
   {
     name: "Tagliatelle al ragù",
     desc: "Abbinamento consigliato: Lusvardi Rose. L'acidità spiccata contrasta la succulenza del ragù.",
-    price: "€12",
+    price: "12.00",
   },
   {
     name: "Mortazza",
     desc: "Fior di latte, mortadella Villani, squacquerone del Caseificio Valsamoggia e granella di pistacchio.",
-    price: "€14.50",
+    price: "14.50",
   },
 ];
 
