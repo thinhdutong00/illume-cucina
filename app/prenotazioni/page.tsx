@@ -169,7 +169,7 @@ export default function Prenota() {
                 <InfoBox
                   icon={<Clock size={22} />}
                   title="Orari"
-                  text="Lun, Mer, Gio: 19:30–23:30 · Ven–Dom: 12:30–14:30 / 19:30–00:00 · Martedì chiuso"
+                  text="Lunedì chiuso · Martedì: 18:30–23:00 · Mer–Dom: 12:00–14:30 / 18:30–23:00"
                 />
 
                 <InfoBox
