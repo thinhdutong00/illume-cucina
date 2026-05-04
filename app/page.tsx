@@ -215,11 +215,11 @@ export default function Home() {
               </p>
 
               <h2 className="mt-5 font-serif text-4xl italic leading-tight sm:text-5xl md:text-7xl">
-                Un menu costruito sul gusto.
+                Un menù costruito sul gusto.
               </h2>
 
               <p className="mt-6 max-w-xl text-base leading-8 text-[#3b2a24]/70 sm:text-lg">
-                Nel menu trovi pizze curate, ingredienti selezionati e piatti
+                Nel menù trovi pizze curate, ingredienti selezionati e piatti
                 ispirati alla cucina emiliana. Sapori pieni, abbinamenti audaci
                 quando servono, ricette più tradizionali quando è il prodotto a
                 dover parlare.
@@ -344,7 +344,7 @@ export default function Home() {
 
                 <p className="mt-6 max-w-2xl text-base leading-8 text-[#3b2a24]/70 sm:text-lg">
                   Se cerchi una pizzeria a Carpi con ingredienti di qualità,
-                  piatti emiliani e un menu pensato per farti scoprire sapori
+                  piatti emiliani e un menù pensato per farti scoprire sapori
                   pieni e riconoscibili, Illúme è il posto giusto per una cena
                   concreta, piacevole e piena dall’inizio alla fine.
                 </p>

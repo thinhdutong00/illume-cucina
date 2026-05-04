@@ -15,11 +15,11 @@ import {
 const openingHours = [
   { day: "Lunedì", hours: "Chiuso" },
   { day: "Martedì", hours: "18:30 – 23:00" },
-  { day: "Mercoledì", hours: "12:00 – 14:30 · 18:30 – 23:00" },
+  { day: "Mercoledì", hours: "18:30 – 23:00" },
   { day: "Giovedì", hours: "12:00 – 14:30 · 18:30 – 23:00" },
-  { day: "Venerdì", hours: "12:00 – 14:30 · 18:30 – 23:00" },
+  { day: "Venerdì", hours: "18:30 – 23:00" },
   { day: "Sabato", hours: "12:00 – 14:30 · 18:30 – 23:00" },
-  { day: "Domenica", hours: "12:00 – 14:30 · 18:30 – 23:00" },
+  { day: "Domenica", hours: "18:30 – 23:00" },
 ];
 
 export default function Contatti() {
@@ -144,6 +144,10 @@ export default function Contatti() {
                       </div>
                     ))}
                   </div>
+
+                  <p className="mt-5 rounded-2xl border border-[#b5a02f]/20 bg-[#fbf7ef]/55 px-4 py-3 text-xs font-black uppercase leading-5 tracking-[0.18em] text-[#b5a02f]">
+                    Pranzo solo giovedì e sabato
+                  </p>
                 </div>
 
                 <InfoCard
@@ -161,7 +165,7 @@ export default function Contatti() {
                   title="Email"
                   text={
                     <a
-                      href="mailto:info@illumecucina.it"
+                      href="mailto:infoillume.pizzeriaemiliana@gmail.com"
                       className="break-all hover:text-[#c9793f] sm:break-words"
                     >
                       infoillume.pizzeriaemiliana@gmail.com
@@ -174,7 +178,7 @@ export default function Contatti() {
               <div className="relative min-h-[560px] w-full max-w-full overflow-hidden rounded-[2.25rem_1.25rem_2.25rem_1.25rem] shadow-2xl sm:min-h-[620px] md:rounded-[4rem_1.5rem_4rem_1.5rem]">
                 <img
                   src="/internologo.jpg"
-                  alt="Ingresso Illume a Carpi"
+                  alt="Ingresso Illúme a Carpi"
                   className="h-full w-full object-cover"
                 />
 
@@ -217,7 +221,7 @@ export default function Contatti() {
           <section className="w-full max-w-full px-4 pb-24 sm:px-5 md:px-10 md:pb-28">
             <div className="mx-auto max-w-5xl text-center">
               <p className="break-words text-[11px] font-black uppercase tracking-[0.24em] text-[#b5a02f] sm:text-xs sm:tracking-[0.35em]">
-                Illume Carpi
+                Illúme Carpi
               </p>
 
               <h2 className="mx-auto mt-5 max-w-4xl break-words font-serif text-4xl italic leading-[1.05] sm:text-5xl md:text-7xl md:leading-tight">
