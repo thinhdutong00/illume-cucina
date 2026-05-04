@@ -84,7 +84,12 @@ export default function Footer() {
               </div>
 
               <div className="flex justify-between gap-6 border-b border-[#3b2a24]/10 pb-2">
-                <span>Mer - Dom</span>
+                <span>Mercoledì</span>
+                <span className="text-right font-bold">18:30 - 23:00</span>
+              </div>
+
+              <div className="flex justify-between gap-6 border-b border-[#3b2a24]/10 pb-2">
+                <span>Giovedì</span>
                 <span className="text-right font-bold">
                   12:00 - 14:30
                   <br />
@@ -92,8 +97,27 @@ export default function Footer() {
                 </span>
               </div>
 
+              <div className="flex justify-between gap-6 border-b border-[#3b2a24]/10 pb-2">
+                <span>Venerdì</span>
+                <span className="text-right font-bold">18:30 - 23:00</span>
+              </div>
+
+              <div className="flex justify-between gap-6 border-b border-[#3b2a24]/10 pb-2">
+                <span>Sabato</span>
+                <span className="text-right font-bold">
+                  12:00 - 14:30
+                  <br />
+                  18:30 - 23:00
+                </span>
+              </div>
+
+              <div className="flex justify-between gap-6 border-b border-[#3b2a24]/10 pb-2">
+                <span>Domenica</span>
+                <span className="text-right font-bold">18:30 - 23:00</span>
+              </div>
+
               <p className="mt-4 text-xs font-black uppercase tracking-[0.22em] text-[#b5a02f]">
-                Martedì aperti solo a cena
+                Pranzo solo giovedì e sabato
               </p>
             </div>
           </div>
