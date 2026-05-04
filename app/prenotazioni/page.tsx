@@ -162,7 +162,7 @@ export default function Prenota() {
                 <InfoBox
                   icon={<Clock size={22} />}
                   title="Orari"
-                  text="Lunedì chiuso · Martedì: 18:30–23:00 · Mer–Dom: 12:00–14:30 / 18:30–23:00"
+                  text="Lunedì chiuso · Mar, Mer, Ven e Dom: 18:30–23:00 · Gio e Sab: 12:00–14:30 / 18:30–23:00"
                 />
 
                 <InfoBox
@@ -253,15 +253,20 @@ function ReservationMultiStepForm() {
     updateField("data", formatDateForInput(date));
     updateField("orario", "");
 
-    if (isTuesday(date)) {
-      showNotice("Il martedì siamo aperti solo a cena: 18:30–23:00.");
+    if (isLunchDay(date) && isWeekendDinnerTurnDay(date)) {
+      showNotice(
+        "Il sabato puoi prenotare a pranzo oppure scegliere uno dei tre turni disponibili per la cena."
+      );
+    } else if (isLunchDay(date)) {
+      showNotice("Il giovedì siamo aperti a pranzo e a cena.");
     } else if (isWeekendDinnerTurnDay(date)) {
       showNotice(
         "Venerdì, sabato e domenica a cena puoi scegliere uno dei tre turni disponibili."
       );
     } else {
-      setNotice("");
-      setSent(false);
+      showNotice(
+        "In questo giorno siamo aperti solo a cena: 18:30–23:00."
+      );
     }
   };
 
@@ -272,12 +277,12 @@ function ReservationMultiStepForm() {
     }
 
     if (!availableSlots.includes(slot)) {
-      if (isTuesday(selectedDate)) {
-        showNotice(
-          "Il martedì a pranzo siamo chiusi. Puoi prenotare dalle 18:30."
-        );
-      } else if (isMonday(selectedDate)) {
+      if (isMonday(selectedDate)) {
         showNotice("Il lunedì siamo chiusi.");
+      } else if (!isLunchDay(selectedDate) && lunchSlots.includes(slot)) {
+        showNotice(
+          "Il pranzo è disponibile solo il giovedì e il sabato. Scegli un orario di cena."
+        );
       } else if (isWeekendDinnerTurnDay(selectedDate)) {
         showNotice(
           "Venerdì, sabato e domenica a cena sono disponibili solo i tre turni indicati."
@@ -436,7 +441,7 @@ function ReservationMultiStepForm() {
             {step === 0 &&
               "Partiamo dal numero di persone. Per tavoli numerosi puoi comunque chiamarci direttamente."}
             {step === 1 &&
-              "Scegli solo tra giorni e orari in cui il ristorante è aperto. Lunedì chiuso, martedì solo cena."}
+              "Scegli solo tra giorni e orari in cui il ristorante è aperto. Lunedì chiuso, pranzo solo giovedì e sabato."}
             {step === 2 &&
               "Lasciaci i dati per risponderti e confermare la disponibilità del tavolo."}
             {step === 3 &&
@@ -617,7 +622,7 @@ function ReservationMultiStepForm() {
                     Lunedì chiuso
                   </span>
                   <span className="rounded-full bg-[#3b2a24]/5 px-3 py-1">
-                    Martedì solo cena
+                    Pranzo solo Gio · Sab
                   </span>
                   <span className="rounded-full bg-[#3b2a24]/5 px-3 py-1">
                     Ven · Sab · Dom cena a turni
@@ -989,18 +994,28 @@ function buildCalendarDays(month: Date) {
 
 function getAvailableSlots(date: Date) {
   if (isMonday(date)) return [];
-  if (isTuesday(date)) return dinnerSlots;
-  if (isWeekendDinnerTurnDay(date))
+
+  if (isLunchDay(date) && isWeekendDinnerTurnDay(date)) {
     return [...lunchSlots, ...weekendDinnerSlots];
-  return [...lunchSlots, ...dinnerSlots];
+  }
+
+  if (isLunchDay(date)) {
+    return [...lunchSlots, ...dinnerSlots];
+  }
+
+  if (isWeekendDinnerTurnDay(date)) {
+    return weekendDinnerSlots;
+  }
+
+  return dinnerSlots;
 }
 
 function isMonday(date: Date) {
   return date.getDay() === 1;
 }
 
-function isTuesday(date: Date) {
-  return date.getDay() === 2;
+function isLunchDay(date: Date) {
+  return date.getDay() === 4 || date.getDay() === 6;
 }
 
 function isWeekendDinnerTurnDay(date: Date) {
