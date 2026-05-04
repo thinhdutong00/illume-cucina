@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { MapPin, Phone, Camera } from "lucide-react";
+import { MapPin, Phone } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -54,15 +54,27 @@ export default function Footer() {
                 <span>+39 059 9716021</span>
               </a>
 
-              <a
-                href="https://www.instagram.com/illume.pizzeriaemiliana"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 transition hover:text-[#c9793f]"
-              >
-                <Camera size={16} className="shrink-0" />
-                <span>@illume.pizzeriaemiliana</span>
-              </a>
+              <div className="flex items-center gap-3 pt-1">
+                <a
+                  href="https://www.facebook.com/share/1APCqS6mV4/?mibextid=wwXIfr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook Illúme Pizzeria Emiliana"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-[#3b2a24]/10 bg-[#fbf7ef]/60 text-[#3b2a24] transition hover:border-[#c9793f] hover:bg-[#c9793f] hover:text-[#fbf7ef]"
+                >
+                  <FacebookIcon />
+                </a>
+
+                <a
+                  href="https://www.instagram.com/illume.pizzeriaemiliana?igsh=MWZydXpldmt0b2x1dQ=="
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram Illúme Pizzeria Emiliana"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-[#3b2a24]/10 bg-[#fbf7ef]/60 text-[#3b2a24] transition hover:border-[#c9793f] hover:bg-[#c9793f] hover:text-[#fbf7ef]"
+                >
+                  <InstagramIcon />
+                </a>
+              </div>
             </div>
           </div>
 
@@ -156,5 +168,34 @@ export default function Footer() {
         </div>
       </div>
     </footer>
+  );
+}
+
+function FacebookIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="h-4 w-4 fill-current"
+    >
+      <path d="M13.5 21.5v-8.6h2.9l.4-3.3h-3.3V7.5c0-1 .3-1.6 1.7-1.6h1.8v-3a24 24 0 0 0-2.6-.1c-2.6 0-4.4 1.6-4.4 4.5v2.5H7.1v3.3H10v8.6h3.5z" />
+    </svg>
+  );
+}
+
+function InstagramIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="h-4 w-4 fill-none stroke-current"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.5" cy="6.5" r="1" className="fill-current stroke-none" />
+    </svg>
   );
 }
