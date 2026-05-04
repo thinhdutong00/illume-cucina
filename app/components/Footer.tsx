@@ -72,53 +72,57 @@ export default function Footer() {
               Orari
             </p>
 
-            <div className="mt-6 space-y-3 text-sm text-[#3b2a24]/80">
-              <div className="flex justify-between gap-6 border-b border-[#3b2a24]/10 pb-2">
-                <span>Lunedì</span>
-                <span className="font-bold text-[#9b0232]">Chiuso</span>
+            <div className="mt-6 grid gap-x-6 gap-y-3 text-sm text-[#3b2a24]/80 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2">
+              <div className="space-y-3">
+                <div className="flex justify-between gap-4 border-b border-[#3b2a24]/10 pb-2">
+                  <span>Lunedì</span>
+                  <span className="font-bold text-[#9b0232]">Chiuso</span>
+                </div>
+
+                <div className="flex justify-between gap-4 border-b border-[#3b2a24]/10 pb-2">
+                  <span>Martedì</span>
+                  <span className="text-right font-bold">18:30 - 23:00</span>
+                </div>
+
+                <div className="flex justify-between gap-4 border-b border-[#3b2a24]/10 pb-2">
+                  <span>Mercoledì</span>
+                  <span className="text-right font-bold">18:30 - 23:00</span>
+                </div>
+
+                <div className="flex justify-between gap-4 border-b border-[#3b2a24]/10 pb-2">
+                  <span>Giovedì</span>
+                  <span className="text-right font-bold">
+                    12:00 - 14:30
+                    <br />
+                    18:30 - 23:00
+                  </span>
+                </div>
               </div>
 
-              <div className="flex justify-between gap-6 border-b border-[#3b2a24]/10 pb-2">
-                <span>Martedì</span>
-                <span className="text-right font-bold">18:30 - 23:00</span>
-              </div>
+              <div className="space-y-3">
+                <div className="flex justify-between gap-4 border-b border-[#3b2a24]/10 pb-2">
+                  <span>Venerdì</span>
+                  <span className="text-right font-bold">18:30 - 23:00</span>
+                </div>
 
-              <div className="flex justify-between gap-6 border-b border-[#3b2a24]/10 pb-2">
-                <span>Mercoledì</span>
-                <span className="text-right font-bold">18:30 - 23:00</span>
-              </div>
+                <div className="flex justify-between gap-4 border-b border-[#3b2a24]/10 pb-2">
+                  <span>Sabato</span>
+                  <span className="text-right font-bold">
+                    12:00 - 14:30
+                    <br />
+                    18:30 - 23:00
+                  </span>
+                </div>
 
-              <div className="flex justify-between gap-6 border-b border-[#3b2a24]/10 pb-2">
-                <span>Giovedì</span>
-                <span className="text-right font-bold">
-                  12:00 - 14:30
-                  <br />
-                  18:30 - 23:00
-                </span>
-              </div>
+                <div className="flex justify-between gap-4 border-b border-[#3b2a24]/10 pb-2">
+                  <span>Domenica</span>
+                  <span className="text-right font-bold">18:30 - 23:00</span>
+                </div>
 
-              <div className="flex justify-between gap-6 border-b border-[#3b2a24]/10 pb-2">
-                <span>Venerdì</span>
-                <span className="text-right font-bold">18:30 - 23:00</span>
+                <p className="pt-1 text-xs font-black uppercase leading-5 tracking-[0.18em] text-[#b5a02f]">
+                  Pranzo solo giovedì e sabato
+                </p>
               </div>
-
-              <div className="flex justify-between gap-6 border-b border-[#3b2a24]/10 pb-2">
-                <span>Sabato</span>
-                <span className="text-right font-bold">
-                  12:00 - 14:30
-                  <br />
-                  18:30 - 23:00
-                </span>
-              </div>
-
-              <div className="flex justify-between gap-6 border-b border-[#3b2a24]/10 pb-2">
-                <span>Domenica</span>
-                <span className="text-right font-bold">18:30 - 23:00</span>
-              </div>
-
-              <p className="mt-4 text-xs font-black uppercase tracking-[0.22em] text-[#b5a02f]">
-                Pranzo solo giovedì e sabato
-              </p>
             </div>
           </div>
         </div>
