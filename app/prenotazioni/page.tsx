@@ -120,7 +120,7 @@ export default function Prenota() {
                   </p>
 
                   <a
-                    href="tel:+393384622362"
+                    href="tel:+390599776021"
                     className="mt-7 inline-flex w-full max-w-full items-center justify-center gap-3 rounded-full bg-[#c9793f] px-5 py-4 text-center text-[11px] font-black uppercase tracking-[0.16em] text-[#fbf7ef] transition hover:bg-[#9b0232] sm:w-auto sm:px-7 sm:text-xs sm:tracking-[0.22em]"
                   >
                     <Phone size={16} className="shrink-0" />

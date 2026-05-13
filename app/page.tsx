@@ -345,7 +345,7 @@ export default function Home() {
                 <p className="mt-6 max-w-2xl text-base leading-8 text-[#3b2a24]/70 sm:text-lg">
                   Se cerchi una pizzeria a Carpi con ingredienti di qualità,
                   piatti emiliani e un menù pensato per farti scoprire sapori
-                  pieni e riconoscibili, Illúme è il posto giusto per una cena
+                  pieni e riconoscibitrtytr5t6yr545tytri, Illúme è il posto giusto per una cena
                   concreta, piacevole e piena dall’inizio alla fine.
                 </p>
               </div>
