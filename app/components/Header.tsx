@@ -148,7 +148,6 @@ export default function Header() {
 
     if (isMenuOpen) {
       document.body.style.overflow = "hidden";
-      setIsHeaderHidden(false);
     } else {
       document.body.style.overflow = "";
     }
@@ -163,6 +162,11 @@ export default function Header() {
   const textColor = "text-[#fbf7ef]";
   const borderColor = "border-[#fbf7ef]/20";
   const pillBg = "bg-[#3b2a24]";
+  const openMenu = () => {
+    setIsHeaderHidden(false);
+    setIsMenuOpen(true);
+  };
+  const closeMenu = () => setIsMenuOpen(false);
 
   return (
     <>
@@ -213,7 +217,7 @@ export default function Header() {
               </div>
 
               <button
-                onClick={() => setIsMenuOpen(true)}
+                onClick={openMenu}
                 aria-label="Apri menu"
                 className={[
                   "flex h-10 w-10 shrink-0 items-center justify-center rounded-full border transition hover:scale-105",
@@ -307,7 +311,7 @@ export default function Header() {
               </Link>
 
               <button
-                onClick={() => setIsMenuOpen(true)}
+                onClick={openMenu}
                 aria-label="Apri menu"
                 className={[
                   "flex h-11 w-11 shrink-0 items-center justify-center rounded-full border transition hover:scale-105",
@@ -330,8 +334,11 @@ export default function Header() {
       <div
         className={[
           "fixed inset-0 z-[2000] transition-transform duration-700 ease-[cubic-bezier(0.77,0,0.175,1)]",
-          isMenuOpen ? "translate-x-0" : "translate-x-full",
+          isMenuOpen
+            ? "translate-x-0 pointer-events-auto"
+            : "translate-x-full pointer-events-none",
         ].join(" ")}
+        aria-hidden={!isMenuOpen}
       >
         <div className="relative flex h-full flex-col overflow-y-auto overflow-x-hidden bg-[#fbf7ef] text-[#3b2a24]">
           <div className="pointer-events-none absolute left-[-10%] top-[-10%] h-72 w-72 rounded-full bg-[#e98f81]/25 blur-3xl" />
@@ -341,7 +348,7 @@ export default function Header() {
           <div className="relative z-10 mx-auto flex w-full max-w-7xl items-center justify-between px-5 py-6 md:px-10 md:py-8">
             <Link
               href="/"
-              onClick={() => setIsMenuOpen(false)}
+              onClick={closeMenu}
               className="relative h-24 w-72 shrink-0 sm:h-28 sm:w-80 md:h-28 md:w-[22rem] lg:h-32 lg:w-[26rem]"
               aria-label="Vai alla home"
             >
@@ -354,7 +361,7 @@ export default function Header() {
             </Link>
 
             <button
-              onClick={() => setIsMenuOpen(false)}
+              onClick={closeMenu}
               aria-label="Chiudi menu"
               className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#3b2a24]/10 bg-[#fbf7ef] text-[#3b2a24] transition hover:scale-105"
             >
@@ -367,26 +374,26 @@ export default function Header() {
               <MenuLink
                 href="/menu"
                 label="Il Menù"
-                close={() => setIsMenuOpen(false)}
+                close={closeMenu}
                 highlight
               />
 
               <MenuLink
                 href="/informazioni"
                 label="Informazioni"
-                close={() => setIsMenuOpen(false)}
+                close={closeMenu}
               />
 
               <MenuLink
                 href="/prenotazioni"
                 label="Prenota"
-                close={() => setIsMenuOpen(false)}
+                close={closeMenu}
               />
 
               <MenuLink
                 href="/contatti"
                 label="Dove Siamo"
-                close={() => setIsMenuOpen(false)}
+                close={closeMenu}
               />
             </nav>
 
@@ -394,7 +401,7 @@ export default function Header() {
             <div className="md:hidden">
               <a
                 href="tel:+390599776021"
-                onClick={() => setIsMenuOpen(false)}
+                onClick={closeMenu}
                 className="flex w-full items-center justify-center gap-3 rounded-full bg-[#3b2a24] px-7 py-5 text-center text-xs font-black uppercase tracking-[0.22em] text-[#fbf7ef] shadow-xl transition hover:bg-[#9b0232]"
               >
                 <Phone size={18} className="shrink-0 text-[#e98f81]" />
@@ -435,7 +442,7 @@ export default function Header() {
 
               <Link
                 href="/prenotazioni"
-                onClick={() => setIsMenuOpen(false)}
+                onClick={closeMenu}
                 className="mt-8 inline-block w-full rounded-full bg-[#c9793f] px-8 py-4 text-center text-xs font-black uppercase tracking-[0.22em] text-[#fbf7ef] transition hover:bg-[#9b0232]"
               >
                 Prenota un tavolo
