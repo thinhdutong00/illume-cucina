@@ -43,32 +43,36 @@ export default function CookieBanner() {
   }, []);
 
   useEffect(() => {
-    const storedConsent = getStoredConsent();
+    const timer = window.setTimeout(() => {
+      const storedConsent = getStoredConsent();
 
-    if (!storedConsent) {
-      setIsVisible(true);
-      setHasSavedChoice(false);
+      if (!storedConsent) {
+        setIsVisible(true);
+        setHasSavedChoice(false);
+        setIsReady(true);
+        return;
+      }
+
+      const isExpired = new Date(storedConsent.expiresAt).getTime() < Date.now();
+      const isOldVersion = storedConsent.version !== CONSENT_VERSION;
+
+      if (isExpired || isOldVersion) {
+        localStorage.removeItem(CONSENT_KEY);
+        setIsVisible(true);
+        setHasSavedChoice(false);
+        setIsReady(true);
+        return;
+      }
+
+      setPreferences(storedConsent.preferences);
+      setHasSavedChoice(true);
+      setIsVisible(false);
       setIsReady(true);
-      return;
-    }
 
-    const isExpired = new Date(storedConsent.expiresAt).getTime() < Date.now();
-    const isOldVersion = storedConsent.version !== CONSENT_VERSION;
+      applyConsent(storedConsent.preferences);
+    }, 0);
 
-    if (isExpired || isOldVersion) {
-      localStorage.removeItem(CONSENT_KEY);
-      setIsVisible(true);
-      setHasSavedChoice(false);
-      setIsReady(true);
-      return;
-    }
-
-    setPreferences(storedConsent.preferences);
-    setHasSavedChoice(true);
-    setIsVisible(false);
-    setIsReady(true);
-
-    applyConsent(storedConsent.preferences);
+    return () => window.clearTimeout(timer);
   }, []);
 
   const saveConsent = (nextPreferences: CookiePreferences) => {
@@ -136,12 +140,11 @@ export default function CookieBanner() {
 
       {isVisible && (
         <div
-          className="fixed inset-0 z-[3000] flex items-end justify-center bg-[#3b2a24]/35 px-4 py-4 backdrop-blur-sm md:items-center md:px-6"
-          role="dialog"
-          aria-modal="true"
+          className="pointer-events-none fixed inset-x-0 bottom-0 z-[3000] flex justify-center px-4 pb-4 md:px-6 md:pb-6"
+          role="region"
           aria-labelledby="cookie-title"
         >
-          <div className="relative w-full max-w-4xl overflow-hidden rounded-[2rem] border border-[#3b2a24]/10 bg-[#fbf7ef] text-[#3b2a24] shadow-2xl">
+          <div className="pointer-events-auto relative max-h-[min(86vh,46rem)] w-full max-w-4xl overflow-y-auto overflow-x-hidden rounded-[2rem] border border-[#3b2a24]/10 bg-[#fbf7ef] text-[#3b2a24] shadow-2xl">
             {/* decorative background */}
             <div className="pointer-events-none absolute inset-0 opacity-[0.34]">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(59,42,36,0.10)_1px,transparent_0)] bg-[length:18px_18px]" />

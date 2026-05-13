@@ -331,126 +331,120 @@ export default function Header() {
         <div aria-hidden="true" className="h-[120px] md:h-[118px]" />
       )}
 
-      <div
-        className={[
-          "fixed inset-0 z-[2000] transition-transform duration-700 ease-[cubic-bezier(0.77,0,0.175,1)]",
-          isMenuOpen
-            ? "translate-x-0 pointer-events-auto"
-            : "translate-x-full pointer-events-none",
-        ].join(" ")}
-        aria-hidden={!isMenuOpen}
-      >
-        <div className="relative flex h-full flex-col overflow-y-auto overflow-x-hidden bg-[#fbf7ef] text-[#3b2a24]">
-          <div className="pointer-events-none absolute left-[-10%] top-[-10%] h-72 w-72 rounded-full bg-[#e98f81]/25 blur-3xl" />
-          <div className="pointer-events-none absolute bottom-[-10%] right-[-10%] h-96 w-96 rounded-full bg-[#c9793f]/20 blur-3xl" />
-          <div className="pointer-events-none absolute left-[30%] top-[45%] h-72 w-72 rounded-full bg-[#b5a02f]/15 blur-3xl" />
+      {isMenuOpen && (
+        <div className="fixed inset-0 z-[2000]">
+          <div className="relative flex h-full flex-col overflow-y-auto overflow-x-hidden bg-[#fbf7ef] text-[#3b2a24]">
+            <div className="pointer-events-none absolute left-[-10%] top-[-10%] h-72 w-72 rounded-full bg-[#e98f81]/25 blur-3xl" />
+            <div className="pointer-events-none absolute bottom-[-10%] right-[-10%] h-96 w-96 rounded-full bg-[#c9793f]/20 blur-3xl" />
+            <div className="pointer-events-none absolute left-[30%] top-[45%] h-72 w-72 rounded-full bg-[#b5a02f]/15 blur-3xl" />
 
-          <div className="relative z-10 mx-auto flex w-full max-w-7xl items-center justify-between px-5 py-6 md:px-10 md:py-8">
-            <Link
-              href="/"
-              onClick={closeMenu}
-              className="relative h-24 w-72 shrink-0 sm:h-28 sm:w-80 md:h-28 md:w-[22rem] lg:h-32 lg:w-[26rem]"
-              aria-label="Vai alla home"
-            >
-              <Image
-                src="/logo.png"
-                alt="Illume Pizzeria Emiliana"
-                fill
-                className="object-contain object-left"
-              />
-            </Link>
-
-            <button
-              onClick={closeMenu}
-              aria-label="Chiudi menu"
-              className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#3b2a24]/10 bg-[#fbf7ef] text-[#3b2a24] transition hover:scale-105"
-            >
-              <X size={24} />
-            </button>
-          </div>
-
-          <div className="relative z-10 mx-auto grid w-full max-w-7xl flex-1 items-center gap-6 px-5 pb-10 md:grid-cols-[1fr_0.85fr] md:gap-10 md:px-10">
-            <nav className="flex flex-col gap-4">
-              <MenuLink
-                href="/menu"
-                label="Il Menù"
-                close={closeMenu}
-                highlight
-              />
-
-              <MenuLink
-                href="/informazioni"
-                label="Informazioni"
-                close={closeMenu}
-              />
-
-              <MenuLink
-                href="/prenotazioni"
-                label="Prenota"
-                close={closeMenu}
-              />
-
-              <MenuLink
-                href="/contatti"
-                label="Dove Siamo"
-                close={closeMenu}
-              />
-            </nav>
-
-            {/* MOBILE: tasto chiamata al posto del riquadro descrittivo */}
-            <div className="md:hidden">
-              <a
-                href="tel:+390599776021"
+            <div className="relative z-10 mx-auto flex w-full max-w-7xl items-center justify-between px-5 py-6 md:px-10 md:py-8">
+              <Link
+                href="/"
                 onClick={closeMenu}
-                className="flex w-full items-center justify-center gap-3 rounded-full bg-[#3b2a24] px-7 py-5 text-center text-xs font-black uppercase tracking-[0.22em] text-[#fbf7ef] shadow-xl transition hover:bg-[#9b0232]"
+                className="relative h-24 w-72 shrink-0 sm:h-28 sm:w-80 md:h-28 md:w-[22rem] lg:h-32 lg:w-[26rem]"
+                aria-label="Vai alla home"
               >
-                <Phone size={18} className="shrink-0 text-[#e98f81]" />
-                Chiama ora
-              </a>
+                <Image
+                  src="/logo.png"
+                  alt="Illume Pizzeria Emiliana"
+                  fill
+                  className="object-contain object-left"
+                />
+              </Link>
 
-              <p className="mt-4 text-center text-xs font-bold leading-6 text-[#3b2a24]/60">
-                Per prenotazioni rapide o tavoli numerosi.
-              </p>
+              <button
+                onClick={closeMenu}
+                aria-label="Chiudi menu"
+                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#3b2a24]/10 bg-[#fbf7ef] text-[#3b2a24] transition hover:scale-105"
+              >
+                <X size={24} />
+              </button>
             </div>
 
-            {/* DESKTOP: riquadro descrittivo invariato */}
-            <div className="hidden rounded-[2.5rem] border border-[#3b2a24]/10 bg-[#fbf7ef] p-7 shadow-xl md:block md:p-9">
-              <p className="text-xs font-black uppercase tracking-[0.3em] text-[#c9793f]">
-                Illúme Carpi
-              </p>
+            <div className="relative z-10 mx-auto grid w-full max-w-7xl flex-1 items-center gap-6 px-5 pb-10 md:grid-cols-[1fr_0.85fr] md:gap-10 md:px-10">
+              <nav className="flex flex-col gap-4">
+                <MenuLink
+                  href="/menu"
+                  label="Il Menù"
+                  close={closeMenu}
+                  highlight
+                />
 
-              <h2 className="mt-4 font-serif text-4xl italic leading-tight md:text-5xl">
-                Pizza, cucina emiliana e una serata fatta bene.
-              </h2>
+                <MenuLink
+                  href="/informazioni"
+                  label="Informazioni"
+                  close={closeMenu}
+                />
 
-              <div className="mt-7 space-y-4 text-sm leading-7 text-[#3b2a24]/75">
-                <p className="flex items-center gap-3">
-                  <Navigation size={17} className="text-[#c9793f]" />
-                  Via S. Francesco, 4 · Carpi
-                </p>
+                <MenuLink
+                  href="/prenotazioni"
+                  label="Prenota"
+                  close={closeMenu}
+                />
 
-                <p className="flex items-center gap-3">
-                  <Phone size={17} className="text-[#c9793f]" />
-                  +39 059 977 6021
-                </p>
+                <MenuLink
+                  href="/contatti"
+                  label="Dove Siamo"
+                  close={closeMenu}
+                />
+              </nav>
 
-                <p className="flex items-center gap-3">
-                  <Clock size={17} className="text-[#c9793f]" />
-                  {status.label}
+              {/* MOBILE: tasto chiamata al posto del riquadro descrittivo */}
+              <div className="md:hidden">
+                <a
+                  href="tel:+390599776021"
+                  onClick={closeMenu}
+                  className="flex w-full items-center justify-center gap-3 rounded-full bg-[#3b2a24] px-7 py-5 text-center text-xs font-black uppercase tracking-[0.22em] text-[#fbf7ef] shadow-xl transition hover:bg-[#9b0232]"
+                >
+                  <Phone size={18} className="shrink-0 text-[#e98f81]" />
+                  Chiama ora
+                </a>
+
+                <p className="mt-4 text-center text-xs font-bold leading-6 text-[#3b2a24]/60">
+                  Per prenotazioni rapide o tavoli numerosi.
                 </p>
               </div>
 
-              <Link
-                href="/prenotazioni"
-                onClick={closeMenu}
-                className="mt-8 inline-block w-full rounded-full bg-[#c9793f] px-8 py-4 text-center text-xs font-black uppercase tracking-[0.22em] text-[#fbf7ef] transition hover:bg-[#9b0232]"
-              >
-                Prenota un tavolo
-              </Link>
+              {/* DESKTOP: riquadro descrittivo invariato */}
+              <div className="hidden rounded-[2.5rem] border border-[#3b2a24]/10 bg-[#fbf7ef] p-7 shadow-xl md:block md:p-9">
+                <p className="text-xs font-black uppercase tracking-[0.3em] text-[#c9793f]">
+                  Illúme Carpi
+                </p>
+
+                <h2 className="mt-4 font-serif text-4xl italic leading-tight md:text-5xl">
+                  Pizza, cucina emiliana e una serata fatta bene.
+                </h2>
+
+                <div className="mt-7 space-y-4 text-sm leading-7 text-[#3b2a24]/75">
+                  <p className="flex items-center gap-3">
+                    <Navigation size={17} className="text-[#c9793f]" />
+                    Via S. Francesco, 4 · Carpi
+                  </p>
+
+                  <p className="flex items-center gap-3">
+                    <Phone size={17} className="text-[#c9793f]" />
+                    +39 059 977 6021
+                  </p>
+
+                  <p className="flex items-center gap-3">
+                    <Clock size={17} className="text-[#c9793f]" />
+                    {status.label}
+                  </p>
+                </div>
+
+                <Link
+                  href="/prenotazioni"
+                  onClick={closeMenu}
+                  className="mt-8 inline-block w-full rounded-full bg-[#c9793f] px-8 py-4 text-center text-xs font-black uppercase tracking-[0.22em] text-[#fbf7ef] transition hover:bg-[#9b0232]"
+                >
+                  Prenota un tavolo
+                </Link>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </>
   );
 }
