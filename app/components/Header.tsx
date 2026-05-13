@@ -287,7 +287,7 @@ export default function Header() {
 
             <div className="ml-auto flex flex-1 items-center justify-end gap-3">
               <a
-                href="tel:+393384622362"
+                href="tel:+390599776021"
                 aria-label="Chiama Illume"
                 className={[
                   "flex h-11 w-11 shrink-0 items-center justify-center rounded-full border transition hover:scale-105",
@@ -393,7 +393,7 @@ export default function Header() {
             {/* MOBILE: tasto chiamata al posto del riquadro descrittivo */}
             <div className="md:hidden">
               <a
-                href="tel:+393384622362"
+                href="tel:+390599776021"
                 onClick={() => setIsMenuOpen(false)}
                 className="flex w-full items-center justify-center gap-3 rounded-full bg-[#3b2a24] px-7 py-5 text-center text-xs font-black uppercase tracking-[0.22em] text-[#fbf7ef] shadow-xl transition hover:bg-[#9b0232]"
               >
@@ -424,7 +424,7 @@ export default function Header() {
 
                 <p className="flex items-center gap-3">
                   <Phone size={17} className="text-[#c9793f]" />
-                  +39 338 462 2362
+                  +39 059 977 6021
                 </p>
 
                 <p className="flex items-center gap-3">

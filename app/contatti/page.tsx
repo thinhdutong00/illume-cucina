@@ -154,8 +154,8 @@ export default function Contatti() {
                   icon={<Phone size={22} />}
                   title="Telefono"
                   text={
-                    <a href="tel:+393384622362" className="hover:text-[#c9793f]">
-                      +39 338 462 2362
+                    <a href="tel:+390599776021" className="hover:text-[#c9793f]">
+                      +39 059 977 6021
                     </a>
                   }
                 />
@@ -205,7 +205,7 @@ export default function Contatti() {
                     </a>
 
                     <a
-                      href="tel:+393384622362"
+                      href="tel:+390599776021"
                       className="inline-flex w-full max-w-full items-center justify-center gap-3 rounded-full border border-[#3b2a24]/15 bg-white px-5 py-4 text-center text-[11px] font-black uppercase tracking-[0.16em] text-[#3b2a24] transition hover:bg-[#f2ede4] sm:w-auto sm:px-7 sm:text-xs sm:tracking-[0.22em]"
                     >
                       <Phone size={16} className="shrink-0" />
