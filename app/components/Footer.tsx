@@ -103,11 +103,7 @@ export default function Footer() {
 
                 <div className="flex justify-between gap-4 border-b border-[#3b2a24]/10 pb-2">
                   <span>Giovedì</span>
-                  <span className="text-right font-bold">
-                    12:00 - 14:30
-                    <br />
-                    18:30 - 23:00
-                  </span>
+                  <span className="text-right font-bold">18:30 - 23:00</span>
                 </div>
               </div>
 
@@ -119,11 +115,7 @@ export default function Footer() {
 
                 <div className="flex justify-between gap-4 border-b border-[#3b2a24]/10 pb-2">
                   <span>Sabato</span>
-                  <span className="text-right font-bold">
-                    12:00 - 14:30
-                    <br />
-                    18:30 - 23:00
-                  </span>
+                  <span className="text-right font-bold">18:30 - 23:00</span>
                 </div>
 
                 <div className="flex justify-between gap-4 border-b border-[#3b2a24]/10 pb-2">
@@ -133,7 +125,7 @@ export default function Footer() {
 
                 <div className="rounded-2xl border border-[#b5a02f]/20 bg-[#fbf7ef]/50 px-4 py-3">
                   <p className="text-xs font-black uppercase leading-5 tracking-[0.18em] text-[#b5a02f]">
-                    Pranzo solo giovedì e sabato
+                    Aperti solo a cena
                   </p>
                 </div>
               </div>

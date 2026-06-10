@@ -8,7 +8,6 @@ import { useRouter } from "next/navigation";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import {
-  CalendarDays,
   Clock,
   Mail,
   Phone,
@@ -45,8 +44,6 @@ const initialForm: ReservationForm = {
 };
 
 const weekDays = ["Lun", "Mar", "Mer", "Gio", "Ven", "Sab", "Dom"];
-
-const lunchSlots = ["12:00", "12:30", "13:00", "13:30", "14:00"];
 
 const dinnerSlots = [
   "18:30",
@@ -163,7 +160,7 @@ export default function Prenota() {
                 <InfoBox
                   icon={<Clock size={22} />}
                   title="Orari"
-                  text="Lunedì chiuso · Mar, Mer, Ven e Dom: 18:30–23:00 · Gio e Sab: 12:00–14:30 / 18:30–23:00"
+                  text="Lunedì chiuso · Mar, Mer, Gio, Ven, Sab e Dom: 18:30–23:00"
                 />
 
                 <InfoBox
@@ -254,13 +251,7 @@ function ReservationMultiStepForm() {
     updateField("data", formatDateForInput(date));
     updateField("orario", "");
 
-    if (isLunchDay(date) && isWeekendDinnerTurnDay(date)) {
-      showNotice(
-        "Il sabato puoi prenotare a pranzo oppure scegliere uno dei tre turni disponibili per la cena."
-      );
-    } else if (isLunchDay(date)) {
-      showNotice("Il giovedì siamo aperti a pranzo e a cena.");
-    } else if (isWeekendDinnerTurnDay(date)) {
+    if (isWeekendDinnerTurnDay(date)) {
       showNotice(
         "Venerdì, sabato e domenica a cena puoi scegliere uno dei tre turni disponibili."
       );
@@ -280,10 +271,6 @@ function ReservationMultiStepForm() {
     if (!availableSlots.includes(slot)) {
       if (isMonday(selectedDate)) {
         showNotice("Il lunedì siamo chiusi.");
-      } else if (!isLunchDay(selectedDate) && lunchSlots.includes(slot)) {
-        showNotice(
-          "Il pranzo è disponibile solo il giovedì e il sabato. Scegli un orario di cena."
-        );
       } else if (isWeekendDinnerTurnDay(selectedDate)) {
         showNotice(
           "Venerdì, sabato e domenica a cena sono disponibili solo i tre turni indicati."
@@ -442,7 +429,7 @@ function ReservationMultiStepForm() {
             {step === 0 &&
               "Partiamo dal numero di persone. Per tavoli numerosi puoi comunque chiamarci direttamente."}
             {step === 1 &&
-              "Scegli solo tra giorni e orari in cui il ristorante è aperto. Lunedì chiuso, pranzo solo giovedì e sabato."}
+              "Scegli solo tra giorni e orari in cui il ristorante è aperto. Lunedì chiuso, aperti solo a cena."}
             {step === 2 &&
               "Lasciaci i dati per risponderti e confermare la disponibilità del tavolo."}
             {step === 3 &&
@@ -623,7 +610,7 @@ function ReservationMultiStepForm() {
                     Lunedì chiuso
                   </span>
                   <span className="rounded-full bg-[#3b2a24]/5 px-3 py-1">
-                    Pranzo solo Gio · Sab
+                    Solo cena
                   </span>
                   <span className="rounded-full bg-[#3b2a24]/5 px-3 py-1">
                     Ven · Sab · Dom cena a turni
@@ -646,15 +633,6 @@ function ReservationMultiStepForm() {
 
                   <Clock size={22} className="shrink-0 text-[#c9793f]" />
                 </div>
-
-                <TimeSlotGroup
-                  title="Pranzo"
-                  slots={lunchSlots}
-                  selectedTime={form.orario}
-                  selectedDate={selectedDate}
-                  availableSlots={availableSlots}
-                  onSelect={selectTime}
-                />
 
                 <TimeSlotGroup
                   title="Cena"
@@ -996,14 +974,6 @@ function buildCalendarDays(month: Date) {
 function getAvailableSlots(date: Date) {
   if (isMonday(date)) return [];
 
-  if (isLunchDay(date) && isWeekendDinnerTurnDay(date)) {
-    return [...lunchSlots, ...weekendDinnerSlots];
-  }
-
-  if (isLunchDay(date)) {
-    return [...lunchSlots, ...dinnerSlots];
-  }
-
   if (isWeekendDinnerTurnDay(date)) {
     return weekendDinnerSlots;
   }
@@ -1013,10 +983,6 @@ function getAvailableSlots(date: Date) {
 
 function isMonday(date: Date) {
   return date.getDay() === 1;
-}
-
-function isLunchDay(date: Date) {
-  return date.getDay() === 4 || date.getDay() === 6;
 }
 
 function isWeekendDinnerTurnDay(date: Date) {
