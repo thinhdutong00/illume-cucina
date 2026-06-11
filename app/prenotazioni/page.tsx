@@ -60,7 +60,7 @@ const dinnerSlots = [
 const weekendDinnerSlots = [
   "1° turno · 18:30 - 20:00",
   "2° turno · 20:00 - 21:30",
-  "3° turno · 21:30 - 23:00",
+  "3° turno · 21:30 - 23:30",
 ];
 
 export default function Prenota() {
@@ -160,7 +160,7 @@ export default function Prenota() {
                 <InfoBox
                   icon={<Clock size={22} />}
                   title="Orari"
-                  text="Lunedì chiuso · Mar, Mer, Gio, Ven, Sab e Dom: 18:30–23:00"
+                  text="Aperti tutte le sere · Lun, Mar, Mer e Gio: 18:30–23:00 · Ven, Sab e Dom: 18:30–23:30"
                 />
 
                 <InfoBox
@@ -243,17 +243,12 @@ function ReservationMultiStepForm() {
       return;
     }
 
-    if (isMonday(date)) {
-      showNotice("Il lunedì siamo chiusi. Scegli un altro giorno.");
-      return;
-    }
-
     updateField("data", formatDateForInput(date));
     updateField("orario", "");
 
     if (isWeekendDinnerTurnDay(date)) {
       showNotice(
-        "Venerdì, sabato e domenica a cena puoi scegliere uno dei tre turni disponibili."
+        "Venerdì, sabato e domenica a cena puoi scegliere uno dei tre turni disponibili fino alle 23:30."
       );
     } else {
       showNotice(
@@ -269,9 +264,7 @@ function ReservationMultiStepForm() {
     }
 
     if (!availableSlots.includes(slot)) {
-      if (isMonday(selectedDate)) {
-        showNotice("Il lunedì siamo chiusi.");
-      } else if (isWeekendDinnerTurnDay(selectedDate)) {
+      if (isWeekendDinnerTurnDay(selectedDate)) {
         showNotice(
           "Venerdì, sabato e domenica a cena sono disponibili solo i tre turni indicati."
         );
@@ -429,7 +422,7 @@ function ReservationMultiStepForm() {
             {step === 0 &&
               "Partiamo dal numero di persone. Per tavoli numerosi puoi comunque chiamarci direttamente."}
             {step === 1 &&
-              "Scegli solo tra giorni e orari in cui il ristorante è aperto. Lunedì chiuso, aperti solo a cena."}
+              "Scegli solo tra giorni e orari in cui il ristorante è aperto. Siamo aperti tutte le sere."}
             {step === 2 &&
               "Lasciaci i dati per risponderti e confermare la disponibilità del tavolo."}
             {step === 3 &&
@@ -582,7 +575,7 @@ function ReservationMultiStepForm() {
 
                     const formattedDate = formatDateForInput(item);
                     const selected = form.data === formattedDate;
-                    const unavailable = isPastDate(item) || isMonday(item);
+                    const unavailable = isPastDate(item);
 
                     return (
                       <button
@@ -607,13 +600,13 @@ function ReservationMultiStepForm() {
 
                 <div className="mt-4 flex flex-wrap gap-2 text-[10px] font-bold uppercase tracking-[0.12em] text-[#3b2a24]/45">
                   <span className="rounded-full bg-[#3b2a24]/5 px-3 py-1">
-                    Lunedì chiuso
+                    Tutte le sere
                   </span>
                   <span className="rounded-full bg-[#3b2a24]/5 px-3 py-1">
                     Solo cena
                   </span>
                   <span className="rounded-full bg-[#3b2a24]/5 px-3 py-1">
-                    Ven · Sab · Dom cena a turni
+                    Ven · Sab · Dom fino alle 23:30
                   </span>
                 </div>
               </div>
@@ -972,17 +965,11 @@ function buildCalendarDays(month: Date) {
 }
 
 function getAvailableSlots(date: Date) {
-  if (isMonday(date)) return [];
-
   if (isWeekendDinnerTurnDay(date)) {
     return weekendDinnerSlots;
   }
 
   return dinnerSlots;
-}
-
-function isMonday(date: Date) {
-  return date.getDay() === 1;
 }
 
 function isWeekendDinnerTurnDay(date: Date) {

@@ -88,7 +88,7 @@ export default function Footer() {
               <div className="space-y-3">
                 <div className="flex justify-between gap-4 border-b border-[#3b2a24]/10 pb-2">
                   <span>Lunedì</span>
-                  <span className="font-bold text-[#9b0232]">Chiuso</span>
+                  <span className="text-right font-bold">18:30 - 23:00</span>
                 </div>
 
                 <div className="flex justify-between gap-4 border-b border-[#3b2a24]/10 pb-2">
@@ -110,22 +110,22 @@ export default function Footer() {
               <div className="space-y-3">
                 <div className="flex justify-between gap-4 border-b border-[#3b2a24]/10 pb-2">
                   <span>Venerdì</span>
-                  <span className="text-right font-bold">18:30 - 23:00</span>
+                  <span className="text-right font-bold">18:30 - 23:30</span>
                 </div>
 
                 <div className="flex justify-between gap-4 border-b border-[#3b2a24]/10 pb-2">
                   <span>Sabato</span>
-                  <span className="text-right font-bold">18:30 - 23:00</span>
+                  <span className="text-right font-bold">18:30 - 23:30</span>
                 </div>
 
                 <div className="flex justify-between gap-4 border-b border-[#3b2a24]/10 pb-2">
                   <span>Domenica</span>
-                  <span className="text-right font-bold">18:30 - 23:00</span>
+                  <span className="text-right font-bold">18:30 - 23:30</span>
                 </div>
 
                 <div className="rounded-2xl border border-[#b5a02f]/20 bg-[#fbf7ef]/50 px-4 py-3">
                   <p className="text-xs font-black uppercase leading-5 tracking-[0.18em] text-[#b5a02f]">
-                    Aperti solo a cena
+                    Aperti tutte le sere
                   </p>
                 </div>
               </div>

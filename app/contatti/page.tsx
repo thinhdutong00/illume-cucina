@@ -13,13 +13,13 @@ import {
 } from "lucide-react";
 
 const openingHours = [
-  { day: "Lunedì", hours: "Chiuso" },
+  { day: "Lunedì", hours: "18:30 – 23:00" },
   { day: "Martedì", hours: "18:30 – 23:00" },
   { day: "Mercoledì", hours: "18:30 – 23:00" },
   { day: "Giovedì", hours: "18:30 – 23:00" },
-  { day: "Venerdì", hours: "18:30 – 23:00" },
-  { day: "Sabato", hours: "18:30 – 23:00" },
-  { day: "Domenica", hours: "18:30 – 23:00" },
+  { day: "Venerdì", hours: "18:30 – 23:30" },
+  { day: "Sabato", hours: "18:30 – 23:30" },
+  { day: "Domenica", hours: "18:30 – 23:30" },
 ];
 
 export default function Contatti() {
@@ -146,7 +146,7 @@ export default function Contatti() {
                   </div>
 
                   <p className="mt-5 rounded-2xl border border-[#b5a02f]/20 bg-[#fbf7ef]/55 px-4 py-3 text-xs font-black uppercase leading-5 tracking-[0.18em] text-[#b5a02f]">
-                    Aperti solo a cena
+                    Aperti tutte le sere
                   </p>
                 </div>
 

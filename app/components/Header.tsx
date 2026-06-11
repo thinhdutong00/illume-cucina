@@ -48,24 +48,19 @@ export default function Header() {
       let open = false;
       let nextOpen = "";
 
-      const dinnerShift = { start: 18.5, end: 23 };
+      const dinnerShift = {
+        start: 18.5,
+        end: day === 5 || day === 6 || day === 0 ? 23.5 : 23,
+      };
 
-      if (day === 1) {
-        // Lunedì chiuso tutto il giorno
-        open = false;
-        nextOpen = "martedì alle 18:30";
+      if (time >= dinnerShift.start && time < dinnerShift.end) {
+        open = true;
+      }
+
+      if (time < dinnerShift.start) {
+        nextOpen = "18:30";
       } else {
-        if (time >= dinnerShift.start && time < dinnerShift.end) {
-          open = true;
-        }
-
-        if (time < dinnerShift.start) {
-          nextOpen = "18:30";
-        } else if (day === 0) {
-          nextOpen = "martedì alle 18:30";
-        } else {
-          nextOpen = "domani alle 18:30";
-        }
+        nextOpen = "domani alle 18:30";
       }
 
       setStatus({
