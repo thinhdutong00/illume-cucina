@@ -42,7 +42,6 @@ export default function Header() {
 
     const checkStatus = () => {
       const now = new Date();
-      const day = now.getDay();
       const time = now.getHours() + now.getMinutes() / 60;
 
       let open = false;
@@ -50,7 +49,7 @@ export default function Header() {
 
       const dinnerShift = {
         start: 18.5,
-        end: day === 5 || day === 6 || day === 0 ? 23.5 : 23,
+        end: 23.5,
       };
 
       if (time >= dinnerShift.start && time < dinnerShift.end) {

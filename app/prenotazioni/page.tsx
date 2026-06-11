@@ -55,12 +55,7 @@ const dinnerSlots = [
   "21:30",
   "22:00",
   "22:30",
-];
-
-const weekendDinnerSlots = [
-  "1° turno · 18:30 - 20:00",
-  "2° turno · 20:00 - 21:30",
-  "3° turno · 21:30 - 23:30",
+  "23:00",
 ];
 
 export default function Prenota() {
@@ -160,7 +155,7 @@ export default function Prenota() {
                 <InfoBox
                   icon={<Clock size={22} />}
                   title="Orari"
-                  text="Aperti tutte le sere · Lun, Mar, Mer e Gio: 18:30–23:00 · Ven, Sab e Dom: 18:30–23:30"
+                  text="Aperti tutti i giorni · 18:30–23:30"
                 />
 
                 <InfoBox
@@ -206,12 +201,7 @@ function ReservationMultiStepForm() {
   const [sent, setSent] = useState(false);
 
   const selectedDate = form.data ? parseDate(form.data) : null;
-  const availableSlots = selectedDate ? getAvailableSlots(selectedDate) : [];
-  const currentDinnerSlots =
-    selectedDate && isWeekendDinnerTurnDay(selectedDate)
-      ? weekendDinnerSlots
-      : dinnerSlots;
-
+  const availableSlots = selectedDate ? getAvailableSlots() : [];
   const calendarDays = useMemo(
     () => buildCalendarDays(calendarMonth),
     [calendarMonth]
@@ -246,15 +236,7 @@ function ReservationMultiStepForm() {
     updateField("data", formatDateForInput(date));
     updateField("orario", "");
 
-    if (isWeekendDinnerTurnDay(date)) {
-      showNotice(
-        "Venerdì, sabato e domenica a cena puoi scegliere uno dei tre turni disponibili fino alle 23:30."
-      );
-    } else {
-      showNotice(
-        "In questo giorno siamo aperti solo a cena: 18:30–23:00."
-      );
-    }
+    showNotice("In questo giorno siamo aperti a cena: 18:30–23:30.");
   };
 
   const selectTime = (slot: string) => {
@@ -264,13 +246,7 @@ function ReservationMultiStepForm() {
     }
 
     if (!availableSlots.includes(slot)) {
-      if (isWeekendDinnerTurnDay(selectedDate)) {
-        showNotice(
-          "Venerdì, sabato e domenica a cena sono disponibili solo i tre turni indicati."
-        );
-      } else {
-        showNotice("In questo orario il ristorante non è aperto.");
-      }
+      showNotice("In questo orario il ristorante non è aperto.");
 
       return;
     }
@@ -600,13 +576,13 @@ function ReservationMultiStepForm() {
 
                 <div className="mt-4 flex flex-wrap gap-2 text-[10px] font-bold uppercase tracking-[0.12em] text-[#3b2a24]/45">
                   <span className="rounded-full bg-[#3b2a24]/5 px-3 py-1">
-                    Tutte le sere
+                    Tutti i giorni
                   </span>
                   <span className="rounded-full bg-[#3b2a24]/5 px-3 py-1">
                     Solo cena
                   </span>
                   <span className="rounded-full bg-[#3b2a24]/5 px-3 py-1">
-                    Ven · Sab · Dom fino alle 23:30
+                    18:30 · 23:30
                   </span>
                 </div>
               </div>
@@ -629,7 +605,7 @@ function ReservationMultiStepForm() {
 
                 <TimeSlotGroup
                   title="Cena"
-                  slots={currentDinnerSlots}
+                  slots={dinnerSlots}
                   selectedTime={form.orario}
                   selectedDate={selectedDate}
                   availableSlots={availableSlots}
@@ -964,16 +940,8 @@ function buildCalendarDays(month: Date) {
   return days;
 }
 
-function getAvailableSlots(date: Date) {
-  if (isWeekendDinnerTurnDay(date)) {
-    return weekendDinnerSlots;
-  }
-
+function getAvailableSlots() {
   return dinnerSlots;
-}
-
-function isWeekendDinnerTurnDay(date: Date) {
-  return date.getDay() === 5 || date.getDay() === 6 || date.getDay() === 0;
 }
 
 function isPastDate(date: Date) {

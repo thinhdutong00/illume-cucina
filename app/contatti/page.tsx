@@ -13,10 +13,10 @@ import {
 } from "lucide-react";
 
 const openingHours = [
-  { day: "Lunedì", hours: "18:30 – 23:00" },
-  { day: "Martedì", hours: "18:30 – 23:00" },
-  { day: "Mercoledì", hours: "18:30 – 23:00" },
-  { day: "Giovedì", hours: "18:30 – 23:00" },
+  { day: "Lunedì", hours: "18:30 – 23:30" },
+  { day: "Martedì", hours: "18:30 – 23:30" },
+  { day: "Mercoledì", hours: "18:30 – 23:30" },
+  { day: "Giovedì", hours: "18:30 – 23:30" },
   { day: "Venerdì", hours: "18:30 – 23:30" },
   { day: "Sabato", hours: "18:30 – 23:30" },
   { day: "Domenica", hours: "18:30 – 23:30" },

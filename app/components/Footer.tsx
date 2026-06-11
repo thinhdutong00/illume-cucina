@@ -88,22 +88,22 @@ export default function Footer() {
               <div className="space-y-3">
                 <div className="flex justify-between gap-4 border-b border-[#3b2a24]/10 pb-2">
                   <span>Lunedì</span>
-                  <span className="text-right font-bold">18:30 - 23:00</span>
+                  <span className="text-right font-bold">18:30 - 23:30</span>
                 </div>
 
                 <div className="flex justify-between gap-4 border-b border-[#3b2a24]/10 pb-2">
                   <span>Martedì</span>
-                  <span className="text-right font-bold">18:30 - 23:00</span>
+                  <span className="text-right font-bold">18:30 - 23:30</span>
                 </div>
 
                 <div className="flex justify-between gap-4 border-b border-[#3b2a24]/10 pb-2">
                   <span>Mercoledì</span>
-                  <span className="text-right font-bold">18:30 - 23:00</span>
+                  <span className="text-right font-bold">18:30 - 23:30</span>
                 </div>
 
                 <div className="flex justify-between gap-4 border-b border-[#3b2a24]/10 pb-2">
                   <span>Giovedì</span>
-                  <span className="text-right font-bold">18:30 - 23:00</span>
+                  <span className="text-right font-bold">18:30 - 23:30</span>
                 </div>
               </div>
 
