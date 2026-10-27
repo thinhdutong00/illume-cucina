@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { MapPin, Phone } from "lucide-react";
+import { openingHours } from "../lib/restaurant-hours";
 
 export default function Footer() {
   return (
@@ -86,46 +87,27 @@ export default function Footer() {
 
             <div className="mt-6 grid gap-3 text-sm text-[#3b2a24]/80 lg:grid-cols-2 lg:gap-x-7 xl:gap-x-9">
               <div className="space-y-3">
-                <div className="flex justify-between gap-4 border-b border-[#3b2a24]/10 pb-2">
-                  <span>Lunedì</span>
-                  <span className="text-right font-bold">18:30 - 23:30</span>
-                </div>
-
-                <div className="flex justify-between gap-4 border-b border-[#3b2a24]/10 pb-2">
-                  <span>Martedì</span>
-                  <span className="text-right font-bold">18:30 - 23:30</span>
-                </div>
-
-                <div className="flex justify-between gap-4 border-b border-[#3b2a24]/10 pb-2">
-                  <span>Mercoledì</span>
-                  <span className="text-right font-bold">18:30 - 23:30</span>
-                </div>
-
-                <div className="flex justify-between gap-4 border-b border-[#3b2a24]/10 pb-2">
-                  <span>Giovedì</span>
-                  <span className="text-right font-bold">18:30 - 23:30</span>
-                </div>
+                {openingHours.slice(0, 4).map(({ day, hours }) => (
+                  <div key={day} className="flex justify-between gap-4 border-b border-[#3b2a24]/10 pb-2">
+                    <span>{day}</span>
+                    <span className={`text-right font-bold ${hours === "Chiuso" ? "text-[#9b0232]" : ""}`}>
+                      {hours}
+                    </span>
+                  </div>
+                ))}
               </div>
 
               <div className="space-y-3">
-                <div className="flex justify-between gap-4 border-b border-[#3b2a24]/10 pb-2">
-                  <span>Venerdì</span>
-                  <span className="text-right font-bold">18:30 - 23:30</span>
-                </div>
-
-                <div className="flex justify-between gap-4 border-b border-[#3b2a24]/10 pb-2">
-                  <span>Sabato</span>
-                  <span className="text-right font-bold">18:30 - 23:30</span>
-                </div>
-
-                <div className="flex justify-between gap-4 border-b border-[#3b2a24]/10 pb-2">
-                  <span>Domenica</span>
-                  <span className="text-right font-bold">18:30 - 23:30</span>
-                </div>
+                {openingHours.slice(4).map(({ day, hours }) => (
+                  <div key={day} className="flex justify-between gap-4 border-b border-[#3b2a24]/10 pb-2">
+                    <span>{day}</span>
+                    <span className="text-right font-bold">{hours}</span>
+                  </div>
+                ))}
 
                 <div className="rounded-2xl border border-[#b5a02f]/20 bg-[#fbf7ef]/50 px-4 py-3">
                   <p className="text-xs font-black uppercase leading-5 tracking-[0.18em] text-[#b5a02f]">
-                    Aperti tutte le sere
+                    Lunedì chiuso
                   </p>
                 </div>
               </div>

@@ -1,16 +1,8 @@
 import { Resend } from "resend";
-
-const resend = new Resend(process.env.RESEND_API_KEY);
+import { getAvailableSlots, isClosedDay, parseReservationDate } from "../../lib/restaurant-hours";
 
 export async function POST(request: Request) {
   try {
-    if (!process.env.RESEND_API_KEY) {
-      return Response.json(
-        { error: "RESEND_API_KEY non configurata." },
-        { status: 500 }
-      );
-    }
-
     const body = await request.json();
 
     const {
@@ -39,6 +31,36 @@ export async function POST(request: Request) {
       );
     }
 
+    const reservationDate = parseReservationDate(data);
+    if (!reservationDate) {
+      return Response.json(
+        { error: "Data di prenotazione non valida." },
+        { status: 400 }
+      );
+    }
+
+    if (isClosedDay(reservationDate)) {
+      return Response.json(
+        { error: "Il lunedì il ristorante è chiuso. Scegli un altro giorno." },
+        { status: 400 }
+      );
+    }
+
+    if (!getAvailableSlots(reservationDate).includes(orario)) {
+      return Response.json(
+        { error: "Scegli un orario tra quelli disponibili." },
+        { status: 400 }
+      );
+    }
+
+    if (!process.env.RESEND_API_KEY) {
+      return Response.json(
+        { error: "RESEND_API_KEY non configurata." },
+        { status: 500 }
+      );
+    }
+
+    const resend = new Resend(process.env.RESEND_API_KEY);
     const { data: resendData, error } = await resend.emails.send({
       from: "Illume Prenotazioni <prenotazioni@illumepizzeriaemiliana.it>",
       to: ["infoillume.pizzeriaemiliana@gmail.com"],

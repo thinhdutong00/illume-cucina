@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Menu, X, Phone, Navigation, Clock } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { getRestaurantStatus } from "../lib/restaurant-hours";
 
 export default function Header() {
   const pathname = usePathname();
@@ -41,35 +42,7 @@ export default function Header() {
     handleScroll();
 
     const checkStatus = () => {
-      const now = new Date();
-      const time = now.getHours() + now.getMinutes() / 60;
-
-      let open = false;
-      let nextOpen = "";
-
-      const dinnerShift = {
-        start: 18.5,
-        end: 23.5,
-      };
-
-      if (time >= dinnerShift.start && time < dinnerShift.end) {
-        open = true;
-      }
-
-      if (time < dinnerShift.start) {
-        nextOpen = "18:30";
-      } else {
-        nextOpen = "domani alle 18:30";
-      }
-
-      setStatus({
-        label: open
-          ? "Siamo aperti"
-          : `Chiusi • Riapriamo ${
-              nextOpen.includes("alle") ? nextOpen : `alle ${nextOpen}`
-            }`,
-        isOpen: open,
-      });
+      setStatus(getRestaurantStatus());
     };
 
     checkStatus();

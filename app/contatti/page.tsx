@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { openingHours } from "../lib/restaurant-hours";
 import {
   MapPin,
   Phone,
@@ -11,16 +12,6 @@ import {
   Navigation,
   CalendarDays,
 } from "lucide-react";
-
-const openingHours = [
-  { day: "Lunedì", hours: "18:30 – 23:30" },
-  { day: "Martedì", hours: "18:30 – 23:30" },
-  { day: "Mercoledì", hours: "18:30 – 23:30" },
-  { day: "Giovedì", hours: "18:30 – 23:30" },
-  { day: "Venerdì", hours: "18:30 – 23:30" },
-  { day: "Sabato", hours: "18:30 – 23:30" },
-  { day: "Domenica", hours: "18:30 – 23:30" },
-];
 
 export default function Contatti() {
   return (
@@ -146,7 +137,7 @@ export default function Contatti() {
                   </div>
 
                   <p className="mt-5 rounded-2xl border border-[#b5a02f]/20 bg-[#fbf7ef]/55 px-4 py-3 text-xs font-black uppercase leading-5 tracking-[0.18em] text-[#b5a02f]">
-                    Aperti tutte le sere
+                    Aperti da martedì a domenica · Lunedì chiuso
                   </p>
                 </div>
 

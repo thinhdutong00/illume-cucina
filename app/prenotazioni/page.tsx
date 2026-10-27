@@ -8,6 +8,12 @@ import { useRouter } from "next/navigation";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import {
+  dinnerSlots,
+  getAvailableSlots,
+  isClosedDay,
+  parseReservationDate,
+} from "../lib/restaurant-hours";
+import {
   Clock,
   Mail,
   Phone,
@@ -44,19 +50,6 @@ const initialForm: ReservationForm = {
 };
 
 const weekDays = ["Lun", "Mar", "Mer", "Gio", "Ven", "Sab", "Dom"];
-
-const dinnerSlots = [
-  "18:30",
-  "19:00",
-  "19:30",
-  "20:00",
-  "20:30",
-  "21:00",
-  "21:30",
-  "22:00",
-  "22:30",
-  "23:00",
-];
 
 export default function Prenota() {
   return (
@@ -155,7 +148,7 @@ export default function Prenota() {
                 <InfoBox
                   icon={<Clock size={22} />}
                   title="Orari"
-                  text="Aperti tutti i giorni · 18:30–23:30"
+                  text="Martedì–domenica · 18:30–23:30. Lunedì chiuso."
                 />
 
                 <InfoBox
@@ -200,8 +193,8 @@ function ReservationMultiStepForm() {
   const [isSending, setIsSending] = useState(false);
   const [sent, setSent] = useState(false);
 
-  const selectedDate = form.data ? parseDate(form.data) : null;
-  const availableSlots = selectedDate ? getAvailableSlots() : [];
+  const selectedDate = parseReservationDate(form.data);
+  const availableSlots = selectedDate ? getAvailableSlots(selectedDate) : [];
   const calendarDays = useMemo(
     () => buildCalendarDays(calendarMonth),
     [calendarMonth]
@@ -228,6 +221,11 @@ function ReservationMultiStepForm() {
   };
 
   const selectDate = (date: Date) => {
+    if (isClosedDay(date)) {
+      showNotice("Il lunedì il ristorante è chiuso. Scegli un altro giorno.");
+      return;
+    }
+
     if (isPastDate(date)) {
       showNotice("Questa data è già passata. Scegli un giorno disponibile.");
       return;
@@ -262,7 +260,10 @@ function ReservationMultiStepForm() {
       return;
     }
 
-    if (step === 1 && (!form.data || !form.orario)) {
+    if (
+      step === 1 &&
+      (!selectedDate || isPastDate(selectedDate) || !availableSlots.includes(form.orario))
+    ) {
       showNotice("Scegli data e orario tra quelli disponibili.");
       return;
     }
@@ -311,6 +312,11 @@ function ReservationMultiStepForm() {
 
     if (!privacyAccepted) {
       showNotice("Per inviare la richiesta devi accettare l’informativa privacy.");
+      return;
+    }
+
+    if (!selectedDate || isPastDate(selectedDate) || !availableSlots.includes(form.orario)) {
+      showNotice("Scegli data e orario tra quelli disponibili. Il lunedì siamo chiusi.");
       return;
     }
 
@@ -398,7 +404,7 @@ function ReservationMultiStepForm() {
             {step === 0 &&
               "Partiamo dal numero di persone. Per tavoli numerosi puoi comunque chiamarci direttamente."}
             {step === 1 &&
-              "Scegli solo tra giorni e orari in cui il ristorante è aperto. Siamo aperti tutte le sere."}
+              "Siamo aperti da martedì a domenica, dalle 18:30 alle 23:30. Il lunedì siamo chiusi."}
             {step === 2 &&
               "Lasciaci i dati per risponderti e confermare la disponibilità del tavolo."}
             {step === 3 &&
@@ -551,24 +557,38 @@ function ReservationMultiStepForm() {
 
                     const formattedDate = formatDateForInput(item);
                     const selected = form.data === formattedDate;
-                    const unavailable = isPastDate(item);
+                    const closed = isClosedDay(item);
+                    const past = isPastDate(item);
+                    const unavailable = past || closed;
 
                     return (
                       <button
                         key={formattedDate}
                         type="button"
+                        disabled={unavailable}
                         aria-disabled={unavailable}
+                        aria-label={`${formatFullDate(item)}${closed ? " · Ristorante chiuso" : past ? " · Data passata" : ""}`}
+                        aria-pressed={selected}
+                        title={closed ? "Lunedì: ristorante chiuso" : undefined}
                         onClick={() => selectDate(item)}
                         className={[
-                          "relative flex aspect-square items-center justify-center rounded-2xl border text-sm font-black transition",
+                          "relative flex aspect-square items-center justify-center rounded-2xl border text-sm font-black transition disabled:cursor-not-allowed",
                           selected
                             ? "border-[#c9793f] bg-[#c9793f] text-[#fbf7ef] shadow-lg"
-                            : unavailable
-                              ? "border-[#3b2a24]/5 bg-[#3b2a24]/5 text-[#3b2a24]/25"
-                              : "border-[#3b2a24]/10 bg-[#fbf7ef] text-[#3b2a24] hover:border-[#c9793f] hover:bg-[#fffaf2]",
+                            : closed
+                              ? "border-[#9b0232]/15 bg-[#9b0232]/5 text-[#9b0232]/55"
+                              : past
+                                ? "border-[#3b2a24]/5 bg-[#3b2a24]/5 text-[#3b2a24]/25"
+                                : "border-[#3b2a24]/10 bg-[#fbf7ef] text-[#3b2a24] hover:border-[#c9793f] hover:bg-[#fffaf2]",
                         ].join(" ")}
                       >
                         {item.getDate()}
+                        {closed && (
+                          <span
+                            aria-hidden="true"
+                            className="pointer-events-none absolute h-0.5 w-7 -rotate-45 rounded-full bg-[#9b0232]/55"
+                          />
+                        )}
                       </button>
                     );
                   })}
@@ -576,10 +596,11 @@ function ReservationMultiStepForm() {
 
                 <div className="mt-4 flex flex-wrap gap-2 text-[10px] font-bold uppercase tracking-[0.12em] text-[#3b2a24]/45">
                   <span className="rounded-full bg-[#3b2a24]/5 px-3 py-1">
-                    Tutti i giorni
+                    Martedì–domenica
                   </span>
-                  <span className="rounded-full bg-[#3b2a24]/5 px-3 py-1">
-                    Solo cena
+                  <span className="inline-flex items-center gap-2 rounded-full bg-[#9b0232]/5 px-3 py-1 text-[#9b0232]">
+                    <span aria-hidden="true" className="h-0.5 w-3 -rotate-45 rounded-full bg-current" />
+                    Lunedì chiuso
                   </span>
                   <span className="rounded-full bg-[#3b2a24]/5 px-3 py-1">
                     18:30 · 23:30
@@ -940,10 +961,6 @@ function buildCalendarDays(month: Date) {
   return days;
 }
 
-function getAvailableSlots() {
-  return dinnerSlots;
-}
-
 function isPastDate(date: Date) {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
@@ -960,11 +977,6 @@ function formatDateForInput(date: Date) {
   const day = `${date.getDate()}`.padStart(2, "0");
 
   return `${year}-${month}-${day}`;
-}
-
-function parseDate(value: string) {
-  const [year, month, day] = value.split("-").map(Number);
-  return new Date(year, month - 1, day);
 }
 
 function formatMonth(date: Date) {
